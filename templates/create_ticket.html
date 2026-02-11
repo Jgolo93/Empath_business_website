@@ -1,0 +1,185 @@
+{% extends 'layout.html' %}
+
+{% block title %}Create Support Ticket - Empath IT Support{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Create Support Ticket</h1>
+        <p>Let us know how we can help you</p>
+    </div>
+</section>
+
+<section class="business-solutions">
+    <div class="container">
+        <h2>IT Solutions for Everyone</h2>
+        <p style="text-align: center; margin-bottom: 30px;">Whether you're an individual or a business, we provide comprehensive IT support tailored to your needs.</p>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="material-icons">person</i>
+                </div>
+                <h3 class="solution-title">Personal Support</h3>
+                <div class="solution-content">
+                    <p>We help individuals with computer repairs, virus removal, data recovery, and more. Our friendly technicians explain everything in plain language.</p>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="material-icons">business</i>
+                </div>
+                <h3 class="solution-title">Business Solutions</h3>
+                <div class="solution-content">
+                    <p>Our business IT solutions include network setup, security implementation, cloud services, and ongoing maintenance to keep your operations running smoothly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ticket-form">
+    <div class="container">
+        <div class="form-container">
+            <h2>Submit Your Support Request</h2>
+            <p>Please fill out the form below and we'll get back to you as soon as possible.</p>
+            
+            <div id="zoho-form-container">
+                <iframe id="zoho-form" aria-label='Create a ticket form' frameborder="0" style="height:500px;width:99%;border:none;" 
+                    src='https://forms.zohopublic.com/webempathgm1/form/TermsandConditions/formperma/wHbi5TadAYc2RtkcMBxBENUTvUnPEKYgIIsrYtRwDkk'>
+                </iframe>
+            </div>
+            
+            <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const subject = urlParams.get('subject');
+                    
+                    if (subject) {
+                        const iframe = document.getElementById('zoho-form');
+                        
+                        // Function to set the subject in the form
+                        function setSubject() {
+                            try {
+                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                                const subjectField = iframeDoc.querySelector('input[name*="subject"], input[name*="Subject"]');
+                                
+                                if (subjectField) {
+                                    subjectField.value = subject;
+                                    return true;
+                                }
+                                return false;
+                            } catch (e) {
+                                console.error('Error accessing iframe:', e);
+                                return false;
+                            }
+                        }
+                        
+                        // Try to set subject immediately
+                        if (!setSubject()) {
+                            // If not successful, wait for iframe to load
+                            iframe.onload = function() {
+                                setSubject();
+                                
+                                // Additional check in case the form loads dynamically
+                                setTimeout(setSubject, 1000);
+                            };
+                        }
+                    }
+                });
+            </script>
+        </div>
+
+        <div class="contact-info">
+            <h3>Other Ways to Reach Us</h3>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:info@empathtechnologysolutions.com">info@empathtechnologysolutions.com</a></p>
+            <p><i class="fas fa-phone"></i> <a href="tel:0683075553">068 307 5553</a></p>
+            <!--p><i class="fas fa-location-dot"></i> Kuils River</p-->
+            <p><i class="fab fa-whatsapp"></i> <a href="https://wa.me/+27615075372" target="_blank" rel="noopener noreferrer">+27615075372</a></p>
+            <p><i class="fab fa-facebook-f"></i> <a href="https://www.facebook.com/profile.php?id=61577005616146" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+            <p><i class="fab fa-twitter"></i> <a href="https://x.com/Empath213" target="_blank" rel="noopener noreferrer">X (formerly Twitter)</a></p>
+            <p><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/empath921" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+            <p><i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/company/empath-tech-solutions/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+            <p><i class="fas fa-calendar"></i> <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/web-empath/30min'});return false;">Schedule a Meeting</a></p>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Center the solution cards */
+    .solutions-grid {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 30px auto;
+        flex-wrap: wrap;
+        max-width: 900px;
+    }
+
+    .solution-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        width: 300px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .solution-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .solution-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #f0f4f9;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 15px;
+    }
+
+    .solution-icon .material-icons {
+        font-size: 30px;
+        color: #4a6da7;
+    }
+
+    .solution-title {
+        height: 54px; /* Adjust as needed for 2 lines of text */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+
+    .solution-content {
+        flex-grow: 1;
+    }
+
+    .solution-content p {
+        color: #666;
+        line-height: 1.5;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .solutions-grid {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .solution-card {
+            width: 100%;
+            max-width: 350px;
+        }
+    }
+</style>
+
+{% endblock %}

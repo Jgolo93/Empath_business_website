@@ -1,0 +1,9 @@
+curl --location 'https://stage.fno.dev.aex.systems/customers/74B83E66-156D-4AB4-B328-0AB148C1D93F/services' \
+--header 'user-agent: Dart/3.5 (dart:io)' \
+--header 'accept-encoding: gzip' \
+--header 'content-length: 0' \
+--header 'host: stage.fno.dev.aex.systems' \
+--header 'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJhZXgtY29yZSIsImlhdCI6MTc0MTkzMTQ3MCwidWlkIjoiOTdFODRFREUtMzlBQy00MzI0LTgxN0YtNEFERDg2MjNFRkM0IiwiY2xhaW1zIjpbInVzZXJfaWQ6OTdFODRFREUtMzlBQy00MzI0LTgxN0YtNEFERDg2MjNFRkM0Iiwib3BlcmF0b3JfaWQ6ODRBQTYxNDYtRENBQi00MzU1LUI2RTktNTRGN0VGQUMyQkQzIiwicHJvdmlkZXJfaWQ6ODRBQTYxNDYtRENBQi00MzU1LUI2RTktNTRGN0VGQUMyQkQzIiwicm9sZTpmbm8iLCJyb2xlOmFkbWluIiwicm9sZTphcmVhYWRtaW4iLCJyb2xlOmluc3RhbGxhdGlvbm1hbmFnZW1lbnQiLCJyb2xlOnByb3Zpc2lvbmluZyIsInJvbGU6Zm5vYWRtaW4iLCJyb2xlOm5vYyIsInJvbGU6bm9jYWRtaW4iLCJyb2xlOmlzcCIsInJvbGU6aXNwYWRtaW4iLCJyb2xlOmFleCJdLCJleHAiOjE3NDIwMTc4NzB9.TGOnBUxK0pKEiURqqEDkHwoFi6m5WOER1XP0VqsK1EaN22YtRJ-8hK3iDU0JXMxLgK1QC0ybCrTDxgxt86ylBA' \
+--header 'content-type: application/json' \
+--header 'x-operator-id: 35325616-10BC-4E9C-931F-1E853E83A534' \
+--header 'Cookie: _Ditty_session=BAh7B0kiD3Nlc3Npb25faWQGOgZFVG86HVJhY2s6OlNlc3Npb246OlNlc3Npb25JZAY6D0BwdWJsaWNfaWRJIkVmM2NlM2M3NjAzN2IzOWRlN2Q5YmJkOTBiOTFhYzgxM2E5NDY0MWU2NmU1MDBjODVmZjE4YTg1YzdiNWFlYWYxBjsARkkiDHVzZXJfaWQGOwBUSSIpOEFGNzk0MUEtMkRGQS00NzZELUJBMUMtODJDMDNDRUY0RDk2BjsAVA%3D%3D--d8cf872a8bf12baedbe53e0f907ffa930312b027'

@@ -1,0 +1,171 @@
+{% extends 'layout.html' %}
+
+{% block title %}About Me - Empath IT Support{% endblock %}
+
+{% block content %}
+<section class="page-header" style="background-color: #4a6da7;">
+    <div class="container">
+        <h1>Where It All Began</h1>
+        <p>My journey in the world of IT</p>
+    </div>
+</section>
+
+<section class="about-section">
+    <div class="container">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="certification-logo">
+                    <img src="{{ url_for('static', filename='images/ComtiA.png') }}" alt="CompTIA A+ Certification">
+                </div>
+                
+                <div class="about-text">
+                    <p>My passion for IT started in high school, where I followed my older brother around as he worked on computers—back when 486 and Pentium 1 processors were cutting-edge. Watching him troubleshoot, build systems, and breathe life into machines sparked something in me. I started learning by doing—repairing computers, setting up internet for my local church, and supporting friends and family with their tech needs.</p>
+                    
+                    <p>This early hands-on experience laid the foundation for my career. I earned my <strong>CompTIA A+ certification</strong> through <strong>Boston City Campus</strong>, and have since built a career that spans <strong>desktop support, server maintenance, software testing</strong>, and <strong>quality assurance</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="business-solutions">
+    <div class="container">
+        <h2>My IT Expertise</h2>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="material-icons">computer</i>
+                </div>
+                <h3 class="solution-title">Desktop Support</h3>
+                <div class="solution-content">
+                    <p>Years of experience diagnosing and resolving hardware and software issues across various platforms and operating systems.</p>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="material-icons">storage</i>
+                </div>
+                <h3 class="solution-title">Server Maintenance</h3>
+                <div class="solution-content">
+                    <p>Skilled in server setup, configuration, and ongoing maintenance to ensure optimal performance and reliability.</p>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="material-icons">bug_report</i>
+                </div>
+                <h3 class="solution-title">Software Testing</h3>
+                <div class="solution-content">
+                    <p>Thorough testing methodologies to identify and document software issues before they impact end users.</p>
+                </div>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon">
+                    <i class="material-icons">verified</i>
+                </div>
+                <h3 class="solution-title">Quality Assurance</h3>
+                <div class="solution-content">
+                    <p>Ensuring all IT solutions meet the highest standards of quality, security, and user experience.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Need Professional IT Support?</h2>
+        <p>Let me help you solve your technology challenges with personalized solutions.</p>
+        <div style="margin-top: 30px; text-align: center;">
+            <a href="{{ url_for('create_ticket') }}" class="btn-primary">Get Support Now</a>
+        </div>
+    </div>
+</section>
+
+{% block extra_css %}
+<style>
+    .about-section {
+        padding: 60px 0;
+    }
+    
+    .about-container {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        margin-bottom: 40px;
+    }
+    
+    .about-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    
+    .certification-logo {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .certification-logo img {
+        max-width: 200px;
+        height: auto;
+    }
+    
+    .about-text p {
+        margin-bottom: 20px;
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: #333;
+    }
+    
+    .cta-section {
+        background-color: #f5f7fa;
+        padding: 60px 0;
+        text-align: center;
+    }
+    
+    .cta-section h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+    
+    .cta-section p {
+        max-width: 700px;
+        margin: 0 auto;
+        color: #666;
+    }
+    
+    @media (min-width: 768px) {
+        .about-content {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        
+        .certification-logo {
+            flex: 0 0 250px;
+            margin-bottom: 0;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        .about-container {
+            padding: 25px;
+        }
+        
+        .certification-logo img {
+            max-width: 150px;
+        }
+        
+        .about-text p {
+            font-size: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+{% endblock %}

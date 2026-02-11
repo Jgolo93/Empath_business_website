@@ -1,0 +1,300 @@
+{% extends 'layout.html' %}
+
+{% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="video-background">
+        <!-- Replace the video tag with a div that will have the video as background -->
+        <div class="video-container"></div>
+    </div>
+    <!--div class="container">
+        <!--div class="hero-content">
+            <h1 class="hero-title">Reliable IT Solutions That Let You Focus on Your Business</h1>
+            <p class="hero-subtitle">Expert IT support, cloud solutions, and cybersecurity for small businesses and individuals.</p>
+        </div>
+    </div-->
+</section>
+
+<!-- Our Services Section -->
+<section class="business-solutions">
+    <div class="container">
+        <h2>Our Services</h2>
+        <p class="section-subtitle">Comprehensive IT and web solutions for individuals and businesses.</p>
+        <div class="solutions-grid">
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">business</i></div>
+                <h3 class="solution-title">Small Business IT Support</h3>
+                <div class="solution-content"><p>Complete IT solutions, from network setup to maintenance, so you can focus on your business.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">people</i></div>
+                <h3 class="solution-title">Personal IT Support</h3>
+                <div class="solution-content"><p>Friendly, jargon-free help with your computer, smartphone, or home network.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">security</i></div>
+                <h3 class="solution-title">Cybersecurity</h3>
+                <div class="solution-content"><p>Protect your data with robust security measures against online threats.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">cloud</i></div>
+                <h3 class="solution-title">Cloud Solutions</h3>
+                <div class="solution-content"><p>Expert guidance to migrate your business to the cloud, tailored to your needs and budget.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">web</i></div>
+                <h3 class="solution-title">Web Design & UX</h3>
+                <div class="solution-content"><p>Creating beautiful, user-friendly websites, including logo design, to deliver a great user experience.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">build</i></div>
+                <h3 class="solution-title">PC & Laptop Repair</h3>
+                <div class="solution-content"><p>Fast and reliable repair services for all makes and models of PCs and laptops.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">desktop_windows</i></div>
+                <h3 class="solution-title">Custom PC Builds</h3>
+                <div class="solution-content"><p>High-performance custom PCs tailored to your gaming, creative, or professional needs.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">vpn_key</i></div>
+                <h3 class="solution-title">License Reselling</h3>
+                <div class="solution-content"><p>Official reseller for Google and Microsoft licenses to keep your software legitimate and up-to-date.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">backup</i></div>
+                <h3 class="solution-title">Data Backup Solutions</h3>
+                <div class="solution-content"><p>Secure your critical data with our reliable cloud and local backup solutions.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">upgrade</i></div>
+                <h3 class="solution-title">Hardware Upgrades</h3>
+                <div class="solution-content"><p>Boost your PC or laptop's performance with memory, storage, and component upgrades.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">wifi</i></div>
+                <h3 class="solution-title">Remote Network Setup</h3>
+                <div class="solution-content"><p>Expert remote setup for your home or small business network for optimal performance.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">bug_report</i></div>
+                <h3 class="solution-title">Virus & Malware Removal</h3>
+                <div class="solution-content"><p>Fast and thorough removal of viruses, spyware, and malware to restore your system's health.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+            <div class="solution-card">
+                <div class="solution-icon"><i class="material-icons">palette</i></div>
+                <h3 class="solution-title">Logo Design</h3>
+                <div class="solution-content"><p>Create a unique and professional brand identity with our custom logo design services.</p></div>
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+    <div class="container">
+        <h2>How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-icon">
+                    <i class="material-icons">confirmation_number</i>
+                </div>
+                <h3 class="step-title">Create a Support Ticket</h3>
+                <p>Fill out our simple support form to let us know what issues you're experiencing.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="material-icons">computer</i>
+                </div>
+                <h3 class="step-title">Remote Support</h3>
+                <p>Our technicians can connect to your device remotely to diagnose and fix many issues.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="material-icons">build</i>
+                </div>
+                <h3 class="step-title">On-site Service</h3>
+                <p>For more complex issues, we can arrange for your PC to be serviced at our workshop.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon">
+                    <i class="material-icons">check_circle</i>
+                </div>
+                <h3 class="step-title">Problem Solved</h3>
+                <p>We'll ensure your technology is working properly before completing the service.</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="{{ url_for('how_it_works') }}" class="btn-primary">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <h2>What Our Clients Say</h2>
+        <p class="section-subtitle">Real feedback from people we've helped.</p>
+        <div class="testimonial-cards">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Empath IT Support resolved my computer issues quickly and professionally. Their remote assistance saved me so much time!"</p>
+                <p class="testimonial-author">- Sarah J., Small Business Owner</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"I was impressed by how quickly they diagnosed and fixed my laptop problems. Great service at a reasonable price."</p>
+                <p class="testimonial-author">- Michael T., Freelancer</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The team at Empath IT Support are knowledgeable, patient, and very helpful. They've become our go-to IT support provider."</p>
+                <p class="testimonial-author">- Lisa R., Office Manager</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<!--section class="page-header" style="margin-bottom: 0; background-color: #4a6fa5;">
+    <div class="container">
+        <h2>Ready to Get Started?</h2>
+        <p>Let us handle your IT issues so you can focus on what matters most.</p>
+        <div style="margin-top: 30px;">
+            <a href="{{ url_for('create_ticket') }}" class="btn-primary">Contact Us</a>
+        </div>
+    </div>
+</section-->
+
+<!-- Add this script at the end of your content block -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Create a new video element
+    var video = document.createElement('video');
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+
+    // Create source element
+    var source = document.createElement('source');
+    source.src = "{{ url_for('static', filename='videos/Empath2.mp4') }}";
+    source.type = "video/mp4";
+
+    // Append source to video
+    video.appendChild(source);
+
+    // Add fallback text
+    video.appendChild(document.createTextNode("Your browser does not support the video tag."));
+
+    // Get the video container
+    var container = document.querySelector('.video-container');
+
+    // Append video to container
+    container.appendChild(video);
+
+    // Function to handle video positioning
+    function positionVideo() {
+        var windowWidth = window.innerWidth;
+
+        if (windowWidth <= 414) {
+            // Small mobile devices - iPhone SE, iPhone 12 Pro
+            video.style.width = '170%'; // Reduced from 200% to show more of the video
+            video.style.height = 'auto';
+            video.style.position = 'absolute';
+            video.style.top = '50%';
+            video.style.left = '49%'; // Adjusted from 45% to 48% to move it more to the right
+            video.style.transform = 'translate(-50%, -50%) scale(0.9)'; // Added scale to show more content
+            video.style.objectFit = 'cover';
+        } else if (windowWidth <= 768) {
+            // Tablets and larger mobile
+            video.style.width = '139%'; // Reduced from 150% to show more of the video
+            video.style.height = 'auto';
+            video.style.position = 'absolute';
+            video.style.top = '50%';
+            video.style.left = '50%'; // Centered for tablets
+            video.style.transform = 'translate(-50%, -50%) scale(0.95)'; // Added scale to show more content
+            video.style.objectFit = 'cover';
+        } else {
+            // Larger devices
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.style.position = 'absolute';
+            video.style.top = '50%';
+            video.style.left = '50%';
+            video.style.transform = 'translate(-50%, -50%)';
+            video.style.objectFit = 'cover';
+        }
+    }
+
+    // Position video initially
+    positionVideo();
+
+    // Reposition on resize
+    window.addEventListener('resize', positionVideo);
+
+    // Add a slight delay to ensure video dimensions are properly calculated
+    setTimeout(positionVideo, 100);
+
+    // Add another delay for when the video has loaded
+    video.addEventListener('loadeddata', function() {
+        setTimeout(positionVideo, 200);
+    });
+});
+</script>
+
+<!-- FAQ Schema for Home Page -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What IT services do you offer in Cape Town?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer comprehensive IT support including computer repairs, virus removal, remote assistance, network setup, custom PC builds, data backup solutions, and website design services. We serve individuals and businesses in Cape Town, with our workshop located in Kuils River."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer remote IT support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we offer remote IT support for software issues, troubleshooting, and diagnostics. Remote assistance sessions are R150 for up to 45 minutes (R300 for emergency support). For hardware issues, devices must be brought to our workshop in Kuils River."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does IT support cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our pricing varies by service. Remote assistance starts at R150 per session, diagnostics are R100, virus removal from R250, and full laptop service ranges from R350-R500. We also offer bundled packages starting at R350. Contact us for a custom quote."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is your IT workshop located?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our workshop is located in Kuils River, Cape Town, Western Cape. We do not offer call-out services, so devices requiring hardware repairs must be brought to our workshop for service."
+      }
+    }
+  ]
+}
+</script>
+
+{% endblock %}
