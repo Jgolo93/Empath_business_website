@@ -156,16 +156,6 @@
     </div>
 </section>
 
-<!-- Shop Call to Action -->
-<section class="shop-cta" style="background: linear-gradient(135deg, #4a6fa5 0%, #2c4a7a 100%); padding: 60px 20px; margin: 0;">
-    <div class="container" style="max-width: 800px; margin: 0 auto; text-align: center; color: white;">
-        <h2 style="margin: 0 0 15px 0; font-size: 2.2em; font-weight: 600;">Looking for Hardware or Software?</h2>
-        <p style="font-size: 1.2em; margin: 0 auto 25px; max-width: 700px; line-height: 1.6;">Visit our online shop for great deals on hardware, software, and IT accessories. Everything you need in one place!</p>
-        <a href="https://shop.empathtechnologysolutions.com" target="_blank" rel="noopener noreferrer" class="shop-cta-btn" style="background: white; color: #4a6fa5; border: none; font-weight: 600; padding: 14px 36px; font-size: 1.1em; border-radius: 50px; display: inline-block; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-            Shop Now <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
-        </a>
-    </div>
-</section>
 
 <style>
     /* Center the solution cards */
@@ -179,44 +169,48 @@
     }
 
     .solution-card {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background: white;
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow);
         padding: 25px;
         width: 300px;
         text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
     }
 
     .solution-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--accent);
     }
 
     .solution-icon {
         width: 60px;
         height: 60px;
-        background-color: #f0f4f9;
+        background: var(--gradient-primary);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto 15px;
+        color: white;
     }
 
     .solution-icon .material-icons {
         font-size: 30px;
-        color: #4a6da7;
+        color: white;
     }
 
     .solution-title {
-        color: #333;
+        color: var(--text-primary);
         margin-bottom: 15px;
         font-size: 18px;
+        font-weight: 600;
     }
 
     .solution-content p {
-        color: #666;
+        color: var(--text-secondary);
         line-height: 1.5;
     }
 
@@ -227,7 +221,7 @@
 
     .business-solutions h2 {
         margin-bottom: 10px;
-        color: #333;
+        color: var(--text-primary);
     }
 
     /* Pricing table styling */
@@ -240,29 +234,30 @@
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        background: #fff;
-        border-radius: 10px;
+        background: white;
+        border-radius: var(--radius-md);
         overflow: hidden;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
     }
 
     .pricing-table thead th {
-        background: #f3f6fb;
-        color: #334155;
+        background: var(--gradient-primary);
+        color: white;
         text-align: left;
         padding: 14px 16px;
         font-weight: 600;
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid var(--border-color);
     }
 
     .pricing-table tbody td {
         padding: 14px 16px;
-        border-bottom: 1px solid #f1f5f9;
-        color: #374151;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-secondary);
     }
 
     .pricing-table tbody tr:hover {
-        background: #f9fbff;
+        background: var(--bg-secondary);
     }
 
     .service-icon {
@@ -273,8 +268,8 @@
         height: 28px;
         margin-right: 8px;
         border-radius: 6px;
-        background: #eef2ff;
-        color: #4a6da7;
+        background: var(--bg-tertiary);
+        color: var(--accent);
         font-weight: 700;
     }
 
@@ -287,20 +282,20 @@
     }
 
     .service-item {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
         padding: 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        transition: transform .2s ease, box-shadow .2s ease;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
     }
 
     .service-item:hover { 
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        box-shadow: var(--shadow-md);
     }
 
     .service-name { 
@@ -308,12 +303,12 @@
         align-items: center; 
         gap: 8px; 
         font-weight: 600; 
-        color: #334155;
+        color: var(--text-primary);
     }
 
     .service-price { 
         font-weight: 700; 
-        color: #111827; 
+        color: var(--accent); 
     }
 
     /* Bundles as feature cards */
@@ -325,33 +320,34 @@
     }
 
     .bundle {
-        background: #fff;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
+        background: white;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
         padding: 18px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        transition: transform .2s ease, box-shadow .2s ease;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
     }
 
     .bundle:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+        box-shadow: var(--shadow-md);
     }
 
     .bundle-name {
         font-weight: 700;
-        color: #1f2937;
+        color: var(--text-primary);
         display: flex; align-items: center; gap: 8px;
         margin-bottom: 8px;
     }
 
     .bundle-services {
-        color: #4b5563; 
+        color: var(--text-secondary); 
         margin-bottom: 10px;
     }
 
     .bundle-price {
-        font-weight: 800; color: #111827;
+        font-weight: 800; 
+        color: var(--accent);
     }
 
     /* Website Design Pricing */
@@ -363,23 +359,24 @@
     }
 
     .pricing-tier {
-        background: #fff;
-        border-radius: 10px;
+        background: white;
+        border-radius: var(--radius-md);
         padding: 25px;
         position: relative;
-        border: 1px solid #e5e7eb;
-        transition: all 0.3s ease;
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
         display: flex;
         flex-direction: column;
     }
 
     .pricing-tier:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--accent);
     }
 
     .pricing-tier.standard {
-        border: 2px solid #4a6da7;
+        border: 2px solid var(--accent);
         position: relative;
     }
 
@@ -387,7 +384,7 @@
         position: absolute;
         top: -12px;
         right: 20px;
-        background: #4a6da7;
+        background: var(--gradient-accent);
         color: white;
         padding: 4px 12px;
         border-radius: 20px;
@@ -396,20 +393,21 @@
     }
 
     .pricing-tier h3 {
-        color: #1f2937;
+        color: var(--text-primary);
         margin: 0 0 10px;
         font-size: 1.4rem;
+        font-weight: 600;
     }
 
     .price {
         font-size: 1.8rem;
         font-weight: 700;
-        color: #111827;
+        color: var(--accent);
         margin: 10px 0;
     }
 
     .tier-note {
-        color: #6b7280;
+        color: var(--text-light);
         font-size: 0.9rem;
         margin-bottom: 15px;
     }
@@ -422,35 +420,33 @@
 
     .pricing-tier ul li {
         padding: 6px 0;
-        color: #4b5563;
+        color: var(--text-secondary);
         position: relative;
         padding-left: 24px;
     }
 
     .pricing-tier ul li:before {
         content: "✓";
-        color: #10b981;
+        color: var(--accent);
         position: absolute;
         left: 0;
         font-weight: bold;
     }
 
     .tier-footer {
-        margin-top: auto; /* Pushes footer to the bottom */
+        margin-top: auto;
     }
 
     .tier-button {
         display: block;
-        width: 80%;
+        width: 100%;
         margin: 20px auto 0;
         text-align: center;
-        padding: 10px 15px;
-        font-size: 14px;
     }
 
     .requirements {
         font-size: 0.8rem;
-        color: #6b7280;
+        color: var(--text-light);
         margin-top: 15px;
         text-align: center;
     }
@@ -472,7 +468,7 @@
         .pricing-tiers { grid-template-columns: 1fr; }
         .pricing-table thead { display: none; }
         .pricing-table, .pricing-table tbody, .pricing-table tr, .pricing-table td { display: block; width: 100%; }
-        .pricing-table tr { border-bottom: 1px solid #e5e7eb; padding: 8px 0; }
+        .pricing-table tr { border-bottom: 1px solid var(--border-color); padding: 8px 0; }
         .pricing-table td { padding: 8px 12px; }
     }
 </style>
