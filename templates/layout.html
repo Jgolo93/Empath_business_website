@@ -13,12 +13,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Empath Technology Solutions{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Empath Technology Solutions - Affordable IT support and computer repair services in Cape Town. Cheap rates for small business, virus removal, network setup, remote support. Starting from R100. Call 068 307 5553">
+    <meta name="keywords" content="IT support Cape Town, cheap computer repair, affordable IT services, small business IT support, virus removal, network setup, computer repair Kuils River, remote IT support, cheap website design, IT solutions Western Cape, budget IT services, professional IT support, data recovery, custom PC builds, IT maintenance">
+    <meta name="author" content="Empath Technology Solutions">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="ZA-WC">
+    <meta name="geo.placename" content="Cape Town">
+    <meta name="geo.position" content="-33.9344;18.6844">
+    <meta name="ICBM" content="-33.9344, 18.6844">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.empathtechnologysolutions.com">
+    <meta property="og:title" content="Empath Technology Solutions - Affordable IT Support Cape Town">
+    <meta property="og:description" content="Professional and affordable IT support for small business and individuals. Computer repairs, network setup, virus removal starting at R100.">
+    <meta property="og:image" content="https://www.empathtechnologysolutions.com/static/images/Empath.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Empath Technology Solutions - Affordable IT Support">
+    <meta name="twitter:description" content="Cheap IT support for small business in Cape Town. Computer repairs, network setup, virus removal.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo.png') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     
@@ -60,12 +82,13 @@
         "closes": "17:00"
       },
       "sameAs": [
-        "https://www.facebook.com/profile.php?id=61577005616146",
         "https://x.com/Empath213",
         "https://www.instagram.com/empath921",
-        "https://www.linkedin.com/company/empath-tech-solutions/"
+        "https://www.linkedin.com/company/empath-tec-solutions/",
+        "https://www.facebook.com/profile.php?id=61577005616146",
+        "https://youtube.com/@empathtechnologysolutions"
       ],
-      "description": "Professional IT support and technology solutions for individuals and businesses in Cape Town. We offer computer repairs, remote support, network setup, custom PC builds, website design, and comprehensive IT services.",
+      "description": "Professional affordable IT support and technology solutions for small business and individuals in Cape Town. Computer repairs, virus removal, network setup, remote support, website design. Services starting from R100.",
       "areaServed": {
         "@type": "GeoCircle",
         "geoMidpoint": {
@@ -74,6 +97,38 @@
           "longitude": 18.6844
         },
         "geoRadius": "50000"
+      },
+      "serviceType": ["IT Support", "Computer Repair", "Network Setup", "Virus Removal", "Remote Support", "Website Design"],
+      "potentialAction": {
+        "@type": "ContactAction",
+        "name": "Contact Us",
+        "target": "https://www.empathtechnologysolutions.com/create_ticket"
+      }
+    }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Empath Technology Solutions",
+      "url": "https://www.empathtechnologysolutions.com",
+      "logo": "https://www.empathtechnologysolutions.com/static/images/Empath.png",
+      "description": "Affordable IT support and computer repair services for small business in Cape Town, South Africa.",
+      "sameAs": [
+        "https://x.com/Empath213",
+        "https://www.instagram.com/empath921",
+        "https://www.linkedin.com/company/empath-tec-solutions/",
+        "https://www.facebook.com/profile.php?id=61577005616146",
+        "https://youtube.com/@empathtechnologysolutions"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+27683075553",
+        "contactType": "customer service",
+        "availableLanguage": ["English"],
+        "areaServed": "ZA"
       }
     }
     </script>
@@ -222,7 +277,6 @@
                         <li><a href="{{ url_for('pricing') }}" class="{{ 'active' if request.path == url_for('pricing') else '' }}">Pricing</a></li>
                         <li><a href="{{ url_for('how_it_works') }}" class="{{ 'active' if request.path == url_for('how_it_works') else '' }}">How It Works</a></li>
                         <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.path == url_for('about') else '' }}">About Me</a></li>
-                        <!--li><a href="https://shop.empathtechnologysolutions.com" target="_blank" rel="noopener noreferrer">Shop</a></li-->
                         <li><a href="{{ url_for('terms') }}" class="{{ 'active' if request.path == url_for('terms') else '' }}">Terms</a></li>
                         <li><a href="{{ url_for('privacy') }}" class="{{ 'active' if request.path == url_for('privacy') else '' }}">Privacy</a></li>
                         <li><a href="{{ url_for('create_ticket') }}" class="{{ 'active' if request.path == url_for('create_ticket') else '' }}">Contact Us</a></li>
@@ -255,7 +309,6 @@
                         <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
                         <li><a href="{{ url_for('how_it_works') }}">How It Works</a></li>
                         <li><a href="{{ url_for('about') }}">About Me</a></li>
-                        <li><a href="https://shop.empathtechnologysolutions.com" target="_blank" rel="noopener noreferrer">Shop</a></li>
                         <li><a href="{{ url_for('create_ticket') }}">Contact Us</a></li>
                     </ul>
                 </div>
@@ -272,16 +325,16 @@
                     <h3 class="footer-heading">Connect With Us</h3>
                     <div class="social-icons">
                         <a href="https://wa.me/27615075372" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.facebook.com/profile.php?id=61577005616146" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://x.com/Empath213" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.instagram.com/empath921" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/empath-tech-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/company/empath-tec-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com/@empathtechnologysolutions?si=1wYaD5Nw7X_5YK_j" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
 
                     <!-- Zoho Campaigns Newsletter Button -->
                     <div id='embedLink' style="margin: 15px 0;">
                         <a href="https://zc.vg/9Uzw5" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
-                            <button type="button" purpose="nrmlBtn" class="" style="outline: none 0px; background-color: rgb(36, 51, 119); color: rgb(255, 255, 255); border: 2px solid rgb(153, 153, 153); font-size: 20px; padding: 6px 10px; border-radius: 5px; font-family: &quot;Comic Sans MS&quot;; text-align: center; width: auto; cursor: pointer;" changetype="EMBED_BUTTON" id="EMBED_BUTTON" name="EMBED_BUTTON" value="Join Our Newsletter" bgcolor="#243377" formopenin="Popup" btntype="nrmlBtn">
+                            <button type="button" purpose="nrmlBtn" class="" style="outline: none 0px; background-color: rgb(36, 51, 119); color: rgb(255, 255, 255); border: 2px solid rgb(153, 153, 153); font-size: 18px; padding: 8px 16px; border-radius: 8px; font-family: Poppins, sans-serif; text-align: center; width: auto; cursor: pointer; font-weight: 500;" changetype="EMBED_BUTTON" id="EMBED_BUTTON" name="EMBED_BUTTON" value="Join Our Newsletter" bgcolor="#243377" formopenin="Popup" btntype="nrmlBtn">
                                 <span class="zceditcnt" style="">Join Our Newsletter</span>
                             </button>
                         </a>
@@ -320,6 +373,7 @@
 
     
     {% block extra_js %}{% endblock %}
+<!-- WhatsApp Widget Hidden
 <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
         <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
         <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
@@ -331,7 +385,45 @@
             _waEmbed(wa_btnSetting, wa_widgetSetting);
           };
         </script>
+-->
 
    <script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"siq63ed16c87859cf96437fab33ee83db03c87b66b1ab681c7af431ad5200cc401a", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
+
+   <!-- Scroll Animation Script -->
+   <script>
+     // Intersection Observer for scroll animations
+     const observerOptions = {
+       threshold: 0.1,
+       rootMargin: '0px 0px -50px 0px'
+     };
+
+     const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+         if (entry.isIntersecting) {
+           entry.target.classList.add('visible');
+         }
+       });
+     }, observerOptions);
+
+     // Observe all animated elements
+     document.addEventListener('DOMContentLoaded', () => {
+       const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in, .solution-card, .step, .bundle');
+       animatedElements.forEach(el => observer.observe(el));
+     });
+
+     // Smooth scroll for anchor links
+     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+       anchor.addEventListener('click', function (e) {
+         e.preventDefault();
+         const target = document.querySelector(this.getAttribute('href'));
+         if (target) {
+           target.scrollIntoView({
+             behavior: 'smooth',
+             block: 'start'
+           });
+         }
+       });
+     });
+   </script>
 </body>
 </html>

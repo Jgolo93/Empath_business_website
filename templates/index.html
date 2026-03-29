@@ -3,18 +3,59 @@
 {% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
 
 {% block content %}
+<!-- Company Name Banner -->
+<div class="company-banner">
+    <div class="container">
+        <h2 class="company-name">Empath Technology Solutions</h2>
+    </div>
+</div>
+
 <!-- Hero Section -->
 <section class="hero-section">
-    <div class="video-background">
-        <!-- Replace the video tag with a div that will have the video as background -->
-        <div class="video-container"></div>
+    <div class="hero-network"></div>
+    <div class="hero-waves">
+        <div class="wave wave-1"></div>
+        <div class="wave wave-2"></div>
+        <div class="wave wave-3"></div>
     </div>
-    <!--div class="container">
-        <!--div class="hero-content">
-            <h1 class="hero-title">Reliable IT Solutions That Let You Focus on Your Business</h1>
-            <p class="hero-subtitle">Expert IT support, cloud solutions, and cybersecurity for small businesses and individuals.</p>
+    <div class="hero-dots">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-tagline">
+                <span class="tag-part">When IT Support</span>
+                <span class="tag-connector">Meets</span>
+                <span class="tag-part">Web Design</span>
+            </div>
+            <h1 class="hero-title">Complete Business Solutions</h1>
+            <p class="hero-slogan">From Hardware to Websites & Email — Solutions for the People</p>
+            <p class="hero-description">Empowering small businesses and startups with affordable IT infrastructure, custom websites, and professional email solutions. Your one-stop technology partner in Cape Town.</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Get Started</a>
+                <a href="{{ url_for('pricing') }}" class="btn-secondary">View Pricing</a>
+            </div>
+            <div class="hero-features">
+                <div class="feature-item">
+                    <i class="material-icons">computer</i>
+                    <span>Hardware</span>
+                </div>
+                <div class="feature-item">
+                    <i class="material-icons">language</i>
+                    <span>Websites</span>
+                </div>
+                <div class="feature-item">
+                    <i class="material-icons">email</i>
+                    <span>Email</span>
+                </div>
+                <div class="feature-item">
+                    <i class="material-icons">support_agent</i>
+                    <span>Support</span>
+                </div>
+            </div>
         </div>
-    </div-->
+    </div>
 </section>
 
 <!-- Our Services Section -->
@@ -145,27 +186,154 @@
     </div>
 </section>
 
-<!-- Testimonials Section -->
+<!-- Testimonials Carousel Section -->
 <section class="testimonials-section">
     <div class="container">
         <h2>What Our Clients Say</h2>
         <p class="section-subtitle">Real feedback from people we've helped.</p>
-        <div class="testimonial-cards">
-            <div class="testimonial-card">
-                <p class="testimonial-text">"Empath IT Support resolved my computer issues quickly and professionally. Their remote assistance saved me so much time!"</p>
-                <p class="testimonial-author">- Sarah J., Small Business Owner</p>
+        
+        <div class="testimonial-carousel">
+            <button class="carousel-btn prev" onclick="moveTestimonial(-1)">
+                <i class="material-icons">chevron_left</i>
+            </button>
+            
+            <div class="testimonial-track">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Jason services is excellent, fast and efficient nice using his services will definitely doing business with him again."</p>
+                        <div class="testimonial-author-info">
+                            <p class="testimonial-author">Angie Jonas</p>
+                            <p class="testimonial-role">Owner, Glen Grass (glengsrass.co.za)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <p class="testimonial-text">"Absolutely brilliant service and support. Everything was up and working before the deadline. Amazing Company to work with! Thank you!"</p>
+                        <div class="testimonial-author-info">
+                            <p class="testimonial-author">Belinda Brass</p>
+                            <p class="testimonial-role">Owner, Copper Grey Consulting</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"I was impressed by how quickly they diagnosed and fixed my laptop problems. Great service at a reasonable price."</p>
-                <p class="testimonial-author">- Michael T., Freelancer</p>
-            </div>
-            <div class="testimonial-card">
-                <p class="testimonial-text">"The team at Empath IT Support are knowledgeable, patient, and very helpful. They've become our go-to IT support provider."</p>
-                <p class="testimonial-author">- Lisa R., Office Manager</p>
+            
+            <button class="carousel-btn next" onclick="moveTestimonial(1)">
+                <i class="material-icons">chevron_right</i>
+            </button>
+            
+            <div class="carousel-dots">
+                <span class="dot active" onclick="goToTestimonial(0)"></span>
+                <span class="dot" onclick="goToTestimonial(1)"></span>
+                <span class="dot" onclick="goToTestimonial(2)"></span>
+                <span class="dot" onclick="goToTestimonial(3)"></span>
+                <span class="dot" onclick="goToTestimonial(4)"></span>
             </div>
         </div>
     </div>
 </section>
+
+<!-- FAQ Section for SEO -->
+<section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+    <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <p class="section-subtitle">Common questions about our IT services</p>
+        
+        <div class="faq-grid">
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">How much does IT support cost for small business in Cape Town?</h3>
+                <div itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Our IT support services start from just R100 for basic consultations. We offer affordable rates for small businesses with packages starting at R500/month for ongoing support. We understand budget constraints for small businesses and work within your means.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">Do you offer cheap computer repair near Kuils River?</h3>
+                <div itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Yes! We provide affordable computer repair services throughout Cape Town including Kuils River, Stellenbosch, and surrounding areas. Our rates are competitive and we offer free diagnostics. Common repairs like screen replacement, virus removal, and hardware upgrades are priced to be budget-friendly.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">Can you help with network setup for my small business?</h3>
+                <div itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Absolutely. We specialize in affordable network setup for small businesses in Cape Town. From basic WiFi installation to complete office network infrastructure, we can help. We also offer remote support so we can assist with many network issues without visiting your premises.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">Do you offer remote IT support?</h3>
+                <div itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Yes, we provide remote IT support throughout South Africa. This is a cost-effective option as it saves on travel costs. We can diagnose and fix many computer issues remotely including software problems, virus removal, and system optimization.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">What areas do you service in Cape Town?</h3>
+                <div itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text">We service the entire Cape Town area including Kuils River, Stellenbosch, Bellville, Parow, Goodwood, and surrounding suburbs. We also offer remote support to clients throughout South Africa. Contact us to discuss your IT needs regardless of your location.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item" itemscope itemtype="https://schema.org/Question">
+                <h3 itemprop="name">Do you offer website design at affordable prices?</h3>
+                <div itemscope itemtype="https://schema.org/Answer">
+                    <p itemprop="text">Yes! We provide cheap, professional website design services for small businesses. Our packages start from R1500 for a basic business website. We focus on creating affordable online presence for small businesses that need an online footprint without breaking the bank.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Carousel JavaScript -->
+<script>
+let currentTestimonial = 0;
+const totalTestimonials = 2;
+
+function moveTestimonial(direction) {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    slides[currentTestimonial].classList.remove('active');
+    dots[currentTestimonial].classList.remove('active');
+    
+    currentTestimonial = (currentTestimonial + direction + totalTestimonials) % totalTestimonials;
+    
+    slides[currentTestimonial].classList.add('active');
+    dots[currentTestimonial].classList.add('active');
+}
+
+function goToTestimonial(index) {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    slides[currentTestimonial].classList.remove('active');
+    dots[currentTestimonial].classList.remove('active');
+    
+    currentTestimonial = index;
+    
+    slides[currentTestimonial].classList.add('active');
+    dots[currentTestimonial].classList.add('active');
+}
+
+// Auto-advance carousel every 6 seconds
+setInterval(() => moveTestimonial(1), 6000);
+</script>
 
 <!-- CTA Section -->
 <!--section class="page-header" style="margin-bottom: 0; background-color: #4a6fa5;">
