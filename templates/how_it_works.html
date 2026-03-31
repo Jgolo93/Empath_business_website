@@ -128,8 +128,8 @@
 
 <section class="page-header" style="margin-bottom: 0; background-color: #6b8cae;">
     <div class="container">
-        <h2>Ready to Get Started?</h2>
-        <p>Let us handle your IT issues so you can focus on what matters most.</p>
+        <h2 style="color: white;">Ready to Get Started?</h2>
+        <p style="color: white;">Let us handle your IT issues so you can focus on what matters most.</p>
         <div style="margin-top: 30px;">
             <a href="{{ url_for('create_ticket') }}" class="btn-primary">Create Support Ticket</a>
         </div>
@@ -181,7 +181,7 @@
     /* Important notice styling */
     .important-notice {
         background-color: #fff3cd;
-        padding: 20px 0;
+        padding: 30px 0;
         margin: 40px 0;
         border-top: 1px solid #ffeeba;
         border-bottom: 1px solid #ffeeba;
@@ -224,6 +224,12 @@
             flex-direction: column;
             text-align: center;
         }
+    }
+
+    /* Fix text color for Ready to Get Started section */
+    .page-header[style*="background-color: #6b8cae"] h2,
+    .page-header[style*="background-color: #6b8cae"] p {
+        color: white !important;
     }
 </style>
 {% endblock %}
