@@ -418,17 +418,23 @@ document.addEventListener('DOMContentLoaded', function() {
     const filterBtns = document.querySelectorAll('.filter-btn');
     const blogCards = document.querySelectorAll('.blog-card-v2');
     
+    console.log('Search elements found:', {
+        searchInput: !!searchInput,
+        clearBtn: !!clearBtn,
+        blogCards: blogCards.length
+    });
+    
     // Search
     searchInput.addEventListener('input', function() {
         const query = this.value.toLowerCase();
         clearBtn.style.display = query ? 'block' : 'none';
-        filterCards(query, getActiveFilter());
+        window.filterCards(query, window.getActiveFilter());
     });
     
     clearBtn.addEventListener('click', function() {
         searchInput.value = '';
         clearBtn.style.display = 'none';
-        filterCards('', getActiveFilter());
+        window.filterCards('', window.getActiveFilter());
     });
     
     // Filter buttons
@@ -436,16 +442,18 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            filterCards(searchInput.value.toLowerCase(), this.dataset.filter);
+            window.filterCards(searchInput.value.toLowerCase(), this.dataset.filter);
         });
     });
     
-    function getActiveFilter() {
+    // Make functions globally accessible
+    window.getActiveFilter = function() {
         const active = document.querySelector('.filter-btn.active');
         return active ? active.dataset.filter : 'all';
-    }
+    };
     
-    function filterCards(query, category) {
+    window.filterCards = function(query, category) {
+        console.log('Filtering cards:', query, category);
         let visibleCount = 0;
         
         blogCards.forEach(card => {
@@ -466,7 +474,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-    }
+        console.log('Visible cards:', visibleCount);
+    };
     
     // Like button animation
     document.querySelectorAll('.like-btn').forEach(btn => {
