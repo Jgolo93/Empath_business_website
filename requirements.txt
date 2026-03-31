@@ -3,8 +3,10 @@ certifi==2025.4.26
 charset-normalizer==3.4.2
 click==8.2.0
 colorama==0.4.6
-dotenv==0.9.9
 Flask==2.3.3
+Flask-SQLAlchemy==3.1.1
+SQLAlchemy==2.0.40
+psycopg2-binary==2.9.10
 gunicorn==23.0.0
 idna==3.10
 itsdangerous==2.2.0
