@@ -1,0 +1,676 @@
+{% extends 'layout.html' %}
+
+{% block title %}R50 Weekend Website Build | Affordable Web Development South Africa | Small Business Case Study{% endblock %}
+
+{% block content %}
+<!-- Reading Progress Bar -->
+<div class="reading-progress-container">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+</div>
+
+<!-- Article Hero Section -->
+<section class="article-hero">
+    <div class="article-hero-bg" style="background-image: url('{{ url_for('static', filename='images/glens-grass-logo.png') }}'); background-size: 350px auto; background-position: center; background-repeat: no-repeat; background-color: white;">
+        <div class="hero-overlay"></div>
+    </div>
+    <div class="container">
+        <nav class="article-breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="{{ url_for('blog') }}">Blog</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">Web Development</span>
+        </nav>
+        
+        <div class="article-hero-content">
+            <span class="article-category-badge">📊 Case Study</span>
+            <h1 class="article-title">R50 and a Weekend: Affordable Website Design for Small Business in South Africa</h1>
+            
+            <p class="article-subtitle">Professional web development, custom email, booking system & SMS automation — built remotely in 48 hours for the price of a coffee. IT support and website solutions for South African entrepreneurs.</p>
+            
+            <div class="article-meta-bar">
+                <div class="meta-left">
+                    <div class="author-avatar-small">
+                        <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath Technology Solutions">
+                    </div>
+                    <div class="meta-info">
+                        <span class="author-name">Empath Technology Solutions</span>
+                        <div class="meta-details">
+                            <span class="meta-item">📅 March 30, 2024</span>
+                            <span class="meta-dot">•</span>
+                            <span class="meta-item">⏱️ 6 min read</span>
+                            <span class="meta-dot">•</span>
+                            <span class="meta-item">👁️ {{ view_count or 0 }} views</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="meta-right">
+                    <button class="btn-save-article" title="Save for later">🔖</button>
+                    <button class="btn-share-article" title="Share article">📤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Article Content Layout -->
+<div class="article-layout">
+    <div class="container">
+        <div class="article-grid">
+            <!-- Floating Share Sidebar -->
+            <aside class="share-sidebar" id="shareSidebar">
+                <div class="share-sticky">
+                    <span class="share-label">Share</span>
+                    <button class="share-btn facebook" title="Share on Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </button>
+                    <button class="share-btn twitter" title="Share on Twitter">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                    </button>
+                    <button class="share-btn linkedin" title="Share on LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </button>
+                    <button class="share-btn copy-link" title="Copy link">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Article Content -->
+            <article class="article-content-wrapper" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="article-body" itemprop="articleBody">
+                    
+                    <!-- Lead Paragraph -->
+                    <p class="lead-paragraph">Every week in South Africa, thousands of small businesses open their doors. From Cape Town to Port Elizabeth, Johannesburg to Durban, entrepreneurs with extraordinary skills need <strong class="highlight-stat">affordable website design and IT support</strong> to get found online. This is the story of how <strong>web development for small business</strong> changed everything for one lawn care professional.</p>
+                    
+                    <p>No website. No professional email address. No way for customers to book online. Just a WhatsApp number and hope. Sound familiar? Thousands of South African business owners face this same challenge — missing out on customers because they lack affordable technology solutions.</p>
+                    
+                    <p>It's not that these business owners don't care — it's that the cost and complexity has always felt like a barrier built for someone else's budget.</p>
+                    
+                    <blockquote class="article-quote">
+                        <p>"You don't need a big budget. You don't need a corporate IT team. You just need the right people in your corner."</p>
+                    </blockquote>
+
+                    <div class="table-of-contents" id="toc">
+                        <h3>Table of Contents</h3>
+                        <ul>
+                            <li><a href="#the-challenge"><span class="toc-number">1</span> The Challenge</a></li>
+                            <li><a href="#what-was-built"><span class="toc-number">2</span> What Was Built in a Weekend</a></li>
+                            <li><a href="#full-stack"><span class="toc-number">3</span> The Full Stack Explained</a></li>
+                            <li><a href="#why-it-matters"><span class="toc-number">4</span> Why This Matters for SA Business</a></li>
+                            <li><a href="#get-started"><span class="toc-number">5</span> Get Started Today</a></li>
+                        </ul>
+                    </div>
+
+                    <h2 id="the-challenge"><span class="section-number">1</span> The Challenge: Glen's Grass</h2>
+                    
+                    <p>Glen is a lawn care professional in <strong>Arcadia, Port Elizabeth</strong>. He's got the equipment, the experience, and the work ethic. What he didn't have was a digital presence. No website. No way for customers to find him online. No professional email. Just a personal phone number and hope.</p>
+                    
+                    <p>Here's the thing: we never met Glen in person. This entire project was completed <strong>remotely</strong> from our Cape Town office. That's the power of modern technology — we can build your business presence no matter where you are in South Africa.</p>
+                    
+                    <p>This past weekend, Empath Technology Solutions changed that. We took Glen's Grass from <strong>zero digital presence to a fully operational business</strong> with:</p>
+                    
+                    <ul class="styled-list">
+                        <li>A professional website that works on all devices</li>
+                        <li>Custom email domain (info@glensgrass.co.za)</li>
+                        <li>Online booking system — customers book 24/7</li>
+                        <li>Automated email confirmations</li>
+                        <li>SMS integration for appointment reminders</li>
+                    </ul>
+                    
+                    <p>All of it. Live. Working. Ready for customers. In just 48 hours.</p>
+
+                    <!-- Project Stats -->
+                    <div class="project-stats-grid">
+                        <div class="project-stat-item">
+                            <span class="project-stat-icon">💰</span>
+                            <span class="project-stat-value">R50</span>
+                            <span class="project-stat-label">Domain Cost</span>
+                            <span class="project-stat-detail">glensgrass.co.za</span>
+                        </div>
+                        <div class="project-stat-item">
+                            <span class="project-stat-icon">📧</span>
+                            <span class="project-stat-value">R0</span>
+                            <span class="project-stat-label">Email Hosting</span>
+                            <span class="project-stat-detail">info@glensgrass.co.za</span>
+                        </div>
+                        <div class="project-stat-item">
+                            <span class="project-stat-icon">⚡</span>
+                            <span class="project-stat-value">48hrs</span>
+                            <span class="project-stat-label">Build Time</span>
+                            <span class="project-stat-detail">Full stack, live & tested</span>
+                        </div>
+                    </div>
+
+                    <h2 id="what-was-built"><span class="section-number">2</span> What Was Built in a Weekend</h2>
+                    
+                    <p>Here's the complete digital transformation that happened in just one weekend:</p>
+
+                    <div class="build-components">
+                        <div class="build-component-card">
+                            <div class="component-number">1</div>
+                            <div class="component-content">
+                                <h4>The Website</h4>
+                                <p>A fast, professional website built and tested live at <strong>www.glensgrass.co.za</strong> — the first thing every customer finds when they Google you.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="build-component-card">
+                            <div class="component-number">2</div>
+                            <div class="component-content">
+                                <h4>The Domain</h4>
+                                <p>A custom .co.za domain registered for just <strong>R50</strong>. Glen's Grass now owns glensgrass.co.za — instant credibility at the price of a coffee.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="build-component-card">
+                            <div class="component-number">3</div>
+                            <div class="component-content">
+                                <h4>Professional Email</h4>
+                                <p>Using Zoho Mail + DNS configuration: <strong>info@glensgrass.co.za</strong> created at R0. Not Gmail. Not Yahoo. A real business address — free.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="build-component-card">
+                            <div class="component-number">4</div>
+                            <div class="component-content">
+                                <h4>Booking System</h4>
+                                <p>Customers book grass-cutting appointments directly online, 24/7 — feeding into a serverless database with no expensive server overhead.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="build-component-card">
+                            <div class="component-number">5</div>
+                            <div class="component-content">
+                                <h4>Email Notifications</h4>
+                                <p>Every booking triggers an automated confirmation email. Immediately. No manual work from Glen. Professionalism that builds trust.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="build-component-card">
+                            <div class="component-number">6</div>
+                            <div class="component-content">
+                                <h4>SMS Integration</h4>
+                                <p>GitHub Actions polls the DB and sends 'We're on the way' SMS alerts before every appointment — with duplicate-prevention logic built in.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 id="full-stack"><span class="section-number">3</span> The Full Stack — Explained Simply</h2>
+                    
+                    <p>You don't need to be a tech expert to understand what we built. Here's the breakdown in plain English:</p>
+
+                    <div class="tech-stack-explanation">
+                        <div class="tech-item">
+                            <span class="tech-icon">🌐</span>
+                            <div class="tech-details">
+                                <h4>Website & Domain</h4>
+                                <p>We used a modern static site generator deployed to a global CDN. This means the site loads fast anywhere in South Africa (or the world). The .co.za domain was registered through a local registrar for R50/year.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-item">
+                            <span class="tech-icon">📧</span>
+                            <div class="tech-details">
+                                <h4>Email Setup</h4>
+                                <p>Zoho Mail's free tier provides professional email hosting. We configured DNS records (MX, SPF, DKIM) to ensure emails land in inboxes, not spam folders. The result: info@glensgrass.co.za works exactly like any corporate email.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-item">
+                            <span class="tech-icon">📅</span>
+                            <div class="tech-details">
+                                <h4>Booking System</h4>
+                                <p>A serverless database (Firebase) stores bookings. No server to maintain. No monthly hosting fees for database infrastructure. The booking form feeds directly into this database, available 24/7.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tech-item">
+                            <span class="tech-icon">📱</span>
+                            <div class="tech-details">
+                                <h4>SMS Automation</h4>
+                                <p>GitHub Actions (a free automation service) checks the database every hour. If an appointment is scheduled within the next few hours, it triggers an SMS via a low-cost SMS gateway. Customers get reminded automatically. Glen doesn't lift a finger.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pro-tip-box">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content">
+                            <strong>Pro Tip:</strong> The "serverless" approach means you only pay for what you use. No monthly server bills when you're just starting out. As your business grows, the system scales automatically.
+                        </div>
+                    </div>
+
+                    <h2 id="why-it-matters"><span class="section-number">4</span> Why This Matters for South African Business — Anywhere in SA</h2>
+                    
+                    <p>From Port Elizabeth to Pretoria, Cape Town to Durban — South Africa has one of the most vibrant small business economies in the world. The energy, the creativity, the resilience of SA entrepreneurs is world-class.</p>
+                    
+                    <p>But too many of those businesses are invisible in the digital economy — not because they lack talent or drive, but because the technology conversation has always been aimed at corporates with big budgets.</p>
+                    
+                    <p><strong>The best part?</strong> You don't need to be in Cape Town to work with us. We build websites for businesses across South Africa — all remotely, all professionally, all affordably.</p>
+
+                    <blockquote class="article-quote">
+                        <p>"This country is full of greatness. It just needs the right tools to shine."</p>
+                    </blockquote>
+
+                    <p>Empath Technology Solutions was built to change that conversation. Here's what we believe every small business deserves:</p>
+                    
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🌐</span>
+                            <h4>Professional Website</h4>
+                            <p>Fast, mobile-friendly, and looks great. Your digital storefront open 24/7.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🏷️</span>
+                            <h4>.co.za Domain</h4>
+                            <p>Your brand, your address. R50/year — less than the price of a coffee.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">📧</span>
+                            <h4>Business Email</h4>
+                            <p>info@yourbusiness.co.za — credibility that builds trust with customers.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">📅</span>
+                            <h4>Online Booking</h4>
+                            <p>Customers book while you sleep. No more missed opportunities.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">🤖</span>
+                            <h4>Automated Emails</h4>
+                            <p>Confirmations, reminders, follow-ups — all automatic.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <span class="benefit-icon">📱</span>
+                            <h4>SMS Notifications</h4>
+                            <p>Keep customers informed, reduce no-shows, look professional.</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-highlight-box success">
+                        <div class="stat-number-large">100%</div>
+                        <p>of small businesses we work with see increased customer enquiries within 30 days</p>
+                    </div>
+
+                    <h2 id="get-started"><span class="section-number">5</span> Get Started Today</h2>
+                    
+                    <p>Glen's story isn't unique — it's repeatable. We can do the same for your business, whether you're a:</p>
+                    
+                    <div class="business-types">
+                        <span class="business-type">🧁 Baker</span>
+                        <span class="business-type">🌿 Gardener</span>
+                        <span class="business-type">📚 Tutor</span>
+                        <span class="business-type">🔧 Mechanic</span>
+                        <span class="business-type">🍽️ Caterer</span>
+                        <span class="business-type">💇 Salon</span>
+                        <span class="business-type">🐕 Pet Groomer</span>
+                        <span class="business-type">🏠 Handyman</span>
+                    </div>
+                    
+                    <p>Whatever your skill, whatever your hustle — you deserve to be found online.</p>
+
+                    <div class="pricing-highlight">
+                        <h4>What You Get</h4>
+                        <div class="pricing-items">
+                            <div class="pricing-item">
+                                <span class="check">✓</span>
+                                <span>Professional website (mobile-friendly)</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span class="check">✓</span>
+                                <span>.co.za domain registration</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span class="check">✓</span>
+                                <span>Professional email setup</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span class="check">✓</span>
+                                <span>Online booking system</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span class="check">✓</span>
+                                <span>Automated email notifications</span>
+                            </div>
+                            <div class="pricing-item">
+                                <span class="check">✓</span>
+                                <span>SMS integration setup</span>
+                            </div>
+                        </div>
+                        <div class="pricing-note">
+                            <strong>Starting from just R50 for the domain</strong> — we'll guide you through every step.
+                        </div>
+                    </div>
+
+                    <p>Don't let another week go by with your business invisible online. The technology that powers big corporations is now accessible to every South African entrepreneur. You just need someone who knows how to put the pieces together.</p>
+                    
+                    <p>That's exactly what Empath Technology Solutions does. We bring enterprise-level solutions to small business budgets. No jargon. No hidden costs. Just results.</p>
+                </div>
+
+                <!-- Article Footer -->
+                <footer class="article-footer">
+                    <div class="article-tags">
+                        <span class="tag-label">Topics:</span>
+                        <a href="#" class="article-tag">Small Business</a>
+                        <a href="#" class="article-tag">Web Development</a>
+                        <a href="#" class="article-tag">South Africa</a>
+                        <a href="#" class="article-tag">Case Study</a>
+                        <a href="#" class="article-tag">Affordable Tech</a>
+                    </div>
+                    
+                    <!-- Author Bio -->
+                    <div class="author-bio-card">
+                        <div class="author-bio-avatar">
+                            <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath Technology Solutions">
+                        </div>
+                        <div class="author-bio-content">
+                            <h4>Written by Empath Technology Solutions</h4>
+                            <p>We help South African small businesses get online with professional websites, custom emails, and automation — at prices that make sense. <strong>Based in Cape Town, serving entrepreneurs nationwide</strong>. Port Elizabeth, Johannesburg, Durban, or anywhere in between — location is never a barrier to getting your business online.</p>
+                            <div class="author-bio-links">
+                                <a href="{{ url_for('about') }}" class="bio-link">About Us →</a>
+                                <a href="{{ url_for('blog') }}" class="bio-link">More Articles →</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="article-cta-box">
+                        <div class="cta-content">
+                            <h3>Ready to Get Your Business Online?</h3>
+                            <p>Get the same setup as Glen's Grass — website, email, booking system, and automation. Starting from just R50.</p>
+                            <div class="cta-buttons">
+                                <a href="{{ url_for('create_ticket') }}" class="btn-primary btn-large">Start Your Project</a>
+                                <a href="{{ url_for('pricing') }}" class="btn-secondary">View Pricing</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Subscribe Section -->
+                    <div class="article-newsletter" style="background: linear-gradient(135deg, #f8fafc, #f1f5f9); border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; margin-top: 30px; text-align: center;">
+                        <h4 style="font-family: 'Poppins', sans-serif; font-size: 1.25rem; margin: 0 0 10px; color: #0f172a;">Stay Updated</h4>
+                        <p style="color: #64748b; margin: 0 0 20px; font-size: 0.95rem;">Get IT tips and small business insights delivered to your inbox.</p>
+                        <form onsubmit="submitArticleSubscribe(event)" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                            <input type="email" id="articleSubscribeEmail" placeholder="Enter your email" required style="padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; width: 220px; max-width: 100%;">
+                            <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">Subscribe</button>
+                        </form>
+                        <p id="articleSubscribeMsg" style="color: #22c55e; font-size: 13px; margin-top: 12px; display: none;">Thanks for subscribing!</p>
+                    </div>
+                </footer>
+            </article>
+
+            <!-- Article Sidebar -->
+            <aside class="article-sidebar" id="articleSidebar">
+                <div class="sidebar-sticky">
+                    <!-- Quick Navigation -->
+                    <div class="sidebar-widget">
+                        <h4>In This Article</h4>
+                        <ul class="sidebar-toc" id="sidebarToc">
+                            <li><a href="#the-challenge" class="toc-link active">The Challenge</a></li>
+                            <li><a href="#what-was-built" class="toc-link">What Was Built</a></li>
+                            <li><a href="#full-stack" class="toc-link">Full Stack Explained</a></li>
+                            <li><a href="#why-it-matters" class="toc-link">Why It Matters</a></li>
+                            <li><a href="#get-started" class="toc-link">Get Started</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Related Articles Widget -->
+                    <div class="sidebar-widget">
+                        <h4>Related Articles</h4>
+                        <div class="sidebar-articles">
+                            <a href="{{ url_for('blog_post', slug='cybersecurity-tips-small-business') }}" class="sidebar-article">
+                                <span class="sidebar-article-title">5 Essential Cybersecurity Tips for Small Businesses</span>
+                                <span class="sidebar-article-meta">Cybersecurity • 5 min read</span>
+                            </a>
+                            <a href="{{ url_for('blog_post', slug='it-solutions-productivity-boost') }}" class="sidebar-article">
+                                <span class="sidebar-article-title">How IT Solutions Can Boost Productivity by 40%</span>
+                                <span class="sidebar-article-meta">Productivity • 7 min read</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Contact Widget -->
+                    <div class="sidebar-widget contact-widget">
+                        <h4>Need Help?</h4>
+                        <p>Get expert IT support for your business</p>
+                        <a href="{{ url_for('create_ticket') }}" class="btn-primary btn-small">Contact Us</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<!-- Related Articles Section -->
+<section class="related-articles-section">
+    <div class="container">
+        <div class="section-header-v2">
+            <h2>You Might Also Like</h2>
+            <a href="{{ url_for('blog') }}" class="view-all-link">View All Articles →</a>
+        </div>
+        <div class="related-articles-grid">
+            <article class="related-article-card">
+                <div class="related-article-image">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" alt="Cybersecurity">
+                </div>
+                <div class="related-article-content">
+                    <span class="related-article-category">Cybersecurity</span>
+                    <h3><a href="{{ url_for('blog_post', slug='cybersecurity-tips-small-business') }}">5 Essential Cybersecurity Tips for Small Businesses in Cape Town</a></h3>
+                    <p>Protect your business from cyber threats with these essential security measures.</p>
+                    <span class="related-article-meta">March 30, 2024 • 5 min read</span>
+                </div>
+            </article>
+            <article class="related-article-card">
+                <div class="related-article-image">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80" alt="IT Productivity">
+                </div>
+                <div class="related-article-content">
+                    <span class="related-article-category">Productivity</span>
+                    <h3><a href="{{ url_for('blog_post', slug='it-solutions-productivity-boost') }}">How IT Solutions Can Boost Small Business Productivity by 40%</a></h3>
+                    <p>Discover the top IT solutions that can significantly increase your productivity.</p>
+                    <span class="related-article-meta">March 28, 2024 • 7 min read</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Post Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "R50 and a Weekend: Affordable Website Design for Small Business in South Africa",
+  "description": "Professional web development, custom email, booking system & SMS automation built remotely in 48 hours. IT support and website solutions for South African entrepreneurs in Port Elizabeth and nationwide.",
+  "image": "{{ url_for('static', filename='images/glens-grass-logo.png', _external=True) }}",
+  "datePublished": "2024-03-30",
+  "keywords": ["web development South Africa", "affordable website design", "small business IT support", "Port Elizabeth web design", "remote website development", "business email setup", "SMS automation", "Empath Technology Solutions"],
+  "author": {
+    "@type": "Organization",
+    "name": "Empath Technology Solutions"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Empath Technology Solutions",
+    "url": "{{ url_for('home', _external=True) }}"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ url_for('blog_post', slug='glens-grass-case-study', _external=True) }}"
+  }
+}
+</script>
+
+<!-- Article JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Reading Progress Bar
+    const progressBar = document.getElementById('readingProgress');
+    const article = document.querySelector('.article-body');
+    
+    window.addEventListener('scroll', function() {
+        if (!article) return;
+        
+        const articleTop = article.offsetTop;
+        const articleHeight = article.offsetHeight;
+        const scrollTop = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        let progress = ((scrollTop - articleTop) / (articleHeight - windowHeight)) * 100;
+        progress = Math.max(0, Math.min(100, progress));
+        
+        progressBar.style.width = progress + '%';
+    });
+    
+    // Table of Contents Active State
+    const tocLinks = document.querySelectorAll('.toc-link');
+    const sections = document.querySelectorAll('.article-body h2[id]');
+    
+    window.addEventListener('scroll', function() {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        tocLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+    
+    // Smooth scroll for TOC links
+    document.querySelectorAll('.table-of-contents a, .sidebar-toc a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Share buttons
+    const shareButtons = document.querySelectorAll('.share-btn');
+    const currentUrl = window.location.href;
+    const title = document.title;
+    
+    shareButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (this.classList.contains('facebook')) {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank');
+            } else if (this.classList.contains('twitter')) {
+                window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(title)}`, '_blank');
+            } else if (this.classList.contains('linkedin')) {
+                window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`, '_blank');
+            } else if (this.classList.contains('copy-link')) {
+                navigator.clipboard.writeText(currentUrl).then(() => {
+                    alert('Link copied to clipboard!');
+                });
+            }
+        });
+    });
+    
+    // Save article button
+    const saveBtn = document.querySelector('.btn-save-article');
+    console.log('Save button found:', !!saveBtn);
+    if (saveBtn) {
+        console.log('Adding click listener to save button');
+        saveBtn.addEventListener('click', function(e) {
+            console.log('Save button clicked!', e);
+            this.classList.toggle('saved');
+            const isSaved = this.classList.contains('saved');
+            this.textContent = isSaved ? '🔖 Saved' : '🔖';
+            console.log('Button state changed. Saved:', isSaved);
+        });
+    } else {
+        console.log('Save button NOT found!');
+    }
+    
+    // Share article button
+    const shareArticleBtn = document.querySelector('.btn-share-article');
+    if (shareArticleBtn && navigator.share) {
+        shareArticleBtn.addEventListener('click', function() {
+            navigator.share({
+                title: title,
+                url: currentUrl
+            });
+        });
+    }
+    
+    // Simple parallax effect
+    (function() {
+        const bg = document.querySelector('.article-hero-bg img');
+        if (!bg) return;
+        
+        window.addEventListener('scroll', function() {
+            var scrolled = window.pageYOffset;
+            bg.style.transform = 'translate3d(0, ' + (scrolled * 0.4) + 'px, 0)';
+        }, { passive: true });
+    })();
+    
+    // Sticky sidebar behavior
+    const sidebar = document.getElementById('articleSidebar');
+    const shareSidebar = document.getElementById('shareSidebar');
+    
+    if (window.innerWidth > 1024) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.scrollY;
+            const articleTop = document.querySelector('.article-layout').offsetTop;
+            
+            if (scrollTop > articleTop - 100) {
+                sidebar?.classList.add('sticky-visible');
+                shareSidebar?.classList.add('sticky-visible');
+            } else {
+                sidebar?.classList.remove('sticky-visible');
+                shareSidebar?.classList.remove('sticky-visible');
+            }
+        });
+    }
+    
+    // Article newsletter subscription
+    window.submitArticleSubscribe = function(e) {
+        e.preventDefault();
+        const email = document.getElementById('articleSubscribeEmail').value;
+        const msg = document.getElementById('articleSubscribeMsg');
+        
+        fetch('/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, source: 'blog_article' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                msg.textContent = data.message;
+                msg.style.color = '#22c55e';
+                msg.style.display = 'block';
+                document.getElementById('articleSubscribeEmail').value = '';
+                setTimeout(() => msg.style.display = 'none', 3000);
+            } else {
+                msg.textContent = data.error || 'Subscription failed';
+                msg.style.color = '#ef4444';
+                msg.style.display = 'block';
+                setTimeout(() => msg.style.display = 'none', 3000);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            msg.textContent = 'Network error. Please try again.';
+            msg.style.color = '#ef4444';
+            msg.style.display = 'block';
+            setTimeout(() => msg.style.display = 'none', 3000);
+        });
+    };
+    
+    // Track blog post view
+    fetch('/api/blog/view/glens-grass-case-study', { method: 'POST' });
+});
+</script>
+
+{% endblock %}

@@ -265,7 +265,7 @@
             <div class="header-content">
                 <div class="logo-container">
                     <a href="{{ url_for('home') }}" class="logo">
-                        <img src="{{ url_for('static', filename='images/Empath.png') }}" alt="Empath IT Support">
+                        <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath IT Support">
                     </a>
                 </div>
                 <nav class="main-nav">
@@ -276,6 +276,7 @@
                         <li><a href="{{ url_for('home') }}" class="{{ 'active' if request.path == url_for('home') else '' }}">Home</a></li>
                         <li><a href="{{ url_for('pricing') }}" class="{{ 'active' if request.path == url_for('pricing') else '' }}">Pricing</a></li>
                         <li><a href="{{ url_for('how_it_works') }}" class="{{ 'active' if request.path == url_for('how_it_works') else '' }}">How It Works</a></li>
+                        <li><a href="{{ url_for('blog') }}" class="{{ 'active' if request.path.startswith('/blog') else '' }}">Blog</a></li>
                         <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.path == url_for('about') else '' }}">About Me</a></li>
                         <li><a href="{{ url_for('terms') }}" class="{{ 'active' if request.path == url_for('terms') else '' }}">Terms</a></li>
                         <li><a href="{{ url_for('privacy') }}" class="{{ 'active' if request.path == url_for('privacy') else '' }}">Privacy</a></li>
@@ -297,7 +298,7 @@
             <div class="footer-grid">
                 <div class="footer-col footer-about">
                     <a href="{{ url_for('home') }}" class="footer-logo-link">
-                        <img src="{{ url_for('static', filename='images/Empath.png') }}" alt="Empath Technology Solutions Logo" class="footer-logo-img">
+                        <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath Technology Solutions Logo" class="footer-logo-img">
                     </a>
                     <p class="footer-about-text">Your trusted partner for empathetic and effective IT solutions. We're here to help you navigate the complexities of technology.</p>
                 </div>
@@ -308,6 +309,7 @@
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
                         <li><a href="{{ url_for('how_it_works') }}">How It Works</a></li>
+                        <li><a href="{{ url_for('blog') }}">Blog</a></li>
                         <li><a href="{{ url_for('about') }}">About Me</a></li>
                         <li><a href="{{ url_for('create_ticket') }}">Contact Us</a></li>
                     </ul>
@@ -331,13 +333,13 @@
                         <a href="https://youtube.com/@empathtechnologysolutions?si=1wYaD5Nw7X_5YK_j" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
 
-                    <!-- Zoho Campaigns Newsletter Button -->
-                    <div id='embedLink' style="margin: 15px 0;">
-                        <a href="https://zc.vg/9Uzw5" target="_blank" rel="noopener noreferrer" style="text-decoration: none; display: inline-block;">
-                            <button type="button" purpose="nrmlBtn" class="" style="outline: none 0px; background-color: rgb(36, 51, 119); color: rgb(255, 255, 255); border: 2px solid rgb(153, 153, 153); font-size: 18px; padding: 8px 16px; border-radius: 8px; font-family: Poppins, sans-serif; text-align: center; width: auto; cursor: pointer; font-weight: 500;" changetype="EMBED_BUTTON" id="EMBED_BUTTON" name="EMBED_BUTTON" value="Join Our Newsletter" bgcolor="#243377" formopenin="Popup" btntype="nrmlBtn">
-                                <span class="zceditcnt" style="">Join Our Newsletter</span>
-                            </button>
-                        </a>
+                    <!-- Newsletter Subscription Form -->
+                    <div class="footer-newsletter" style="margin: 15px 0;">
+                        <form class="footer-subscribe-form" onsubmit="submitFooterSubscribe(event)">
+                            <input type="email" id="footerEmail" placeholder="Enter your email" required style="padding: 10px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 180px;">
+                            <button type="submit" style="padding: 10px 20px; background: #243377; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500;">Subscribe</button>
+                        </form>
+                        <p id="footerSubscribeMsg" style="font-size: 12px; margin-top: 8px; color: #22c55e; display: none;">Thanks for subscribing!</p>
                     </div>
                     
                     <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/web-empath/30min'});return false;" class="footer-cta-button">Schedule a Meeting</a>
@@ -350,10 +352,35 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
         // Mobile menu toggle
         document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
             document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Back to top button functionality
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        // Show/hide back to top button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to top when button is clicked
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
 
         // Flash message close button
@@ -369,6 +396,41 @@
                 message.style.display = 'none';
             });
         }, 5000);
+        
+        // Footer newsletter subscription
+        window.submitFooterSubscribe = function(e) {
+            e.preventDefault();
+            const email = document.getElementById('footerEmail').value;
+            const msg = document.getElementById('footerSubscribeMsg');
+            
+            fetch('/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, source: 'footer' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    msg.textContent = data.message;
+                    msg.style.color = '#22c55e';
+                    msg.style.display = 'block';
+                    document.getElementById('footerEmail').value = '';
+                    setTimeout(() => msg.style.display = 'none', 3000);
+                } else {
+                    msg.textContent = data.error || 'Subscription failed';
+                    msg.style.color = '#ef4444';
+                    msg.style.display = 'block';
+                    setTimeout(() => msg.style.display = 'none', 3000);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                msg.textContent = 'Network error. Please try again.';
+                msg.style.color = '#ef4444';
+                msg.style.display = 'block';
+                setTimeout(() => msg.style.display = 'none', 3000);
+            });
+        }
     </script>
 
     

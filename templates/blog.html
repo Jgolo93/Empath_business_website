@@ -1,0 +1,625 @@
+{% extends 'layout.html' %}
+
+{% block title %}IT Support & Web Development Blog | Small Business Tech Tips | Empath Technology Solutions{% endblock %}
+
+{% block content %}
+<!-- Blog Hero Section with Animated Gradient -->
+<section class="blog-hero-v2">
+    <div class="blog-hero-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="hero-grid-pattern"></div>
+    </div>
+    <div class="floating-elements">
+        <span class="float-icon">🔒</span>
+        <span class="float-icon">💻</span>
+        <span class="float-icon">☁️</span>
+        <span class="float-icon">⚡</span>
+        <span class="float-icon">🔧</span>
+        <span class="float-icon">📱</span>
+    </div>
+    <div class="container">
+        <div class="blog-hero-content">
+            <div class="hero-badge">
+                <span class="badge-pulse"></span>
+                <span class="badge-text">📚 IT Insights & Tips</span>
+            </div>
+            <h1 class="hero-title-animated">
+                <span class="title-line">IT Support &</span>
+                <span class="title-line highlight">Web Development</span>
+                <span class="title-line">for Small Business</span>
+            </h1>
+            <p class="hero-description">Expert IT support, affordable website design, and technology solutions for South African businesses. Get practical tips on computer repair, business email setup, SEO services, and digital transformation.</p>
+            <div class="hero-cta-group">
+                <a href="#latest-articles" class="btn-primary btn-glow" id="exploreBtn">Explore Articles</a>
+                <a href="#topics" class="btn-secondary btn-outline">Browse Topics</a>
+            </div>
+            <div class="blog-hero-stats">
+                <div class="stat-item" data-count="3">
+                    <div class="stat-icon">📝</div>
+                    <span class="stat-number counter">3</span>
+                    <span class="stat-label">Articles</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item" data-count="4">
+                    <div class="stat-icon">🏷️</div>
+                    <span class="stat-number counter">4</span>
+                    <span class="stat-label">Topics</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <div class="stat-icon">📅</div>
+                    <span class="stat-number">Weekly</span>
+                    <span class="stat-label">Updates</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-indicator">
+        <span class="mouse-icon">
+            <span class="mouse-wheel"></span>
+        </span>
+        <span class="scroll-text">Scroll to explore</span>
+    </div>
+</section>
+
+<!-- Search & Filter Section -->
+<section class="blog-search-section">
+    <div class="container">
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="blogSearch" placeholder="Search articles, topics, or keywords..." autocomplete="off">
+                <button class="search-clear" id="clearSearch">✕</button>
+            </div>
+            <div class="filter-tags">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="case-study">📊 Case Studies</button>
+                <button class="filter-btn" data-filter="tips">💡 Tips</button>
+                <button class="filter-btn" data-filter="web-development">🌐 Web Development</button>
+                <button class="filter-btn" data-filter="it-support">🛠️ IT Support</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Post -->
+<section class="featured-post-section-v2">
+    <div class="container">
+        <div class="section-label">
+            <span class="label-line"></span>
+            <span class="label-text">Featured Case Study</span>
+            <span class="label-line"></span>
+        </div>
+        <div class="featured-post">
+            <div class="featured-image-wrapper">
+                <div class="featured-image">
+                    <img src="{{ url_for('static', filename='images/glens-grass-logo.png') }}" alt="Glen's Grass Case Study">
+                    <div class="image-overlay"></div>
+                </div>
+                <span class="featured-badge-v2">🔥 Featured</span>
+                <div class="featured-stats">
+                    <span class="stat"><span class="icon">👁️</span> <span id="featured-views">0</span> views</span>
+                    <span class="stat"><span class="icon">⏱️</span> 6 min read</span>
+                </div>
+            </div>
+            <div class="featured-content">
+                <div class="post-meta-header">
+                    <span class="post-category-v2">Case Study</span>
+                    <span class="post-date-v2">March 30, 2024</span>
+                </div>
+                <h2 class="featured-title">R50 and a Weekend: How Empath Built a Full Business Website in 48 Hours</h2>
+                <p class="featured-excerpt">A professional website, custom email, booking system & SMS automation — built in 48 hours for the price of a coffee. See how we transformed Glen's Grass from zero digital presence to a fully operational business.</p>
+                <div class="post-tags-inline">
+                    <span class="tag-pill">#SmallBusiness</span>
+                    <span class="tag-pill">#WebDevelopment</span>
+                    <span class="tag-pill">#SouthAfrica</span>
+                </div>
+                <div class="featured-actions">
+                    <a href="{{ url_for('blog_post', slug='glens-grass-case-study') }}" class="btn-primary btn-with-icon">
+                        Read Case Study
+                        <span class="btn-icon">→</span>
+                    </a>
+                    <button class="btn-bookmark" title="Bookmark this article">🔖</button>
+                    <button class="btn-share" title="Share this article">📤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Posts Grid -->
+<section class="blog-posts-section-v2" id="latest-articles">
+    <div class="container">
+        <div class="section-header-v2">
+            <div class="header-left">
+                <span class="section-subtitle">Fresh Content</span>
+                <h2>Latest Articles</h2>
+            </div>
+            <div class="header-right">
+                <p>Insights to help your business thrive</p>
+                <a href="#" class="view-all-link">View All Articles →</a>
+            </div>
+        </div>
+        
+        <div class="blog-grid-v2" id="blogGrid">
+            <!-- Case Study Article -->
+            <article class="blog-card-v2" data-category="case-study" data-aos="fade-up" data-aos-delay="0" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="card-image-wrapper">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/glens-grass-logo.png') }}" alt="Glen's Grass Case Study" itemprop="image">
+                        <div class="image-hover-overlay">
+                            <span class="read-cta">Read Case Study</span>
+                        </div>
+                    </div>
+                    <span class="card-category">📊 Case Study</span>
+                    <button class="bookmark-btn">🔖</button>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="blog-date" itemprop="datePublished">March 30, 2024</span>
+                        <span class="read-time">⏱️ 6 min</span>
+                    </div>
+                    <h3 class="card-title" itemprop="headline">R50 and a Weekend: How Empath Built a Full Business Website in 48 Hours</h3>
+                    <p class="card-excerpt" itemprop="description">See how we transformed Glen's Grass from zero digital presence to a fully operational business with website, email & booking system.</p>
+                    <div class="card-footer-v2">
+                        <a href="{{ url_for('blog_post', slug='glens-grass-case-study') }}" class="read-more-link">
+                            Read More
+                            <span class="arrow">→</span>
+                        </a>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" data-slug="glens-grass-case-study" title="Like">❤️ <span class="count">0</span></button>
+                            <button class="action-btn share-btn" title="Share">📤</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 1 - Tips Category -->
+            <article class="blog-card-v2" data-category="tips" data-aos="fade-up" data-aos-delay="100" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="card-image-wrapper">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" alt="Cybersecurity for Small Business" itemprop="image">
+                        <div class="image-hover-overlay">
+                            <span class="read-cta">Read Article</span>
+                        </div>
+                    </div>
+                    <span class="card-category">💡 Tips</span>
+                    <button class="bookmark-btn">🔖</button>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="blog-date" itemprop="datePublished">March 30, 2024</span>
+                        <span class="read-time">⏱️ 5 min</span>
+                    </div>
+                    <h3 class="card-title" itemprop="headline">5 Essential Cybersecurity Tips for Small Businesses in Cape Town</h3>
+                    <p class="card-excerpt" itemprop="description">Protect your small business from cyber threats with these essential cybersecurity measures. Learn how to safeguard your data.</p>
+                    <div class="card-footer-v2">
+                        <a href="{{ url_for('blog_post', slug='cybersecurity-tips-small-business') }}" class="read-more-link">
+                            Read More
+                            <span class="arrow">→</span>
+                        </a>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" data-slug="cybersecurity-tips-small-business" title="Like">❤️ <span class="count">0</span></button>
+                            <button class="action-btn share-btn" title="Share">📤</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Blog Post 2 - Web Development Category -->
+            <article class="blog-card-v2" data-category="web-development" data-aos="fade-up" data-aos-delay="200" itemscope itemtype="https://schema.org/BlogPosting">
+                <div class="card-image-wrapper">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80" alt="IT Productivity Solutions" itemprop="image">
+                        <div class="image-hover-overlay">
+                            <span class="read-cta">Read Article</span>
+                        </div>
+                    </div>
+                    <span class="card-category">🌐 Web Development</span>
+                    <button class="bookmark-btn">🔖</button>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="blog-date" itemprop="datePublished">March 28, 2024</span>
+                        <span class="read-time">⏱️ 7 min</span>
+                    </div>
+                    <h3 class="card-title" itemprop="headline">How IT Solutions Can Boost Small Business Productivity by 40%</h3>
+                    <p class="card-excerpt" itemprop="description">Discover the top IT solutions that can significantly increase your small business productivity and efficiency.</p>
+                    <div class="card-footer-v2">
+                        <a href="{{ url_for('blog_post', slug='it-solutions-productivity-boost') }}" class="read-more-link">
+                            Read More
+                            <span class="arrow">→</span>
+                        </a>
+                        <div class="card-actions">
+                            <button class="action-btn like-btn" data-slug="it-solutions-productivity-boost" title="Like">❤️ <span class="count">0</span></button>
+                            <button class="action-btn share-btn" title="Share">📤</button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Coming Soon Card -->
+            <article class="blog-card-v2 coming-soon" data-category="cloud" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-image-wrapper">
+                    <div class="card-image placeholder">
+                        <div class="placeholder-content">
+                            <span class="placeholder-icon">☁️</span>
+                            <span class="placeholder-text">Coming Soon</span>
+                        </div>
+                    </div>
+                    <span class="card-category">☁️ Cloud Solutions</span>
+                </div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="coming-soon-badge">Coming Soon</span>
+                    </div>
+                    <h3 class="card-title">Cloud Migration Guide for Small Businesses</h3>
+                    <p class="card-excerpt">Learn how to seamlessly migrate your business to the cloud with our comprehensive step-by-step guide.</p>
+                    <div class="card-footer-v2">
+                        <button class="notify-btn">🔔 Notify Me</button>
+                    </div>
+                </div>
+            </article>
+        </div>
+        
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No articles found</h3>
+            <p>Try adjusting your search or filters</p>
+        </div>
+    </div>
+</section>
+
+<!-- Topics/Categories Section -->
+<section class="topics-section-v2" id="topics">
+    <div class="container">
+        <div class="section-header-v2 centered">
+            <span class="section-subtitle">Explore by Topic</span>
+            <h2>Browse Categories</h2>
+            <p>Find articles tailored to your interests</p>
+        </div>
+        <div class="topics-grid-v2">
+            <div class="topic-card-v2" data-aos="zoom-in" data-aos-delay="0" data-category="case-study">
+                <div class="topic-icon-wrapper">
+                    <span class="topic-icon">📊</span>
+                    <div class="topic-glow"></div>
+                </div>
+                <h3>Case Studies</h3>
+                <p>Real projects built for South African businesses with detailed breakdowns</p>
+                <div class="topic-meta">
+                    <span class="article-count">1 article</span>
+                    <a href="#latest-articles" class="explore-link" data-filter="case-study">Explore →</a>
+                </div>
+            </div>
+            <div class="topic-card-v2" data-aos="zoom-in" data-aos-delay="100" data-category="tips">
+                <div class="topic-icon-wrapper">
+                    <span class="topic-icon">💡</span>
+                    <div class="topic-glow"></div>
+                </div>
+                <h3>Tips</h3>
+                <p>Practical advice on security, productivity, and business tech</p>
+                <div class="topic-meta">
+                    <span class="article-count">1 article</span>
+                    <a href="#latest-articles" class="explore-link" data-filter="tips">Explore →</a>
+                </div>
+            </div>
+            <div class="topic-card-v2" data-aos="zoom-in" data-aos-delay="200" data-category="web-development">
+                <div class="topic-icon-wrapper">
+                    <span class="topic-icon">🌐</span>
+                    <div class="topic-glow"></div>
+                </div>
+                <h3>Web Development</h3>
+                <p>Building fast, affordable websites for small businesses</p>
+                <div class="topic-meta">
+                    <span class="article-count">1 article</span>
+                    <a href="#latest-articles" class="explore-link" data-filter="web-development">Explore →</a>
+                </div>
+            </div>
+            <div class="topic-card-v2" data-aos="zoom-in" data-aos-delay="300" data-category="it-support">
+                <div class="topic-icon-wrapper">
+                    <span class="topic-icon">🛠️</span>
+                    <div class="topic-glow"></div>
+                </div>
+                <h3>IT Support</h3>
+                <p>Expert technical assistance and troubleshooting guides</p>
+                <div class="topic-meta">
+                    <span class="article-count coming">Coming soon</span>
+                    <span class="explore-link disabled">Explore →</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section-v2">
+    <div class="container">
+        <div class="newsletter-wrapper">
+            <div class="newsletter-visual">
+                <div class="newsletter-icon">📬</div>
+                <div class="icon-rings">
+                    <span class="ring"></span>
+                    <span class="ring"></span>
+                    <span class="ring"></span>
+                </div>
+            </div>
+            <div class="newsletter-content-v2">
+                <span class="newsletter-label">Stay in the Loop</span>
+                <h2>Get Weekly IT Insights</h2>
+                <p>Join 500+ small business owners receiving expert tips on cybersecurity, productivity, and IT solutions. No spam, unsubscribe anytime.</p>
+                <form class="newsletter-form-v2" id="newsletterForm">
+                    <div class="input-group">
+                        <span class="input-icon">✉️</span>
+                        <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
+                    </div>
+                    <button type="submit" class="btn-primary btn-subscribe">
+                        <span class="btn-text">Subscribe</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </form>
+                <div class="trust-badges">
+                    <span class="trust-badge">🔒 No spam</span>
+                    <span class="trust-badge">✓ Weekly updates</span>
+                    <span class="trust-badge">🚫 Unsubscribe anytime</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Schema for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Empath Technology Solutions Blog",
+  "description": "IT insights and technology tips for small businesses in Cape Town",
+  "url": "{{ url_for('blog', _external=True) }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Empath Technology Solutions",
+    "url": "{{ url_for('home', _external=True) }}"
+  },
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "5 Essential Cybersecurity Tips for Small Businesses in Cape Town",
+      "description": "Protect your small business from cyber threats with these essential cybersecurity measures.",
+      "datePublished": "2024-03-30",
+      "author": {
+        "@type": "Organization",
+        "name": "Empath Technology Solutions"
+      }
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "How IT Solutions Can Boost Small Business Productivity by 40%",
+      "description": "Discover the top IT solutions that can significantly increase your small business productivity.",
+      "datePublished": "2024-03-28",
+      "author": {
+        "@type": "Organization",
+        "name": "Empath Technology Solutions"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Blog JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Search functionality
+    const searchInput = document.getElementById('blogSearch');
+    const clearBtn = document.getElementById('clearSearch');
+    const blogGrid = document.getElementById('blogGrid');
+    const noResults = document.getElementById('noResults');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card-v2');
+    
+    // Search
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        clearBtn.style.display = query ? 'block' : 'none';
+        filterCards(query, getActiveFilter());
+    });
+    
+    clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        filterCards('', getActiveFilter());
+    });
+    
+    // Filter buttons
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            filterCards(searchInput.value.toLowerCase(), this.dataset.filter);
+        });
+    });
+    
+    function getActiveFilter() {
+        const active = document.querySelector('.filter-btn.active');
+        return active ? active.dataset.filter : 'all';
+    }
+    
+    function filterCards(query, category) {
+        let visibleCount = 0;
+        
+        blogCards.forEach(card => {
+            const title = card.querySelector('.card-title').textContent.toLowerCase();
+            const excerpt = card.querySelector('.card-excerpt').textContent.toLowerCase();
+            const cardCategory = card.dataset.category;
+            
+            const matchesQuery = title.includes(query) || excerpt.includes(query);
+            const matchesCategory = category === 'all' || cardCategory === category;
+            
+            if (matchesQuery && matchesCategory) {
+                card.style.display = 'block';
+                card.style.animation = 'fadeInUp 0.5s ease forwards';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+    
+    // Like button animation
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('liked');
+            const count = this.querySelector('.count');
+            const current = parseInt(count.textContent);
+            count.textContent = this.classList.contains('liked') ? current + 1 : current - 1;
+        });
+    });
+    
+    // Bookmark toggle
+    document.querySelectorAll('.bookmark-btn, .btn-bookmark').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.toggle('bookmarked');
+            this.textContent = this.classList.contains('bookmarked') ? '🔖' : '🔖';
+        });
+    });
+    
+    // Share button
+    document.querySelectorAll('.share-btn, .btn-share').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out this article',
+                    url: window.location.href
+                });
+            } else {
+                alert('Share URL copied to clipboard!');
+            }
+        });
+    });
+    
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('newsletterEmail');
+    
+    newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('.btn-subscribe');
+        btn.classList.add('loading');
+        
+        setTimeout(() => {
+            btn.classList.remove('loading');
+            btn.classList.add('success');
+            btn.querySelector('.btn-text').textContent = 'Subscribed!';
+            emailInput.value = '';
+            
+            setTimeout(() => {
+                btn.classList.remove('success');
+                btn.querySelector('.btn-text').textContent = 'Subscribe';
+            }, 3000);
+        }, 1500);
+    });
+    
+    // Notify me button
+    document.querySelectorAll('.notify-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.textContent = '✓ Notified';
+            this.classList.add('notified');
+        });
+    });
+    
+    // Topic card explore links - filter articles
+    document.querySelectorAll('.topic-card-v2 .explore-link:not(.disabled)').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const filter = this.dataset.filter;
+            const target = document.querySelector('#latest-articles');
+            
+            // Update filter buttons
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === filter) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Apply filter
+            filterCards(searchInput.value.toLowerCase(), filter);
+            
+            // Scroll to articles
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Smooth scroll for anchor links (Explore button etc)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // Like button functionality
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const slug = this.dataset.slug;
+            if (!slug) return;
+            
+            fetch('/api/blog/like', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ post_slug: slug })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.querySelector('.count').textContent = data.count;
+                } else {
+                    console.error('Like failed:', data.error);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+    
+    // Load initial like counts
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        const slug = btn.dataset.slug;
+        if (!slug) return;
+        
+        fetch('/api/blog/likes/' + slug)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                btn.querySelector('.count').textContent = data.count;
+            } else {
+                console.error('Failed to load likes:', data.error);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    
+    // Load featured article view count
+    fetch('/api/blog/stats/glens-grass-case-study')
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const viewsElement = document.getElementById('featured-views');
+            if (viewsElement) {
+                viewsElement.textContent = data.views;
+            }
+        }
+    })
+    .catch(error => console.error('Error loading featured views:', error));
+});
+</script>
+
+{% endblock %}

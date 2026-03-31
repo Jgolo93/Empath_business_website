@@ -168,6 +168,53 @@ def terms():
 def privacy():
     return render_template('privacy.html')
 
+# Blog Routes
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
+
+@app.route('/blog/cybersecurity-tips-small-business')
+def cybersecurity_tips():
+    return render_template('blog_cybersecurity_tips.html')
+
+@app.route('/blog/it-solutions-productivity-boost')
+def productivity_boost():
+    return render_template('blog_productivity_boost.html')
+
+@app.route('/blog/glens-grass-case-study')
+def glens_grass_case_study():
+    return render_template('blog_glens_grass_case_study.html')
+
+@app.route('/blog/<slug>')
+def blog_post(slug):
+    # Route for future blog posts
+    try:
+        # Get view count for this post
+        stat = BlogPostStats.query.filter_by(post_slug=slug).first()
+        view_count = stat.view_count if stat else 0
+        
+        # Get like count
+        like_count = BlogLike.query.filter_by(post_slug=slug).count()
+        
+        if slug == 'cybersecurity-tips-small-business':
+            return render_template('blog_cybersecurity_tips.html', view_count=view_count, like_count=like_count)
+        elif slug == 'it-solutions-productivity-boost':
+            return render_template('blog_productivity_boost.html', view_count=view_count, like_count=like_count)
+        elif slug == 'glens-grass-case-study':
+            return render_template('blog_glens_grass_case_study.html', view_count=view_count, like_count=like_count)
+        else:
+            return render_template('blog.html')
+    except Exception as e:
+        # Fallback if database fails
+        if slug == 'cybersecurity-tips-small-business':
+            return render_template('blog_cybersecurity_tips.html', view_count=0, like_count=0)
+        elif slug == 'it-solutions-productivity-boost':
+            return render_template('blog_productivity_boost.html', view_count=0, like_count=0)
+        elif slug == 'glens-grass-case-study':
+            return render_template('blog_glens_grass_case_study.html', view_count=0, like_count=0)
+        else:
+            return render_template('blog.html')
+
 @app.route('/create-ticket')
 def create_ticket():
     return render_template('create_ticket.html')
@@ -206,6 +253,222 @@ def oauth_callback():
     <h2>Token Exchange Result</h2>
     <pre>{token_data}</pre>
     """
+
+# ========================================
+# DATABASE SETUP - PostgreSQL (Neon)
+# ========================================
+from flask_sqlalchemy import SQLAlchemy
+import hashlib
+
+db = SQLAlchemy()
+
+# PostgreSQL connection string
+DATABASE_URL = "postgresql://neondb_owner:npg_lrP2yC6eDTkX@ep-withered-hill-a4aa78xf-pooler.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require"
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db.init_app(app)
+
+# Create tables
+with app.app_context():
+    db.create_all()
+
+# ========================================
+# DATABASE MODELS
+# ========================================
+
+class Subscriber(db.Model):
+    """Email subscribers for newsletter"""
+    __tablename__ = 'subscribers'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), unique=True, nullable=False, index=True)
+    first_name = db.Column(db.String(50), nullable=True)
+    subscribed_at = db.Column(db.DateTime, default=db.func.now())
+    is_active = db.Column(db.Boolean, default=True)
+    source = db.Column(db.String(50), default='footer')
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'email': self.email,
+            'subscribed_at': self.subscribed_at.isoformat() if self.subscribed_at else None,
+            'is_active': self.is_active,
+            'source': self.source
+        }
+
+class BlogLike(db.Model):
+    """Track likes on blog posts"""
+    __tablename__ = 'blog_likes'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    post_slug = db.Column(db.String(100), nullable=False, index=True)
+    ip_address = db.Column(db.String(45), nullable=True)
+    user_agent_hash = db.Column(db.String(64), nullable=True)
+    liked_at = db.Column(db.DateTime, default=db.func.now())
+    
+    __table_args__ = (
+        db.UniqueConstraint('post_slug', 'ip_address', 'user_agent_hash', name='unique_blog_like'),
+    )
+
+class BlogPostStats(db.Model):
+    """Aggregated stats for blog posts"""
+    __tablename__ = 'blog_post_stats'
+    
+    post_slug = db.Column(db.String(100), primary_key=True)
+    like_count = db.Column(db.Integer, default=0)
+    view_count = db.Column(db.Integer, default=0)
+    last_updated = db.Column(db.DateTime, default=db.func.now(), onupdate=db.func.now())
+
+class PageView(db.Model):
+    """Track page views"""
+    __tablename__ = 'page_views'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    page_path = db.Column(db.String(200), nullable=False, index=True)
+    ip_address = db.Column(db.String(45), nullable=True)
+    user_agent = db.Column(db.String(500), nullable=True)
+    viewed_at = db.Column(db.DateTime, default=db.func.now())
+    referrer = db.Column(db.String(500), nullable=True)
+
+# ========================================
+# API ROUTES
+# ========================================
+
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    """Handle email subscription"""
+    try:
+        data = request.get_json()
+        email = data.get('email', '').strip().lower()
+        source = data.get('source', 'footer')
+        
+        if not email:
+            return jsonify({'success': False, 'error': 'Email is required'}), 400
+        
+        existing = Subscriber.query.filter_by(email=email).first()
+        if existing:
+            if existing.is_active:
+                return jsonify({'success': True, 'message': 'Already subscribed!'}), 200
+            else:
+                existing.is_active = True
+                db.session.commit()
+                return jsonify({'success': True, 'message': 'Welcome back!'}), 200
+        
+        subscriber = Subscriber(email=email, source=source)
+        db.session.add(subscriber)
+        db.session.commit()
+        
+        return jsonify({'success': True, 'message': 'Successfully subscribed!', 'subscriber': subscriber.to_dict()}), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/blog/like', methods=['POST'])
+def like_blog_post():
+    """Toggle like on blog post"""
+    try:
+        data = request.get_json()
+        post_slug = data.get('post_slug')
+        
+        if not post_slug:
+            return jsonify({'success': False, 'error': 'Post slug is required'}), 400
+        
+        ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+        if ip_address and ',' in ip_address:
+            ip_address = ip_address.split(',')[0].strip()
+        user_agent = request.headers.get('User-Agent', '')
+        user_agent_hash = hashlib.sha256(user_agent.encode()).hexdigest()[:64]
+        
+        existing = BlogLike.query.filter_by(
+            post_slug=post_slug,
+            ip_address=ip_address,
+            user_agent_hash=user_agent_hash
+        ).first()
+        
+        if existing:
+            db.session.delete(existing)
+            db.session.commit()
+            count = BlogLike.query.filter_by(post_slug=post_slug).count()
+            return jsonify({'success': True, 'liked': False, 'count': count}), 200
+        
+        like = BlogLike(post_slug=post_slug, ip_address=ip_address, user_agent_hash=user_agent_hash)
+        db.session.add(like)
+        db.session.commit()
+        count = BlogLike.query.filter_by(post_slug=post_slug).count()
+        
+        return jsonify({'success': True, 'liked': True, 'count': count}), 201
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/blog/likes/<post_slug>', methods=['GET'])
+def get_blog_likes(post_slug):
+    """Get like count for a blog post"""
+    try:
+        count = BlogLike.query.filter_by(post_slug=post_slug).count()
+        
+        ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+        if ip_address and ',' in ip_address:
+            ip_address = ip_address.split(',')[0].strip()
+        user_agent = request.headers.get('User-Agent', '')
+        user_agent_hash = hashlib.sha256(user_agent.encode()).hexdigest()[:64]
+        
+        has_liked = BlogLike.query.filter_by(
+            post_slug=post_slug,
+            ip_address=ip_address,
+            user_agent_hash=user_agent_hash
+        ).first() is not None
+        
+        return jsonify({'success': True, 'count': count, 'hasLiked': has_liked}), 200
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/blog/view/<post_slug>', methods=['POST'])
+def track_blog_view(post_slug):
+    """Track a view for a blog post"""
+    try:
+        ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+        if ip_address and ',' in ip_address:
+            ip_address = ip_address.split(',')[0].strip()
+        user_agent = request.headers.get('User-Agent', '')
+        referrer = request.headers.get('Referer', '')
+        
+        view = PageView(page_path=f'/blog/{post_slug}', ip_address=ip_address, user_agent=user_agent, referrer=referrer)
+        db.session.add(view)
+        db.session.commit()
+        
+        # Update or create stats
+        stat = BlogPostStats.query.filter_by(post_slug=post_slug).first()
+        if stat:
+            stat.view_count += 1
+        else:
+            stat = BlogPostStats(post_slug=post_slug, view_count=1)
+            db.session.add(stat)
+        db.session.commit()
+        
+        return jsonify({'success': True}), 200
+        
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/api/blog/stats/<post_slug>', methods=['GET'])
+def get_blog_stats(post_slug):
+    """Get likes and views for a blog post"""
+    try:
+        likes = BlogLike.query.filter_by(post_slug=post_slug).count()
+        stat = BlogPostStats.query.filter_by(post_slug=post_slug).first()
+        views = stat.view_count if stat else 0
+        
+        return jsonify({'success': True, 'likes': likes, 'views': views}), 200
+        
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run()
