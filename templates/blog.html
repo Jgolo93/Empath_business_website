@@ -354,6 +354,7 @@
                         <span class="input-icon">✉️</span>
                         <input type="email" id="newsletterEmail" placeholder="Enter your email address" required>
                     </div>
+                    <span class="newsletter-error" id="newsletterError"></span>
                     <button type="submit" class="btn-primary btn-subscribe">
                         <span class="btn-text">Subscribe</span>
                         <span class="btn-loader"></span>
@@ -514,8 +515,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const newsletterForm = document.getElementById('newsletterForm');
     const emailInput = document.getElementById('newsletterEmail');
     
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    emailInput.addEventListener('input', function() {
+        if (emailRegex.test(this.value)) {
+            this.classList.remove('error');
+            document.getElementById('newsletterError').textContent = '';
+        }
+    });
+
     newsletterForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        const email = emailInput.value.trim().toLowerCase();
+        const errorEl = document.getElementById('newsletterError');
+        
+        if (!email) {
+            emailInput.classList.add('error');
+            errorEl.textContent = 'Please enter your email address';
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            emailInput.classList.add('error');
+            errorEl.textContent = 'Please enter a valid email address';
+            return;
+        }
+        
+        emailInput.classList.remove('error');
+        errorEl.textContent = '';
+        
         const btn = this.querySelector('.btn-subscribe');
         btn.classList.add('loading');
         

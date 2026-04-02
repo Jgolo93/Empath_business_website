@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.empathtechnologysolutions.com/sitemap.xml
+
+# Disallow specific paths that shouldn't be indexed
+Disallow: /zohoverify/
+Disallow: /ticket-success
+Disallow: /static/
+Disallow: /templates/

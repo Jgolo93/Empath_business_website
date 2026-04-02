@@ -296,7 +296,6 @@
                             <p>Get a free security audit for your small business. Our experts will assess your current security posture and recommend improvements.</p>
                             <div class="cta-buttons">
                                 <a href="{{ url_for('create_ticket') }}" class="btn-primary btn-large">Get Free Security Audit</a>
-                                <a href="{{ url_for('pricing') }}" class="btn-secondary">View Pricing</a>
                             </div>
                         </div>
                     </div>
@@ -309,6 +308,7 @@
                             <input type="email" id="articleSubscribeEmail" placeholder="Enter your email" required style="padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; width: 220px; max-width: 100%;">
                             <button type="submit" style="padding: 12px 24px; background: linear-gradient(135deg, #f59e0b, #fbbf24); color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer;">Subscribe</button>
                         </form>
+                        <span id="articleEmailError" style="color: #ff4444; font-size: 12px; display: block; margin-top: 8px;"></span>
                         <p id="articleSubscribeMsg" style="color: #22c55e; font-size: 13px; margin-top: 12px; display: none;">Thanks for subscribing!</p>
                     </div>
                 </footer>
@@ -537,8 +537,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Article newsletter subscription
     window.submitArticleSubscribe = function(e) {
         e.preventDefault();
-        const email = document.getElementById('articleSubscribeEmail').value;
+        const emailInput = document.getElementById('articleSubscribeEmail');
+        const email = emailInput.value.trim().toLowerCase();
         const msg = document.getElementById('articleSubscribeMsg');
+        const errorEl = document.getElementById('articleEmailError');
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        if (!email) {
+            emailInput.style.borderColor = '#ff4444';
+            errorEl.textContent = 'Please enter your email address';
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            emailInput.style.borderColor = '#ff4444';
+            errorEl.textContent = 'Please enter a valid email address';
+            return;
+        }
+        
+        emailInput.style.borderColor = '#e2e8f0';
+        errorEl.textContent = '';
         
         fetch('/subscribe', {
             method: 'POST',

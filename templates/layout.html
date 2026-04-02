@@ -182,6 +182,43 @@
                 max-width: 600px !important;
             }
         }
+    
+    <style>
+    /* Footer form - base styles */
+    .footer-subscribe-form {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    /* Mobile and tablet - stacked centered */
+    @media (max-width: 1024px) {
+        .footer-newsletter {
+            text-align: center !important;
+        }
+        .footer-subscribe-form {
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            max-width: 400px !important;
+            margin: 0 auto !important;
+        }
+        .footer-subscribe-form input {
+            width: 100% !important;
+            max-width: 400px !important;
+        }
+        .footer-subscribe-form button {
+            width: 100% !important;
+            max-width: 400px !important;
+            margin-top: 8px;
+        }
+        .footer-cta-button {
+            display: block !important;
+            margin: 20px auto 0 !important;
+            text-align: center !important;
+        }
+    }
     </style>
     
     {% block extra_css %}{% endblock %}
@@ -244,7 +281,44 @@
         padding: 10px !important;
     }
 }
-</style>
+
+    <style>
+    /* Footer form - base styles */
+    .footer-subscribe-form {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+    
+    /* Mobile and tablet - stacked centered */
+    @media (max-width: 1024px) {
+        .footer-newsletter {
+            text-align: center !important;
+        }
+        .footer-subscribe-form {
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            max-width: 400px !important;
+            margin: 0 auto !important;
+        }
+        .footer-subscribe-form input {
+            width: 100% !important;
+            max-width: 400px !important;
+        }
+        .footer-subscribe-form button {
+            width: 100% !important;
+            max-width: 400px !important;
+            margin-top: 8px;
+        }
+        .footer-cta-button {
+            display: block !important;
+            margin: 20px auto 0 !important;
+            text-align: center !important;
+        }
+    }
+    </style>
 </head>
 <body>
     <!-- Flash Messages -->
@@ -274,7 +348,6 @@
                     </button>
                     <ul class="nav-links">
                         <li><a href="{{ url_for('home') }}" class="{{ 'active' if request.path == url_for('home') else '' }}">Home</a></li>
-                        <li><a href="{{ url_for('pricing') }}" class="{{ 'active' if request.path == url_for('pricing') else '' }}">Pricing</a></li>
                         <li><a href="{{ url_for('how_it_works') }}" class="{{ 'active' if request.path == url_for('how_it_works') else '' }}">How It Works</a></li>
                         <li><a href="{{ url_for('blog') }}" class="{{ 'active' if request.path.startswith('/blog') else '' }}">Blog</a></li>
                         <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.path == url_for('about') else '' }}">About Me</a></li>
@@ -307,7 +380,6 @@
                     <h3 class="footer-heading">Quick Links</h3>
                     <ul class="footer-link-list">
                         <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('pricing') }}">Pricing</a></li>
                         <li><a href="{{ url_for('how_it_works') }}">How It Works</a></li>
                         <li><a href="{{ url_for('blog') }}">Blog</a></li>
                         <li><a href="{{ url_for('about') }}">About Me</a></li>
@@ -339,6 +411,7 @@
                             <input type="email" id="footerEmail" placeholder="Enter your email" required style="padding: 10px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 180px;">
                             <button type="submit" style="padding: 10px 20px; background: #243377; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500;">Subscribe</button>
                         </form>
+                        <span id="footerError" style="color: #ff6b6b; font-size: 12px; display: block; margin-top: 4px;"></span>
                         <p id="footerSubscribeMsg" style="font-size: 12px; margin-top: 8px; color: #22c55e; display: none;">Thanks for subscribing!</p>
                     </div>
                     

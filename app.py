@@ -36,7 +36,7 @@ ACCESS_TOKEN_INFO = {
 
 DATABASE_URL = os.getenv(
     'DATABASE_URL',
-    "postgresql://neondb_owner:npg_lrP2yC6eDTkX@ep-withered-hill-a4aa78xf-pooler.us-east-1.aws.neon.tech/neondb?channel_binding=require&sslmode=require"
+    "postgresql://neondb_owner:npg_2led5BIEjmnx@ep-misty-resonance-aeq4m318-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 )
 
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
@@ -106,6 +106,32 @@ class PageView(db.Model):
     referrer = db.Column(db.String(500), nullable=True)
 
 
+
+
+class Lead(db.Model):
+    """Lead magnet subscribers"""
+    __tablename__ = 'leads'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(120), nullable=False, index=True)
+    subscribed_at = db.Column(db.DateTime, default=db.func.now())
+    source = db.Column(db.String(50), default='lead_magnet')
+    downloaded = db.Column(db.Boolean, default=False)
+
+    __table_args__ = (
+        db.UniqueConstraint('email', 'source', name='unique_lead_source'),
+    )
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'subscribed_at': self.subscribed_at.isoformat() if self.subscribed_at else None,
+            'downloaded': self.downloaded
+        }
+
 # Create tables safely — won't crash the app if DB is temporarily unreachable
 try:
     with app.app_context():
@@ -155,57 +181,8 @@ def home():
 
 @app.route('/pricing')
 def pricing():
-    standard_services = [
-        {'service': 'Remote Assistance', 'standard': 'R150 per session (up to 45 mins)',
-         'emergency': 'R300 per session (up to 45 mins)', 'icon': '💬'},
-        {'service': 'Diagnostics Only', 'standard': 'R100 flat rate', 'emergency': 'R200 flat rate', 'icon': '🔧'},
-        {'service': 'Virus & Malware Removal', 'standard': 'From R250', 'emergency': 'From R400', 'icon': '🛡️'},
-        {'service': 'Full Laptop Service', 'standard': 'R350–R500 (incl. cleaning & updates)', 'emergency': 'R550–R700',
-         'icon': '🖥️'}
-    ]
-
-    additional_services = [
-        {'service': 'Google/Microsoft License Reseller', 'price': 'Quote-based', 'icon': '🔑'},
-        {'service': 'Data Backup Solutions', 'price': 'Quote-based', 'icon': 'save'},
-        {'service': 'Laptop & PC Hardware Upgrades', 'price': 'Quote-based', 'note': 'Cost of parts is required upfront.', 'icon': 'upgrade'},
-        {'service': 'Network Setup (Remote)', 'price': 'Quote-based', 'note': 'For small businesses and personal setups.', 'icon': 'wifi'},
-        {'service': 'Logo Design', 'price': 'Quote-based', 'icon': 'palette'},
-        {'service': 'Tech Consultation (Choosing devices/software)', 'price': 'R150 per consult (30–45 mins)', 'icon': '🧠'},
-        {'service': 'Basic Cybersecurity Check (firewall, antivirus)', 'price': 'R250', 'icon': '🔒'},
-        {'service': 'Website Help (basic WordPress issues, updates)', 'price': 'R200 – R400 depending on issue', 'icon': '🌐'},
-        {'service': 'Phone/Tablet Setup & Optimization', 'price': 'R150 – R300', 'icon': '📱'},
-        {'service': 'Monitor / Dual Display Setup', 'price': 'R150 – R250', 'icon': '🖥️'},
-        {'service': 'Keyboard & Mouse Troubleshooting', 'price': 'R100', 'icon': '⌨️'},
-        {'service': 'Driver & Software Update Pack', 'price': 'R200', 'icon': '🧩'},
-        {'service': 'Old PC to New PC Data Transfer (via USB/drive)', 'price': 'R250 – R450', 'icon': '📂'},
-        {'service': 'Software Uninstall + Clean Up (bloatware, trialware)', 'price': 'R200', 'icon': '📦'},
-        {'service': 'Password Recovery (local PC accounts)', 'price': 'R150 – R300 (depends on case)', 'icon': '🔐'},
-        {'service': 'Email Setup (Outlook/Gmail/Thunderbird)', 'price': 'R150 per account', 'icon': '🌍'},
-        {'service': 'Parental Controls Setup / Online Safety Settings', 'price': 'R200 – R300', 'icon': '🛡️'},
-        {'service': '1-on-1 Training (basic PC usage / Office tools)', 'price': 'R200/hr', 'icon': '🧑‍🏫'},
-        {'service': 'IT Audit for Home Office or Small Business', 'price': 'R300 flat or R150/hr', 'icon': '🧾'},
-        {'service': 'Removing Pop-Ups / Fake Virus Warnings', 'price': 'R200', 'icon': '🛑'},
-        {'service': 'Setting Up Cloud Backup (Google Drive, OneDrive)', 'price': 'R250', 'icon': '🔁'},
-        {'service': 'Organizing Files + Storage Clean-Up', 'price': 'R150 – R250', 'icon': '📁'},
-        {'service': 'External Hard Drive Setup / Repair Check', 'price': 'R200 – R350', 'icon': '💾'},
-        {'service': 'Router Configuration (Static IP, port forwarding)', 'price': 'R300', 'icon': '📡'},
-        {'service': 'Custom PC Builds', 'price': 'Quote-based', 'note': 'Cost of parts is required upfront.', 'icon': '🖥️'},
-        {'service': 'Courier Service (Laptop/PC)', 'price': 'R150 - R250', 'note': 'Upfront cost for laptop/PC retrieval and delivery.', 'icon': '🚚'}
-    ]
-
-    bundles = [
-        {'name': 'PC Tune-Up Package', 'services': 'Cleaning, optimization, software updates, virus check',
-         'price': 'R400', 'icon': '🔧'},
-        {'name': 'Secure Setup Bundle', 'services': 'Antivirus install, firewall check, password & browser hardening',
-         'price': 'R350', 'icon': '🛡️'},
-        {'name': 'New Device Starter Pack', 'services': 'Software install, user setup, data transfer, training',
-         'price': 'R500', 'icon': '💻'}
-    ]
-
-    return render_template('pricing.html',
-                           standard_services=standard_services,
-                           additional_services=additional_services,
-                           bundles=bundles)
+    # Redirect to contact page for custom quotes
+    return redirect(url_for('create_ticket'), code=301)
 
 @app.route('/how-it-works')
 def how_it_works():
@@ -252,6 +229,11 @@ def terms():
 @app.route('/privacy')
 def privacy():
     return render_template('privacy.html')
+
+# Shop redirect (old shop endpoint removed, redirect to home)
+@app.route('/shop')
+def shop():
+    return redirect(url_for('home'), code=301)
 
 # Blog Routes
 @app.route('/blog')
@@ -469,6 +451,87 @@ def get_blog_stats(post_slug):
 
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+
+
+# ========================================
+# LEAD MAGNET ROUTES
+# ========================================
+
+import re
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+
+@app.route('/api/leads', methods=['POST'])
+def submit_lead():
+    """Handle lead magnet form submission"""
+    try:
+        data = request.get_json()
+        name = data.get('name', '').strip()
+        email = data.get('email', '').strip().lower()
+
+        if not name:
+            return jsonify({'success': False, 'error': 'Please enter your full name'}), 400
+        
+        if not email:
+            return jsonify({'success': False, 'error': 'Please enter your email address'}), 400
+        
+        if not EMAIL_REGEX.match(email):
+            return jsonify({'success': False, 'error': 'Please enter a valid email address'}), 400
+
+        # Retry logic for SSL connection issues
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                # Create new connection for each attempt
+                db.session.close()
+                existing = Lead.query.filter_by(email=email, source='lead_magnet').first()
+                if existing:
+                    return jsonify({'success': True, 'lead_id': existing.id, 'exists': True}), 200
+
+                lead = Lead(name=name, email=email, source='lead_magnet')
+                db.session.add(lead)
+                db.session.commit()
+                return jsonify({'success': True, 'lead_id': lead.id, 'exists': False}), 201
+            except Exception as db_error:
+                db.session.rollback()
+                if attempt < max_retries - 1 and ('SSL' in str(db_error) or 'connection' in str(db_error).lower()):
+                    import time
+                    time.sleep(0.5)  # Brief delay before retry
+                    continue
+                raise
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'success': False, 'error': 'Something went wrong. Please try again.'}), 500
+
+
+@app.route('/download/the-journey')
+def download_lead_magnet():
+    """Serve the lead magnet PDF after verifying lead submission"""
+    try:
+        email = request.args.get('email', '').strip().lower()
+        
+        if not email:
+            return jsonify({'success': False, 'error': 'Email required'}), 400
+
+        lead = Lead.query.filter_by(email=email, source='lead_magnet').first()
+        if not lead:
+            return jsonify({'success': False, 'error': 'Please submit your details first'}), 403
+
+        lead.downloaded = True
+        db.session.commit()
+
+        return send_from_directory(
+            os.path.join(os.path.dirname(__file__), 'static', 'pdfs'),
+            'the-journey.pdf',
+            as_attachment=True,
+            download_name='The Journey - By Jason Goliath.pdf'
+        )
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run()
