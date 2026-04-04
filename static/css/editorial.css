@@ -1,0 +1,246 @@
+/* Empath Editorial Blog Styles (extracted from world_of_testing and robot_framework)
+   - Unified for all blog articles
+   - Editorial typography, layout, callouts, code, meta, etc.
+   - Responsive and accessible
+*/
+
+:root {
+    --ed-bg: #f8fafc;
+    --ed-ink: #0f172a;
+    --ed-accent: #f59e0b;
+    --ed-accent2: #14b8a6;
+    --ed-muted: #475569;
+    --ed-border: #e2e8f0;
+    --ed-surface: #ffffff;
+    --ed-code-bg: #0f172a;
+}
+
+/* Editorial Container */
+.editorial-layout, .editorial-hero, .editorial-content {
+    background: var(--ed-bg);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Editorial Hero */
+.editorial-hero {
+    position: relative;
+    padding: 0;
+    border-bottom: 2px solid var(--ed-ink);
+}
+.editorial-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+    color: var(--ed-ink);
+}
+.editorial-title em {
+    font-style: italic;
+    color: var(--ed-accent);
+}
+.editorial-masthead {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ed-accent2);
+    background: var(--ed-bg);
+    padding: 12px 0 0 0;
+    text-align: left;
+}
+
+/* Meta Bar */
+.article-meta-bar, .editorial-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ed-muted);
+    border-top: 1px solid var(--ed-border);
+    padding-top: 18px;
+    margin-bottom: 18px;
+}
+.meta-details {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.meta-item {
+    color: var(--ed-muted);
+}
+
+/* Editorial Body */
+.editorial-body, .article-body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.13rem;
+    color: #3a3020;
+    line-height: 1.8;
+    margin: 0 auto;
+    padding: 64px 0 120px;
+    max-width: 900px;
+}
+.editorial-body p, .article-body p {
+    margin-bottom: 20px;
+}
+
+/* Headings */
+.editorial-heading, .article-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 28px;
+    color: var(--ed-ink);
+}
+.editorial-subheading {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ed-accent2);
+    margin: 36px 0 14px;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Callouts, Quotes, Tips, Warnings */
+.editorial-quote, .article-quote {
+    border-left: 4px solid var(--ed-accent);
+    margin: 36px 0;
+    padding: 20px 28px;
+    background: var(--ed-surface);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ed-ink);
+}
+.tip-box, .warning-box, .editorial-callout {
+    background: var(--ed-surface);
+    border: 1px solid var(--ed-border);
+    border-left: 4px solid var(--ed-accent2);
+    padding: 18px 24px;
+    margin: 28px 0;
+    font-size: 1rem;
+}
+.warning-box { border-left-color: #e53e3e; }
+.tip-box { border-left-color: var(--ed-accent2); }
+
+/* Table of Contents */
+.table-of-contents {
+    background: var(--ed-surface);
+    border: 1px solid var(--ed-border);
+    border-radius: 8px;
+    padding: 18px 24px;
+    margin: 32px 0;
+}
+.table-of-contents h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--ed-accent2);
+}
+.table-of-contents ul {
+    padding-left: 18px;
+    margin: 0;
+}
+.table-of-contents li {
+    margin-bottom: 6px;
+}
+.toc-number {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ed-accent);
+    margin-right: 6px;
+}
+
+/* Section Numbers */
+.section-number, .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--ed-accent);
+    letter-spacing: 0.12em;
+    margin-right: 8px;
+    text-transform: uppercase;
+}
+
+/* Lead Paragraph */
+.lead-paragraph, .hero-lead {
+    font-size: 1.18rem;
+    color: var(--ed-muted);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+/* CTA Box */
+.cta-box {
+    background: var(--ed-accent2);
+    color: #fff;
+    border-radius: 8px;
+    padding: 32px 28px;
+    margin: 48px 0 0 0;
+    text-align: center;
+}
+.cta-box h3 { color: #fff; margin-bottom: 10px; }
+.cta-box a.btn-primary { background: #fff; color: var(--ed-accent2); border: none; }
+
+/* Share Sidebar */
+.share-sidebar {
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+    margin-right: 32px;
+    z-index: 2;
+}
+.share-sticky {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+.share-label {
+    font-size: 0.9rem;
+    color: var(--ed-accent2);
+    margin-bottom: 6px;
+}
+.share-btn {
+    background: var(--ed-bg);
+    border: 1px solid var(--ed-border);
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ed-accent2);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.share-btn:hover { background: var(--ed-accent2); color: #fff; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .editorial-layout, .editorial-hero, .editorial-content, .article-layout {
+        max-width: 100%;
+        padding: 48px 32px;
+    }
+}
+@media (max-width: 768px) {
+    .editorial-title { font-size: clamp(2rem, 10vw, 3rem); }
+    .editorial-layout, .editorial-hero, .editorial-content, .article-layout {
+        padding: 32px 20px;
+    }
+    .article-meta-bar { flex-direction: column; gap: 12px; padding: 16px 0; }
+    .meta-details { flex-wrap: wrap; gap: 12px; }
+    .lead-paragraph { font-size: 1.1rem; }
+    .editorial-body p, .article-body p { font-size: 1rem; line-height: 1.7; }
+}
+@media (max-width: 480px) {
+    .editorial-title { font-size: 1.4rem !important; line-height: 1.2 !important; }
+    .editorial-masthead { font-size: 9px; padding: 10px 16px; }
+    .editorial-layout, .editorial-hero, .editorial-content, .article-layout { padding: 24px 8px; }
+}
+
+/* Code blocks, tables, etc. can be added as needed from the original editorial articles. */
+
