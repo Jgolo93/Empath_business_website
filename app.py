@@ -15,20 +15,21 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', '3326a6c76241b25be006e1a52c1d197ee23141c9f2')
 
-# Zoho Desk OAuth configuration
-ZOHO_CLIENT_ID = '1000.OCP7ADAC99HLRYU5VPU91VMV1A1VJI'
-ZOHO_CLIENT_SECRET = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
-ZOHO_REFRESH_TOKEN = '1000.dca392a320b7c2a2bb23b5eb483305d9.a69c286a8e5631b6b7661a25d3603a82'
-ZOHO_DESK_DOMAIN = 'desk.zoho.com'
-ZOHO_DESK_ORG_ID = '887430547'
-ZOHO_DESK_DEPARTMENT_ID = '1129372000000006907'
-ZOHO_ACCOUNTS_URL = 'https://accounts.zoho.com'
+# Zoho Desk OAuth configuration - TEMPORARILY DISABLED
+# To re-enable: Update OAuth credentials and uncomment these lines
+# ZOHO_CLIENT_ID = '1000.OCP7ADAC99HLRYU5VPU91VMV1A1VJI'
+# ZOHO_CLIENT_SECRET = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
+# ZOHO_REFRESH_TOKEN = '1000.dca392a320b7c2a2bb23b5eb483305d9.a69c286a8e5631b6b7661a25d3603a82'
+# ZOHO_DESK_DOMAIN = 'desk.zoho.eu'
+# ZOHO_DESK_ORG_ID = '887430547'
+# ZOHO_DESK_DEPARTMENT_ID = '1129372000000006907'
+# ZOHO_ACCOUNTS_URL = 'https://accounts.zoho.eu'
 
 # Store access token in memory (in production, use a proper cache or database)
-ACCESS_TOKEN_INFO = {
-    'access_token': None,
-    'expires_at': 0
-}
+# ACCESS_TOKEN_INFO = {
+#     'access_token': None,
+#     'expires_at': 0
+# }
 
 # ========================================
 # DATABASE SETUP - PostgreSQL (Neon)
@@ -252,6 +253,14 @@ def productivity_boost():
 def glens_grass_case_study():
     return render_template('blog_glens_grass_case_study.html')
 
+@app.route('/blog/world-of-testing')
+def world_of_testing():
+    return render_template('blog_world_of_testing.html')
+
+@app.route('/blog/robot-framework-browser-library')
+def robot_framework_browser_library():
+    return render_template('blog_robot_framework.html')
+
 @app.route('/blog/<slug>')
 def blog_post(slug):
     try:
@@ -265,6 +274,10 @@ def blog_post(slug):
             return render_template('blog_productivity_boost.html', view_count=view_count, like_count=like_count)
         elif slug == 'glens-grass-case-study':
             return render_template('blog_glens_grass_case_study.html', view_count=view_count, like_count=like_count)
+        elif slug == 'world-of-testing':
+            return render_template('blog_world_of_testing.html', view_count=view_count, like_count=like_count)
+        elif slug == 'robot-framework-browser-library':
+            return render_template('blog_robot_framework.html', view_count=view_count, like_count=like_count)
         else:
             return render_template('blog.html')
     except Exception as e:
@@ -274,6 +287,10 @@ def blog_post(slug):
             return render_template('blog_productivity_boost.html', view_count=0, like_count=0)
         elif slug == 'glens-grass-case-study':
             return render_template('blog_glens_grass_case_study.html', view_count=0, like_count=0)
+        elif slug == 'world-of-testing':
+            return render_template('blog_world_of_testing.html', view_count=0, like_count=0)
+        elif slug == 'robot-framework-browser-library':
+            return render_template('blog_robot_framework.html', view_count=0, like_count=0)
         else:
             return render_template('blog.html')
 
@@ -531,6 +548,140 @@ def download_lead_magnet():
 
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
+
+
+# ========================================
+# ZOHO DESK API - TEMPORARILY DISABLED
+# ========================================
+# To re-enable: Update OAuth credentials above and uncomment all code below
+
+# def get_zoho_access_token():
+#     """Get a valid access token, refreshing if necessary"""
+#     global ACCESS_TOKEN_INFO
+#
+#     if ACCESS_TOKEN_INFO['access_token'] and time.time() < (ACCESS_TOKEN_INFO['expires_at'] - 300):
+#         return ACCESS_TOKEN_INFO['access_token']
+#
+#     token_url = f"{ZOHO_ACCOUNTS_URL}/oauth/v2/token"
+#
+#     payload = {
+#         'grant_type': 'refresh_token',
+#         'client_id': ZOHO_CLIENT_ID,
+#         'client_secret': ZOHO_CLIENT_SECRET,
+#         'refresh_token': ZOHO_REFRESH_TOKEN
+#     }
+#
+#     try:
+#         response = requests.post(token_url, data=payload, timeout=30)
+#         print(f"Token refresh status: {response.status_code}")
+#         print(f"Token response: {response.text[:500]}")
+#
+#         if response.status_code == 200:
+#             token_data = response.json()
+#             ACCESS_TOKEN_INFO['access_token'] = token_data['access_token']
+#             expires_in = token_data.get('expires_in', 3600)
+#             ACCESS_TOKEN_INFO['expires_at'] = time.time() + expires_in
+#             return ACCESS_TOKEN_INFO['access_token']
+#         else:
+#             print(f"Token refresh failed: {response.text}")
+#             return None
+#
+#     except Exception as e:
+#         print(f"Exception during token refresh: {e}")
+#         import traceback
+#         traceback.print_exc()
+#         return None
+#
+#
+# @app.route('/api/tickets', methods=['POST'])
+# def create_zoho_ticket():
+#     """Create a ticket in Zoho Desk via API"""
+#     try:
+#         data = request.get_json()
+#
+#         required_fields = ['firstName', 'lastName', 'email', 'subject', 'description']
+#         for field in required_fields:
+#             if not data.get(field):
+#                 return jsonify({'success': False, 'error': f'{field} is required'}), 400
+#
+#         # Get consent data
+#         consent_newsletter = data.get('consentNewsletter', False)
+#         consent_sms = data.get('consentSMS', False)
+#
+#         access_token = get_zoho_access_token()
+#         if not access_token:
+#             return jsonify({'success': False, 'error': 'Unable to authenticate with Zoho Desk. Please contact support.'}), 500
+#
+#         # Build description with consent info
+#         description = data.get('description', '')
+#         consent_info = []
+#         if consent_newsletter:
+#             consent_info.append("Newsletter consent: YES")
+#         else:
+#             consent_info.append("Newsletter consent: NO")
+#         if consent_sms:
+#             consent_info.append("SMS consent: YES")
+#         else:
+#             consent_info.append("SMS consent: NO")
+#
+#         # Add consent info to description
+#         description += "\n\n---\n" + "\n".join(consent_info)
+#
+#         ticket_data = {
+#             'subject': data.get('subject'),
+#             'description': description,
+#             'email': data.get('email'),
+#             'lastName': data.get('lastName'),
+#             'firstName': data.get('firstName'),
+#             'departmentId': ZOHO_DESK_DEPARTMENT_ID,
+#             'priority': data.get('priority', 'Medium'),
+#             'channel': 'Web'
+#         }
+#
+#         if data.get('phone'):
+#             ticket_data['phone'] = data.get('phone')
+#         if data.get('company'):
+#             ticket_data['company'] = data.get('company')
+#
+#         headers = {
+#             'Authorization': f'Zoho-oauthtoken {access_token}',
+#             'orgId': ZOHO_DESK_ORG_ID,
+#             'Content-Type': 'application/json'
+#         }
+#
+#         ticket_url = f'https://{ZOHO_DESK_DOMAIN}/api/v1/tickets'
+#
+#         response = requests.post(
+#             ticket_url,
+#             headers=headers,
+#             json=ticket_data,
+#             timeout=30
+#         )
+#
+#         if response.status_code in [200, 201]:
+#             result = response.json()
+#             ticket_id = result.get('id')
+#             ticket_number = result.get('ticketNumber', 'Unknown')
+#
+#             return jsonify({
+#                 'success': True,
+#                 'ticketId': ticket_id,
+#                 'ticketNumber': ticket_number,
+#                 'message': 'Ticket created successfully'
+#             }), 201
+#         else:
+#             error_data = response.json()
+#             print(f"Zoho API error: {response.status_code} - {error_data}")
+#             return jsonify({
+#                 'success': False,
+#                 'error': f'Zoho API error: {error_data}'
+#             }), 500
+#
+#     except Exception as e:
+#         print(f"Error creating ticket: {e}")
+#         import traceback
+#         traceback.print_exc()
+#         return jsonify({'success': False, 'error': 'An error occurred while creating the ticket'}), 500
 
 
 if __name__ == '__main__':

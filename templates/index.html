@@ -1,933 +1,312 @@
 {% extends 'layout.html' %}
 
-{% block title %}Empath Technology Solutions - Professional IT Services and Web Design
-
-<!-- Lead Magnet Popup -->
-<div class="popup-overlay" id="popupOverlay">
-    <div class="popup-container">
-        <button class="close-btn" id="closeBtn" aria-label="Close popup">&times;</button>
-        
-        <div class="popup-left">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Journey-Yakln41HcJNK61YP3c7FRs9VCCwKkC.jpg" alt="The Journey by Jason Goliath" class="book-cover">
-            <div class="trust-badge">
-                <p>Join</p>
-                <span class="highlight">5,000+</span>
-                <p>Readers on The Journey</p>
-            </div>
-        </div>
-
-        <div class="popup-right">
-            <div id="formContent">
-                <div class="popup-header">
-                    <span class="badge">Free eBook</span>
-                    <h2>Start Your Journey Today</h2>
-                    <p>Discover the transformative insights in "The Journey" by Jason Goliath. Get your free copy now.</p>
-                </div>
-
-                <div class="benefits">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <span class="benefit-text">Instant digital download - read on any device</span>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <span class="benefit-text">Exclusive insights from Jason Goliath</span>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <span class="benefit-text">Transform your perspective and approach</span>
-                    </div>
-                </div>
-
-                <form id="leadForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                        <span class="error-message" id="nameError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                        <span class="error-message" id="emailError"></span>
-                    </div>
-                    <button type="submit" class="submit-btn">Get My Free eBook</button>
-                </form>
-
-                <p class="privacy-text">
-                    We respect your privacy. Unsubscribe at any time.<br>
-                    <a href="{{ url_for('privacy') }}">Privacy Policy</a>
-                </p>
-            </div>
-
-            <div class="success-message" id="successMessage">
-                <div class="success-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <h3>Success!</h3>
-                <p>Your free copy of "The Journey" eBook is ready!</p>
-                <a href="#" class="download-btn" id="downloadBtn">Download Now</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<style>
-.popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; opacity: 0; animation: fadeIn 0.5s ease forwards 0.5s; }
-@keyframes fadeIn { to { opacity: 1; } }
-.popup-container { background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border-radius: 24px; max-width: 900px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 100px rgba(255,107,0,0.15); position: relative; transform: scale(0.9); animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards 0.7s; }
-@keyframes popIn { to { transform: scale(1); } }
-.close-btn { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; cursor: pointer; z-index: 10; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; line-height: 1; }
-.close-btn:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
-.popup-left { background: linear-gradient(135deg, #6B8CAE 0%, #8FA7C2 100%); padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-.popup-left::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite; }
-@keyframes rotate { to { transform: rotate(360deg); } }
-.book-cover { width: 100%; max-width: 280px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); position: relative; z-index: 2; transform: perspective(1000px) rotateY(-5deg); transition: transform 0.5s ease; }
-.book-cover:hover { transform: perspective(1000px) rotateY(0deg) translateY(-10px); }
-.trust-badge { margin-top: 30px; text-align: center; position: relative; z-index: 2; }
-.trust-badge p { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 600; }
-.trust-badge .highlight { font-size: 32px; font-weight: 700; color: #fff; display: block; margin-top: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-.popup-right { padding: 50px 45px; display: flex; flex-direction: column; justify-content: center; background: #0f0f0f; }
-.popup-header { margin-bottom: 30px; }
-.popup-header .badge { display: inline-block; background: linear-gradient(135deg, #FF6B00 0%, #FF8C3A 100%); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
-.popup-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.popup-header p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-.benefits { margin: 30px 0; }
-.benefit-item { display: flex; align-items: center; margin-bottom: 16px; animation: slideIn 0.5s ease forwards; opacity: 0; transform: translateX(-20px); }
-.benefit-item:nth-child(1) { animation-delay: 1s; }
-.benefit-item:nth-child(2) { animation-delay: 1.2s; }
-.benefit-item:nth-child(3) { animation-delay: 1.4s; }
-@keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
-.benefit-icon { width: 24px; height: 24px; background: linear-gradient(135deg, #FF6B00 0%, #FF8C3A 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
-.benefit-icon svg { width: 14px; height: 14px; color: #fff; }
-.benefit-text { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; }
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
-.form-group input { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 15px; transition: all 0.3s ease; }
-.form-group input:focus { outline: none; background: rgba(255,255,255,0.08); border-color: #FF6B00; box-shadow: 0 0 0 4px rgba(255,107,0,0.1); }
-.form-group input::placeholder { color: rgba(255,255,255,0.3); }
-.form-group input.error { border-color: #ff4444; }
-.error-message { display: block; color: #ff6b6b; font-size: 12px; margin-top: 6px; min-height: 18px; }
-.submit-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #FF6B00 0%, #FF8C3A 100%); border: none; border-radius: 12px; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; position: relative; overflow: hidden; }
-.submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
-.submit-btn:hover::before { left: 100%; }
-.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,0,0.4); }
-.privacy-text { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.5; }
-.privacy-text a { color: #FF6B00; text-decoration: none; }
-.success-message { display: none; text-align: center; padding: 40px; }
-.success-message.active { display: block; }
-.success-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-@keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
-.success-icon svg { width: 40px; height: 40px; color: #fff; }
-.success-message h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; margin-bottom: 12px; color: #fff; }
-.success-message p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 24px; line-height: 1.6; }
-.download-btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #fff; text-decoration: none; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; cursor: pointer; border: none; }
-.download-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16,185,129,0.4); }
-.hidden { display: none !important; }
-@media (max-width: 768px) { .popup-overlay { align-items: flex-start; padding: 10px; overflow-y: auto; } .popup-container { grid-template-columns: 1fr; max-width: 500px; margin: 20px 0; } .popup-left { padding: 30px; } .book-cover { max-width: 200px; } .popup-right { padding: 40px 30px; max-height: 70vh; overflow-y: auto; } .popup-header h2 { font-size: 26px; } .trust-badge .highlight { font-size: 24px; } }
-@keyframes fadeOut { to { opacity: 0; } }
-</style>
-
-<script>
-(function() {
-    const popupOverlay = document.getElementById('popupOverlay');
-    const closeBtn = document.getElementById('closeBtn');
-    const leadForm = document.getElementById('leadForm');
-    const formContent = document.getElementById('formContent');
-    const successMessage = document.getElementById('successMessage');
-    const downloadBtn = document.getElementById('downloadBtn');
-    
-    let userEmail = '';
-
-    if (sessionStorage.getItem('leadPopupShown')) {
-        popupOverlay.classList.add('hidden');
-    }
-
-    setTimeout(() => {
-        if (!sessionStorage.getItem('leadPopupShown')) {
-            popupOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-    }, 3000);
-
-    closeBtn.addEventListener('click', function() {
-        popupOverlay.style.animation = 'fadeOut 0.3s ease forwards';
-        setTimeout(() => {
-            popupOverlay.classList.add('hidden');
-            document.body.style.overflow = '';
-            sessionStorage.setItem('leadPopupShown', 'true');
-        }, 300);
-    });
-
-    popupOverlay.addEventListener('click', function(e) {
-        if (e.target === popupOverlay) {
-            closeBtn.click();
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeBtn.click();
-        }
-    });
-
-    const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const nameError = document.getElementById('nameError');
-        const emailError = document.getElementById('emailError');
-
-        function validateEmail(email) {
-            return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-        }
-
-        nameInput.addEventListener('input', function() {
-            if (this.value.trim()) {
-                this.classList.remove('error');
-                nameError.textContent = '';
-            }
-        });
-
-        emailInput.addEventListener('input', function() {
-            if (validateEmail(this.value)) {
-                this.classList.remove('error');
-                emailError.textContent = '';
-            }
-        });
-
-        leadForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim().toLowerCase();
-            let hasError = false;
-
-            // Validate name
-            if (!name) {
-                nameInput.classList.add('error');
-                nameError.textContent = 'Please enter your full name';
-                hasError = true;
-            } else {
-                nameInput.classList.remove('error');
-                nameError.textContent = '';
-            }
-
-            // Validate email
-            if (!email) {
-                emailInput.classList.add('error');
-                emailError.textContent = 'Please enter your email address';
-                hasError = true;
-            } else if (!validateEmail(email)) {
-                emailInput.classList.add('error');
-                emailError.textContent = 'Please enter a valid email address';
-                hasError = true;
-            } else {
-                emailInput.classList.remove('error');
-                emailError.textContent = '';
-            }
-
-            if (hasError) return;
-
-            userEmail = email;
-
-            try {
-                const response = await fetch('/api/leads', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    formContent.classList.add('hidden');
-                    successMessage.classList.add('active');
-                    downloadBtn.href = '/download/the-journey?email=' + encodeURIComponent(email);
-                } else {
-                    emailInput.classList.add('error');
-                    emailError.textContent = data.error || 'Something went wrong';
-                }
-            } catch (err) {
-                emailError.textContent = 'Something went wrong. Please try again.';
-            }
-        });
-
-    downloadBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (userEmail) {
-            window.location.href = '/download/the-journey?email=' + encodeURIComponent(userEmail);
-        }
-    });
-})();
-</script>
-
-
-{% endblock %}
+{% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
 
 {% block content %}
 
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="hero-network"></div>
-    <div class="hero-waves">
-        <div class="wave wave-1"></div>
-        <div class="wave wave-2"></div>
-        <div class="wave wave-3"></div>
-    </div>
-    <div class="hero-dots">
-        <span></span><span></span><span></span><span></span><span></span>
-        <span></span><span></span><span></span><span></span><span></span>
-    </div>
-    <div class="container">
-        <div class="hero-content">
-            <div class="hero-logo-wrapper">
-                <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath Technology Solutions" class="hero-logo">
-            </div>
-            <div class="hero-tagline">
-                <span class="tag-part">When IT Support</span>
-                <span class="tag-connector">Meets</span>
-                <span class="tag-part">Web Design</span>
-            </div>
-            <h1 class="hero-title">Empath Technology Solutions</h1>
-            <p class="hero-slogan">From Hardware to Websites & Email — Solutions for the People</p>
-            <p class="hero-description">Empowering small businesses and startups with affordable IT infrastructure, custom websites, and professional email solutions. Your one-stop technology partner in Cape Town.</p>
-            <div class="hero-buttons">
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Get Started</a>
-            </div>
-            <div class="hero-features">
-                <div class="feature-item">
-                    <i class="material-icons">computer</i>
-                    <span>Hardware</span>
-                </div>
-                <div class="feature-item">
-                    <i class="material-icons">language</i>
-                    <span>Websites</span>
-                </div>
-                <div class="feature-item">
-                    <i class="material-icons">email</i>
-                    <span>Email</span>
-                </div>
-                <div class="feature-item">
-                    <i class="material-icons">support_agent</i>
-                    <span>Support</span>
-                </div>
+<!-- ── EDITORIAL HERO ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>IT Support & Web Development</span>
+    <span class="masthead-divider">·</span>
+    <span>Cape Town, South Africa</span>
+</div>
+
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">Professional IT Services · Issue 2025</div>
+    <h1>Empath Technology <br/><em>Solutions</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                Affordable IT support, computer repair, and web development services for small businesses in Cape Town. 
+                Expert solutions for virus removal, network setup, remote support, and custom website design.
+            </p>
+            <div class="hero-ctas">
+                <a href="{{ url_for('create_ticket') }}" class="btn-ink">Get IT Support →</a>
+                <a href="{{ url_for('blog') }}" class="btn-outline-ink">Read Our Blog</a>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- Our Services Section -->
-<section class="business-solutions">
-    <div class="container">
-        <h2>Our Services</h2>
-        <p class="section-subtitle">Comprehensive IT and web solutions for individuals and businesses.</p>
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">business</i></div>
-                <h3 class="solution-title">Small Business IT Support</h3>
-                <div class="solution-content"><p>Complete IT solutions, from network setup to maintenance, so you can focus on your business.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">people</i></div>
-                <h3 class="solution-title">Personal IT Support</h3>
-                <div class="solution-content"><p>Friendly, jargon-free help with your computer, smartphone, or home network.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">security</i></div>
-                <h3 class="solution-title">Cybersecurity</h3>
-                <div class="solution-content"><p>Protect your data with robust security measures against online threats.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">cloud</i></div>
-                <h3 class="solution-title">Cloud Solutions</h3>
-                <div class="solution-content"><p>Expert guidance to migrate your business to the cloud, tailored to your needs and budget.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">web</i></div>
-                <h3 class="solution-title">Web Design & UX</h3>
-                <div class="solution-content"><p>Creating beautiful, user-friendly websites, including logo design, to deliver a great user experience.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">build</i></div>
-                <h3 class="solution-title">PC & Laptop Repair</h3>
-                <div class="solution-content"><p>Fast and reliable repair services for all makes and models of PCs and laptops.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">desktop_windows</i></div>
-                <h3 class="solution-title">Custom PC Builds</h3>
-                <div class="solution-content"><p>High-performance custom PCs tailored to your gaming, creative, or professional needs.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">vpn_key</i></div>
-                <h3 class="solution-title">License Reselling</h3>
-                <div class="solution-content"><p>Official reseller for Google and Microsoft licenses to keep your software legitimate and up-to-date.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">backup</i></div>
-                <h3 class="solution-title">Data Backup Solutions</h3>
-                <div class="solution-content"><p>Secure your critical data with our reliable cloud and local backup solutions.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">upgrade</i></div>
-                <h3 class="solution-title">Hardware Upgrades</h3>
-                <div class="solution-content"><p>Boost your PC or laptop's performance with memory, storage, and component upgrades.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">wifi</i></div>
-                <h3 class="solution-title">Remote Network Setup</h3>
-                <div class="solution-content"><p>Expert remote setup for your home or small business network for optimal performance.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">bug_report</i></div>
-                <h3 class="solution-title">Virus & Malware Removal</h3>
-                <div class="solution-content"><p>Fast and thorough removal of viruses, spyware, and malware to restore your system's health.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon"><i class="material-icons">palette</i></div>
-                <h3 class="solution-title">Logo Design</h3>
-                <div class="solution-content"><p>Create a unique and professional brand identity with our custom logo design services.</p></div>
-                <a href="{{ url_for('create_ticket') }}" class="btn-primary">Learn More</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- How It Works Section -->
-<section class="how-it-works-section">
-    <div class="container">
-        <h2>How It Works</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-icon"><i class="material-icons">confirmation_number</i></div>
-                <h3 class="step-title">Create a Support Ticket</h3>
-                <p>Fill out our simple support form to let us know what issues you're experiencing.</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="material-icons">computer</i></div>
-                <h3 class="step-title">Remote Support</h3>
-                <p>Our technicians can connect to your device remotely to diagnose and fix many issues.</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="material-icons">build</i></div>
-                <h3 class="step-title">On-site Service</h3>
-                <p>For more complex issues, we can arrange for your PC to be serviced at our workshop.</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="material-icons">check_circle</i></div>
-                <h3 class="step-title">Problem Solved</h3>
-                <p>We'll ensure your technology is working properly before completing the service.</p>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="{{ url_for('how_it_works') }}" class="btn-primary">Learn More</a>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonials Carousel Section -->
-<section class="testimonials-section">
-    <div class="container">
-        <h2>What Our Clients Say</h2>
-        <p class="section-subtitle">Real feedback from people we've helped.</p>
-        <div class="testimonial-carousel">
-            <button class="carousel-btn prev" onclick="moveTestimonial(-1)">
-                <i class="material-icons">chevron_left</i>
-            </button>
-            <div class="testimonial-track">
-                <div class="testimonial-slide active">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Jason services is excellent, fast and efficient nice using his services will definitely doing business with him again."</p>
-                        <div class="testimonial-author-info">
-                            <p class="testimonial-author">Angie Jonas</p>
-                            <p class="testimonial-role">Owner, Glen Grass (glengsrass.co.za)</p>
-                        </div>
-                    </div>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">500+</span>
+                    <span class="lbl">Clients Served</span>
                 </div>
-                <div class="testimonial-slide">
-                    <div class="testimonial-card">
-                        <div class="testimonial-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="testimonial-text">"Absolutely brilliant service and support. Everything was up and working before the deadline. Amazing Company to work with! Thank you!"</p>
-                        <div class="testimonial-author-info">
-                            <p class="testimonial-author">Belinda Brass</p>
-                            <p class="testimonial-role">Owner, Copper Grey Consulting</p>
-                        </div>
-                    </div>
+                <div class="hero-stat">
+                    <span class="num">24/7</span>
+                    <span class="lbl">Support Available</span>
                 </div>
-            </div>
-            <button class="carousel-btn next" onclick="moveTestimonial(1)">
-                <i class="material-icons">chevron_right</i>
-            </button>
-            <div class="carousel-dots">
-                <span class="dot active" onclick="goToTestimonial(0)"></span>
-                <span class="dot" onclick="goToTestimonial(1)"></span>
-                <span class="dot" onclick="goToTestimonial(2)"></span>
-                <span class="dot" onclick="goToTestimonial(3)"></span>
-                <span class="dot" onclick="goToTestimonial(4)"></span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ Section -->
-<!-- All itemscope/itemtype microdata removed — schema is handled solely by JSON-LD below -->
-<section class="faq-section">
-    <div class="container">
-        <h2>Frequently Asked Questions</h2>
-        <p class="section-subtitle">Common questions about our IT services</p>
-        <div class="faq-grid">
-            <div class="faq-item">
-                <h3>How much does IT support cost for small business in Cape Town?</h3>
-                <p>Our IT support services start from just R100 for basic consultations. We offer affordable rates for small businesses with packages starting at R500/month for ongoing support. We understand budget constraints for small businesses and work within your means.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer cheap computer repair near Kuils River?</h3>
-                <p>Yes! We provide affordable computer repair services throughout Cape Town including Kuils River, Stellenbosch, and surrounding areas. Our rates are competitive and we offer free diagnostics. Common repairs like screen replacement, virus removal, and hardware upgrades are priced to be budget-friendly.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can you help with network setup for my small business?</h3>
-                <p>Absolutely. We specialize in affordable network setup for small businesses in Cape Town. From basic WiFi installation to complete office network infrastructure, we can help. We also offer remote support so we can assist with many network issues without visiting your premises.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer remote IT support?</h3>
-                <p>Yes, we provide remote IT support throughout South Africa. This is a cost-effective option as it saves on travel costs. We can diagnose and fix many computer issues remotely including software problems, virus removal, and system optimization.</p>
-            </div>
-            <div class="faq-item">
-                <h3>What areas do you service in Cape Town?</h3>
-                <p>We service the entire Cape Town area including Kuils River, Stellenbosch, Bellville, Parow, Goodwood, and surrounding suburbs. We also offer remote support to clients throughout South Africa. Contact us to discuss your IT needs regardless of your location.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Do you offer website design at affordable prices?</h3>
-                <p>Yes! We provide professional website design services for small businesses. Our packages start from R1500 for a basic business website. We focus on creating affordable online presence for small businesses that need an online footprint without breaking the bank.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Testimonial Carousel JavaScript -->
-<script>
-let currentTestimonial = 0;
-const totalTestimonials = 2;
-
-function moveTestimonial(direction) {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.dot');
-    slides[currentTestimonial].classList.remove('active');
-    dots[currentTestimonial].classList.remove('active');
-    currentTestimonial = (currentTestimonial + direction + totalTestimonials) % totalTestimonials;
-    slides[currentTestimonial].classList.add('active');
-    dots[currentTestimonial].classList.add('active');
-}
-
-function goToTestimonial(index) {
-    const slides = document.querySelectorAll('.testimonial-slide');
-    const dots = document.querySelectorAll('.dot');
-    slides[currentTestimonial].classList.remove('active');
-    dots[currentTestimonial].classList.remove('active');
-    currentTestimonial = index;
-    slides[currentTestimonial].classList.add('active');
-    dots[currentTestimonial].classList.add('active');
-}
-
-setInterval(() => moveTestimonial(1), 6000);
-</script>
-
-<!-- Video background script -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var video = document.createElement('video');
-    video.autoplay = true;
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-
-    var source = document.createElement('source');
-    source.src = "{{ url_for('static', filename='videos/Empath2.mp4') }}";
-    source.type = "video/mp4";
-    video.appendChild(source);
-    video.appendChild(document.createTextNode("Your browser does not support the video tag."));
-
-    var container = document.querySelector('.video-container');
-    if (container) { container.appendChild(video); }
-
-    function positionVideo() {
-        var windowWidth = window.innerWidth;
-        if (windowWidth <= 414) {
-            video.style.width = '170%';
-            video.style.height = 'auto';
-            video.style.position = 'absolute';
-            video.style.top = '50%';
-            video.style.left = '49%';
-            video.style.transform = 'translate(-50%, -50%) scale(0.9)';
-            video.style.objectFit = 'cover';
-        } else if (windowWidth <= 768) {
-            video.style.width = '139%';
-            video.style.height = 'auto';
-            video.style.position = 'absolute';
-            video.style.top = '50%';
-            video.style.left = '50%';
-            video.style.transform = 'translate(-50%, -50%) scale(0.95)';
-            video.style.objectFit = 'cover';
-        } else {
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.position = 'absolute';
-            video.style.top = '50%';
-            video.style.left = '50%';
-            video.style.transform = 'translate(-50%, -50%)';
-            video.style.objectFit = 'cover';
-        }
-    }
-
-    positionVideo();
-    window.addEventListener('resize', positionVideo);
-    setTimeout(positionVideo, 100);
-    video.addEventListener('loadeddata', function() { setTimeout(positionVideo, 200); });
-});
-</script>
-
-<!-- FAQ Rich Result Schema — single JSON-LD, no duplicate microdata -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How much does IT support cost for small business in Cape Town?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Our IT support services start from just R100 for basic consultations. We offer affordable rates for small businesses with packages starting at R500/month for ongoing support. We understand budget constraints for small businesses and work within your means."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer cheap computer repair near Kuils River?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! We provide affordable computer repair services throughout Cape Town including Kuils River, Stellenbosch, and surrounding areas. Our rates are competitive and we offer free diagnostics. Common repairs like screen replacement, virus removal, and hardware upgrades are priced to be budget-friendly."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can you help with network,hardware upgrades and setup, for my small business?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Absolutely. We specialize in affordable network setup for small businesses in Cape Town. From basic WiFi installation to complete office network infrastructure, we can help. We also offer remote support so we can assist with many network issues without visiting your premises."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer remote IT support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, we provide remote IT support throughout South Africa. This is a cost-effective option as it saves on travel costs. We can diagnose and fix many computer issues remotely including software problems, virus removal, and system optimization."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What areas do you service in Cape Town?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "We service the entire Cape Town area including Kuils River, Stellenbosch, Bellville, Parow, Goodwood, and surrounding suburbs. We also offer remote support to clients throughout South Africa. Contact us to discuss your IT needs regardless of your location."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Do you offer website design at affordable prices for small businesses like mine?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes! We provide professional website design services for small businesses. Our packages start from R500 for a basic business website. We focus on creating affordable online presence for small businesses that needs an online footprint without breaking the bank.We help with email domain set up that not only looks professional but add value to your business."
-      }
-    }
-  ]
-}
-</script>
-
-
-
-<!-- Lead Magnet Popup -->
-<div class="popup-overlay" id="popupOverlay">
-    <div class="popup-container">
-        <button class="close-btn" id="closeBtn" aria-label="Close popup">&times;</button>
-        
-        <div class="popup-left">
-            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Journey-Yakln41HcJNK61YP3c7FRs9VCCwKkC.jpg" alt="The Journey by Jason Goliath" class="book-cover">
-            <div class="trust-badge">
-                <p>Join</p>
-                <span class="highlight">5,000+</span>
-                <p>Readers on The Journey</p>
-            </div>
-        </div>
-
-        <div class="popup-right">
-            <div id="formContent">
-                <div class="popup-header">
-                    <span class="badge">Free eBook</span>
-                    <h2>Start Your Journey Today</h2>
-                    <p>Discover the transformative insights in "The Journey" by Jason Goliath. Get your free copy now.</p>
+                <div class="hero-stat">
+                    <span class="num">R100</span>
+                    <span class="lbl">Starting Rate</span>
                 </div>
-
-                <div class="benefits">
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <span class="benefit-text">Instant digital download - read on any device</span>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <span class="benefit-text">Exclusive insights from Jason Goliath</span>
-                    </div>
-                    <div class="benefit-item">
-                        <div class="benefit-icon">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                        </div>
-                        <span class="benefit-text">Transform your perspective and approach</span>
-                    </div>
-                </div>
-
-                <form id="leadForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="John Doe" required>
-                        <span class="error-message" id="nameError"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                        <span class="error-message" id="emailError"></span>
-                    </div>
-                    <button type="submit" class="submit-btn">Get My Free eBook</button>
-                </form>
-
-                <p class="privacy-text">
-                    We respect your privacy. Unsubscribe at any time.<br>
-                    <a href="{{ url_for('privacy') }}">Privacy Policy</a>
-                </p>
-            </div>
-
-            <div class="success-message" id="successMessage">
-                <div class="success-icon">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                </div>
-                <h3>Success!</h3>
-                <p>Your free copy of "The Journey" eBook is ready!</p>
-                <a href="#" class="download-btn" id="downloadBtn">Download Now</a>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-.popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 9999; padding: 20px; opacity: 0; animation: fadeIn 0.5s ease forwards 0.5s; }
-@keyframes fadeIn { to { opacity: 1; } }
-.popup-container { background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border-radius: 24px; max-width: 900px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5), 0 0 100px rgba(255,107,0,0.15); position: relative; transform: scale(0.9); animation: popIn 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards 0.7s; }
-@keyframes popIn { to { transform: scale(1); } }
-.close-btn { position: absolute; top: 20px; right: 20px; width: 40px; height: 40px; background: rgba(255,255,255,0.1); border: none; border-radius: 50%; cursor: pointer; z-index: 10; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; line-height: 1; }
-.close-btn:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
-.popup-left { background: linear-gradient(135deg, #6B8CAE 0%, #8FA7C2 100%); padding: 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-.popup-left::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); animation: rotate 20s linear infinite; }
-@keyframes rotate { to { transform: rotate(360deg); } }
-.book-cover { width: 100%; max-width: 280px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); position: relative; z-index: 2; transform: perspective(1000px) rotateY(-5deg); transition: transform 0.5s ease; }
-.book-cover:hover { transform: perspective(1000px) rotateY(0deg) translateY(-10px); }
-.trust-badge { margin-top: 30px; text-align: center; position: relative; z-index: 2; }
-.trust-badge p { font-size: 14px; color: rgba(255,255,255,0.9); font-weight: 600; }
-.trust-badge .highlight { font-size: 32px; font-weight: 700; color: #fff; display: block; margin-top: 8px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-.popup-right { padding: 50px 45px; display: flex; flex-direction: column; justify-content: center; background: #0f0f0f; }
-.popup-header { margin-bottom: 30px; }
-.popup-header .badge { display: inline-block; background: linear-gradient(135deg, #FF6B00 0%, #FF8C3A 100%); color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 20px; }
-.popup-header h2 { font-family: 'DM Serif Display', Georgia, serif; font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.popup-header p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.6; }
-.benefits { margin: 30px 0; }
-.benefit-item { display: flex; align-items: center; margin-bottom: 16px; animation: slideIn 0.5s ease forwards; opacity: 0; transform: translateX(-20px); }
-.benefit-item:nth-child(1) { animation-delay: 1s; }
-.benefit-item:nth-child(2) { animation-delay: 1.2s; }
-.benefit-item:nth-child(3) { animation-delay: 1.4s; }
-@keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
-.benefit-icon { width: 24px; height: 24px; background: linear-gradient(135deg, #FF6B00 0%, #FF8C3A 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; flex-shrink: 0; }
-.benefit-icon svg { width: 14px; height: 14px; color: #fff; }
-.benefit-text { font-size: 14px; color: rgba(255,255,255,0.85); font-weight: 500; }
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.9); }
-.form-group input { width: 100%; padding: 14px 18px; background: rgba(255,255,255,0.05); border: 2px solid rgba(255,255,255,0.1); border-radius: 12px; color: #fff; font-size: 15px; transition: all 0.3s ease; }
-.form-group input:focus { outline: none; background: rgba(255,255,255,0.08); border-color: #FF6B00; box-shadow: 0 0 0 4px rgba(255,107,0,0.1); }
-.form-group input::placeholder { color: rgba(255,255,255,0.3); }
-.form-group input.error { border-color: #ff4444; }
-.error-message { display: block; color: #ff6b6b; font-size: 12px; margin-top: 6px; min-height: 18px; }
-.submit-btn { width: 100%; padding: 16px; background: linear-gradient(135deg, #FF6B00 0%, #FF8C3A 100%); border: none; border-radius: 12px; color: #fff; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; position: relative; overflow: hidden; }
-.submit-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s ease; }
-.submit-btn:hover::before { left: 100%; }
-.submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(255,107,0,0.4); }
-.privacy-text { margin-top: 16px; font-size: 12px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.5; }
-.privacy-text a { color: #FF6B00; text-decoration: none; }
-.success-message { display: none; text-align: center; padding: 40px; }
-.success-message.active { display: block; }
-.success-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1); }
-@keyframes scaleIn { from { transform: scale(0); } to { transform: scale(1); } }
-.success-icon svg { width: 40px; height: 40px; color: #fff; }
-.success-message h3 { font-family: 'DM Serif Display', Georgia, serif; font-size: 28px; margin-bottom: 12px; color: #fff; }
-.success-message p { font-size: 16px; color: rgba(255,255,255,0.7); margin-bottom: 24px; line-height: 1.6; }
-.download-btn { display: inline-block; padding: 14px 32px; background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: #fff; text-decoration: none; border-radius: 12px; font-weight: 700; transition: all 0.3s ease; cursor: pointer; border: none; }
-.download-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(16,185,129,0.4); }
-.hidden { display: none !important; }
-@media (max-width: 768px) { .popup-overlay { align-items: flex-start; padding: 10px; overflow-y: auto; } .popup-container { grid-template-columns: 1fr; max-width: 500px; margin: 20px 0; } .popup-left { padding: 30px; } .book-cover { max-width: 200px; } .popup-right { padding: 40px 30px; max-height: 70vh; overflow-y: auto; } .popup-header h2 { font-size: 26px; } .trust-badge .highlight { font-size: 24px; } }
-@keyframes fadeOut { to { opacity: 0; } }
-</style>
+<!-- ── SERVICES SECTION ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Our Services</span>
+    <span class="section-rule-line"></span>
+</div>
 
-<script>
-(function() {
-    const popupOverlay = document.getElementById('popupOverlay');
-    const closeBtn = document.getElementById('closeBtn');
-    const leadForm = document.getElementById('leadForm');
-    const formContent = document.getElementById('formContent');
-    const successMessage = document.getElementById('successMessage');
-    const downloadBtn = document.getElementById('downloadBtn');
-    
-    let userEmail = '';
+<div class="featured-wrap">
+    <div class="featured-editorial">
+        <div class="featured-thumb" style="background: var(--accent);">
+            <div class="featured-thumb-graphic">
+                <div class="big-text">IT<br/><em>Support</em></div>
+                <div class="featured-thumb-sub">24/7 Assistance</div>
+            </div>
+            <span class="featured-badge-strip">🔥 Popular</span>
+        </div>
+        <div class="featured-body">
+            <div>
+                <div class="featured-meta">
+                    <span class="feat-cat">IT Support</span>
+                    <span class="feat-date">Available Now</span>
+                    <span class="feat-date" style="margin-left:auto;">From R100</span>
+                </div>
+                <h2>Professional IT Support for Small Businesses</h2>
+                <p>Comprehensive IT support services including computer repair, virus removal, network setup, and remote assistance. Fast, reliable, and affordable solutions for Cape Town businesses.</p>
+                <div class="featured-tags">
+                    <span class="editorial-tag">#ComputerRepair</span>
+                    <span class="editorial-tag">#VirusRemoval</span>
+                    <span class="editorial-tag">#NetworkSetup</span>
+                </div>
+            </div>
+            <div class="featured-foot">
+                <a href="{{ url_for('create_ticket') }}" class="btn-ink">
+                    Get Support →
+                </a>
+                <span class="feat-read-time">⚡ 24/7 Service</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-    if (sessionStorage.getItem('leadPopupShown')) {
-        popupOverlay.classList.add('hidden');
-    }
+<!-- ── SERVICES GRID ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">All Services</span>
+    <span class="section-rule-line"></span>
+</div>
 
-    setTimeout(() => {
-        if (!sessionStorage.getItem('leadPopupShown')) {
-            popupOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-    }, 3000);
+<div class="articles-wrap">
+    <div class="articles-grid">
 
-    closeBtn.addEventListener('click', function() {
-        popupOverlay.style.animation = 'fadeOut 0.3s ease forwards';
-        setTimeout(() => {
-            popupOverlay.classList.add('hidden');
-            document.body.style.overflow = '';
-            sessionStorage.setItem('leadPopupShown', 'true');
-        }, 300);
-    });
+        <!-- SERVICE: Computer Repair -->
+        <article class="article-card" data-category="it-support">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Computer<br/><em>Repair</em></div>
+                    <div class="gsub">Hardware & Software</div>
+                </div>
+                <span class="card-cat-strip">IT Support</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Available 24/7</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">From R150</span>
+                </div>
+                <h3>
+                    Computer Repair & Troubleshooting
+                </h3>
+                <p>Expert diagnosis and repair for hardware and software issues. Fast turnaround times and transparent pricing.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Get Help <span class="c-arrow">→</span>
+                    </a>
+                    <div class="card-actions-row">
+                        <button class="c-action" title="Popular">⭐</button>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-    popupOverlay.addEventListener('click', function(e) {
-        if (e.target === popupOverlay) {
-            closeBtn.click();
-        }
-    });
+        <!-- SERVICE: Virus Removal -->
+        <article class="article-card" data-category="it-support">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Virus<br/><em>Removal</em></div>
+                    <div class="gsub">Security Protection</div>
+                </div>
+                <span class="card-cat-strip green">Security</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Emergency Service</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">From R200</span>
+                </div>
+                <h3>
+                    Virus & Malware Removal
+                </h3>
+                <p>Complete virus removal and security protection. We clean your system and install preventive measures.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Get Protected <span class="c-arrow">→</span>
+                    </a>
+                    <div class="card-actions-row">
+                        <button class="c-action" title="Urgent">🚨</button>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeBtn.click();
-        }
-    });
+        <!-- SERVICE: Web Design -->
+        <article class="article-card" data-category="web-development">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Web<br/><em>Design</em></div>
+                    <div class="gsub">Custom Websites</div>
+                </div>
+                <span class="card-cat-strip">Web Dev</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Custom Projects</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">From R2500</span>
+                </div>
+                <h3>
+                    Professional Website Design
+                </h3>
+                <p>Custom website development for small businesses. Modern, responsive designs that convert visitors to customers.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Get Quote <span class="c-arrow">→</span>
+                    </a>
+                    <div class="card-actions-row">
+                        <button class="c-action" title="Featured">🌟</button>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-    const nameInput = document.getElementById('name');
-        const emailInput = document.getElementById('email');
-        const nameError = document.getElementById('nameError');
-        const emailError = document.getElementById('emailError');
+        <!-- SERVICE: Network Setup -->
+        <article class="article-card" data-category="it-support">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Network<br/><em>Setup</em></div>
+                    <div class="gsub">Infrastructure</div>
+                </div>
+                <span class="card-cat-strip green">Infrastructure</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">On-site Service</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">From R300</span>
+                </div>
+                <h3>
+                    Network Setup & Configuration
+                </h3>
+                <p>Complete network installation including WiFi setup, security configuration, and network optimization.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Get Connected <span class="c-arrow">→</span>
+                    </a>
+                    <div class="card-actions-row">
+                        <button class="c-action" title="On-site">🏢</button>
+                    </div>
+                </div>
+            </div>
+        </article>
 
-        function validateEmail(email) {
-            return /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
-        }
+    </div>
+</div>
 
-        nameInput.addEventListener('input', function() {
-            if (this.value.trim()) {
-                this.classList.remove('error');
-                nameError.textContent = '';
-            }
-        });
+<!-- ── WHY CHOOSE US ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Why Choose Empath</span>
+    <span class="section-rule-line"></span>
+</div>
 
-        emailInput.addEventListener('input', function() {
-            if (validateEmail(this.value)) {
-                this.classList.remove('error');
-                emailError.textContent = '';
-            }
-        });
+<div class="topics-wrap">
+    <div class="topics-grid">
+        <div class="topic-cell">
+            <span class="topic-icon">⚡</span>
+            <h3>Fast Response</h3>
+            <p>24/7 emergency support with rapid response times. We understand that downtime costs your business money.</p>
+            <div class="topic-foot">
+                <span class="topic-count">Under 1 hour</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">💰</span>
+            <h3>Affordable Rates</h3>
+            <p>Transparent pricing with no hidden fees. Starting from just R100 for basic IT support services.</p>
+            <div class="topic-foot">
+                <span class="topic-count">From R100</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">🏆</span>
+            <h3>Expert Team</h3>
+            <p>Certified professionals with years of experience in IT support and web development.</p>
+            <div class="topic-foot">
+                <span class="topic-count">10+ Years</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">🔒</span>
+            <h3>Security First</h3>
+            <p>We prioritize your data security with industry-standard protection and best practices.</p>
+            <div class="topic-foot">
+                <span class="topic-count">Bank-level Security</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">📍</span>
+            <h3>Local Service</h3>
+            <p>Proudly serving Cape Town and surrounding areas with on-site support and remote assistance.</p>
+            <div class="topic-foot">
+                <span class="topic-count">Cape Town Based</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">🤝</span>
+            <h3>Customer Focus</h3>
+            <p>We build long-term relationships with our clients through exceptional service and support.</p>
+            <div class="topic-foot">
+                <span class="topic-count">500+ Happy Clients</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-        leadForm.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const name = nameInput.value.trim();
-            const email = emailInput.value.trim().toLowerCase();
-            let hasError = false;
-
-            // Validate name
-            if (!name) {
-                nameInput.classList.add('error');
-                nameError.textContent = 'Please enter your full name';
-                hasError = true;
-            } else {
-                nameInput.classList.remove('error');
-                nameError.textContent = '';
-            }
-
-            // Validate email
-            if (!email) {
-                emailInput.classList.add('error');
-                emailError.textContent = 'Please enter your email address';
-                hasError = true;
-            } else if (!validateEmail(email)) {
-                emailInput.classList.add('error');
-                emailError.textContent = 'Please enter a valid email address';
-                hasError = true;
-            } else {
-                emailInput.classList.remove('error');
-                emailError.textContent = '';
-            }
-
-            if (hasError) return;
-
-            userEmail = email;
-
-            try {
-                const response = await fetch('/api/leads', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, email })
-                });
-                
-                const data = await response.json();
-                
-                if (data.success) {
-                    formContent.classList.add('hidden');
-                    successMessage.classList.add('active');
-                    downloadBtn.href = '/download/the-journey?email=' + encodeURIComponent(email);
-                } else {
-                    emailInput.classList.add('error');
-                    emailError.textContent = data.error || 'Something went wrong';
-                }
-            } catch (err) {
-                emailError.textContent = 'Something went wrong. Please try again.';
-            }
-        });
-
-    downloadBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (userEmail) {
-            window.location.href = '/download/the-journey?email=' + encodeURIComponent(userEmail);
-        }
-    });
-})();
-</script>
-
+<!-- ── CTA SECTION ── -->
+<div class="newsletter-editorial">
+    <div class="newsletter-inner">
+        <div>
+            <div class="nl-label">Get Started Today</div>
+            <h2 class="nl-heading">Ready to Solve Your<br/><em>IT Challenges</em></h2>
+            <p class="nl-desc">Contact us now for a free consultation. Let's discuss how we can help your business thrive with technology.</p>
+            <div class="nl-form">
+                <a href="{{ url_for('create_ticket') }}" class="nl-submit" style="text-decoration: none; display: inline-block; text-align: center;">
+                    Get Free Consultation
+                </a>
+            </div>
+            <div class="nl-badges">
+                <span class="nl-badge">🔒 No Obligation</span>
+                <span class="nl-badge">· Free Quote</span>
+                <span class="nl-badge">· Fast Response</span>
+            </div>
+        </div>
+        <div class="nl-visual">
+            <div class="nl-big-num">🚀</div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

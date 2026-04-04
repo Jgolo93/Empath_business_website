@@ -3,256 +3,304 @@
 {% block title %}Ticket Created Successfully - Empath IT Support{% endblock %}
 
 {% block content %}
-<section class="page-header success-header">
-    <div class="container">
-        <h1>Ticket Created Successfully</h1>
-        <p>Thank you for contacting Empath IT Support</p>
-    </div>
-</section>
 
-<section class="success-section">
-    <div class="container">
-        <div class="success-container">
-            <div class="success-icon">
-                <i class="material-icons">check_circle</i>
+<!-- ── EDITORIAL MASTHEAD ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>Ticket Confirmation</span>
+    <span class="masthead-divider">·</span>
+    <span>{{ ticket_id }}</span>
+</div>
+
+<!-- ── SUCCESS HERO ── -->
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">Success · Issue 2025</div>
+    <h1>Ticket<br/><em>Created</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                Your support request has been submitted successfully. Our team will review your ticket and respond within 1 hour during business hours.
+            </p>
+            <div class="hero-ctas">
+                <a href="/" class="btn-ink">Return Home →</a>
+                <a href="/create-ticket" class="btn-outline-ink">New Ticket</a>
             </div>
-
-            <h2>Your ticket has been submitted!</h2>
-            <p class="success-message">We've received your support request and will get back to you shortly.</p>
-
-            <div class="ticket-details-card">
-                <h3>Ticket Details</h3>
-                <div class="ticket-info">
-                    <div class="ticket-info-row">
-                        <span class="ticket-label">Ticket ID:</span>
-                        <span class="ticket-value">{{ ticket_id }}</span>
-                    </div>
-                    <div class="ticket-info-row">
-                        <span class="ticket-label">Subject:</span>
-                        <span class="ticket-value">{{ subject }}</span>
-                    </div>
-                    <div class="ticket-info-row">
-                        <span class="ticket-label">Status:</span>
-                        <span class="ticket-value status-open">Open</span>
-                    </div>
+        </div>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">✓</span>
+                    <span class="lbl">Ticket Submitted</span>
                 </div>
-
-                <div class="what-next">
-                    <h4>What happens next?</h4>
-                    <ol class="next-steps">
-                        <li>Our support team will review your ticket</li>
-                        <li>You'll receive an email confirmation</li>
-                        <li>A technician will contact you to discuss your issue</li>
-                        <li>We'll work together to resolve your problem</li>
-                    </ol>
+                <div class="hero-stat">
+                    <span class="num">1hr</span>
+                    <span class="lbl">Avg Response</span>
                 </div>
-            </div>
-
-            <div class="action-buttons">
-                <a href="/" class="btn-primary">Return to Home</a>
-                <a href="/create-ticket" class="btn-secondary">Submit Another Ticket</a>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-{% block extra_css %}
+<!-- ── TICKET DETAILS ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Ticket Details</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="success-card">
+        <div class="success-header-card">
+            <div class="success-badge">✓</div>
+            <h2>Ticket #{{ ticket_id }}</h2>
+            <p class="success-subtitle">{{ subject }}</p>
+        </div>
+
+        <div class="ticket-details">
+            <div class="detail-row">
+                <span class="detail-label">Ticket Number</span>
+                <span class="detail-value ticket-number">#{{ ticket_id }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Subject</span>
+                <span class="detail-value">{{ subject }}</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status</span>
+                <span class="detail-value status-badge">Open</span>
+            </div>
+        </div>
+
+        <div class="next-steps-section">
+            <h3>What happens next?</h3>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <span class="step-num">01</span>
+                    <div class="step-content">
+                        <h4>Review</h4>
+                        <p>Our team reviews your ticket</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">02</span>
+                    <div class="step-content">
+                        <h4>Contact</h4>
+                        <p>We reach out to discuss details</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">03</span>
+                    <div class="step-content">
+                        <h4>Resolve</h4>
+                        <p>We work to fix your issue</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <style>
-    /* Success page styling */
-    .success-header {
-        background-color: #4a6da7;
-        color: white;
-        padding: 40px 0;
-        text-align: center;
-        margin-bottom: 0;
+/* ── SUCCESS CARD ── */
+.success-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 40px 56px;
+}
+
+.success-header-card {
+    text-align: center;
+    padding: 40px 32px;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    box-shadow: 8px 8px 0 var(--ink);
+    margin-bottom: 32px;
+}
+
+.success-badge {
+    width: 64px;
+    height: 64px;
+    background: var(--accent2);
+    color: var(--bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 20px;
+}
+
+.success-header-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+}
+
+.success-subtitle {
+    font-size: 0.95rem;
+    color: var(--muted);
+    font-style: italic;
+}
+
+/* ── TICKET DETAILS ── */
+.ticket-details {
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.detail-value {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.ticket-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+}
+
+.status-badge {
+    background: var(--accent2);
+    color: var(--bg);
+    padding: 4px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ── NEXT STEPS ── */
+.next-steps-section {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 32px;
+}
+
+.next-steps-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.step-item {
+    text-align: center;
+}
+
+.step-num {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.step-content h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.step-content p {
+    font-size: 0.85rem;
+    color: rgba(248,250,252,0.7);
+    margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .success-card {
+        padding: 0 20px 40px;
     }
 
-    .success-section {
-        background-color: #f5f7fa;
-        padding: 40px 0 60px;
+    .success-header-card {
+        padding: 28px 20px;
     }
 
-    .success-container {
-        max-width: 800px;
-        margin: 0 auto;
-        text-align: center;
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 30px;
+    .success-header-card h2 {
+        font-size: 1.5rem;
     }
 
-    .success-icon {
-        margin: 10px auto 20px;
-        width: 80px;
-        height: 80px;
-        background-color: #e8f5e9;
-        border-radius: 50%;
+    .ticket-details {
+        padding: 20px;
+    }
+
+    .detail-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .step-item {
         display: flex;
         align-items: center;
-        justify-content: center;
-    }
-
-    .success-icon .material-icons {
-        font-size: 48px;
-        color: #4caf50;
-    }
-
-    .success-container h2 {
-        color: #333;
-        margin-bottom: 10px;
-        font-size: 24px;
-    }
-
-    .success-message {
-        color: #666;
-        margin-bottom: 30px;
-        font-size: 16px;
-    }
-
-    .ticket-details-card {
-        background-color: #f9f9f9;
-        border-radius: 8px;
-        padding: 25px;
-        margin: 20px 0 30px;
+        gap: 16px;
         text-align: left;
-        border-left: 4px solid #4a6da7;
     }
 
-    .ticket-details-card h3 {
-        color: #333;
-        margin-top: 0;
-        margin-bottom: 20px;
-        font-size: 18px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 10px;
+    .next-steps-section {
+        padding: 24px 20px;
     }
 
-    .ticket-info {
-        margin-bottom: 25px;
+    .blog-hero-editorial {
+        padding: 40px 20px 32px;
     }
 
-    .ticket-info-row {
-        display: flex;
-        margin-bottom: 10px;
-        align-items: baseline;
+    .hero-body-row {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
-    .ticket-label {
-        font-weight: bold;
-        color: #555;
-        width: 100px;
-        flex-shrink: 0;
+    .hero-sidebar {
+        border-left: none;
+        border-top: 2px solid var(--ink);
+        padding: 20px 0 0;
     }
 
-    .ticket-value {
-        color: #333;
+    .hero-stats {
+        flex-direction: row;
+        gap: 24px;
     }
-
-    .status-open {
-        background-color: #e8f5e9;
-        color: #2e7d32;
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-size: 14px;
-        font-weight: 500;
-    }
-
-    .what-next {
-        margin-top: 20px;
-    }
-
-    .what-next h4 {
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 16px;
-    }
-
-    .next-steps {
-        padding-left: 20px;
-        margin-bottom: 0;
-    }
-
-    .next-steps li {
-        margin-bottom: 10px;
-        color: #555;
-        line-height: 1.5;
-    }
-
-    .next-steps li:last-child {
-        margin-bottom: 0;
-    }
-
-    .action-buttons {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 10px 20px;
-        border-radius: 4px;
-        font-weight: 500;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        display: inline-block;
-    }
-
-    .btn-primary {
-        background-color: #4a6da7;
-        color: white;
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: #3a5a8f;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-secondary {
-        background-color: white;
-        color: #4a6da7;
-        border: 1px solid #4a6da7;
-    }
-
-    .btn-secondary:hover {
-        background-color: #f0f4f9;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .success-container {
-            padding: 20px;
-            margin: 0 15px;
-        }
-
-        .ticket-details-card {
-            padding: 15px;
-        }
-
-        .ticket-info-row {
-            flex-direction: column;
-        }
-
-        .ticket-label {
-            width: 100%;
-            margin-bottom: 5px;
-        }
-
-        .action-buttons {
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .btn-primary, .btn-secondary {
-            width: 100%;
-            text-align: center;
-        }
-    }
+}
 </style>
-{% endblock %}
+
 {% endblock %}

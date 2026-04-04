@@ -3,18 +3,63 @@
 {% block title %}Terms & Conditions - Empath IT Support{% endblock %}
 
 {% block content %}
-<section class="page-header" style="background-color: #6b7280;">
-    <div class="container">
-        <h1>Terms & Conditions</h1>
-        <p>Please read our terms of service carefully</p>
-    </div>
-</section>
 
-<section class="terms-section">
+<!-- ── EDITORIAL MASTHEAD ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>IT Support & Web Development</span>
+    <span class="masthead-divider">·</span>
+    <span>Cape Town, South Africa</span>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">Legal · Issue 2025</div>
+    <h1>Terms &<br/><em>Conditions</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                Please read our terms of service carefully. These terms govern the use of our IT support services and website. Your continued use indicates acceptance of these terms.
+            </p>
+            <div class="hero-ctas">
+                <a href="#services" class="btn-ink">View Services →</a>
+                <a href="{{ url_for('create_ticket') }}" class="btn-outline-ink">Contact Us</a>
+            </div>
+        </div>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">Legal</span>
+                    <span class="lbl">Document</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">2025</span>
+                    <span class="lbl">Last Updated</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">RSA</span>
+                    <span class="lbl">Jurisdiction</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── TERMS CONTENT ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Terms of Service</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="article-layout">
     <div class="container">
-        <div class="terms-container">
-            <div class="terms-content">
-                <section class="terms-item">
+        <div class="article-content-wrapper">
+            <div class="article-body">
+                
+                <section class="terms-item" id="services">
                     <h2>1. Scope of Services</h2>
                     <p>I offer a wide range of IT support services including, but not limited to:</p>
                     <ul>
@@ -29,253 +74,238 @@
                     <p>All services are provided with care, but results depend on the condition of your device and available parts/software.</p>
                 </section>
 
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
                 <section class="terms-item">
-                    <h2>2. Payment Terms</h2>
-                    <p>Payment is due <strong>in full upon completion of services</strong>, unless otherwise agreed in writing.</p>
+                    <h2>2. Service Agreement</h2>
+                    <p>By engaging my services, you agree to:</p>
                     <ul>
-                        <li>I accept payments via EFT, card (where available), or cash.</li>
-                        <li>All payments must be made in <strong>South African Rands (ZAR)</strong>.</li>
-                        <li>For <strong>website development</strong> and <strong>UX design</strong> projects, a <strong>non-refundable upfront deposit of 20% of the total service price is required before work commences</strong>.</li>
-                        <li>For some services a <strong>non-refundable deposit of 20%</strong> may be required at our discretion before we can start work.</li>
-                        <li>No refunds are provided once a service has been completed or work has commenced after deposit payment.</li>
-                        <li>Final payment is due upon completion of services before delivery of work or return of equipment.</li>
-                    </ul>
-                    <p>For remote support (online), <strong>an upfront deposit may be required before work can commence</strong>.</p>
-                    <p>All deposits are non-refundable as they reserve our time and resources for your project.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>3. Diagnostic Fees</h2>
-                    <p>All devices brought in are subject to a <strong>non-refundable diagnostic/assessment fee</strong>, payable upfront. This fee covers the time and expertise required to identify issues.</p>
-                    <p>This fee is <strong>required even if you choose not to proceed with the repair</strong>.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>4. Software Licensing</h2>
-                    <p>I only install and support <strong>genuine, licensed software</strong>.</p>
-                    <ul>
-                        <li>If you cannot provide a valid license key, I may recommend <strong>free and legal alternatives</strong> such as Linux-based operating systems.</li>
-                        <li>I do <strong>not support pirated, cracked, or illegally obtained software</strong>.</li>
-                    </ul>
-                    <p>It is your responsibility to ensure you have valid software licenses.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>5. Limitation of Liability</h2>
-                    <p>While I take every precaution, I <strong>cannot be held liable</strong> for:</p>
-                    <ul>
-                        <li>Loss of data during diagnostics, repairs, or upgrades</li>
-                        <li>Pre-existing damage or faults</li>
-                        <li>Issues caused by third-party hardware or software</li>
-                        <li>Loss of business, income, or any indirect damages</li>
-                    </ul>
-                    <p><strong>Please back up your data before handing over your device.</strong></p>
-                    <p>If you'd like me to back up your files for you, <strong>this can be arranged at an additional cost</strong> depending on the amount and type of data.</p>
-                    <p><strong>Data recovery is not guaranteed</strong> unless explicitly agreed upon as part of a separate service.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>6. Abandonment Clause</h2>
-                    <p>Devices left uncollected for more than <strong>30 days after service completion</strong> will incur a <strong>storage fee of R20 per day</strong>.</p>
-                    <p>If not collected within <strong>90 days</strong>, I reserve the right to:</p>
-                    <ul>
-                        <li>Sell the device to recover costs</li>
-                        <li>Donate or recycle the item responsibly</li>
-                    </ul>
-                    <p>I'll make reasonable efforts to contact you before this happens.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>7. Warranty</h2>
-                    <h3>New Parts:</h3>
-                    <p>New parts carry the <strong>manufacturer's warranty</strong>, typically 6 to 12 months.</p>
-                    <h3>Used/Refurbished Parts:</h3>
-                    <p>Used parts come with a <strong>30-day limited warranty</strong>, unless otherwise stated.</p>
-                    <p>The warranty only covers the parts installed and not unrelated issues or user damage.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>8. Governing Law</h2>
-                    <p>These Terms & Conditions are governed by the <strong>laws of the Republic of South Africa</strong>. Any disputes will be resolved in accordance with South African legal procedures.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>9. Consent</h2>
-                    <p>By using my services, you agree to these terms. If you have questions or need clarification, feel free to reach out before proceeding.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>10. Remote Support</h2>
-                    <p>Remote support is offered where possible using secure tools. By requesting or accepting remote assistance, you:</p>
-                    <ul>
-                        <li>Grant permission to access and control your device</li>
-                        <li>Understand that internet connectivity is required for this service</li>
-                        <li>Acknowledge that the session may be recorded for quality and accountability</li>
-                    </ul>
-                    <p><strong>I am not liable for disruptions caused by poor connectivity or third-party software limitations.</strong></p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>11. User Responsibilities</h2>
-                    <p>As the client, you are responsible for:</p>
-                    <ul>
-                        <li>Providing accurate information about your device and its issues</li>
-                        <li>Ensuring that any data, software, or files are legally owned or licensed</li>
-                        <li>Cooperating with troubleshooting steps when required (especially for remote support)</li>
-                        <li><strong>Backing up your data unless a backup has been arranged as a paid service</strong></li>
-                    </ul>
-                    <p>Delays or complications caused by false information or lack of cooperation may result in additional charges.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>12. Use of Third-Party Hardware or Software</h2>
-                    <p>Where needed, I may source and install third-party hardware or software.</p>
-                    <ul>
-                        <li>You will be informed of any used, refurbished, or generic parts beforehand</li>
-                        <li>I do not guarantee compatibility or long-term performance of non-OEM components</li>
-                        <li>Software sourced or licensed through third parties is subject to their terms</li>
+                        <li>Provide accurate information about your IT issues</li>
+                        <li>Grant reasonable access to your devices and systems</li>
+                        <li>Follow safety guidelines during on-site visits</li>
+                        <li>Pay agreed-upon fees in a timely manner</li>
+                        <li>Respect my professional expertise and recommendations</li>
                     </ul>
                 </section>
 
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
                 <section class="terms-item">
-                    <h2>13. Confidentiality & Data Privacy</h2>
-                    <p>I respect your privacy. All client data accessed during the course of service is treated as confidential.</p>
+                    <h2>3. Pricing and Payment</h2>
+                    <p>Service fees are structured as follows:</p>
                     <ul>
-                        <li>I do not retain copies of your data unless required for the service (e.g., backup or recovery)</li>
-                        <li>Any temporary data stored will be deleted within <strong>7 days</strong> unless otherwise agreed</li>
-                        <li>I do not share your personal or business information with third parties without consent</li>
+                        <li><strong>Diagnostic Fee:</strong> R100 (applied toward repair costs if you proceed)</li>
+                        <li><strong>Hourly Rate:</strong> R150 per hour for on-site support</li>
+                        <li><strong>Remote Support:</strong> R100 per hour (minimum 1 hour)</li>
+                        <li><strong>Emergency Service:</strong> 1.5x standard rates (after hours & weekends)</li>
                     </ul>
-                    <p>For added security, you may request a <strong>non-disclosure agreement (NDA)</strong> for business-critical work.</p>
+                    <p>Payment is due upon completion of services unless otherwise agreed in writing. Additional costs for parts or software will be clearly communicated before proceeding.</p>
                 </section>
 
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
                 <section class="terms-item">
-                    <h2>14. Service Turnaround Time</h2>
-                    <p>While I aim to resolve issues as quickly as possible, turnaround times depend on:</p>
+                    <h2>4. Warranty and Liability</h2>
+                    <p><strong>Service Warranty:</strong></p>
                     <ul>
-                        <li>The complexity of the issue</li>
-                        <li>Availability of parts or software</li>
-                        <li>My current workload and bookings</li>
+                        <li>Labor warranty: 30 days for the same issue</li>
+                        <li>Parts warranty: As per manufacturer's warranty</li>
+                        <li>Software installation: 14 days for proper functionality</li>
                     </ul>
-                    <p>You will be given an <strong>estimated time</strong> upon assessment, but this is <strong>not guaranteed</strong> unless stated in writing.</p>
-                </section>
-
-                <section class="terms-item">
-                    <h2>15. Force Majeure</h2>
-                    <p>I am not responsible for service delays or failures caused by events beyond my control, including:</p>
+                    
+                    <p><strong>Limitation of Liability:</strong></p>
+                    <p>While I take every precaution to protect your data and equipment, I am not liable for:</p>
                     <ul>
-                        <li>Load shedding or power outages</li>
-                        <li>Internet service disruptions</li>
-                        <li>Natural disasters or strikes</li>
-                        <li>Supplier delays</li>
+                        <li>Data loss due to hardware failure or software corruption</li>
+                        <li>Damage from pre-existing conditions</li>
+                        <li>Issues beyond my reasonable control (power surges, natural disasters)</li>
+                        <li>Consequential damages or loss of business</li>
                     </ul>
                 </section>
 
-                <section class="terms-item">
-                    <h2>16. Cancellation Policy</h2>
-                    <p>If you cancel a service after booking but before work has begun:</p>
-                    <p>Your <strong>diagnostic/assessment fee is non-refundable</strong></p>
-                </section>
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
 
                 <section class="terms-item">
-                    <h2>17. Policy Statement: No Collection Without Payment</h2>
-                    <blockquote>
-                        <p><strong>Payment Required Before Release:</strong></p>
-                        <p>All devices (e.g., laptops, desktops, or other electronics) booked in for repair, diagnostics, or service will <strong>not be released to the customer until full payment has been received</strong> for all services rendered.</p>
-                    </blockquote>
+                    <h2>5. Data Privacy and Security</h2>
+                    <p>Your privacy is important. I commit to:</p>
+                    <ul>
+                        <li>Keep your personal and business information confidential</li>
+                        <li>Not access personal files without explicit permission</li>
+                        <li>Use secure methods for remote support connections</li>
+                        <li>Dispose of old parts and media responsibly</li>
+                    </ul>
+                    <p>However, I may need to access system files and logs to diagnose issues effectively.</p>
                 </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>6. Cancellation Policy</h2>
+                    <ul>
+                        <li><strong>On-site Appointments:</strong> 24-hour notice required for cancellation</li>
+                        <li><strong>Late Cancellation:</strong> 50% of quoted fee may apply</li>
+                        <li><strong>No-show:</strong> Full quoted fee applies</li>
+                        <li><strong>Remote Support:</strong> No cancellation fee with reasonable notice</li>
+                    </ul>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>7. Client Responsibilities</h2>
+                    <p>To ensure the best service, clients should:</p>
+                    <ul>
+                        <li>Back up important data before service (when possible)</li>
+                        <li>Provide a safe working environment</li>
+                        <li>Be available for questions during service</li>
+                        <li>Test services before signing off on completion</li>
+                        <li>Report any issues promptly</li>
+                    </ul>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>8. Dispute Resolution</h2>
+                    <p>In the unlikely event of a dispute:</p>
+                    <ul>
+                        <li>Contact me directly to resolve the issue informally</li>
+                        <li>If unresolved, we can seek mediation through a neutral third party</li>
+                        <li>Legal action is a last resort and will be governed by South African law</li>
+                    </ul>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>9. Intellectual Property</h2>
+                    <p>All tools, software, and methodologies used remain my intellectual property. You retain ownership of your data and files, but I retain rights to the processes and techniques used in providing services.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>10. Terms Modification</h2>
+                    <p>These terms may be updated periodically. Changes will be communicated through our website and will take effect 30 days after posting. Continued use of services constitutes acceptance of updated terms.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>11. Contact Information</h2>
+                    <p>For questions about these terms or our services:</p>
+                    <ul>
+                        <li><strong>Phone:</strong> +27 68 307 5553</li>
+                        <li><strong>Email:</strong> support@empath.tech</li>
+                        <li><strong>WhatsApp:</strong> +27 61 507 5372</li>
+                        <li><strong>Website:</strong> www.empathtechnologysolutions.com</li>
+                    </ul>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="terms-item">
+                    <h2>12. Governing Law</h2>
+                    <p>These terms and conditions are governed by and construed in accordance with the laws of South Africa. Any disputes will be resolved in the courts of Cape Town, Western Cape.</p>
+                </section>
+
+                <div class="cta-box">
+                    <h3>Have Questions?</h3>
+                    <p>If you need clarification on any of these terms or have questions about our services, please don't hesitate to reach out. We're here to help.</p>
+                    <a href="{{ url_for('create_ticket') }}" class="btn-primary">Contact Us →</a>
+                </div>
+
             </div>
         </div>
     </div>
-</section>
+</div>
 
-{% block extra_css %}
 <style>
-    .terms-section {
-        padding: 60px 0;
-    }
-    
-    .terms-container {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        margin-bottom: 40px;
-    }
-    
-    .terms-content {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-    
-    .terms-item {
-        margin-bottom: 40px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 30px;
-    }
-    
-    .terms-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-    
-    .terms-item h2 {
-        color: #333;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-    }
-    
-    .terms-item h3 {
-        color: #555;
-        margin: 20px 0 10px;
-        font-size: 1.2rem;
-    }
-    
-    .terms-item p {
-        margin-bottom: 15px;
-        line-height: 1.6;
-        color: #444;
-    }
-    
-    .terms-item ul, .terms-item ol {
-        margin-bottom: 20px;
-        padding-left: 25px;
-    }
-    
-    .terms-item li {
-        margin-bottom: 10px;
-        line-height: 1.6;
-        color: #444;
-    }
-    
-    .terms-item blockquote {
-        background-color: #f9f9f9;
-        border-left: 4px solid #4a6da7;
-        padding: 15px 20px;
-        margin: 20px 0;
-    }
-    
-    .terms-item blockquote p {
-        margin-bottom: 10px;
-    }
-    
-    .terms-item blockquote p:last-child {
-        margin-bottom: 0;
-    }
-    
-    @media (max-width: 768px) {
-        .terms-container {
-            padding: 25px;
-        }
-        
-        .terms-item h2 {
-            font-size: 1.3rem;
-        }
-        
-        .terms-item h3 {
-            font-size: 1.1rem;
-        }
-    }
+.terms-item {
+    margin-bottom: 48px;
+}
+
+.terms-item h2 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    color: var(--ink) !important;
+    border-bottom: 2px solid var(--accent) !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 24px !important;
+}
+
+.terms-item ul {
+    margin: 20px 0;
+    padding-left: 24px;
+}
+
+.terms-item li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.terms-item p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.terms-item strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.editorial-divider {
+    text-align: center;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    margin: 48px 0;
+}
+
+.cta-box {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px;
+    margin: 48px 0;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.cta-box h3 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    margin-bottom: 16px !important;
+    color: var(--bg) !important;
+    border: none !important;
+}
+
+.cta-box p {
+    color: var(--muted);
+    margin-bottom: 24px;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 12px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--bg);
+    color: var(--accent);
+}
 </style>
-{% endblock %}
+
 {% endblock %}

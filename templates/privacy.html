@@ -3,23 +3,68 @@
 {% block title %}Privacy Policy - Empath IT Support{% endblock %}
 
 {% block content %}
-<section class="page-header" style="background-color: #4a6da7;">
-    <div class="container">
-        <h1>Privacy Policy</h1>
-        <p>How we protect and handle your information</p>
-    </div>
-</section>
 
-<section class="privacy-section">
+<!-- ── EDITORIAL MASTHEAD ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>IT Support & Web Development</span>
+    <span class="masthead-divider">·</span>
+    <span>Cape Town, South Africa</span>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">Privacy · Issue 2025</div>
+    <h1>Privacy<br/><em>Policy</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                How we protect and handle your information. At Empath IT Support, I am committed to protecting your privacy and ensuring the security of your personal information.
+            </p>
+            <div class="hero-ctas">
+                <a href="#information" class="btn-ink">Read Policy →</a>
+                <a href="{{ url_for('create_ticket') }}" class="btn-outline-ink">Contact Us</a>
+            </div>
+        </div>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">🔒</span>
+                    <span class="lbl">Protected</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">GDPR</span>
+                    <span class="lbl">Compliant</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">2025</span>
+                    <span class="lbl">Updated</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── PRIVACY CONTENT ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Privacy Policy</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="article-layout">
     <div class="container">
-        <div class="privacy-container">
-            <div class="privacy-content">
+        <div class="article-content-wrapper">
+            <div class="article-body">
+                
                 <div class="privacy-intro">
                     <p>At Empath IT Support, I am committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how I collect, use, disclose, and safeguard your information when you use my services.</p>
                     <p>Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access my services.</p>
                 </div>
 
-                <section class="privacy-item">
+                <section class="privacy-item" id="information">
                     <h2>1. Information I Collect</h2>
                     <p>I may collect personal information that you voluntarily provide when using my services, including:</p>
                     <ul>
@@ -27,194 +72,248 @@
                         <li>Device information (make, model, serial numbers)</li>
                         <li>Issue descriptions and service requirements</li>
                         <li>Payment information (for billing purposes only)</li>
-                    </ul>
-                    <p>When providing remote support or servicing your devices, I may have temporary access to:</p>
-                    <ul>
-                        <li>Files and data stored on your device</li>
-                        <li>System information and configurations</li>
-                        <li>Software and applications installed</li>
+                        <li>Service history and technical details</li>
                     </ul>
                 </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
 
                 <section class="privacy-item">
                     <h2>2. How I Use Your Information</h2>
-                    <p>I use the information I collect for the following purposes:</p>
+                    <p>I use your personal information to:</p>
                     <ul>
-                        <li>To provide and maintain my services</li>
-                        <li>To process payments and send invoices</li>
-                        <li>To communicate with you about your service requests</li>
-                        <li>To diagnose and resolve technical issues</li>
-                        <li>To improve my services and customer experience</li>
-                        <li>To comply with legal obligations</li>
+                        <li>Provide IT support and technical services</li>
+                        <li>Communicate about service updates and progress</li>
+                        <li>Process payments and billing</li>
+                        <li>Maintain service records and history</li>
+                        <li>Improve my services and customer experience</li>
+                        <li>Respond to inquiries and support requests</li>
                     </ul>
                 </section>
 
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
                 <section class="privacy-item">
-                    <h2>3. Data Security</h2>
-                    <p>I implement appropriate technical and organizational measures to protect your personal information against unauthorized access, accidental loss, or destruction. While I use commercially acceptable means to protect your personal information, I cannot guarantee its absolute security.</p>
-                    <p>Specific security measures include:</p>
+                    <h2>3. Information Sharing</h2>
+                    <p>I do not sell, rent, or trade your personal information. I may share your information only in the following circumstances:</p>
                     <ul>
-                        <li>Secure remote access tools with encryption</li>
-                        <li>Password protection on all devices and accounts</li>
-                        <li>Limited retention of client data</li>
-                        <li>Physical security measures for on-site equipment</li>
+                        <li><strong>Service Providers:</strong> Third-party services necessary for payment processing or technical support</li>
+                        <li><strong>Legal Requirements:</strong> When required by law, court order, or government regulation</li>
+                        <li><strong>Business Transfer:</strong> In connection with a merger, acquisition, or sale of assets</li>
+                        <li><strong>Safety:</strong> To protect rights, property, or personal safety</li>
                     </ul>
                 </section>
 
-                <section class="privacy-item">
-                    <h2>4. Data Retention</h2>
-                    <p>I retain your personal information only for as long as necessary to fulfill the purposes outlined in this privacy policy, unless a longer retention period is required or permitted by law.</p>
-                    <p>For service-related data:</p>
-                    <ul>
-                        <li>Contact information is retained for up to 3 years after your last service</li>
-                        <li>Payment records are kept for 5 years as required by tax regulations</li>
-                        <li>Temporary data accessed during repairs is deleted within 7 days of service completion</li>
-                    </ul>
-                </section>
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
 
                 <section class="privacy-item">
-                    <h2>5. Third-Party Disclosure</h2>
-                    <p>I do not sell, trade, or otherwise transfer your personal information to outside parties unless I provide you with advance notice or when required by law.</p>
-                    <p>I may share information with trusted third parties who assist me in operating my services, conducting business, or servicing you, so long as those parties agree to keep this information confidential.</p>
+                    <h2>4. Data Security</h2>
+                    <p>I implement appropriate security measures to protect your information:</p>
+                    <ul>
+                        <li>Secure storage of client records and technical documentation</li>
+                        <li>Encrypted communication channels for remote support</li>
+                        <li>Limited access to personal information on a need-to-know basis</li>
+                        <li>Regular security updates and system maintenance</li>
+                        <li>Secure disposal of old parts and storage media</li>
+                    </ul>
+                    <p>However, no method of transmission over the internet is 100% secure, and I cannot guarantee absolute security.</p>
                 </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>5. Data Retention</h2>
+                    <p>I retain your personal information only as long as necessary for:</p>
+                    <ul>
+                        <li>Providing ongoing support and warranty services</li>
+                        <li>Legal and regulatory compliance</li>
+                        <li>Business record-keeping requirements</li>
+                        <li>Resolving disputes and troubleshooting</li>
+                    </ul>
+                    <p>Service records are typically retained for 3 years, after which they are securely destroyed.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
 
                 <section class="privacy-item">
                     <h2>6. Your Rights</h2>
-                    <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+                    <p>You have the right to:</p>
                     <ul>
-                        <li>The right to access the personal information I hold about you</li>
-                        <li>The right to request correction of inaccurate information</li>
-                        <li>The right to request deletion of your information</li>
-                        <li>The right to restrict or object to processing</li>
-                        <li>The right to data portability</li>
-                    </ul>
-                    <p>To exercise any of these rights, please contact me using the information provided at the end of this policy.</p>
-                </section>
-
-                <section class="privacy-item">
-                    <h2>7. Cookies and Tracking Technologies</h2>
-                    <p>My website may use cookies and similar tracking technologies to enhance your experience. You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies through your browser settings.</p>
-                </section>
-
-                <section class="privacy-item">
-                    <h2>8. Children's Privacy</h2>
-                    <p>My services are not intended for individuals under the age of 18. I do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided me with personal information, please contact me immediately.</p>
-                </section>
-
-                <section class="privacy-item">
-                    <h2>9. Changes to This Privacy Policy</h2>
-                    <p>I may update this privacy policy from time to time. The updated version will be indicated by an updated "Revised" date and the updated version will be effective as soon as it is accessible. I encourage you to review this privacy policy periodically to stay informed of how I protect your information.</p>
-                </section>
-
-                <section class="privacy-item">
-                    <h2>10. Contact Information</h2>
-                    <p>If you have questions or concerns about this privacy policy or my data practices, please contact me at:</p>
-                    <ul class="contact-list">
-                        <li><strong>Email:</strong> <a href="mailto:info@empathtechnologysolutions.com">info@empathtechnologysolutions.com</a></li>
-                        <li><strong>Phone:</strong> <a href="tel:0683075553">068 307 5553</a></li>
+                        <li><strong>Access:</strong> Request a copy of your personal information</li>
+                        <li><strong>Correction:</strong> Request correction of inaccurate information</li>
+                        <li><strong>Deletion:</strong> Request deletion of your personal information (subject to legal requirements)</li>
+                        <li><strong>Portability:</strong> Request transfer of your data to another service provider</li>
+                        <li><strong>Objection:</strong> Object to processing of your personal information</li>
                     </ul>
                 </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>7. Cookies and Tracking</h2>
+                    <p>My website may use cookies and similar technologies to:</p>
+                    <ul>
+                        <li>Remember your preferences and settings</li>
+                        <li>Analyze website traffic and usage patterns</li>
+                        <li>Improve website functionality and user experience</li>
+                    </ul>
+                    <p>You can control cookies through your browser settings, but this may affect website functionality.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>8. Third-Party Links</h2>
+                    <p>My website may contain links to third-party websites. I am not responsible for their privacy practices. Please review their privacy policies before providing personal information.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>9. Children's Privacy</h2>
+                    <p>My services are not intended for children under 13. I do not knowingly collect personal information from children under 13. If I become aware of such collection, I will take steps to delete it immediately.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>10. International Data Transfers</h2>
+                    <p>Your information is processed and stored in South Africa. If I transfer data internationally, I will ensure appropriate safeguards are in place to protect your information.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>11. Policy Updates</h2>
+                    <p>I may update this privacy policy periodically to reflect changes in my practices or applicable law. Changes will be posted on this page with an updated effective date.</p>
+                </section>
+
+                <div class="editorial-divider">— ✦ ✦ ✦ —</div>
+
+                <section class="privacy-item">
+                    <h2>12. Contact Information</h2>
+                    <p>If you have questions about this privacy policy or wish to exercise your rights, please contact me:</p>
+                    <ul>
+                        <li><strong>Phone:</strong> +27 68 307 5553</li>
+                        <li><strong>Email:</strong> support@empath.tech</li>
+                        <li><strong>WhatsApp:</strong> +27 61 507 5372</li>
+                        <li><strong>Website:</strong> www.empathtechnologysolutions.com</li>
+                    </ul>
+                </section>
+
+                <div class="cta-box">
+                    <h3>Questions About Privacy?</h3>
+                    <p>Your privacy is important to me. If you have any questions or concerns about how I handle your information, please don't hesitate to reach out.</p>
+                    <a href="{{ url_for('create_ticket') }}" class="btn-primary">Contact Us →</a>
+                </div>
+
             </div>
         </div>
     </div>
-</section>
+</div>
 
-{% block extra_css %}
 <style>
-    .privacy-section {
-        padding: 60px 0;
-    }
-    
-    .privacy-container {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        margin-bottom: 40px;
-    }
-    
-    .privacy-content {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-    
-    .privacy-intro {
-        margin-bottom: 30px;
-        font-size: 1.1rem;
-        line-height: 1.7;
-        color: #444;
-    }
-    
-    .privacy-intro p {
-        margin-bottom: 15px;
-    }
-    
-    .privacy-item {
-        margin-bottom: 40px;
-        border-bottom: 1px solid #eee;
-        padding-bottom: 30px;
-    }
-    
-    .privacy-item:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-    
-    .privacy-item h2 {
-        color: #333;
-        margin-bottom: 20px;
-        font-size: 1.5rem;
-    }
-    
-    .privacy-item p {
-        margin-bottom: 15px;
-        line-height: 1.6;
-        color: #444;
-    }
-    
-    .privacy-item ul {
-        margin-bottom: 20px;
-        padding-left: 25px;
-    }
-    
-    .privacy-item li {
-        margin-bottom: 10px;
-        line-height: 1.6;
-        color: #444;
-    }
-    
-    .contact-list {
-        list-style: none;
-        padding-left: 0;
-    }
-    
-    .contact-list li {
-        margin-bottom: 10px;
-    }
-    
-    .contact-list a {
-        color: #4a6da7;
-        text-decoration: none;
-    }
-    
-    .contact-list a:hover {
-        text-decoration: underline;
-    }
-    
-    @media (max-width: 768px) {
-        .privacy-container {
-            padding: 25px;
-        }
-        
-        .privacy-intro {
-            font-size: 1rem;
-        }
-        
-        .privacy-item h2 {
-            font-size: 1.3rem;
-        }
-    }
+.privacy-intro {
+    background: var(--surface);
+    border-left: 4px solid var(--accent);
+    padding: 24px;
+    margin: 32px 0;
+    border-radius: 4px;
+}
+
+.privacy-intro p {
+    margin-bottom: 16px;
+}
+
+.privacy-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.privacy-item {
+    margin-bottom: 48px;
+}
+
+.privacy-item h2 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    color: var(--ink) !important;
+    border-bottom: 2px solid var(--accent) !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 24px !important;
+}
+
+.privacy-item ul {
+    margin: 20px 0;
+    padding-left: 24px;
+}
+
+.privacy-item li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.privacy-item p {
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.privacy-item strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.editorial-divider {
+    text-align: center;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    margin: 48px 0;
+}
+
+.cta-box {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 48px;
+    margin: 48px 0;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.cta-box h3 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 1.8rem !important;
+    font-weight: 700;
+    margin-bottom: 16px !important;
+    color: var(--bg) !important;
+    border: none !important;
+}
+
+.cta-box p {
+    color: var(--muted);
+    margin-bottom: 24px;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    padding: 12px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--bg);
+    color: var(--accent);
+}
 </style>
-{% endblock %}
+
 {% endblock %}

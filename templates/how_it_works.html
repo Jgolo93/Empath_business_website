@@ -3,244 +3,337 @@
 {% block title %}How It Works - Empath IT Support{% endblock %}
 
 {% block content %}
-<section class="page-header" style="background-color: #6b8cae;">
-    <div class="container">
-        <h1>How It Works</h1>
-        <p>Our simple process to get your technology problems solved</p>
-    </div>
-</section>
 
-<section class="how-it-works-section">
-    <div class="container">
-        <div class="steps">
-            {% for step in steps %}
-            <div class="step">
-                <div class="step-icon">
-                    <i class="material-icons">{{ step.icon }}</i>
-                </div>
-                <h3 class="step-title">{{ step.title }}</h3>
-                <p>{{ step.description }}</p>
+<!-- ── EDITORIAL MASTHEAD ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>IT Support & Web Development</span>
+    <span class="masthead-divider">·</span>
+    <span>Cape Town, South Africa</span>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">Process · Issue 2025</div>
+    <h1>How It<br/><em>Works</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                Our simple process to get your technology problems solved. From initial contact to resolution, we make IT support straightforward and stress-free.
+            </p>
+            <div class="hero-ctas">
+                <a href="#process" class="btn-ink">See Process →</a>
+                <a href="{{ url_for('create_ticket') }}" class="btn-outline-ink">Get Started</a>
             </div>
-            {% endfor %}
         </div>
-    </div>
-</section>
-
-<section class="business-solutions">
-    <div class="container">
-        <h2>IT Solutions for Everyone</h2>
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">person</i>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">4</span>
+                    <span class="lbl">Simple Steps</span>
                 </div>
-                <h3 class="solution-title">For Individuals</h3>
-                <div class="solution-content">
-                    <p>We provide friendly, jargon-free support for all your personal technology needs. From computer repairs to smartphone troubleshooting, we're here to help.</p>
+                <div class="hero-stat">
+                    <span class="num">24/7</span>
+                    <span class="lbl">Availability</span>
                 </div>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">business</i>
-                </div>
-                <h3 class="solution-title">For Businesses</h3>
-                <div class="solution-content">
-                    <p>Our comprehensive IT solutions help businesses of all sizes operate efficiently and securely. We offer everything from network setup to ongoing maintenance and support.</p>
+                <div class="hero-stat">
+                    <span class="num">< 1hr</span>
+                    <span class="lbl">Response Time</span>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="marketing-section">
-    <div class="container">
-        <h2>Our Support Process</h2>
-        <div class="card" style="margin-bottom: 40px;">
-            <h3 class="card-title">1. Create a Support Ticket</h3>
-            <div class="card-content">
-                <p>Submit a support ticket through our website with details about your issue. This is the first step to getting your technology problems resolved. We'll review your ticket and respond promptly.</p>
-            </div>
-        </div>
+<!-- ── PROCESS STEPS ── -->
+<div class="section-rule" id="process">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Our Process</span>
+    <span class="section-rule-line"></span>
+</div>
 
-        <div class="card" style="margin-bottom: 40px;">
-            <h3 class="card-title">2. Communication and Assessment</h3>
-            <div class="card-content">
-                <p>We'll communicate with you via email through our Zoho ticketing system. All correspondence stays organized within your ticket. We'll assess your issue and provide initial recommendations or request additional information if needed.</p>
-            </div>
-        </div>
+<div class="articles-wrap">
+    <div class="articles-grid">
 
-        <div class="card" style="margin-bottom: 40px;">
-            <h3 class="card-title">3. Quote and Service Options</h3>
-            <div class="card-content">
-                <p>Based on our assessment, we'll provide a quote directly in your ticket. If a meeting or remote session is needed, we'll schedule it through the ticket system. <strong>Please note: For hardware issues, you'll need to bring your device to our workshop as we don't offer call-out services.</strong></p>
-                <ul style="margin-top: 15px; margin-left: 20px;">
-                    <li>Remote Support: For software issues, troubleshooting, and quick fixes</li>
-                    <li>Workshop Service: For hardware repairs, upgrades, and complex issues</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="card" style="margin-bottom: 40px;">
-            <h3 class="card-title">4. Service and Resolution</h3>
-            <div class="card-content">
-                <p>Once you approve the quote, we'll perform the necessary work either remotely or at our workshop. We'll keep you updated on progress through the ticket system.</p>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3 class="card-title">5. Payment and Completion</h3>
-            <div class="card-content">
-                <p>When the work is complete, you'll receive an invoice directly in your ticket with a secure PayFast payment button. For larger projects, a 20% non-refundable deposit is required before work begins.</p>
-                
-                <h4>Payment Options:</h4>
-                <ul style="margin-top: 10px; margin-left: 20px;">
-                    <li><strong>Secure Online Payment:</strong> Pay instantly via PayFast (supports credit/debit cards, EFT, and mobile payments)</li>
-                    <li><strong>Bank Transfer:</strong> EFT payments to our business account (reference your ticket number)</li>
-                    <li><strong>Cash:</strong> For in-person payments at our workshop</li>
-                </ul>
-                
-                <div class="payment-notice" style="margin-top: 15px; padding: 15px; background-color: #f8f9fa; border-left: 4px solid #4a6da7;">
-                    <h4>Important Payment Information:</h4>
-                    <ul style="margin-top: 10px; margin-left: 20px;">
-                        <li>All deposits are non-refundable as they reserve our time and resources</li>
-                        <li>For website projects, the remaining balance is due before site launch</li>
-                        <li>We'll provide a detailed invoice for all transactions</li>
-                    </ul>
+        <!-- STEP 1: Contact -->
+        <article class="article-card" data-category="process">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Step<br/><em>01</em></div>
+                    <div class="gsub">Get In Touch</div>
                 </div>
-                
-                <p>Once payment is received, we'll mark the ticket as resolved and provide any necessary follow-up instructions or recommendations to prevent future issues.</p>
+                <span class="card-cat-strip">Contact</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Easy Start</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">2 Minutes</span>
+                </div>
+                <h3>
+                    Reach Out to Us
+                </h3>
+                <p>Contact us via phone, WhatsApp, email, or our online form. We'll respond quickly to understand your IT needs and schedule the best time to help.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Contact Now <span class="c-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 2: Diagnosis -->
+        <article class="article-card" data-category="process">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Step<br/><em>02</em></div>
+                    <div class="gsub">Assessment</div>
+                </div>
+                <span class="card-cat-strip green">Diagnosis</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Expert Analysis</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">15-30 Minutes</span>
+                </div>
+                <h3>
+                    Problem Diagnosis
+                </h3>
+                <p>Our technicians will assess your issue, identify the root cause, and explain the solution in plain language. No confusing technical jargon.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">🔍 Thorough</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 3: Solution -->
+        <article class="article-card" data-category="process">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Step<br/><em>03</em></div>
+                    <div class="gsub">Resolution</div>
+                </div>
+                <span class="card-cat-strip">Solution</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Fast Action</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">Varies</span>
+                </div>
+                <h3>
+                    Implement Solution
+                </h3>
+                <p>We'll fix your problem efficiently, whether through remote support, on-site visit, or guiding you through the steps. We work until you're satisfied.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">⚡ Quick</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 4: Follow-up -->
+        <article class="article-card" data-category="process">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Step<br/><em>04</em></div>
+                    <div class="gsub">Support</div>
+                </div>
+                <span class="card-cat-strip green">Follow-up</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Ongoing Care</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">24 Hours</span>
+                </div>
+                <h3>
+                    Follow-up Support
+                </h3>
+                <p>We'll check back to ensure everything is working perfectly and answer any additional questions. Your satisfaction is our priority.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">🤝 Caring</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<!-- ── SOLUTIONS FOR EVERYONE ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">IT Solutions for Everyone</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="featured-editorial">
+        <div class="featured-thumb" style="background: var(--accent);">
+            <div class="featured-thumb-graphic">
+                <div class="big-text">For<br/><em>Everyone</em></div>
+                <div class="featured-thumb-sub">Individuals & Businesses</div>
             </div>
         </div>
-    </div>
-</section>
-
-<div class="important-notice">
-    <div class="container">
-        <div class="notice-content">
-            <i class="material-icons">info</i>
+        <div class="featured-body">
             <div>
-                <h3>Important: Workshop Service Only</h3>
-                <p>For hardware issues or physical repairs, you must bring your device to our workshop, or pickup can be arranged. Callout Services can be discussed only for Businesses</p>
+                <div class="featured-meta">
+                    <span class="feat-cat">Comprehensive Support</span>
+                    <span class="feat-date">Available Now</span>
+                </div>
+                <h2>Tailored IT Solutions</h2>
+                <p>Whether you're an individual needing personal tech help or a business requiring comprehensive IT infrastructure, we provide customized solutions that fit your specific needs and budget.</p>
+                <div class="featured-tags">
+                    <span class="editorial-tag">#PersonalSupport</span>
+                    <span class="editorial-tag">#BusinessSolutions</span>
+                    <span class="editorial-tag">#CustomPlans</span>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="quote-notice" style="background: linear-gradient(135deg, #243377 0%, #4a6da7 100%); padding: 40px 0; margin: 20px 0;">
-    <div class="container">
-        <div style="text-align: center; color: white;">
-            <i class="material-icons" style="font-size: 48px; margin-bottom: 15px; color: #ff6b35;">request_quote</i>
-            <h3 style="color: white; margin-bottom: 15px;">Need a Custom Quote?</h3>
-            <p style="font-size: 1.1em; margin-bottom: 20px; color: white;">To get a quote, reach out on the contact page and we'll get back to you with a personalized estimate.</p>
-            <a href="{{ url_for('create_ticket') }}" class="btn-primary" style="background: #ff6b35; color: white;">Contact Us</a>
+<!-- ── SERVICE TYPES ── -->
+<div class="articles-wrap">
+    <div class="articles-grid">
+
+        <!-- SERVICE: For Individuals -->
+        <article class="article-card" data-category="personal">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Personal<br/><em>Support</em></div>
+                    <div class="gsub">Individual Services</div>
+                </div>
+                <span class="card-cat-strip">For Individuals</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Friendly Service</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">From R100</span>
+                </div>
+                <h3>
+                    Personal IT Support
+                </h3>
+                <p>We provide friendly, jargon-free support for all your personal technology needs. From computer repairs to smartphone troubleshooting, we're here to help.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Get Help <span class="c-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- SERVICE: For Businesses -->
+        <article class="article-card" data-category="business">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Business<br/><em>Solutions</em></div>
+                    <div class="gsub">Enterprise IT</div>
+                </div>
+                <span class="card-cat-strip green">For Businesses</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Professional</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">From R500</span>
+                </div>
+                <h3>
+                    Business IT Solutions
+                </h3>
+                <p>Our comprehensive IT solutions help businesses of all sizes operate efficiently and securely. We offer everything from network setup to ongoing maintenance and support.</p>
+                <div class="card-foot">
+                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                        Get Quote <span class="c-arrow">→</span>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<!-- ── CONTACT OPTIONS ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Contact Options</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="topics-wrap">
+    <div class="topics-grid">
+        <div class="topic-cell">
+            <span class="topic-icon">📞</span>
+            <h3>Phone Support</h3>
+            <p>Call us directly for immediate assistance and emergency support available 24/7.</p>
+            <div class="topic-foot">
+                <span class="topic-count">+27 68 307 5553</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">💬</span>
+            <h3>WhatsApp</h3>
+            <p>Message us on WhatsApp for quick questions, photo sharing, and remote support.</p>
+            <div class="topic-foot">
+                <span class="topic-count">+27 61 507 5372</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">📧</span>
+            <h3>Email Support</h3>
+            <p>Send detailed inquiries and non-urgent requests via email for thorough responses.</p>
+            <div class="topic-foot">
+                <span class="topic-count">support@empath.tech</span>
+            </div>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">🌐</span>
+            <h3>Online Form</h3>
+            <p>Submit a support ticket through our website form for tracking and documentation.</p>
+            <div class="topic-foot">
+                <a href="{{ url_for('create_ticket') }}" class="topic-explore">Submit Ticket →</a>
+            </div>
         </div>
     </div>
 </div>
 
-<section class="page-header" style="margin-bottom: 0; background-color: #6b8cae;">
-    <div class="container">
-        <h2 style="color: white;">Ready to Get Started?</h2>
-        <p style="color: white;">Let us handle your IT issues so you can focus on what matters most.</p>
-        <div style="margin-top: 30px;">
-            <a href="{{ url_for('create_ticket') }}" class="btn-primary">Create Support Ticket</a>
+<!-- ── CTA SECTION ── -->
+<div class="newsletter-editorial">
+    <div class="newsletter-inner">
+        <div>
+            <div class="nl-label">Ready to Get Started?</div>
+            <h2 class="nl-heading">Let's Solve Your<br/><em>IT Problems</em></h2>
+            <p class="nl-desc">Don't let technology issues slow you down. Contact us today and experience our simple, effective IT support process.</p>
+            <div class="nl-form">
+                <a href="{{ url_for('create_ticket') }}" class="nl-submit" style="text-decoration: none; display: inline-block; text-align: center;">
+                    Get Started Now
+                </a>
+            </div>
+            <div class="nl-badges">
+                <span class="nl-badge">🔒 Free Consultation</span>
+                <span class="nl-badge">· Quick Response</span>
+                <span class="nl-badge">· Expert Support</span>
+            </div>
+        </div>
+        <div class="nl-visual">
+            <div class="nl-big-num">🚀</div>
         </div>
     </div>
-</section>
+</div>
 
-<style>
-    /* Center the solution cards */
-    .solutions-grid {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin: 30px auto;
-        flex-wrap: wrap;
-        max-width: 900px;
-    }
-
-    .solution-card {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 25px;
-        width: 300px;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .solution-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    }
-
-    .solution-icon {
-        width: 60px;
-        height: 60px;
-        background-color: #f0f4f9;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
-    }
-
-    .solution-icon .material-icons {
-        font-size: 30px;
-        color: #4a6da7;
-    }
-
-    /* Important notice styling */
-    .important-notice {
-        background-color: #fff3cd;
-        padding: 30px 0;
-        margin: 40px 0;
-        border-top: 1px solid #ffeeba;
-        border-bottom: 1px solid #ffeeba;
-    }
-
-    .notice-content {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .notice-content .material-icons {
-        font-size: 36px;
-        color: #856404;
-    }
-
-    .notice-content h3 {
-        color: #856404;
-        margin-bottom: 5px;
-    }
-
-    .notice-content p {
-        color: #856404;
-        margin: 0;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .solutions-grid {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .solution-card {
-            width: 100%;
-            max-width: 350px;
-        }
-
-        .notice-content {
-            flex-direction: column;
-            text-align: center;
-        }
-    }
-
-    /* Fix text color for Ready to Get Started section */
-    .page-header[style*="background-color: #6b8cae"] h2,
-    .page-header[style*="background-color: #6b8cae"] p {
-        color: white !important;
-    }
-</style>
 {% endblock %}

@@ -3,169 +3,284 @@
 {% block title %}About Me - Empath IT Support{% endblock %}
 
 {% block content %}
-<section class="page-header" style="background-color: #4a6da7;">
-    <div class="container">
-        <h1>Where It All Began</h1>
-        <p>My journey in the world of IT</p>
-    </div>
-</section>
 
-<section class="about-section">
-    <div class="container">
-        <div class="about-container">
-            <div class="about-content">
-                <div class="certification-logo">
-                    <img src="{{ url_for('static', filename='images/ComtiA.png') }}" alt="CompTIA A+ Certification">
+<!-- ── EDITORIAL MASTHEAD ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>IT Support & Web Development</span>
+    <span class="masthead-divider">·</span>
+    <span>Cape Town, South Africa</span>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">About · Issue 2025</div>
+    <h1>Where It All<br/><em>Began</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                My journey in the world of IT - from early curiosity to professional expertise. Discover the story behind Empath Technology Solutions and my passion for helping people with technology.
+            </p>
+            <div class="hero-ctas">
+                <a href="#expertise" class="btn-ink">My Expertise →</a>
+                <a href="{{ url_for('create_ticket') }}" class="btn-outline-ink">Get Support</a>
+            </div>
+        </div>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">10+</span>
+                    <span class="lbl">Years Experience</span>
                 </div>
+                <div class="hero-stat">
+                    <span class="num">500+</span>
+                    <span class="lbl">Clients Helped</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">A+</span>
+                    <span class="lbl">Certified</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ── STORY SECTION ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">My Journey</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="featured-editorial">
+        <div class="featured-thumb" style="background: var(--accent);">
+            <div class="featured-thumb-graphic">
+                <div class="big-text">IT<br/><em>Journey</em></div>
+                <div class="featured-thumb-sub">Since High School</div>
+            </div>
+        </div>
+        <div class="featured-body">
+            <div>
+                <div class="featured-meta">
+                    <span class="feat-cat">Personal Story</span>
+                    <span class="feat-date">Ongoing Journey</span>
+                </div>
+                <h2>From Curiosity to Career</h2>
+                <p>My passion for IT started in high school, where I followed my older brother around as he worked on computers—back when 486 and Pentium 1 processors were cutting-edge. Watching him troubleshoot, build systems, and breathe life into machines sparked something in me.</p>
                 
-                <div class="about-text">
-                    <p>My passion for IT started in high school, where I followed my older brother around as he worked on computers—back when 486 and Pentium 1 processors were cutting-edge. Watching him troubleshoot, build systems, and breathe life into machines sparked something in me. I started learning by doing—repairing computers, setting up internet for my local church, and supporting friends and family with their tech needs.</p>
-                    
-                    <p>This early hands-on experience laid the foundation for my career. I earned my <strong>CompTIA A+ certification</strong> through <strong>Boston City Campus</strong>, and have since built a career that spans <strong>desktop support, server maintenance, software testing</strong>, and <strong>quality assurance</strong>.</p>
+                <p>I started learning by doing—repairing computers, setting up internet for my local church, and supporting friends and family with their tech needs. This early hands-on experience laid the foundation for my career.</p>
+                
+                <div class="featured-tags">
+                    <span class="editorial-tag">#SelfTaught</span>
+                    <span class="editorial-tag">#HandsOn</span>
+                    <span class="editorial-tag">#EarlyStart</span>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="business-solutions">
-    <div class="container">
-        <h2>My IT Expertise</h2>
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">computer</i>
-                </div>
-                <h3 class="solution-title">Desktop Support</h3>
-                <div class="solution-content">
-                    <p>Years of experience diagnosing and resolving hardware and software issues across various platforms and operating systems.</p>
-                </div>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">storage</i>
-                </div>
-                <h3 class="solution-title">Server Maintenance</h3>
-                <div class="solution-content">
-                    <p>Skilled in server setup, configuration, and ongoing maintenance to ensure optimal performance and reliability.</p>
-                </div>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">bug_report</i>
-                </div>
-                <h3 class="solution-title">Software Testing</h3>
-                <div class="solution-content">
-                    <p>Thorough testing methodologies to identify and document software issues before they impact end users.</p>
-                </div>
-            </div>
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">verified</i>
-                </div>
-                <h3 class="solution-title">Quality Assurance</h3>
-                <div class="solution-content">
-                    <p>Ensuring all IT solutions meet the highest standards of quality, security, and user experience.</p>
-                </div>
+<!-- ── CERTIFICATION SECTION ── -->
+<div class="articles-wrap">
+    <div class="article-content-wrapper" style="max-width: 100%; text-align: center; padding: 48px;">
+        <div class="article-body">
+            <h2 style="text-align: center; border: none; margin-bottom: 32px;">Professional Certification</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 32px;">
+                I earned my <strong style="color: var(--accent);">CompTIA A+ certification</strong> through <strong style="color: var(--accent2);">Boston City Campus</strong>, 
+                and have since built a career that spans <strong style="color: var(--accent);">desktop support, server maintenance, software testing</strong>, 
+                and <strong style="color: var(--accent2);">quality assurance</strong>.
+            </p>
+            
+            <div style="text-align: center; margin: 48px 0;">
+                <img src="{{ url_for('static', filename='images/ComtiA.png') }}" alt="CompTIA A+ Certification" 
+                     style="max-width: 200px; height: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));">
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="cta-section">
-    <div class="container">
-        <h2>Need Professional IT Support?</h2>
-        <p>Let me help you solve your technology challenges with personalized solutions.</p>
-        <div style="margin-top: 30px; text-align: center;">
-            <a href="{{ url_for('create_ticket') }}" class="btn-primary">Get Support Now</a>
+<!-- ── EXPERTISE SECTION ── -->
+<div class="section-rule" id="expertise">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">My IT Expertise</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="articles-wrap">
+    <div class="articles-grid">
+
+        <!-- EXPERTISE: Desktop Support -->
+        <article class="article-card" data-category="support">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Desktop<br/><em>Support</em></div>
+                    <div class="gsub">Hardware & Software</div>
+                </div>
+                <span class="card-cat-strip">Core Skill</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Expert Level</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">10+ Years</span>
+                </div>
+                <h3>
+                    Desktop Support
+                </h3>
+                <p>Years of experience diagnosing and resolving hardware and software issues across various platforms and operating systems.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">⭐ Expert</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- EXPERTISE: Server Maintenance -->
+        <article class="article-card" data-category="infrastructure">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Server<br/><em>Maintenance</em></div>
+                    <div class="gsub">Infrastructure</div>
+                </div>
+                <span class="card-cat-strip green">Infrastructure</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Advanced</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">5+ Years</span>
+                </div>
+                <h3>
+                    Server Maintenance
+                </h3>
+                <p>Skilled in server setup, configuration, and ongoing maintenance to ensure optimal performance and reliability.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">🏢 Enterprise</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- EXPERTISE: Software Testing -->
+        <article class="article-card" data-category="testing">
+            <div class="card-thumb-area" style="background: var(--accent);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Software<br/><em>Testing</em></div>
+                    <div class="gsub">Quality Assurance</div>
+                </div>
+                <span class="card-cat-strip">QA</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Specialized</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">3+ Years</span>
+                </div>
+                <h3>
+                    Software Testing & QA
+                </h3>
+                <p>Comprehensive testing methodologies including automation, performance testing, and quality assurance processes.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">🔬 Technical</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- EXPERTISE: Web Development -->
+        <article class="article-card" data-category="web">
+            <div class="card-thumb-area" style="background: var(--accent2);">
+                <div class="card-thumb-graphic">
+                    <div class="gtext">Web<br/><em>Development</em></div>
+                    <div class="gsub">Full Stack</div>
+                </div>
+                <span class="card-cat-strip green">Development</span>
+                <div class="card-read-overlay"><span>Learn More</span></div>
+            </div>
+            <div class="card-content">
+                <div class="card-meta-row">
+                    <span class="c-date">Growing Skill</span>
+                    <span class="c-dot"></span>
+                    <span class="c-time">2+ Years</span>
+                </div>
+                <h3>
+                    Web Development
+                </h3>
+                <p>Modern web development skills including responsive design, backend development, and database management.</p>
+                <div class="card-foot">
+                    <div class="c-read-link">
+                        <span class="c-arrow">🌐 Digital</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+</div>
+
+<!-- ── PHILOSOPHY SECTION ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">My Approach</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="topics-wrap">
+    <div class="topics-grid">
+        <div class="topic-cell">
+            <span class="topic-icon">🤝</span>
+            <h3>Empathetic Support</h3>
+            <p>I believe in understanding your frustration and explaining solutions in plain language. Technology should serve people, not intimidate them.</p>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">⚡</span>
+            <h3>Fast Solutions</h3>
+            <p>I know that downtime costs money and productivity. My focus is on quick diagnosis and effective solutions to get you back online.</p>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">🎓</span>
+            <h3>Continuous Learning</h3>
+            <p>Technology evolves constantly, and so do I. I stay updated with the latest trends, tools, and best practices in IT support.</p>
+        </div>
+        <div class="topic-cell">
+            <span class="topic-icon">💡</span>
+            <h3>Creative Problem-Solving</h3>
+            <p>Every IT challenge is unique. I enjoy finding innovative solutions that work within your budget and technical requirements.</p>
         </div>
     </div>
-</section>
+</div>
 
-{% block extra_css %}
-<style>
-    .about-section {
-        padding: 60px 0;
-    }
-    
-    .about-container {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 40px;
-        margin-bottom: 40px;
-    }
-    
-    .about-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-    
-    .certification-logo {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    .certification-logo img {
-        max-width: 200px;
-        height: auto;
-    }
-    
-    .about-text p {
-        margin-bottom: 20px;
-        line-height: 1.8;
-        font-size: 1.1rem;
-        color: #333;
-    }
-    
-    .cta-section {
-        background-color: #f5f7fa;
-        padding: 60px 0;
-        text-align: center;
-    }
-    
-    .cta-section h2 {
-        margin-bottom: 15px;
-        color: #fff;
-    }
-    
-    .cta-section p {
-        max-width: 700px;
-        margin: 0 auto;
-        color: #fff;
-    }
-    
-    @media (min-width: 768px) {
-        .about-content {
-            flex-direction: row;
-            align-items: flex-start;
-        }
-        
-        .certification-logo {
-            flex: 0 0 250px;
-            margin-bottom: 0;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-    }
-    
-    @media (max-width: 767px) {
-        .about-container {
-            padding: 25px;
-        }
-        
-        .certification-logo img {
-            max-width: 150px;
-        }
-        
-        .about-text p {
-            font-size: 1rem;
-        }
-    }
-</style>
-{% endblock %}
+<!-- ── CTA SECTION ── -->
+<div class="newsletter-editorial">
+    <div class="newsletter-inner">
+        <div>
+            <div class="nl-label">Let's Work Together</div>
+            <h2 class="nl-heading">Ready to Solve Your<br/><em>IT Challenges</em></h2>
+            <p class="nl-desc">Whether you need immediate support or long-term IT solutions, I'm here to help. Let's discuss how I can assist with your technology needs.</p>
+            <div class="nl-form">
+                <a href="{{ url_for('create_ticket') }}" class="nl-submit" style="text-decoration: none; display: inline-block; text-align: center;">
+                    Get Started Today
+                </a>
+            </div>
+            <div class="nl-badges">
+                <span class="nl-badge">🔒 Free Consultation</span>
+                <span class="nl-badge">· Quick Response</span>
+                <span class="nl-badge">· Expert Advice</span>
+            </div>
+        </div>
+        <div class="nl-visual">
+            <div class="nl-big-num">🚀</div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

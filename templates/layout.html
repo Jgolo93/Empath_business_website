@@ -29,7 +29,7 @@
     <meta property="og:url" content="https://www.empathtechnologysolutions.com">
     <meta property="og:title" content="Empath Technology Solutions - Affordable IT Support Cape Town">
     <meta property="og:description" content="Professional and affordable IT support for small business and individuals. Computer repairs, network setup, virus removal starting at R100.">
-    <meta property="og:image" content="https://www.empathtechnologysolutions.com/static/images/Empath.png">
+    <meta property="og:image" content="https://www.empathtechnologysolutions.com/static/images/logo-blue.png">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
@@ -37,21 +37,26 @@
     <meta name="twitter:description" content="Cheap IT support for small business in Cape Town. Computer repairs, network setup, virus removal.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo-blue.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/logo-blue.png') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ── EDITORIAL FONTS ── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/editorial.css') }}">
+
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "LocalBusiness",
       "name": "Empath Technology Solutions",
-      "image": "https://www.empathtechnologysolutions.com/static/images/Empath.png",
-      "logo": "https://www.empathtechnologysolutions.com/static/images/logo.png",
+      "image": "https://www.empathtechnologysolutions.com/static/images/logo-blue.png",
+      "logo": "https://www.empathtechnologysolutions.com/static/images/logo-blue.png",
       "@id": "https://www.empathtechnologysolutions.com",
       "url": "https://www.empathtechnologysolutions.com",
       "telephone": "+27683075553",
@@ -114,7 +119,7 @@
       "@type": "Organization",
       "name": "Empath Technology Solutions",
       "url": "https://www.empathtechnologysolutions.com",
-      "logo": "https://www.empathtechnologysolutions.com/static/images/Empath.png",
+      "logo": "https://www.empathtechnologysolutions.com/static/images/logo-blue.png",
       "description": "Affordable IT support and computer repair services for small business in Cape Town, South Africa.",
       "sameAs": [
         "https://x.com/Empath213",
@@ -182,6 +187,7 @@
                 max-width: 600px !important;
             }
         }
+    </style>
     
     <style>
     /* Footer form - base styles */
@@ -224,6 +230,1222 @@
     {% block extra_css %}{% endblock %}
 
 <style>
+/* ── EDITORIAL THEME FOR ENTIRE SITE ── */
+:root {
+  --bg:        #f8fafc;
+  --ink:       #0f172a;
+  --accent:    #f59e0b;
+  --accent2:   #14b8a6;
+  --muted:     #475569;
+  --border:    #e2e8f0;
+  --surface:   #ffffff;
+  --code-bg:   #0f172a;
+}
+
+/* ── RESET SCOPE ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg) !important;
+  color: var(--ink) !important;
+  font-family: 'Syne', sans-serif !important;
+  margin: 0;
+  padding: 0;
+}
+
+.page-wrapper::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(15,23,42,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── EDITORIAL HEADER ── */
+.site-header {
+  background: var(--ink) !important;
+  border-bottom: 2px solid var(--accent) !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: var(--bg) !important;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent) !important;
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--bg);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ── EDITORIAL FOOTER ── */
+.new-site-footer {
+  background: var(--ink) !important;
+  color: var(--bg) !important;
+  padding: 72px 40px 40px;
+  margin-top: 0;
+  position: relative;
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  gap: 48px;
+}
+
+.footer-logo-img {
+  height: 40px;
+  margin-bottom: 16px;
+}
+
+.footer-about-text {
+  color: rgba(248,250,252,0.7);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.footer-heading {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.footer-link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-link-list li {
+  margin-bottom: 8px;
+}
+
+.footer-link-list a {
+  color: rgba(248,250,252,0.8);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+
+.footer-link-list a:hover {
+  color: var(--accent);
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.social-icons a {
+  color: var(--bg) !important;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.social-icons a:hover {
+  color: var(--accent) !important;
+}
+
+.footer-subscribe-form input {
+  background: rgba(248,250,252,0.1);
+  border: 1px solid rgba(248,250,252,0.2);
+  color: var(--bg);
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.footer-subscribe-form input::placeholder {
+  color: rgba(248,250,252,0.5);
+}
+
+.footer-subscribe-form button {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.footer-subscribe-form button:hover {
+  background: var(--bg);
+  color: var(--accent);
+}
+
+.footer-cta-button {
+  background: var(--accent2);
+  color: var(--bg);
+  padding: 12px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.2s ease;
+}
+
+.footer-cta-button:hover {
+  background: var(--bg);
+  color: var(--accent2);
+}
+
+.footer-bottom-bar {
+  max-width: 1200px;
+  margin: 48px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(248,250,252,0.2);
+  text-align: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,250,252,0.5);
+}
+
+/* ── BACK TO TOP BUTTON ── */
+.back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background: var(--ink);
+  transform: translateY(-2px);
+}
+
+/* ── FLASH MESSAGES ── */
+.flash-message {
+  position: fixed;
+  top: 80px;
+  right: 40px;
+  background: var(--surface);
+  border: 2px solid var(--accent);
+  padding: 16px 24px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 1001;
+  max-width: 400px;
+}
+
+.flash-message.success {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+
+.flash-message.error {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.close-flash {
+  float: right;
+  cursor: pointer;
+  margin-left: 16px;
+}
+
+/* ── EDITORIAL MASTHEAD ── */
+.editorial-masthead {
+  background: var(--ink);
+  color: var(--bg);
+  text-align: center;
+  padding: 11px 40px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.masthead-divider { opacity: 0.3; }
+
+/* ── EDITORIAL HERO ── */
+.blog-hero-editorial {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 72px 40px 56px;
+  border-bottom: 2px solid var(--ink);
+  position: relative;
+  background-image:
+    linear-gradient(rgba(15,23,42,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-kicker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 200px;
+}
+
+.blog-hero-editorial h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.2rem, 7vw, 5.8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 0;
+  color: var(--ink);
+}
+
+.blog-hero-editorial h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hero-body-row {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.hero-sidebar {
+  border-left: 3px solid var(--ink);
+  padding-left: 22px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.hero-stat .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-ink:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.btn-outline-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-outline-ink:hover { background: var(--ink); color: var(--bg); }
+
+/* ── SECTION RULE ── */
+.section-rule {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 48px 40px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-rule-line { flex: 1; height: 1px; background: var(--border); }
+.section-rule-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── FEATURED ── */
+.featured-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 40px 56px;
+}
+
+.featured-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
+}
+
+.featured-thumb {
+  background: var(--ink);
+  min-height: 380px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+  position: absolute;
+  inset: 0;
+}
+
+.featured-thumb-graphic {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 32px;
+}
+
+.featured-thumb-graphic .big-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: var(--bg);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.featured-thumb-graphic .big-text em { color: var(--accent); font-style: italic; }
+
+.featured-thumb-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(248,250,252,0.5);
+  margin-top: 12px;
+}
+
+.featured-thumb::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,158,11,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  z-index: 1;
+}
+
+.featured-badge-strip {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  z-index: 3;
+}
+
+.featured-body {
+  padding: 48px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--surface);
+  border-left: 2px solid var(--ink);
+}
+
+.featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.feat-cat {
+  background: var(--ink);
+  color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+}
+
+.feat-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.featured-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.featured-body p {
+  font-size: 0.92rem;
+  color: #64748b;
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.featured-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.editorial-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.featured-foot {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.feat-read-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+/* ── ARTICLES GRID ── */
+.articles-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0;
+  border: 2px solid var(--ink);
+}
+
+.article-card {
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  transition: background 0.15s;
+  position: relative;
+}
+
+.article-card:hover { background: var(--surface); }
+.article-card:nth-child(3n) { border-right: none; }
+
+.card-thumb-area {
+  height: 190px;
+  background: var(--ink);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-thumb-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.article-card:hover .card-thumb-area img { opacity: 1; }
+
+.card-thumb-graphic {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+}
+
+.card-thumb-graphic .gtext {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--bg);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.card-thumb-graphic .gtext em { color: var(--accent); font-style: italic; }
+
+.card-thumb-graphic .gsub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(248,250,252,0.5);
+  margin-top: 8px;
+}
+
+.card-thumb-area.graphic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,158,11,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: 1;
+}
+
+.card-cat-strip {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  background: var(--accent);
+  color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  z-index: 3;
+}
+
+.card-cat-strip.green { background: var(--accent2); }
+.card-cat-strip.dark  { background: var(--ink); }
+
+.card-read-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,18,8,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  z-index: 4;
+}
+
+.article-card:hover .card-read-overlay { opacity: 1; }
+
+.card-read-overlay span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--bg);
+  border: 1px solid var(--bg);
+  padding: 6px 16px;
+}
+
+.card-content {
+  padding: 24px 24px 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.c-date, .c-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.c-dot { width: 3px; height: 3px; background: var(--border); border-radius: 50%; }
+
+.card-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.card-content h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-content h3 a:hover { color: var(--accent); }
+
+.card-content p {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.c-read-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s;
+}
+
+.c-read-link:hover { color: var(--accent); }
+
+.c-arrow { display: inline-block; transition: transform 0.2s; }
+.c-read-link:hover .c-arrow { transform: translateX(3px); }
+
+.card-actions-row {
+  display: flex;
+  gap: 8px;
+}
+
+.c-action {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+
+.c-action:hover { color: var(--ink); }
+.c-action.liked { color: var(--accent); }
+
+/* ── TOPICS ── */
+.topics-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  border: 1px solid var(--ink);
+  overflow: hidden;
+}
+
+.topic-cell {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 24px;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.topic-cell:hover { background: var(--surface); }
+.topic-cell:last-child { border-right: none; }
+
+.topic-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+
+.topic-cell h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.topic-cell p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.topic-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topic-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.topic-count.coming { color: var(--accent2); }
+
+.topic-explore {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.topic-explore:hover { color: var(--accent); }
+.topic-explore.disabled { color: var(--border); pointer-events: none; }
+
+/* ── NEWSLETTER ── */
+.newsletter-editorial {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.newsletter-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 72px 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.nl-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.nl-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--bg);
+}
+
+.nl-heading em { font-style: italic; color: var(--accent); }
+
+.nl-desc {
+  font-size: 0.9rem;
+  color: rgba(248,250,252,0.7);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.nl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nl-input-row {
+  display: flex;
+  border: 1px solid rgba(248,250,252,0.2);
+}
+
+.nl-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  color: var(--bg);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.9rem;
+}
+
+.nl-input-row input::placeholder { color: rgba(248,250,252,0.4); }
+
+.nl-submit {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.nl-submit:hover { background: #e05020; }
+
+.nl-badges {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.nl-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(248,250,252,0.5);
+}
+
+.nl-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.nl-big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 7rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(248,250,252,0.08);
+  letter-spacing: -0.05em;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-layout {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 48px 40px;
+}
+
+.article-content-wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+  margin-top: 48px;
+}
+
+.article-body ul {
+  margin: 20px 0;
+  padding-left: 24px;
+}
+
+.article-body li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.article-body p {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+
+.article-body strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.editorial-divider {
+  text-align: center;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  margin: 48px 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .blog-hero-editorial { padding: 48px 24px 40px; }
+  .hero-body-row { grid-template-columns: 1fr; gap: 28px; }
+  .hero-sidebar { border-left: none; border-top: 2px solid var(--ink); padding: 20px 0 0; }
+  .hero-stats { flex-direction: row; gap: 32px; }
+  .featured-editorial { grid-template-columns: 1fr; }
+  .featured-thumb { min-height: 240px; }
+  .featured-body { border-left: none; border-top: 2px solid var(--ink); padding: 32px 28px; }
+  .articles-wrap, .featured-wrap, .topics-wrap, .filter-bar, .section-rule, .article-layout { padding-left: 24px; padding-right: 24px; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .article-card:nth-child(3n) { border-right: none; }
+  .newsletter-inner { grid-template-columns: 1fr; gap: 32px; }
+  .nl-visual { display: none; }
+  .topics-grid { grid-template-columns: 1fr 1fr; }
+  .editorial-masthead { flex-wrap: wrap; gap: 8px; font-size: 9px; padding: 11px 20px; }
+  /* Sticky header on mobile */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+  body {
+    padding-top: 70px;
+  }
+}
+
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 16px 20px;
+  }
+  
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--ink);
+    flex-direction: column;
+    padding: 20px;
+    gap: 16px;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    text-align: center;
+  }
+  
+  .footer-col {
+    text-align: center;
+  }
+  
+  .footer-about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .footer-logo-link {
+    display: inline-block;
+  }
+  
+  .footer-newsletter {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .footer-subscribe-form {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .footer-subscribe-form input,
+  .footer-subscribe-form button {
+    width: 100%;
+  }
+  
+  .social-icons {
+    justify-content: center;
+  }
+  
+  .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .flash-message {
+    right: 20px;
+    left: 20px;
+    max-width: none;
+  }
+}
+
 /* Force form to fit within viewport - NO horizontal scroll */
 #zc_popoverlay {
     display: none;
@@ -281,44 +1503,7 @@
         padding: 10px !important;
     }
 }
-
-    <style>
-    /* Footer form - base styles */
-    .footer-subscribe-form {
-        display: flex;
-        flex-direction: row;
-        gap: 8px;
-        align-items: center;
-    }
-    
-    /* Mobile and tablet - stacked centered */
-    @media (max-width: 1024px) {
-        .footer-newsletter {
-            text-align: center !important;
-        }
-        .footer-subscribe-form {
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            max-width: 400px !important;
-            margin: 0 auto !important;
-        }
-        .footer-subscribe-form input {
-            width: 100% !important;
-            max-width: 400px !important;
-        }
-        .footer-subscribe-form button {
-            width: 100% !important;
-            max-width: 400px !important;
-            margin-top: 8px;
-        }
-        .footer-cta-button {
-            display: block !important;
-            margin: 20px auto 0 !important;
-            text-align: center !important;
-        }
-    }
-    </style>
+</style>
 </head>
 <body>
     <!-- Flash Messages -->
@@ -335,28 +1520,26 @@
 
     <!-- Header -->
     <header class="site-header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo-container">
-                    <a href="{{ url_for('home') }}" class="logo">
-                        <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath IT Support">
-                    </a>
-                </div>
-                <nav class="main-nav">
-                    <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
-                        <span class="material-icons">menu</span>
-                    </button>
-                    <ul class="nav-links">
-                        <li><a href="{{ url_for('home') }}" class="{{ 'active' if request.path == url_for('home') else '' }}">Home</a></li>
-                        <li><a href="{{ url_for('how_it_works') }}" class="{{ 'active' if request.path == url_for('how_it_works') else '' }}">How It Works</a></li>
-                        <li><a href="{{ url_for('blog') }}" class="{{ 'active' if request.path.startswith('/blog') else '' }}">Blog</a></li>
-                        <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.path == url_for('about') else '' }}">About Me</a></li>
-                        <li><a href="{{ url_for('terms') }}" class="{{ 'active' if request.path == url_for('terms') else '' }}">Terms</a></li>
-                        <li><a href="{{ url_for('privacy') }}" class="{{ 'active' if request.path == url_for('privacy') else '' }}">Privacy</a></li>
-                        <li><a href="{{ url_for('create_ticket') }}" class="{{ 'active' if request.path == url_for('create_ticket') else '' }}">Contact Us</a></li>
-                    </ul>
-                </nav>
+        <div class="header-content">
+            <div class="logo-container">
+                <a href="{{ url_for('home') }}" class="logo">
+                    <img src="{{ url_for('static', filename='images/logo-blue.png') }}" alt="Empath IT Support">
+                </a>
             </div>
+            <nav class="main-nav">
+                <button class="mobile-menu-toggle" aria-label="Toggle navigation menu">
+                    <span class="material-icons">menu</span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="{{ url_for('home') }}" class="{{ 'active' if request.path == url_for('home') else '' }}">Home</a></li>
+                    <li><a href="{{ url_for('how_it_works') }}" class="{{ 'active' if request.path == url_for('how_it_works') else '' }}">How It Works</a></li>
+                    <li><a href="{{ url_for('blog') }}" class="{{ 'active' if request.path.startswith('/blog') else '' }}">Blog</a></li>
+                    <li><a href="{{ url_for('about') }}" class="{{ 'active' if request.path == url_for('about') else '' }}">About Me</a></li>
+                    <li><a href="{{ url_for('terms') }}" class="{{ 'active' if request.path == url_for('terms') else '' }}">Terms</a></li>
+                    <li><a href="{{ url_for('privacy') }}" class="{{ 'active' if request.path == url_for('privacy') else '' }}">Privacy</a></li>
+                    <li><a href="{{ url_for('create_ticket') }}" class="{{ 'active' if request.path == url_for('create_ticket') else '' }}">Contact Us</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
@@ -367,61 +1550,67 @@
 
     <!-- Footer -->
     <footer class="new-site-footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col footer-about">
-                    <a href="{{ url_for('home') }}" class="footer-logo-link">
-                        <img src="{{ url_for('static', filename='images/empath-logo-new.png') }}" alt="Empath Technology Solutions Logo" class="footer-logo-img">
-                    </a>
-                    <p class="footer-about-text">Your trusted partner for empathetic and effective IT solutions. We're here to help you navigate the complexities of technology.</p>
+        <div class="footer-grid">
+            <div class="footer-col footer-about">
+                <a href="{{ url_for('home') }}" class="footer-logo-link">
+                    <img src="{{ url_for('static', filename='images/logo-blue.png') }}" alt="Empath Technology Solutions Logo" class="footer-logo-img">
+                </a>
+                <p class="footer-about-text">Your trusted partner for empathetic and effective IT solutions. We're here to help you navigate the complexities of technology.</p>
+                
+                <div class="social-icons">
+                    <a href="https://wa.me/27615075372" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://x.com/Empath213" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/empath921" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/empath-tec-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@empathtechnologysolutions?si=1wYaD5Nw7X_5YK_j" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
 
-                <div class="footer-col">
-                    <h3 class="footer-heading">Quick Links</h3>
-                    <ul class="footer-link-list">
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('how_it_works') }}">How It Works</a></li>
-                        <li><a href="{{ url_for('blog') }}">Blog</a></li>
-                        <li><a href="{{ url_for('about') }}">About Me</a></li>
-                        <li><a href="{{ url_for('create_ticket') }}">Contact Us</a></li>
-                    </ul>
+                <!-- Newsletter Subscription Form -->
+                <div class="footer-newsletter" style="margin: 15px 0;">
+                    <form class="footer-subscribe-form" onsubmit="submitFooterSubscribe(event)">
+                        <input type="email" id="footerEmail" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <span id="footerError" style="color: #ff6b6b; font-size: 12px; display: block; margin-top: 4px;"></span>
+                    <p id="footerSubscribeMsg" style="font-size: 12px; margin-top: 8px; color: #22c55e; display: none;">Thanks for subscribing!</p>
                 </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-heading">Legal</h3>
-                    <ul class="footer-link-list">
-                        <li><a href="{{ url_for('terms') }}">Terms & Conditions</a></li>
-                        <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-col">
-                    <h3 class="footer-heading">Connect With Us</h3>
-                    <div class="social-icons">
-                        <a href="https://wa.me/27615075372" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://x.com/Empath213" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/empath921" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/empath-tec-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://youtube.com/@empathtechnologysolutions?si=1wYaD5Nw7X_5YK_j" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-
-                    <!-- Newsletter Subscription Form -->
-                    <div class="footer-newsletter" style="margin: 15px 0;">
-                        <form class="footer-subscribe-form" onsubmit="submitFooterSubscribe(event)">
-                            <input type="email" id="footerEmail" placeholder="Enter your email" required style="padding: 10px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; width: 180px;">
-                            <button type="submit" style="padding: 10px 20px; background: #243377; color: white; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; font-weight: 500;">Subscribe</button>
-                        </form>
-                        <span id="footerError" style="color: #ff6b6b; font-size: 12px; display: block; margin-top: 4px;"></span>
-                        <p id="footerSubscribeMsg" style="font-size: 12px; margin-top: 8px; color: #22c55e; display: none;">Thanks for subscribing!</p>
-                    </div>
-                    
-                    <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/web-empath/30min'});return false;" class="footer-cta-button">Schedule a Meeting</a>
-                </div>
+                
+                <a href="#" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/web-empath/30min'});return false;" class="footer-cta-button">Schedule a Meeting</a>
             </div>
 
-            <div class="footer-bottom-bar">
-                <p>&copy; 2025 Empath Technology Solutions PTY LTD. All rights reserved.</p>
+            <div class="footer-col">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-link-list">
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('how_it_works') }}">How It Works</a></li>
+                    <li><a href="{{ url_for('blog') }}">Blog</a></li>
+                    <li><a href="{{ url_for('about') }}">About Me</a></li>
+                    <li><a href="{{ url_for('create_ticket') }}">Contact Us</a></li>
+                </ul>
             </div>
+
+            <div class="footer-col">
+                <h3 class="footer-heading">Legal</h3>
+                <ul class="footer-link-list">
+                    <li><a href="{{ url_for('terms') }}">Terms & Conditions</a></li>
+                    <li><a href="{{ url_for('privacy') }}">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3 class="footer-heading">Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://wa.me/27615075372" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://x.com/Empath213" target="_blank" rel="noopener noreferrer" aria-label="X (formerly Twitter)"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/empath921" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/empath-tec-solutions/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@empathtechnologysolutions?si=1wYaD5Nw7X_5YK_j" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <p>&copy; 2025 Empath Technology Solutions PTY LTD. All rights reserved.</p>
         </div>
     </footer>
 
@@ -497,68 +1686,789 @@
                 }
             })
             .catch(error => {
-                console.error('Error:', error);
-                msg.textContent = 'Network error. Please try again.';
+                msg.textContent = 'Subscription failed';
                 msg.style.color = '#ef4444';
                 msg.style.display = 'block';
                 setTimeout(() => msg.style.display = 'none', 3000);
             });
+        };
+    </script>
+
+    <!-- Book Popup - Lead Magnet Form -->
+    <div id="bookPopup" class="book-popup">
+        <div class="book-popup-overlay" onclick="closeBookPopup()"></div>
+        <div class="book-popup-content">
+            <button class="book-popup-close" onclick="closeBookPopup()" aria-label="Close">
+                <span class="material-icons">close</span>
+            </button>
+            <div class="book-popup-grid">
+                <div class="book-popup-left">
+                    <div class="book-cover-image">
+                        <img src="{{ url_for('static', filename='images/the-journey-cover.jpg') }}" alt="The Journey by Jason Goliath - Book Cover">
+                    </div>
+                    <div class="trust-badge">
+                        <span class="trust-number">5,000+</span>
+                        <span class="trust-text">Readers</span>
+                    </div>
+                </div>
+                <div class="book-popup-right">
+                    <!-- Form View -->
+                    <div id="leadFormView">
+                        <span class="book-label">Free Download</span>
+                        <h2 class="book-headline">Get Your <em>Free</em> Copy</h2>
+                        <p class="book-description">
+                            An inspiring story of transformation and growth. Enter your details below to get instant access to the PDF.
+                        </p>
+                        <form id="leadForm" class="lead-form" onsubmit="submitLeadForm(event)">
+                            <div class="form-group">
+                                <label for="leadName" class="form-label">Full Name *</label>
+                                <input type="text" id="leadName" name="name" class="form-input" placeholder="Enter your full name" required>
+                                <span class="error-message" id="nameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="leadEmail" class="form-label">Email Address *</label>
+                                <input type="email" id="leadEmail" name="email" class="form-input" placeholder="Enter your email address" required>
+                                <span class="error-message" id="emailError"></span>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-ink btn-submit" id="submitBtn">
+                                    <span class="btn-text">Get Instant Access</span>
+                                    <span class="btn-loader"></span>
+                                </button>
+                                <button type="button" onclick="closeBookPopup()" class="btn-outline-ink">
+                                    Maybe Later
+                                </button>
+                            </div>
+                        </form>
+                        <div class="privacy-note">
+                            🔒 We respect your privacy. Unsubscribe anytime.
+                        </div>
+                    </div>
+                    
+                    <!-- Success View (Hidden initially) -->
+                    <div id="leadSuccessView" class="success-view" style="display: none;">
+                        <span class="book-label">Success!</span>
+                        <h2 class="book-headline">You're All <em>Set!</em></h2>
+                        <p class="book-description">
+                            Your free copy of "The Journey" is ready for download. Thank you for subscribing!
+                        </p>
+                        <div class="success-icon">✓</div>
+                        <div class="success-actions">
+                            <a href="{{ url_for('static', filename='pdfs/the-journey.pdf') }}" target="_blank" class="btn-ink btn-download" id="downloadBtn">
+                                <span class="material-icons">download</span>
+                                Download PDF Now
+                            </a>
+                            <button onclick="closeBookPopup()" class="btn-outline-ink">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Popup Styles -->
+    <style>
+        .book-popup {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .book-popup.active {
+            display: flex;
+        }
+        
+        .book-popup-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(4px);
+        }
+        
+        .book-popup-content {
+            position: relative;
+            background: var(--surface, #ffffff);
+            border: 2px solid var(--ink, #0f172a);
+            box-shadow: 12px 12px 0 var(--ink, #0f172a);
+            max-width: 700px;
+            width: 100%;
+            animation: popupSlideIn 0.4s ease;
+        }
+        
+        @keyframes popupSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .book-popup-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--ink, #0f172a);
+            z-index: 10;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+        
+        .book-popup-close:hover {
+            color: var(--accent, #f59e0b);
+        }
+        
+        .book-popup-grid {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 0;
+        }
+        
+        .book-popup-left {
+            background: var(--ink, #0f172a);
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        
+        .book-cover-wrapper {
+            position: relative;
+            width: 140px;
+            height: 180px;
+            perspective: 600px;
+        }
+        
+        .book-cover-spine {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(to right, #1e293b, #334155);
+            border-radius: 2px 0 0 2px;
+        }
+        
+        .book-cover-front {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 120px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent, #f59e0b) 0%, #d97706 100%);
+            border-radius: 0 3px 3px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .book-icon {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .book-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--ink, #0f172a);
+            line-height: 1.2;
+            margin: 0;
+        }
+        
+        .book-author {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink, #0f172a);
+            opacity: 0.8;
+            margin: 8px 0 0;
+        }
+        
+        .trust-badge {
+            text-align: center;
+            color: var(--bg, #f8fafc);
+        }
+        
+        .trust-number {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--accent, #f59e0b);
+            line-height: 1;
+        }
+        
+        .trust-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+        
+        .book-popup-right {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .book-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent, #f59e0b);
+            margin-bottom: 12px;
+        }
+        
+        .book-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--ink, #0f172a);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        
+        .book-headline em {
+            font-style: italic;
+            color: var(--accent, #f59e0b);
+        }
+        
+        .book-description {
+            font-size: 0.9rem;
+            color: var(--muted, #475569);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* Lead Form Styles */
+        .lead-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        
+        .form-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink, #0f172a);
+            font-weight: 500;
+        }
+        
+        .form-input {
+            padding: 12px 16px;
+            border: 2px solid var(--border, #e2e8f0);
+            font-family: 'Syne', sans-serif;
+            font-size: 0.9rem;
+            color: var(--ink, #0f172a);
+            background: var(--surface, #ffffff);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent, #f59e0b);
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+        }
+        
+        .form-input.error {
+            border-color: #dc2626;
+            background-color: rgba(220, 38, 38, 0.05);
+        }
+        
+        .form-input.error:focus {
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+        }
+        
+        .error-message {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: #dc2626;
+            display: none;
+            margin-top: 4px;
+        }
+        
+        .error-message.visible {
+            display: block;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .form-actions .btn-ink,
+        .form-actions .btn-outline-ink {
+            font-size: 10px;
+            padding: 12px 20px;
+            flex: 1;
+            min-width: 140px;
+        }
+        
+        .btn-submit {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-submit.loading .btn-text {
+            opacity: 0;
+        }
+        
+        .btn-submit.loading .btn-loader {
+            display: block;
+        }
+        
+        .btn-loader {
+            display: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            position: absolute;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .privacy-note {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            color: var(--muted, #475569);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border, #e2e8f0);
+        }
+        
+        /* Success View Styles */
+        .success-view {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent2, #14b8a6);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 20px 0;
+            animation: scaleIn 0.4s ease;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .success-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+        
+        .btn-download {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn-download .material-icons {
+            font-size: 18px;
+        }
+        
+        .book-cover-image {
+            width: 160px;
+            height: 220px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 8px 8px 20px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, var(--accent, #f59e0b) 0%, #d97706 100%);
+        }
+        
+        .book-cover-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 640px) {
+            .book-popup {
+                padding: 0;
+                align-items: flex-end;
+            }
+            
+            .book-popup-content {
+                max-width: 100%;
+                max-height: 75vh;
+                min-height: auto;
+                overflow-y: auto;
+                border-radius: 16px 16px 0 0;
+                box-shadow: 0 -8px 32px rgba(0,0,0,0.4);
+                animation: popupSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                margin: 0;
+                border: none;
+                border-top: 3px solid var(--accent, #f59e0b);
+            }
+            
+            @keyframes popupSlideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .book-popup-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            
+            .book-popup-left {
+                padding: 12px 16px;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 12px;
+                min-height: auto;
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            }
+            
+            .book-cover-image {
+                width: 50px;
+                height: 70px;
+                flex-shrink: 0;
+            }
+            
+            .trust-badge {
+                flex-direction: column;
+                gap: 2px;
+                align-items: flex-start;
+            }
+            
+            .trust-number {
+                font-size: 0.9rem;
+                letter-spacing: 0.05em;
+            }
+            
+            .trust-text {
+                font-size: 8px;
+                letter-spacing: 0.15em;
+            }
+            
+            .book-popup-right {
+                padding: 16px 20px 20px;
+            }
+            
+            .book-headline {
+                font-size: 1.1rem;
+                margin-bottom: 8px;
+            }
+            
+            .book-desc {
+                font-size: 0.85rem;
+                margin-bottom: 16px;
+                line-height: 1.5;
+            }
+            
+            .book-label {
+                font-size: 9px;
+                margin-bottom: 8px;
+            }
+            
+            .book-popup-close {
+                top: 8px;
+                right: 8px;
+                background: rgba(255,255,255,0.95);
+                border-radius: 50%;
+                width: 32px;
+                height: 32px;
+                z-index: 100;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            }
+            
+            .book-popup-close .material-icons {
+                font-size: 18px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 12px;
+            }
+            
+            .form-actions .btn-ink,
+            .form-actions .btn-outline-ink {
+                width: 100%;
+                padding: 10px 14px;
+                font-size: 12px;
+                min-height: 44px;
+            }
+            
+            .form-group {
+                margin-bottom: 12px;
+            }
+            
+            .input-ink {
+                padding: 10px 12px;
+                font-size: 16px;
+                min-height: 44px;
+            }
+            
+            .privacy-note {
+                font-size: 10px;
+                margin-top: 12px;
+            }
+            
+            /* Success view on mobile */
+            .success-view h3 {
+                font-size: 1.1rem;
+            }
+            
+            .success-view p {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .book-popup-content {
+                max-height: 80vh;
+            }
+            
+            .book-popup-right {
+                padding: 14px 16px 18px;
+            }
+            
+            .book-headline {
+                font-size: 1rem;
+            }
+            
+            .book-popup-left {
+                padding: 10px 14px;
+            }
+            
+            .book-cover-image {
+                width: 45px;
+                height: 60px;
+            }
+            
+            .trust-number {
+                font-size: 0.85rem;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .book-popup-right {
+                padding: 12px 14px 16px;
+            }
+            
+            .book-headline {
+                font-size: 0.95rem;
+            }
+            
+            .book-desc {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+
+    <!-- Book Popup JavaScript -->
+    <script>
+        // Email validation regex
+        const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        // Show popup after 3 seconds on first visit
+        document.addEventListener('DOMContentLoaded', function() {
+            const hasSeenBookPopup = sessionStorage.getItem('hasSeenBookPopup');
+            if (!hasSeenBookPopup) {
+                setTimeout(function() {
+                    document.getElementById('bookPopup').classList.add('active');
+                    sessionStorage.setItem('hasSeenBookPopup', 'true');
+                }, 3000);
+            }
+        });
+        
+        function closeBookPopup() {
+            document.getElementById('bookPopup').classList.remove('active');
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeBookPopup();
+            }
+        });
+        
+        // Real-time validation
+        document.getElementById('leadName').addEventListener('input', function() {
+            clearError('name');
+        });
+        
+        document.getElementById('leadEmail').addEventListener('input', function() {
+            clearError('email');
+        });
+        
+        function clearError(field) {
+            const input = document.getElementById('lead' + field.charAt(0).toUpperCase() + field.slice(1));
+            const error = document.getElementById(field + 'Error');
+            input.classList.remove('error');
+            error.classList.remove('visible');
+            error.textContent = '';
+        }
+        
+        function showError(field, message) {
+            const input = document.getElementById('lead' + field.charAt(0).toUpperCase() + field.slice(1));
+            const error = document.getElementById(field + 'Error');
+            input.classList.add('error');
+            input.focus();
+            error.textContent = message;
+            error.classList.add('visible');
+        }
+        
+        function validateForm() {
+            let isValid = true;
+            const name = document.getElementById('leadName').value.trim();
+            const email = document.getElementById('leadEmail').value.trim().toLowerCase();
+            
+            // Validate name
+            if (!name) {
+                showError('name', 'Please enter your full name');
+                isValid = false;
+            } else if (name.length < 2) {
+                showError('name', 'Name must be at least 2 characters');
+                isValid = false;
+            }
+            
+            // Validate email
+            if (!email) {
+                showError('email', 'Please enter your email address');
+                isValid = false;
+            } else if (!EMAIL_REGEX.test(email)) {
+                showError('email', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            return isValid ? { name, email } : null;
+        }
+        
+        function submitLeadForm(e) {
+            e.preventDefault();
+            
+            // Clear previous errors
+            clearError('name');
+            clearError('email');
+            
+            // Validate
+            const formData = validateForm();
+            if (!formData) return;
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Submit to API
+            fetch('/api/leads', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                
+                if (data.success) {
+                    // Show success view
+                    document.getElementById('leadFormView').style.display = 'none';
+                    document.getElementById('leadSuccessView').style.display = 'flex';
+                    
+                    // Auto-download after short delay
+                    setTimeout(() => {
+                        const downloadBtn = document.getElementById('downloadBtn');
+                        if (downloadBtn) {
+                            downloadBtn.click();
+                        }
+                    }, 1500);
+                } else {
+                    // Show error
+                    if (data.error && data.error.includes('email')) {
+                        showError('email', data.error);
+                    } else if (data.error && data.error.includes('name')) {
+                        showError('name', data.error);
+                    } else {
+                        showError('email', data.error || 'Something went wrong. Please try again.');
+                    }
+                }
+            })
+            .catch(error => {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                showError('email', 'Network error. Please check your connection and try again.');
+                console.error('Lead submission error:', error);
+            });
         }
     </script>
 
-    
-    {% block extra_js %}{% endblock %}
-<!-- WhatsApp Widget Hidden
-<script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-        <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-        <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-      <script async src='https://d2mpatx37cqexb.cloudfront.net/delightchat-whatsapp-widget/embeds/embed.min.js'></script>
-        <script>
-          var wa_btnSetting = {"btnColor":"#0d0d0d","ctaText":"WhatsApp Us","cornerRadius":40,"marginBottom":20,"marginLeft":20,"marginRight":20,"btnPosition":"right","whatsAppNumber":"27615075372","welcomeMessage":"Hi, I want to know more!","zIndex":999999,"btnColorScheme":"light"};
-          var wa_widgetSetting = {"title":"Empath Technology Solutions","subTitle":"Typically replies in a day","headerBackgroundColor":"#000000","headerColorScheme":"light","greetingText":"Hi there! \nHow can I help you?","ctaText":"Start Chat","btnColor":"#1A1A1A","cornerRadius":40,"welcomeMessage":"Hello","btnColorScheme":"light","brandImage":"https://www.empathtechnologysolutions.com/static/images/Empath.png","darkHeaderColorScheme":{"title":"#333333","subTitle":"#4F4F4F"}};
-          window.onload = () => {
-            _waEmbed(wa_btnSetting, wa_widgetSetting);
-          };
-        </script>
--->
-
-   <script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"siq63ed16c87859cf96437fab33ee83db03c87b66b1ab681c7af431ad5200cc401a", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
-
-   <!-- Scroll Animation Script -->
-   <script>
-     // Intersection Observer for scroll animations
-     const observerOptions = {
-       threshold: 0.1,
-       rootMargin: '0px 0px -50px 0px'
-     };
-
-     const observer = new IntersectionObserver((entries) => {
-       entries.forEach(entry => {
-         if (entry.isIntersecting) {
-           entry.target.classList.add('visible');
-         }
-       });
-     }, observerOptions);
-
-     // Observe all animated elements
-     document.addEventListener('DOMContentLoaded', () => {
-       const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in, .solution-card, .step, .bundle');
-       animatedElements.forEach(el => observer.observe(el));
-     });
-
-     // Smooth scroll for anchor links
-     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-       anchor.addEventListener('click', function (e) {
-         e.preventDefault();
-         const target = document.querySelector(this.getAttribute('href'));
-         if (target) {
-           target.scrollIntoView({
-             behavior: 'smooth',
-             block: 'start'
-           });
-         }
-       });
-     });
-   </script>
+    <!-- Zoho Chat Widget -->
+    <script type="text/javascript">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"siq63ed16c87859cf96437fab33ee83db03c87b66b1ab681c7af431ad5200cc401a", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
 </body>
 </html>

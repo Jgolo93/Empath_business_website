@@ -1,172 +1,619 @@
 {% extends 'layout.html' %}
 
-{% block title %}Create Support Ticket - Empath IT Support{% endblock %}
+{% block title %}Contact Us - Empath IT Support{% endblock %}
 
 {% block content %}
-<section class="page-header">
-    <div class="container">
-        <h1>Create Support Ticket</h1>
-        <p>Let us know how we can help you!</p>
-    </div>
-</section>
 
-<section class="business-solutions">
-    <div class="container">
-        <h2>IT Solutions for Everyone</h2>
-        <p style="text-align: center; margin-bottom: 30px;">Whether you're an individual or a business, we provide comprehensive IT support tailored to your needs.</p>
-        <div class="solutions-grid">
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">person</i>
-                </div>
-                <h3 class="solution-title">Personal Support</h3>
-                <div class="solution-content">
-                    <p>We help individuals with computer repairs, virus removal, data recovery, and more. Our friendly technicians explain everything in plain language.</p>
-                </div>
+<!-- ── EDITORIAL MASTHEAD ── -->
+<div class="editorial-masthead">
+    <span>Empath Technology Solutions</span>
+    <span class="masthead-divider">·</span>
+    <span>IT Support & Web Development</span>
+    <span class="masthead-divider">·</span>
+    <span>Cape Town, South Africa</span>
+</div>
+
+<!-- ── PAGE HERO ── -->
+<div class="blog-hero-editorial">
+    <div class="hero-kicker">Contact Us · Issue 2025</div>
+    <h1>Get In<br/><em>Touch</em></h1>
+
+    <div class="hero-body-row">
+        <div>
+            <p class="hero-lead">
+                Have a question or need IT support? Fill out the form below and our team will respond promptly. We handle everything from computer repairs to network setup and web development.
+            </p>
+            <div class="hero-ctas">
+                <a href="#ticket-form" class="btn-ink">Contact Us →</a>
             </div>
-            <div class="solution-card">
-                <div class="solution-icon">
-                    <i class="material-icons">business</i>
+        </div>
+        <div class="hero-sidebar">
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="num">24/7</span>
+                    <span class="lbl">Support Available</span>
                 </div>
-                <h3 class="solution-title">Business Solutions</h3>
-                <div class="solution-content">
-                    <p>Our business IT solutions include network setup, security implementation, cloud services, and ongoing maintenance to keep your operations running smoothly.</p>
+                <div class="hero-stat">
+                    <span class="num">< 1hr</span>
+                    <span class="lbl">Response Time</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="num">500+</span>
+                    <span class="lbl">Clients Helped</span>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 
-<section class="ticket-form">
-    <div class="container">
-        <div class="form-container">
-            <h2>Submit Your Support Request</h2>
-            <p>Please fill out the form below and we'll get back to you as soon as possible.</p>
-            
-            <div id="zoho-form-container">
-                <iframe id="zoho-form" aria-label='Create a ticket form' frameborder="0" 
-                    src='https://forms.zohopublic.com/webempathgm1/form/TermsandConditions/formperma/wHbi5TadAYc2RtkcMBxBENUTvUnPEKYgIIsrYtRwDkk'>
-                </iframe>
-            </div>
-            
-            <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    const urlParams = new URLSearchParams(window.location.search);
-                    const subject = urlParams.get('subject');
-                    
-                    if (subject) {
-                        const iframe = document.getElementById('zoho-form');
-                        
-                        // Function to set the subject in the form
-                        function setSubject() {
-                            try {
-                                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-                                const subjectField = iframeDoc.querySelector('input[name*="subject"], input[name*="Subject"]');
-                                
-                                if (subjectField) {
-                                    subjectField.value = subject;
-                                    return true;
-                                }
-                                return false;
-                            } catch (e) {
-                                console.error('Error accessing iframe:', e);
-                                return false;
-                            }
-                        }
-                        
-                        // Try to set subject immediately
-                        if (!setSubject()) {
-                            // If not successful, wait for iframe to load
-                            iframe.onload = function() {
-                                setSubject();
-                                
-                                // Additional check in case the form loads dynamically
-                                setTimeout(setSubject, 1000);
-                            };
-                        }
-                    }
-                });
-            </script>
+<!-- ── TICKET FORM SECTION ── -->
+<div class="section-rule" id="ticket-form">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Submit Your Request</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="ticket-form-container">
+        <div class="ticket-form-header">
+            <span class="ticket-icon">🎫</span>
+            <h2>Get in Touch</h2>
+            <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+        </div>
+
+        <!-- Zoho Embedded Form -->
+        <div class="zoho-form-wrapper">
+            <iframe id="zoho-form"
+                aria-label='Create a ticket form'
+                frameborder="0"
+                src='https://forms.zohopublic.com/webempathgm1/form/TermsandConditions/formperma/wHbi5TadAYc2RtkcMBxBENUTvUnPEKYgIIsrYtRwDkk'
+                width="100%"
+                height="600px"
+                style="border: none; max-width: 100%;">
+            </iframe>
         </div>
     </div>
-</section>
+</div>
+
+<!--
+< !-- ── SOLUTIONS SECTION ── -->
+<!--div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">IT Solutions for Everyone</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<!--div-- class="featured-wrap">
+    < IT Solutions Section - REMOVED TO ELIMINATE WHITE SPACE
+    <div class="solutions-intro">
+        <p class="solutions-lead">Whether you're an individual or a business, we provide comprehensive IT support tailored to your needs.</p>
+    </div>
+    <div class="solutions-grid">
+        <div class="solution-card">
+            <div class="solution-icon">
+                <i class="material-icons">person</i>
+            </div>
+            <h3 class="solution-title">Personal Support</h3>
+            <p class="solution-content">We help individuals with computer repairs, virus removal, data recovery, and more. Our friendly technicians explain everything in plain language.</p>
+        </div>
+        <div class="solution-card">
+            <div class="solution-icon">
+                <i class="material-icons">business</i>
+            </div>
+            <h3 class="solution-title">Business Solutions</h3>
+            <p class="solution-content">Our business IT solutions include network setup, security implementation, cloud services, and ongoing maintenance to keep your operations running smoothly.</p>
+        </div>
+    </div>
+</div-->
 
 <style>
-    /* Center the solution cards */
+/* ── TICKET FORM CONTAINER ── */
+.ticket-form-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 0;
+}
+
+/* Override featured-wrap padding for this page */
+.featured-wrap {
+    padding-bottom: 0;
+}
+
+.ticket-form-header {
+    text-align: center;
+    padding: 32px;
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    border-bottom: none;
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.ticket-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.ticket-form-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+}
+
+.ticket-form-header p {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+}
+
+/* ── EDITORIAL FORM STYLES ── */
+.editorial-form {
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    padding: 40px;
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.form-row {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.form-row.two-col {
+    grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.required {
+    color: #dc2626;
+    margin-left: 2px;
+}
+
+.subject-hint {
+    font-weight: 400;
+    color: var(--muted);
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 10px;
+}
+
+.field-hint {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    font-style: italic;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #94a3b8;
+}
+
+.form-group select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230f172a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ── PHONE INPUT WITH DIAL CODE ── */
+.phone-input-wrapper {
+    display: flex;
+    border: 2px solid var(--border);
+    background: var(--bg);
+    align-items: center;
+}
+
+.phone-input-wrapper:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+}
+
+.dial-code {
+    padding: 14px 12px 14px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--muted);
+    border-right: 2px solid var(--border);
+    background: rgba(15, 23, 42, 0.03);
+}
+
+.phone-input-wrapper input {
+    border: none !important;
+    box-shadow: none !important;
+    flex: 1;
+    padding-left: 12px !important;
+}
+
+.phone-input-wrapper input:focus {
+    box-shadow: none !important;
+}
+
+/* ── CONSENT CHECKBOXES ── */
+.consent-section {
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-top: 24px;
+}
+
+.consent-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox-label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s ease;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkmark::after {
+    content: '✓';
+    color: var(--bg);
+    font-size: 12px;
+    display: none;
+}
+
+.checkbox-label input:checked ~ .checkmark::after {
+    display: block;
+}
+
+.checkbox-text {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+}
+
+.consent-note {
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+
+/* ── SUBMIT BUTTON ── */
+.form-actions {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 16px 32px;
+    background: var(--ink);
+    color: var(--bg);
+    border: 2px solid var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-submit:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.btn-submit:disabled {
+    background: var(--border);
+    border-color: var(--border);
+    color: var(--muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ── FORM STATUS ── */
+.form-status {
+    margin-top: 20px;
+    padding: 16px 20px;
+    border: 2px solid;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-align: center;
+}
+
+.form-status.success {
+    border-color: var(--accent2);
+    background: rgba(20, 184, 166, 0.1);
+    color: #0f766e;
+}
+
+.form-status.error {
+    border-color: #dc2626;
+    background: rgba(220, 38, 38, 0.1);
+    color: #991b1b;
+}
+
+/* ── ZOHO FORM WRAPPER ── */
+.zoho-form-wrapper {
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    padding: 0;
+    box-shadow: 8px 8px 0 var(--ink);
+    overflow: hidden;
+}
+
+.zoho-form-wrapper iframe {
+    display: block;
+    min-height: 600px;
+}
+
+/* ── SOLUTIONS SECTION ── */
+.solutions-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    padding: 0 40px;
+}
+
+.solutions-lead {
+    font-size: 1.15rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 40px 56px;
+}
+
+.solution-card {
+    background: var(--surface);
+    border: 2px solid var(--ink);
+    padding: 32px;
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.solution-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.solution-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--ink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.solution-icon .material-icons {
+    font-size: 28px;
+    color: var(--bg);
+}
+
+.solution-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 12px;
+    color: var(--ink);
+}
+
+.solution-content {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+    .ticket-form-container {
+        padding: 0 20px 0;
+    }
+
+    .ticket-form-header {
+        padding: 24px 20px;
+    }
+
+    .ticket-form-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .zoho-form-wrapper {
+        min-height: 350px;
+    }
+
+    .zoho-form-wrapper iframe {
+        min-height: 350px;
+        height: 350px;
+    }
+
+    .solutions-intro {
+        margin-bottom: 24px;
+        padding: 0 20px;
+    }
+
     .solutions-grid {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin: 30px auto;
-        flex-wrap: wrap;
-        max-width: 900px;
+        grid-template-columns: 1fr;
+        padding: 0 20px 24px;
+        gap: 16px;
     }
 
     .solution-card {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        padding: 25px;
-        width: 300px;
-        text-align: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        display: flex;
-        flex-direction: column;
+        padding: 20px;
     }
 
-    .solution-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    .blog-hero-editorial {
+        padding: 40px 20px 32px;
     }
 
-    .solution-icon {
-        width: 60px;
-        height: 60px;
-        background-color: #f0f4f9;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 15px;
+    .hero-body-row {
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 
-    .solution-icon .material-icons {
-        font-size: 30px;
-        color: #4a6da7;
+    .hero-sidebar {
+        border-left: none;
+        border-top: 2px solid var(--ink);
+        padding: 20px 0 0;
     }
 
-    .solution-title {
-        height: 54px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #333;
-        margin-bottom: 15px;
-        font-size: 18px;
+    .hero-stats {
+        flex-direction: row;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ticket-form-header h2 {
+        font-size: 1.4rem;
     }
 
-    .solution-content {
-        flex-grow: 1;
+    .zoho-form-wrapper {
+        min-height: 320px;
     }
 
-    .solution-content p {
-        color: #666;
-        line-height: 1.5;
+    .zoho-form-wrapper iframe {
+        min-height: 320px;
+        height: 320px;
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .solutions-grid {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .solution-card {
-            width: 100%;
-            max-width: 350px;
-        }
-    }
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const subject = urlParams.get('subject');
+
+    if (subject) {
+        const iframe = document.getElementById('zoho-form');
+
+        // Function to set the subject in the form
+        function setSubject() {
+            try {
+                const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                const subjectField = iframeDoc.querySelector('input[name*="subject"], input[name*="Subject"]');
+
+                if (subjectField) {
+                    subjectField.value = subject;
+                    return true;
+                }
+                return false;
+            } catch (e) {
+                console.error('Error accessing iframe:', e);
+                return false;
+            }
+        }
+
+        // Try to set subject immediately
+        if (!setSubject()) {
+            // If not successful, wait for iframe to load
+            iframe.onload = function() {
+                setSubject();
+
+                // Additional check in case the form loads dynamically
+                setTimeout(setSubject, 1000);
+            };
+        }
+    }
+});
+</script>
 
 {% endblock %}
