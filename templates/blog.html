@@ -39,6 +39,8 @@
   align-items: center;
   justify-content: center;
   gap: 24px;
+  position: relative;
+  z-index: 999;
 }
 .masthead-divider { opacity: 0.3; }
 
@@ -857,6 +859,7 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
+  .blog-masthead { display: none; }
   .blog-hero-editorial { padding: 48px 24px 40px; }
   .hero-body-row { grid-template-columns: 1fr; gap: 28px; }
   .hero-sidebar { border-left: none; border-top: 2px solid var(--ink); padding: 20px 0 0; }
@@ -873,6 +876,7 @@
 }
 
 @media (max-width: 480px) {
+  .blog-masthead { display: none; }
   .featured-body { padding: 24px 16px; }
   .articles-wrap, .featured-wrap, .topics-wrap, .filter-bar { padding-left: 16px; padding-right: 16px; }
   .featured-body h2 { font-size: 1.5rem; }

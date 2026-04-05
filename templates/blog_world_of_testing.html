@@ -3,6 +3,18 @@
 {% block title %}The World of Testing — A Complete Guide | Software Quality & QA | Empath Technology Solutions{% endblock %}
 
 {% block content %}
+<style>
+@media(max-width:768px){
+  .editorial-title,.editorial-body h2{overflow-wrap:break-word;word-wrap:break-word;word-break:break-word}
+  .editorial-body,.article-body p{overflow-wrap:break-word;max-width:100%}
+  .article-content-wrapper{max-width:100%;min-width:0;overflow-x:hidden}
+  .editorial-layout .container{padding:0 16px}
+  .editorial-table-wrap{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0}
+  .editorial-table{min-width:650px;width:auto;font-size:0.85rem;border-collapse:collapse}
+  .editorial-table th,.editorial-table td{padding:12px 10px;border:1px solid #e2e8f0;white-space:normal}
+  .editorial-table th{font-size:0.75rem;letter-spacing:0.05em}
+}
+</style>
 <!-- Reading Progress Bar -->
 <div class="reading-progress-container">
     <div class="reading-progress-bar" id="readingProgress"></div>
@@ -205,23 +217,23 @@
                             exploratory tests, one-time checks, or UI flows that change constantly.
                         </p>
                         
-                        <div class="editorial-table-wrap">
-                            <table class="editorial-table">
+                        <div class="editorial-table-wrap" style="display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;">
+                            <table class="editorial-table" style="min-width:650px;width:auto;font-size:0.85rem;border-collapse:collapse;">
                                 <thead>
                                     <tr>
-                                        <th>Test Type</th>
-                                        <th>Automation Value</th>
-                                        <th>Recommended Tools</th>
+                                        <th style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;font-size:0.75rem;letter-spacing:0.05em;background:#0f172a;color:#f8fafc;">Test Type</th>
+                                        <th style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;font-size:0.75rem;letter-spacing:0.05em;background:#0f172a;color:#f8fafc;">Automation Value</th>
+                                        <th style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;font-size:0.75rem;letter-spacing:0.05em;background:#0f172a;color:#f8fafc;">Recommended Tools</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>Unit</td><td>Essential — automate everything</td><td>pytest, Jest, JUnit, NUnit</td></tr>
-                                    <tr><td>Integration</td><td>High value, strong ROI</td><td>pytest, Testcontainers, REST Assured</td></tr>
-                                    <tr><td>API</td><td>High — fast and stable</td><td>Postman, pytest, Robot Framework</td></tr>
-                                    <tr><td>UI / E2E</td><td>Selective — critical paths only</td><td>Robot Framework + Browser Library, Cypress</td></tr>
-                                    <tr><td>Performance</td><td>Automate in CI for regressions</td><td>k6, Locust, JMeter</td></tr>
-                                    <tr><td>Security</td><td>SAST/DAST in pipeline</td><td>OWASP ZAP, Snyk, Trivy</td></tr>
-                                    <tr><td>Accessibility</td><td>Automate basics, manual audit</td><td>axe-core, Lighthouse</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Unit</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Essential — automate everything</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">pytest, Jest, JUnit, NUnit</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Integration</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">High value, strong ROI</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">pytest, Testcontainers, REST Assured</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">API</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">High — fast and stable</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Postman, pytest, Robot Framework</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">UI / E2E</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Selective — critical paths only</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Robot Framework + Browser Library, Cypress</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Performance</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Automate in CI for regressions</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">k6, Locust, JMeter</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Security</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">SAST/DAST in pipeline</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">OWASP ZAP, Snyk, Trivy</td></tr>
+                                    <tr><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Accessibility</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">Automate basics, manual audit</td><td style="padding:12px 10px;border:1px solid #e2e8f0;white-space:nowrap;">axe-core, Lighthouse</td></tr>
                                 </tbody>
                             </table>
                         </div>
