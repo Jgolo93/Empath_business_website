@@ -843,6 +843,7 @@ def referral_intake():
     # Try multiple possible field names from Zoho Forms
     customer_name = (
         data.get('customer_name', '') or 
+        data.get('Name1.First', '') or
         data.get('Name', '') or 
         data.get('name', '') or
         ''
@@ -850,6 +851,7 @@ def referral_intake():
     
     customer_phone = (
         data.get('customer_phone', '') or 
+        data.get('PhoneNumber', '') or
         data.get('Phone', '') or 
         data.get('phone', '') or 
         data.get('Mobile', '') or
@@ -865,6 +867,7 @@ def referral_intake():
     
     referral_code = (
         data.get('referral_code', '') or 
+        data.get('SingleLine2', '') or
         data.get('Referral_Code', '') or 
         data.get('Referral Code', '') or 
         data.get('code', '') or
