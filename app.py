@@ -541,39 +541,41 @@ def referral_intake():
 
     app.logger.info(f"Received referral intake data: {data}")
 
-    customer_name = (
-        data.get('customer_name', '') or
-        data.get('Name1.First', '') or
-        data.get('Name', '') or
-        data.get('name', '') or
-        ''
-    ).strip()
+    def clean(val):
+        val = (val or '').strip()
+        # discard Zoho unreplaced placeholders
+        if val.startswith('<') and val.endswith('>'):
+            return ''
+        return val
 
-    customer_phone = (
-        data.get('customer_phone', '') or
-        data.get('PhoneNumber', '') or
-        data.get('Phone', '') or
-        data.get('phone', '') or
-        data.get('Mobile', '') or
-        ''
-    ).strip()
+    customer_name = clean(
+        data.get('customer_name') or
+        data.get('Name1.First') or
+        data.get('Name') or
+        data.get('name')
+    )
 
-    customer_email = (
-        data.get('customer_email', '') or
-        data.get('Email', '') or
-        data.get('email', '') or
-        ''
-    ).strip()
+    customer_phone = clean(
+        data.get('customer_phone') or
+        data.get('PhoneNumber') or
+        data.get('Phone') or
+        data.get('phone') or
+        data.get('Mobile')
+    )
 
-    referral_code = (
-        data.get('referral_code', '') or
-        data.get('refferral_code', '') or
-        data.get('SingleLine2', '') or
-        data.get('Referral_Code', '') or
-        data.get('Referral Code', '') or
-        data.get('code', '') or
-        ''
-    ).strip().upper()
+    customer_email = clean(
+        data.get('customer_email') or
+        data.get('Email') or
+        data.get('email')
+    )
+
+    referral_code = clean(
+        data.get('referral_code') or
+        data.get('refferral_code') or
+        data.get('SingleLine2') or
+        data.get('Referral_Code') or
+        data.get('code')
+    ).upper()
 
     if not customer_name or not customer_phone:
         app.logger.error(f"Missing required fields. Name: '{customer_name}', Phone: '{customer_phone}'")
