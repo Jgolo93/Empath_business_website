@@ -827,6 +827,14 @@ def referral_intake():
     Creates a Referral row linked to the Referrer who owns that code.
     Sends the referrer an email saying their person has submitted.
     """
+    # Log full request for debugging
+    app.logger.info(f"Request method: {request.method}")
+    app.logger.info(f"Request headers: {dict(request.headers)}")
+    app.logger.info(f"Request form data: {request.form.to_dict()}")
+    app.logger.info(f"Request args: {request.args.to_dict()}")
+    app.logger.info(f"Request JSON: {request.get_json(silent=True)}")
+    app.logger.info(f"Request raw data: {request.get_data(as_text=True)}")
+
     try:
         data = request.get_json()
     except Exception as e:
