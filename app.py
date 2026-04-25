@@ -835,13 +835,9 @@ def referral_intake():
     app.logger.info(f"Request JSON: {request.get_json(silent=True)}")
     app.logger.info(f"Request raw data: {request.get_data(as_text=True)}")
 
-    try:
-        data = request.get_json()
-    except Exception as e:
-        app.logger.error(f"Error parsing JSON: {e}")
+   data = request.get_json(force=True, silent=True)
+    if not data:
         data = request.form.to_dict()
-    
-    # If still empty, try args
     if not data:
         data = request.args.to_dict()
 
