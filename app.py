@@ -6,6 +6,7 @@ import random
 import string
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
@@ -882,10 +883,15 @@ def referral_intake():
         app.logger.error(f"Missing required fields. Name: '{customer_name}', Phone: '{customer_phone}'")
         return jsonify({'error': 'customer_name and customer_phone are required', 'received_data': data}), 400
 
+
     # Find the referrer by code — if no valid code just log unlinked
     referrer = None
     if referral_code:
-        referrer = Referrer.query.filter_by(referral_code=referral_code).first()
+        try:
+            db.session.close()  # force fresh connection in case Neon was sleeping
+            referrer = Referrer.query.filter_by(referral_code=referral_code).first()
+    except Exception as e:
+        app.logger.error(f"DB error looking up referrer: {e}")
 
     try:
         referral = Referral(
