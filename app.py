@@ -6,7 +6,6 @@ import random
 import string
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
-from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
