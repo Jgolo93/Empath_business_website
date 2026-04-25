@@ -829,10 +829,39 @@ def referral_intake():
     """
     data = request.get_json() or request.form.to_dict()
 
-    customer_name  = data.get('customer_name', '').strip()
-    customer_phone = data.get('customer_phone', '').strip()
-    customer_email = data.get('customer_email', '').strip()
-    referral_code  = data.get('referral_code', '').strip().upper()
+    # Log incoming data for debugging
+    app.logger.info(f"Received referral intake data: {data}")
+
+    # Try multiple possible field names from Zoho Forms
+    customer_name = (
+        data.get('customer_name', '') or 
+        data.get('Name', '') or 
+        data.get('name', '') or
+        ''
+    ).strip()
+    
+    customer_phone = (
+        data.get('customer_phone', '') or 
+        data.get('Phone', '') or 
+        data.get('phone', '') or 
+        data.get('Mobile', '') or
+        ''
+    ).strip()
+    
+    customer_email = (
+        data.get('customer_email', '') or 
+        data.get('Email', '') or 
+        data.get('email', '') or
+        ''
+    ).strip()
+    
+    referral_code = (
+        data.get('referral_code', '') or 
+        data.get('Referral_Code', '') or 
+        data.get('Referral Code', '') or 
+        data.get('code', '') or
+        ''
+    ).strip().upper()
 
     if not customer_name or not customer_phone:
         return jsonify({'error': 'customer_name and customer_phone are required'}), 400
