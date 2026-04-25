@@ -818,7 +818,7 @@ def referrer_signup():
 
 
 # --- ROUTE 3: Zoho Forms webhook — fires when a prospect submits the contact form ---
-@app.route('/api/referral-intake', methods=['POST'])
+@app.route('/api/referral-intake', methods=['GET', 'POST'])
 def referral_intake():
     """
     Called by Zoho Forms webhook when a prospect submits the contact form.
