@@ -827,7 +827,15 @@ def referral_intake():
     Creates a Referral row linked to the Referrer who owns that code.
     Sends the referrer an email saying their person has submitted.
     """
-    data = request.get_json() or request.form.to_dict()
+    try:
+        data = request.get_json()
+    except Exception as e:
+        app.logger.error(f"Error parsing JSON: {e}")
+        data = request.form.to_dict()
+    
+    # If still empty, try args
+    if not data:
+        data = request.args.to_dict()
 
     # Log incoming data for debugging
     app.logger.info(f"Received referral intake data: {data}")
@@ -864,7 +872,8 @@ def referral_intake():
     ).strip().upper()
 
     if not customer_name or not customer_phone:
-        return jsonify({'error': 'customer_name and customer_phone are required'}), 400
+        app.logger.error(f"Missing required fields. Name: '{customer_name}', Phone: '{customer_phone}'")
+        return jsonify({'error': 'customer_name and customer_phone are required', 'received_data': data}), 400
 
     # Find the referrer by code — if no valid code just log unlinked
     referrer = None
