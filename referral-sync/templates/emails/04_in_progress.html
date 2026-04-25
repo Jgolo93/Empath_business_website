@@ -1,0 +1,17 @@
+{% extends 'emails/base_email.html' %}
+{% block content %}
+<p>Hi <strong>{{ referrer.first_name }}</strong>,</p>
+
+<span class="badge">{{ referral.status|title|replace('_', ' ') }}</span>
+
+<p>A consultant is now actively working with <strong>{{ referral.customer_name }}</strong>. Things are moving forward.</p>
+
+<div class="info-card">
+  <p><strong>Customer:</strong> {{ referral.customer_name }}</p>
+  <p><strong>Status:</strong> {{ referral.status|title|replace('_', ' ') }}</p>
+</div>
+
+<p>We'll update you again as soon as there is more news.</p>
+
+<p>— Empath Technology Solutions</p>
+{% endblock %}

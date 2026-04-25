@@ -1,0 +1,17 @@
+{% extends 'emails/base_email.html' %}
+{% block content %}
+<p>Hi <strong>{{ referrer.first_name }}</strong>,</p>
+
+<span class="badge orange">{{ referral.status|title|replace('_', ' ') }}</span>
+
+<p>The process for <strong>{{ referral.customer_name }}</strong> is temporarily {{ referral.status|replace('_', ' ') }}. We're waiting for some additional information from them.</p>
+
+<div class="info-card">
+  <p><strong>Customer:</strong> {{ referral.customer_name }}</p>
+  <p><strong>Status:</strong> {{ referral.status|title|replace('_', ' ') }}</p>
+</div>
+
+<p>If you're in contact with them, a gentle nudge from you might help things move faster. We'll let you know once things are moving again.</p>
+
+<p>— Empath Technology Solutions</p>
+{% endblock %}

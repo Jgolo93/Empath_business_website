@@ -4,6 +4,7 @@ charset-normalizer==3.4.2
 click==8.2.0
 colorama==0.4.6
 Flask==2.3.3
+Flask-Mail
 Flask-SQLAlchemy==3.1.1
 SQLAlchemy==2.0.40
 psycopg2-binary==2.9.10

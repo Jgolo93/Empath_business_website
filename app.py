@@ -1,49 +1,38 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import requests
 import os
-import json
-import time
 import hashlib
-from dotenv import load_dotenv
-from werkzeug.utils import secure_filename
-from flask import send_from_directory
+import random
+import string
 from flask_sqlalchemy import SQLAlchemy
-
-# Load environment variables
-load_dotenv()
+from flask_mail import Mail, Message
 
 app = Flask(__name__)
-app.secret_key = os.getenv('SECRET_KEY', '3326a6c76241b25be006e1a52c1d197ee23141c9f2')
+app.secret_key = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
 
-# Zoho Desk OAuth configuration - TEMPORARILY DISABLED
-# To re-enable: Update OAuth credentials and uncomment these lines
-# ZOHO_CLIENT_ID = '1000.OCP7ADAC99HLRYU5VPU91VMV1A1VJI'
-# ZOHO_CLIENT_SECRET = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
-# ZOHO_REFRESH_TOKEN = '1000.dca392a320b7c2a2bb23b5eb483305d9.a69c286a8e5631b6b7661a25d3603a82'
-# ZOHO_DESK_DOMAIN = 'desk.zoho.eu'
-# ZOHO_DESK_ORG_ID = '887430547'
-# ZOHO_DESK_DEPARTMENT_ID = '1129372000000006907'
-# ZOHO_ACCOUNTS_URL = 'https://accounts.zoho.eu'
-
-# Store access token in memory (in production, use a proper cache or database)
-# ACCESS_TOKEN_INFO = {
-#     'access_token': None,
-#     'expires_at': 0
-# }
-
-# ========================================
-# DATABASE SETUP - PostgreSQL (Neon)
-# ========================================
-
-DATABASE_URL = os.getenv(
-    'DATABASE_URL',
-    "postgresql://neondb_owner:npg_2led5BIEjmnx@ep-misty-resonance-aeq4m318-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
-)
-
+# ── Database ──────────────────────────────────────────────────────
+# Hardcoded to override .env placeholder
+DATABASE_URL = "postgresql://neondb_owner:npg_2led5BIEjmnx@ep-misty-resonance-aeq4m318-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require"
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+# Create tables if they don't exist
+with app.app_context():
+    try:
+        db.create_all()
+    except Exception as e:
+        app.logger.error(f"Database connection error: {e}")
+
+# ── Email (Zoho Mail) ───────────────────────────────────────────────
+app.config['MAIL_SERVER']         = 'smtp.zoho.com'
+app.config['MAIL_PORT']           = 587
+app.config['MAIL_USE_TLS']        = True
+app.config['MAIL_USERNAME']       = 'jason.goliath@empathtechnologysolutions.com'
+app.config['MAIL_PASSWORD']       = '4dubCZHtMXbk'
+app.config['MAIL_DEFAULT_SENDER'] = 'Empath Technology Solutions <jason.goliath@empathtechnologysolutions.com>'
+mail = Mail(app)
 
 # ========================================
 # DATABASE MODELS
@@ -132,6 +121,62 @@ class Lead(db.Model):
             'subscribed_at': self.subscribed_at.isoformat() if self.subscribed_at else None,
             'downloaded': self.downloaded
         }
+
+
+def generate_referral_code(first_name):
+    """Generate a human-readable unique referral code like REF-JASON-4821"""
+    clean = ''.join(c for c in first_name.upper() if c.isalpha())[:8]
+    suffix = ''.join(random.choices(string.digits, k=4))
+    return f"REF-{clean}-{suffix}"
+
+
+class Referrer(db.Model):
+    """A person who refers customers to the business."""
+    __tablename__ = 'referrers'
+
+    id            = db.Column(db.Integer, primary_key=True)
+    first_name    = db.Column(db.String(80),  nullable=False)
+    last_name     = db.Column(db.String(80),  nullable=False)
+    email         = db.Column(db.String(120), unique=True, nullable=False)
+    phone         = db.Column(db.String(30),  unique=True, nullable=False)
+    referral_code = db.Column(db.String(30),  unique=True, nullable=False)
+    created_at    = db.Column(db.DateTime,    default=db.func.now())
+    is_active     = db.Column(db.Boolean,     default=True)
+
+    referrals = db.relationship('Referral', backref='referrer', lazy=True)
+
+    def __repr__(self):
+        return f'<Referrer {self.referral_code}>'
+
+
+class Referral(db.Model):
+    """A customer referred by a Referrer. Tracks their journey."""
+    __tablename__ = 'referrals'
+
+    STATUS_PENDING   = 'pending'
+    STATUS_OPEN      = 'open'
+    STATUS_IN_PROG   = 'in_progress'
+    STATUS_ON_HOLD   = 'on_hold'
+    STATUS_SIGNED_UP = 'signed_up'
+    STATUS_RESOLVED  = 'resolved'
+
+    id             = db.Column(db.Integer, primary_key=True)
+    referrer_id    = db.Column(db.Integer, db.ForeignKey('referrers.id'), nullable=True)
+    customer_name  = db.Column(db.String(160), nullable=False)
+    customer_email = db.Column(db.String(120))
+    customer_phone = db.Column(db.String(30), nullable=False)
+    status         = db.Column(db.String(30), default='pending')
+    zoho_ticket_id = db.Column(db.String(50))
+    referral_code  = db.Column(db.String(30))
+    notes          = db.Column(db.Text)
+    created_at     = db.Column(db.DateTime, default=db.func.now())
+    updated_at     = db.Column(db.DateTime, default=db.func.now(),
+                               onupdate=db.func.now())
+    signed_up_at   = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return f'<Referral {self.customer_name} [{self.status}]>'
+
 
 # Create tables safely — won't crash the app if DB is temporarily unreachable
 try:
@@ -684,5 +729,272 @@ def download_lead_magnet():
 #         return jsonify({'success': False, 'error': 'An error occurred while creating the ticket'}), 500
 
 
+
+# Helper function to send referral emails
+def send_referral_email(to_address, subject, template_name, context):
+    """
+    Renders a Jinja2 email template and sends it via Flask-Mail.
+    template_name is a path like 'emails/01_welcome.html'
+    context is a dict passed to the template as variables.
+    Fails silently with a log — never crash the main request.
+    """
+    try:
+        print(f"[EMAIL SENDING] to={to_address} subject={subject} template={template_name}")
+        html_body = render_template(template_name, **context)
+        msg = Message(
+            subject    = subject,
+            recipients = [to_address],
+            html       = html_body
+        )
+        mail.send(msg)
+        print(f"[EMAIL SENT SUCCESS] to={to_address}")
+    except Exception as e:
+        print(f"[EMAIL FAILED] to={to_address} template={template_name} error={e}")
+        app.logger.error(f"[EMAIL FAILED] to={to_address} template={template_name} error={e}")
+
+
+# ========================================
+# REFERRAL PROGRAMME ROUTES
+# ========================================
+
+# --- ROUTE 1: Serve the referrer signup page ---
+@app.route('/referrer-signup')
+def referrer_signup_page():
+    """Serves the HTML page where referrers register."""
+    return render_template('signup.html')
+
+
+# --- ROUTE 2: Process the referrer signup form submission ---
+@app.route('/api/referrer-signup', methods=['POST'])
+def referrer_signup():
+    """
+    Accepts JSON: {first_name, last_name, email, phone}
+    Creates a Referrer row, generates their code, sends welcome email.
+    Returns JSON: {referral_code, message} or {error}
+    """
+    data = request.get_json()
+
+    if not data:
+        return jsonify({'error': 'No data received'}), 400
+
+    required = ['first_name', 'last_name', 'email', 'phone']
+    for field in required:
+        if not data.get(field, '').strip():
+            return jsonify({'error': f'{field} is required'}), 400
+
+    # Check for duplicates — phone and email must be unique
+    if Referrer.query.filter_by(email=data['email'].strip().lower()).first():
+        return jsonify({'error': 'This email address is already registered'}), 409
+    if Referrer.query.filter_by(phone=data['phone'].strip()).first():
+        return jsonify({'error': 'This phone number is already registered'}), 409
+
+    # Generate a unique code — loop to handle the tiny chance of collision
+    code = generate_referral_code(data['first_name'])
+    attempts = 0
+    while Referrer.query.filter_by(referral_code=code).first():
+        code = generate_referral_code(data['first_name'])
+        attempts += 1
+        if attempts > 10:
+            return jsonify({'error': 'Could not generate unique code, try again'}), 500
+
+    referrer = Referrer(
+        first_name    = data['first_name'].strip(),
+        last_name     = data['last_name'].strip(),
+        email         = data['email'].strip().lower(),
+        phone         = data['phone'].strip(),
+        referral_code = code,
+    )
+    db.session.add(referrer)
+    db.session.commit()
+
+    send_referral_email(
+        to_address    = referrer.email,
+        subject       = f"Welcome! Your referral code is {code}",
+        template_name = 'emails/01_welcome.html',
+        context       = {'referrer': referrer}
+    )
+
+    return jsonify({'referral_code': code, 'message': 'Signup successful'}), 201
+
+
+# --- ROUTE 3: Zoho Forms webhook — fires when a prospect submits the contact form ---
+@app.route('/api/referral-intake', methods=['POST'])
+def referral_intake():
+    """
+    Called by Zoho Forms webhook when a prospect submits the contact form.
+    Expected JSON keys: customer_name, customer_phone, customer_email (optional),
+                        referral_code (optional — the code entered by the prospect)
+    Creates a Referral row linked to the Referrer who owns that code.
+    Sends the referrer an email saying their person has submitted.
+    """
+    data = request.get_json() or request.form.to_dict()
+
+    customer_name  = data.get('customer_name', '').strip()
+    customer_phone = data.get('customer_phone', '').strip()
+    customer_email = data.get('customer_email', '').strip()
+    referral_code  = data.get('referral_code', '').strip().upper()
+
+    if not customer_name or not customer_phone:
+        return jsonify({'error': 'customer_name and customer_phone are required'}), 400
+
+    # Find the referrer by code — if no valid code just log unlinked
+    referrer = None
+    if referral_code:
+        referrer = Referrer.query.filter_by(referral_code=referral_code).first()
+
+    try:
+        referral = Referral(
+            referrer_id    = referrer.id if referrer else None,
+            customer_name  = customer_name,
+            customer_email = customer_email or None,
+            customer_phone = customer_phone,
+            referral_code  = referral_code or None,
+            status         = Referral.STATUS_PENDING,
+        )
+        db.session.add(referral)
+        db.session.commit()
+    except Exception as e:
+        app.logger.error(f"Database error saving referral: {e}")
+        db.session.rollback()
+        return jsonify({'error': 'Database connection error, please try again'}), 500
+
+    # Only email the referrer if we successfully linked to one
+    if referrer:
+        send_referral_email(
+            to_address    = referrer.email,
+            subject       = f"Update: {customer_name} has submitted their details",
+            template_name = 'emails/02_submitted.html',
+            context       = {'referrer': referrer, 'referral': referral}
+        )
+
+    return jsonify({'status': 'received', 'referral_id': referral.id}), 200
+
+
+# --- ROUTE 4: Zoho Desk webhook — fires on every ticket status change ---
+@app.route('/api/zoho-desk-webhook', methods=['POST'])
+def zoho_desk_webhook():
+    """
+    Called by Zoho Desk Workflow Automation when a ticket status changes.
+    Requires header: X-Webhook-Secret matching env var ZOHO_WEBHOOK_SECRET.
+
+    Expected JSON body from Zoho Desk:
+    {
+      "ticketId": "123456",
+      "status": "In Progress",
+      "customerPhone": "0821234567"
+    }
+
+    This route:
+    1. Validates the secret header
+    2. Maps Zoho Desk status strings to internal status constants
+    3. Finds the Referral row by ticket ID (or falls back to phone number)
+    4. Updates the status
+    5. Emails the referrer with the appropriate status update email
+    """
+    # Validate the shared secret so random people can't call this
+    secret = request.headers.get('X-Webhook-Secret', '')
+    if secret != 'zoho_webhook_secret_empath_2025_secure':
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No JSON body'}), 400
+
+    ticket_id      = str(data.get('ticketId', '')).strip()
+    zoho_status    = data.get('status', '').strip().lower().replace(' ', '_')
+    customer_phone = data.get('customerPhone', '').strip()
+
+    # Map Zoho Desk status strings → internal status constants
+    # Add more mappings here if Zoho uses different status names in your setup
+    STATUS_MAP = {
+        'open':        Referral.STATUS_OPEN,
+        'in_progress': Referral.STATUS_IN_PROG,
+        'on_hold':     Referral.STATUS_ON_HOLD,
+        'resolved':    Referral.STATUS_RESOLVED,
+    }
+
+    internal_status = STATUS_MAP.get(zoho_status)
+    if not internal_status:
+        # We don't have an email for this status — that's fine, just skip
+        return jsonify({'skipped': True, 'reason': f'No mapping for status: {zoho_status}'}), 200
+
+    # Try to find the referral by ticket ID first
+    referral = None
+    if ticket_id:
+        referral = Referral.query.filter_by(zoho_ticket_id=ticket_id).first()
+
+    # Fallback: match by customer phone number (needed when ticket ID is new)
+    if not referral and customer_phone:
+        referral = Referral.query.filter_by(
+            customer_phone=customer_phone
+        ).order_by(Referral.created_at.desc()).first()
+
+    if not referral:
+        return jsonify({'error': 'Referral not found'}), 404
+
+    # Save the ticket ID now that we have it (for future status updates)
+    if ticket_id:
+        referral.zoho_ticket_id = ticket_id
+
+    referral.status = internal_status
+    db.session.commit()
+
+    # Send the appropriate email to the referrer
+    EMAIL_MAP = {
+        Referral.STATUS_OPEN:    ('emails/03_ticket_open.html',  'Update on your referral — ticket opened'),
+        Referral.STATUS_IN_PROG: ('emails/04_in_progress.html',  'Update on your referral — consultant working with your contact'),
+        Referral.STATUS_ON_HOLD: ('emails/05_on_hold.html',      'Update on your referral — waiting on your contact'),
+        Referral.STATUS_RESOLVED:('emails/06_resolved.html',     'Great news — your referral has been resolved!'),
+    }
+
+    if internal_status in EMAIL_MAP and referral.referrer:
+        template, subject = EMAIL_MAP[internal_status]
+        send_referral_email(
+            to_address    = referral.referrer.email,
+            subject       = subject,
+            template_name = template,
+            context       = {'referrer': referral.referrer, 'referral': referral}
+        )
+
+    return jsonify({'updated': internal_status, 'referral_id': referral.id}), 200
+
+
+# --- ROUTE 5: Admin endpoint — mark a customer as signed up ---
+@app.route('/api/mark-signed-up/<int:referral_id>', methods=['POST'])
+def mark_signed_up(referral_id):
+    """
+    Called manually by your team when a customer signs the service contract.
+    This is NOT triggered by Zoho — your team calls it via Postman or
+    an internal tool when they confirm a sign-up.
+
+    Requires header: X-Admin-Secret matching env var ADMIN_SECRET
+
+    Example curl call:
+    curl -X POST https://yoursite.com/api/mark-signed-up/42 \
+         -H "X-Admin-Secret: your-secret-here"
+    """
+    secret = request.headers.get('X-Admin-Secret', '')
+    if secret != 'admin_secret_empath_2025_secure':
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    referral = db.session.get(Referral, referral_id)
+    if not referral:
+        return jsonify({'error': 'Referral not found'}), 404
+
+    referral.status      = Referral.STATUS_SIGNED_UP
+    referral.signed_up_at = datetime.utcnow()
+    db.session.commit()
+
+    if referral.referrer:
+        send_referral_email(
+            to_address    = referral.referrer.email,
+            subject       = f"They signed up! Your referral of {referral.customer_name} was a success",
+            template_name = 'emails/06_resolved.html',
+            context       = {'referrer': referral.referrer, 'referral': referral}
+        )
+
+    return jsonify({'status': 'signed_up', 'referral_id': referral_id}), 200
+
+
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────────────────── */
+    :root {
+      --ed-bg:        #f8fafc;
+      --ed-surface:   #ffffff;
+      --ed-ink:       #0f172a;
+      --ed-accent:    #f59e0b;
+      --ed-accent2:   #14b8a6;
+      --ed-muted:     #475569;
+      --ed-border:    #e2e8f0;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--ed-bg);
+      font-family: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .outer {
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--ed-surface);
+      border: 2px solid var(--ed-ink);
+      box-shadow: 8px 8px 0 var(--ed-ink);
+      overflow: hidden;
+    }
+
+    .header {
+      background: var(--ed-ink);
+      padding: 32px 40px;
+      text-align: center;
+      border-bottom: 2px solid var(--ed-ink);
+    }
+
+    .logo {
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 16px;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ed-bg);
+      margin: 0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+
+    .header-sub {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ed-accent);
+      margin: 0;
+    }
+
+    .body {
+      padding: 40px;
+      color: var(--ed-ink);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .body p {
+      margin: 0 0 20px 0;
+    }
+
+    .body strong {
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      margin-bottom: 24px;
+      background: var(--ed-accent);
+      color: var(--ed-ink);
+      font-weight: 500;
+    }
+
+    .badge.green {
+      background: var(--ed-accent2);
+      color: #fff;
+    }
+
+    .badge.orange {
+      background: var(--ed-accent);
+      color: var(--ed-ink);
+    }
+
+    .info-card {
+      background: var(--ed-bg);
+      border: 1px solid var(--ed-border);
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .info-card p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: var(--ed-muted);
+    }
+
+    .info-card strong {
+      color: var(--ed-ink);
+    }
+
+    .code-display {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--ed-ink);
+      letter-spacing: 4px;
+      text-align: center;
+      background: var(--ed-bg);
+      border: 2px solid var(--ed-ink);
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .footer {
+      background: var(--ed-bg);
+      padding: 24px 40px;
+      text-align: center;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ed-muted);
+      border-top: 2px solid var(--ed-ink);
+    }
+
+    .footer a {
+      color: var(--ed-ink);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      color: var(--ed-accent);
+    }
+
+    @media only screen and (max-width: 600px) {
+      .outer { padding: 20px 12px; }
+      .header { padding: 24px 20px; }
+      .body { padding: 28px 20px; }
+      .footer { padding: 20px; }
+      .header-title { font-size: 20px; }
+      .code-display { font-size: 20px; letter-spacing: 2px; padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="container">
+      <div class="header">
+        <img src="https://empathtechnologysolutions.com/static/images/logo.png" alt="Empath Technology Solutions" class="logo" width="180" onerror="this.style.display='none'">
+        <p class="header-title">Empath Technology Solutions</p>
+        <p class="header-sub">Referral Programme</p>
+      </div>
+      <div class="body">
+        {% block content %}{% endblock %}
+      </div>
+      <div class="footer">
+        Empath Technology Solutions · Cape Town, South Africa<br>
+        <a href="https://empathtechnologysolutions.com">empathtechnologysolutions.com</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

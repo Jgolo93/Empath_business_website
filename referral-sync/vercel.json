@@ -1,0 +1,31 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "referral_sync.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/referral_sync.py"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "postgresql://neondb_owner:npg_2led5BIEjmnx@ep-misty-resonance-aeq4m318-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+    "ZOHO_ORG_ID": "887430547",
+    "ZOHO_CLIENT_ID": "1000.ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "ZOHO_CLIENT_SECRET": "abcdefghijklmnopqrstuvwxyz1234567890",
+    "ZOHO_REFRESH_TOKEN": "1000.abcdefghijklmnopqrstuvwxyz1234567890",
+    "ZOHO_API_DOMAIN": "https://desk.zoho.com",
+    "MAIL_SERVER": "smtp.zoho.com",
+    "MAIL_PORT": "587",
+    "MAIL_USE_TLS": "true",
+    "MAIL_USERNAME": "jason.goliath@empathtechnologysolutions.com",
+    "MAIL_PASSWORD": "Goliath123!",
+    "MAIL_DEFAULT_SENDER": "jason.goliath@empathtechnologysolutions.com",
+    "FLASK_ENV": "production",
+    "SECRET_KEY": "your-secret-key-here-change-in-production"
+  }
+}

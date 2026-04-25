@@ -1,0 +1,38 @@
+name: Referral Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'  # Runs every 15 minutes
+
+permissions:
+  contents: write
+
+concurrency:
+  group: referral-sync
+  cancel-in-progress: false
+
+jobs:
+  referral-sync:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests psycopg2-binary flask flask-mail
+
+      - name: Run referral_sync.py to sync Zoho Desk tickets
+        run: python referral_sync.py

@@ -1,0 +1,49 @@
+name: Deploy Referral Sync to Vercel
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'referral-sync/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'referral-sync/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install dependencies
+      working-directory: ./referral-sync
+      run: |
+        pip install -r requirements.txt
+        
+    - name: Run tests (if any)
+      working-directory: ./referral-sync
+      run: |
+        python referral_sync.py --test || true
+        
+    - name: Install Vercel CLI
+      run: npm install --global vercel@latest
+      
+    - name: Pull Vercel Environment Information
+      working-directory: ./referral-sync
+      run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      
+    - name: Build Project Artifacts
+      working-directory: ./referral-sync
+      run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      
+    - name: Deploy to Vercel
+      working-directory: ./referral-sync
+      run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

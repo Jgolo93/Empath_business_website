@@ -1,0 +1,24 @@
+{% extends 'emails/base_email.html' %}
+{% block content %}
+<p>Hi <strong>{{ referrer.first_name }}</strong>,</p>
+
+<p>Welcome to the Empath Referral Programme. You're now part of our network of trusted partners.</p>
+
+<p>Your unique referral code is:</p>
+
+<div class="code-display">
+  {{ referrer.referral_code }}
+</div>
+
+<p><strong>How it works:</strong></p>
+<ol style="padding-left: 24px; line-height: 1.8; margin: 0 0 20px 0;">
+  <li>Share your code with anyone needing IT support, web services, or tech consulting</li>
+  <li>They enter your code when submitting their contact form</li>
+  <li>We'll keep you updated at every step of their journey</li>
+  <li>Once they sign up and pay — you earn your commission</li>
+</ol>
+
+<p>Thank you for helping us grow. We genuinely appreciate your trust in Empath Technology Solutions.</p>
+
+<p>— Empath Technology Solutions</p>
+{% endblock %}

@@ -1,0 +1,654 @@
+{% extends 'layout.html' %}
+
+{% block title %}Referral Programme — Earn Rewards | Empath Technology Solutions{% endblock %}
+
+{% block content %}
+
+<!-- ── EDITORIAL FONTS ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+/* ── DESIGN TOKENS ── */
+:root {
+  --bg:        #f8fafc;
+  --ink:       #0f172a;
+  --accent:    #f59e0b;
+  --accent2:   #14b8a6;
+  --muted:     #475569;
+  --border:    #e2e8f0;
+  --surface:   #ffffff;
+}
+
+/* ── RESET SCOPE ── */
+.referral-editorial * { box-sizing: border-box; }
+.referral-editorial { background: var(--bg); color: var(--ink); font-family: 'Syne', sans-serif; }
+
+/* ── HERO ── */
+.blog-hero-editorial {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 72px 40px 56px;
+  border-bottom: 2px solid var(--ink);
+  position: relative;
+  background-image:
+    linear-gradient(rgba(15,23,42,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,23,42,0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.hero-kicker {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-kicker::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 200px;
+}
+
+.blog-hero-editorial h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 0;
+}
+.blog-hero-editorial h1 em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hero-body-row {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.hero-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.hero-sidebar {
+  border-left: 3px solid var(--ink);
+  padding-left: 22px;
+}
+
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+}
+.hero-stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+}
+.hero-stat .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.btn-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+}
+.btn-ink:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.btn-outline-ink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 11px 22px;
+  border: 2px solid var(--ink);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-outline-ink:hover { background: var(--ink); color: var(--bg); }
+
+/* ── SECTION RULE ── */
+.section-rule {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 48px 40px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.section-rule-line { flex: 1; height: 1px; background: var(--border); }
+.section-rule-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── STEPS GRID ── */
+.steps-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 40px 56px;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 2px solid var(--ink);
+}
+
+.step-cell {
+  border-right: 1px solid var(--border);
+  padding: 32px 28px;
+  background: var(--surface);
+  transition: background 0.15s;
+}
+.step-cell:hover { background: var(--bg); }
+.step-cell:last-child { border-right: none; }
+
+.step-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.step-cell h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+
+.step-cell p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.step-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* ── REWARD BANNER ── */
+.reward-banner {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.reward-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 56px 40px;
+  text-align: center;
+}
+
+.reward-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.reward-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.reward-heading em { font-style: italic; color: var(--accent); }
+
+.reward-desc {
+  font-size: 1rem;
+  color: #f8fafc;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ── SIGNUP FORM ── */
+.signup-wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 40px 80px;
+}
+
+.signup-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
+}
+
+.signup-visual {
+  background: var(--ink);
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.signup-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,158,11,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.visual-content {
+  position: relative;
+  z-index: 2;
+}
+
+.visual-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.visual-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--bg);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.visual-heading em { font-style: italic; color: var(--accent); }
+
+.visual-desc {
+  font-size: 0.9rem;
+  color: rgba(248,250,252,0.7);
+  line-height: 1.7;
+}
+
+.signup-form-area {
+  padding: 48px 44px;
+  background: var(--surface);
+  border-left: 2px solid var(--ink);
+}
+
+.form-group { margin-bottom: 20px; }
+
+.form-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--ink);
+  background: var(--bg);
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.form-input:focus { border-color: var(--accent); }
+.form-input::placeholder { color: var(--muted); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-error {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #dc2626;
+  margin-bottom: 16px;
+  display: none;
+}
+
+.form-submit {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* Success state */
+.success-box {
+  display: none;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.success-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 16px;
+}
+
+.code-display {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 4px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  padding: 20px;
+  margin: 16px 0 24px;
+}
+
+.success-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .steps-grid { grid-template-columns: 1fr 1fr; }
+  .step-cell:nth-child(2) { border-right: none; }
+  .step-cell:nth-child(1),
+  .step-cell:nth-child(2) { border-bottom: 1px solid var(--border); }
+  .signup-editorial { grid-template-columns: 1fr; }
+  .signup-visual { min-height: 240px; }
+  .signup-form-area { border-left: none; border-top: 2px solid var(--ink); }
+}
+
+@media (max-width: 768px) {
+  .blog-hero-editorial { padding: 48px 24px 40px; }
+  .hero-body-row { grid-template-columns: 1fr; gap: 28px; }
+  .hero-sidebar { border-left: none; border-top: 2px solid var(--ink); padding: 20px 0 0; }
+  .hero-stats { flex-direction: row; gap: 32px; }
+  .section-rule { padding: 36px 24px 16px; }
+  .steps-wrap { padding: 0 24px 40px; }
+  .steps-grid { grid-template-columns: 1fr; border: none; gap: 16px; }
+  .step-cell { border: 2px solid var(--ink); border-right: 2px solid var(--ink) !important; }
+  .reward-inner { padding: 40px 24px; }
+  .signup-wrap { padding: 0 24px 60px; }
+  .signup-visual { padding: 32px; }
+  .signup-form-area { padding: 32px 24px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="referral-editorial">
+
+  <!-- ── HERO ── -->
+  <div class="blog-hero-editorial">
+    <div class="hero-kicker">Empath Referral Programme · Issue 2025</div>
+    <h1>Earn Rewards <br/><em>For Every Referral</em></h1>
+
+    <div class="hero-body-row">
+      <div>
+        <p class="hero-lead">
+          Know someone who needs IT support, web services, or tech consulting? 
+          Join our referral programme and get rewarded when they sign up. 
+          Share your unique code and track their journey from submission to signup.
+        </p>
+        <div class="hero-ctas">
+          <a href="#signup" class="btn-ink">Get Your Code →</a>
+          <a href="#how-it-works" class="btn-outline-ink">How It Works</a>
+        </div>
+      </div>
+      <div class="hero-sidebar">
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="num">4</span>
+            <span class="lbl">Simple Steps</span>
+          </div>
+          <div class="hero-stat">
+            <span class="num">R?</span>
+            <span class="lbl">Reward Per Signup</span>
+          </div>
+          <div class="hero-stat">
+            <span class="num">∞</span>
+            <span class="lbl">Referrals Allowed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HOW IT WORKS ── -->
+  <div class="section-rule" id="how-it-works">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">How It Works</span>
+    <span class="section-rule-line"></span>
+  </div>
+
+  <div class="steps-wrap">
+    <div class="steps-grid">
+      <div class="step-cell">
+        <div class="step-number">①</div>
+        <div class="step-meta">Step 1 · 30 seconds</div>
+        <h3>Sign Up</h3>
+        <p>Fill in your details below and get your unique referral code instantly. No ID required.</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-number">②</div>
+        <div class="step-meta">Step 2 · Anytime</div>
+        <h3>Share Your Code</h3>
+        <p>Give your code to friends, family, or anyone who needs IT help and support.</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-number">③</div>
+        <div class="step-meta">Step 3 · Automatic</div>
+        <h3>They Submit</h3>
+        <p>Your contact enters your code on our support form. We link them to you.</p>
+      </div>
+      <div class="step-cell">
+        <div class="step-number">④</div>
+        <div class="step-meta">Step 4 · You Win</div>
+        <h3>Earn Commission</h3>
+        <p>You get email updates at every step. Once your referral pays for their service, you receive your commission.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── REWARD BANNER ── -->
+  <div class="reward-banner">
+    <div class="reward-inner">
+      <div class="reward-label">What's In It For You?</div>
+      <h2 class="reward-heading">Reward For Every <em>Successful</em> Signup</h2>
+      <p class="reward-desc">
+        You earn commission for every referral that signs up and pays for our services. 
+        Commission is only paid once the customer's invoice is settled. 
+        You will get email updates at every stage — from submission to ticket open to payment received.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── SIGNUP FORM ── -->
+  <div class="section-rule" id="signup">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Get Your Referral Code</span>
+    <span class="section-rule-line"></span>
+  </div>
+
+  <div class="signup-wrap">
+    <div class="signup-editorial">
+      <div class="signup-visual">
+        <div class="visual-content">
+          <div class="visual-label">Join the Programme</div>
+          <h2 class="visual-heading">Ready To Start <em>Earning?</em></h2>
+          <p class="visual-desc">
+            Fill in your details and get your unique referral code instantly. 
+            Share it with anyone who needs IT support, web design, or tech consulting. 
+            Commission is paid only after the customer pays for their service.
+          </p>
+        </div>
+      </div>
+      <div class="signup-form-area">
+        <div id="form-container">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input type="text" id="first_name" class="form-input" placeholder="e.g. John">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input type="text" id="last_name" class="form-input" placeholder="e.g. Doe">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address</label>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" id="phone" class="form-input" placeholder="+27 82 000 0000">
+          </div>
+          <div class="form-error" id="error-msg"></div>
+          <button class="btn-ink form-submit" id="submit-btn" onclick="handleSignup()">
+            Generate My Code →
+          </button>
+          <p style="font-size: 10px; color: var(--muted); text-align: center; margin-top: 16px; font-family: 'JetBrains Mono', monospace;">
+            We respect your privacy. Your details are used only for this programme.
+          </p>
+        </div>
+
+        <div class="success-box" id="success-box">
+          <div class="success-label">Your Unique Referral Code</div>
+          <div class="code-display" id="code-display"></div>
+          <p class="success-desc">
+            Check your email for full instructions.<br>
+            Share this code with anyone who needs IT support.
+          </p>
+          <a href="{{ url_for('home') }}" class="btn-outline-ink">← Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+async function handleSignup() {
+  const btn = document.getElementById('submit-btn');
+  const errMsg = document.getElementById('error-msg');
+  const successBox = document.getElementById('success-box');
+  const formContainer = document.getElementById('form-container');
+
+  errMsg.style.display = 'none';
+  errMsg.textContent = '';
+
+  const payload = {
+    first_name: document.getElementById('first_name').value.trim(),
+    last_name: document.getElementById('last_name').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    phone: document.getElementById('phone').value.trim(),
+  };
+
+  if (!payload.first_name || !payload.last_name || !payload.email || !payload.phone) {
+    errMsg.textContent = 'Please fill in all fields.';
+    errMsg.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
+
+  try {
+    const response = await fetch('/api/referrer-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      document.getElementById('code-display').textContent = data.referral_code;
+      formContainer.style.display = 'none';
+      successBox.style.display = 'block';
+    } else {
+      errMsg.textContent = data.error || 'Something went wrong. Please try again.';
+      errMsg.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Generate My Code →';
+    }
+  } catch (err) {
+    errMsg.textContent = 'Network error. Please check your connection and try again.';
+    errMsg.style.display = 'block';
+  btn.disabled = false;
+  btn.textContent = 'Generate My Code →';
+  }
+}
+</script>
+
+{% endblock %}
