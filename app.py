@@ -520,13 +520,24 @@ def referrer_signup():
 def referral_intake():
     app.logger.info(f"Request method: {request.method}")
     app.logger.info(f"Request headers: {dict(request.headers)}")
-    app.logger.info(f"Request raw data: {request.get_data(as_text=True)}")
 
-    data = request.get_json(force=True, silent=True)
+    raw = request.get_data(as_text=True)
+    app.logger.info(f"Request raw data: {raw}")
+
+    data = {}
+    if raw:
+        try:
+            import json
+            data = json.loads(raw)
+        except Exception:
+            pass
+
     if not data:
-        data = request.form.to_dict()
+        data = request.get_json(force=True, silent=True) or {}
     if not data:
-        data = request.args.to_dict()
+        data = request.form.to_dict() or {}
+    if not data:
+        data = request.args.to_dict() or {}
 
     app.logger.info(f"Received referral intake data: {data}")
 
