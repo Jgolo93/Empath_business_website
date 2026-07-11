@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 from flask import Flask
 
+import shopify_client as shopify
 from extensions import db, mail, normalize_db_url, require_env
 
 load_dotenv()
@@ -46,6 +47,13 @@ def create_app():
     app.register_blueprint(support_bp)
     app.register_blueprint(referrals_bp)
     app.register_blueprint(shop_bp)
+
+    @app.context_processor
+    def inject_shop_policies():
+        try:
+            return {'shop_policies': shopify.get_shop_policies()}
+        except (shopify.ShopifyError, RuntimeError):
+            return {'shop_policies': []}  # Shop unreachable — footer just omits this column.
 
     return app
 

@@ -2,6 +2,10 @@
 
 {% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
+
 {% block content %}
 
 <!-- ── EDITORIAL HERO ── -->
@@ -225,6 +229,51 @@
     </div>
 </div>
 
+{% if featured_products %}
+<!-- ── NEW ARRIVALS ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">New Arrivals</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="home-shop-wrap">
+    <div class="carousel-wrap" data-carousel>
+        <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous products">‹</button>
+        <div class="carousel-track product-grid" data-carousel-track style="display:flex;">
+            {% for p in featured_products %}
+            <a class="product-card home-shop-card" href="{{ url_for('shop.product', handle=p.handle) }}">
+                <div class="product-card-image">
+                    {% if not p.availableForSale %}<span class="product-card-badge">Out of stock</span>{% endif %}
+                    {% if p.featuredImage %}
+                    <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
+                    {% endif %}
+                </div>
+                <div class="product-card-body">
+                    <div class="product-card-title">{{ p.title }}</div>
+                    <div class="product-card-price">
+                        {{ p.priceRange.minVariantPrice.currencyCode }} {{ '%.2f'|format(p.priceRange.minVariantPrice.amount|float) }}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow next" data-carousel-next aria-label="Next products">›</button>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+        <a href="{{ url_for('shop.index') }}" class="btn-outline-ink">Browse the Full Shop →</a>
+    </div>
+</div>
+
+<div class="brand-marquee-wrap">
+    <div class="brand-marquee-track">
+        {% for brand in brands_carried + brands_carried %}
+        <span class="brand-marquee-item">{{ brand }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
 <!-- ── WHY CHOOSE US ── -->
 <div class="section-rule">
     <span class="section-rule-line"></span>
@@ -309,4 +358,5 @@
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
 {% endblock %}
