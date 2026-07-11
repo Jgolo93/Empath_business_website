@@ -14,25 +14,39 @@ import requests
 import os
 import logging
 from datetime import datetime
-import psycopg2
-from psycopg2.extras import RealDictCursor
+from dotenv import load_dotenv
+import psycopg
+from psycopg.rows import dict_row
 from flask_mail import Mail, Message
 from flask import Flask, render_template
+
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
 logger = logging.getLogger(__name__)
 
+
+def require_env(name):
+    value = os.environ.get(name, '').strip()
+    if not value:
+        raise RuntimeError(
+            f"Missing required environment variable: {name}. "
+            f"Copy .env.example to .env locally, or set it as a GitHub Actions secret."
+        )
+    return value
+
+
 # ── DATABASE CONFIG ───────────────────────────────────────────────────────
-DATABASE_URL = "postgresql://neondb_owner:npg_2led5BIEjmnx@ep-misty-resonance-aeq4m318-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+DATABASE_URL = require_env('DATABASE_URL')
 
 # ── ZOHO DESK CREDENTIALS ───────────────────────────────────────────────────
-ZOHO_ORG_ID = '887430547'
-ZOHO_CLIENT_ID = '1000.OCP7ADAC99HLRYU5VPU91VMV1A1VJI'
-ZOHO_CLIENT_SECRET = '3326a6c76241b25be006e1a52c1d197ee23141c9f2'
-ZOHO_REFRESH_TOKEN = '1000.688f80d0c13bf90c0e441746486681a9.4ecc8a486d5e1751fd655d6266969f71'
-ZOHO_ACCOUNTS_URL = 'https://accounts.zoho.com'
-ZOHO_API_DOMAIN = 'https://desk.zoho.com'
+ZOHO_ORG_ID = require_env('ZOHO_ORG_ID')
+ZOHO_CLIENT_ID = require_env('ZOHO_CLIENT_ID')
+ZOHO_CLIENT_SECRET = require_env('ZOHO_CLIENT_SECRET')
+ZOHO_REFRESH_TOKEN = require_env('ZOHO_REFRESH_TOKEN')
+ZOHO_ACCOUNTS_URL = os.environ.get('ZOHO_ACCOUNTS_URL', 'https://accounts.zoho.com')
+ZOHO_API_DOMAIN = os.environ.get('ZOHO_API_DOMAIN', 'https://desk.zoho.com')
 
 ZOHO_ACCESS_TOKEN = None
 
@@ -40,9 +54,12 @@ ZOHO_ACCESS_TOKEN = None
 MAIL_SERVER = 'smtp.zoho.com'
 MAIL_PORT = 587
 MAIL_USE_TLS = True
-MAIL_USERNAME = 'jason.goliath@empathtechnologysolutions.com'
-MAIL_PASSWORD = '4dubCZHtMXbk'
-MAIL_DEFAULT_SENDER = 'Empath Technology Solutions <jason.goliath@empathtechnologysolutions.com>'
+MAIL_USERNAME = require_env('MAIL_USERNAME')
+MAIL_PASSWORD = require_env('MAIL_PASSWORD')
+MAIL_DEFAULT_SENDER = os.environ.get(
+    'MAIL_DEFAULT_SENDER',
+    'Empath Technology Solutions <jason.goliath@empathtechnologysolutions.com>'
+)
 
 # ── STATUS MAPPINGS ───────────────────────────────────────────────────────
 # Zoho Desk status → Internal referral status
@@ -93,7 +110,7 @@ def get_zoho_access_token():
 def get_db_connection():
     """Get a database connection"""
     try:
-        conn = psycopg2.connect(DATABASE_URL)
+        conn = psycopg.connect(DATABASE_URL)
         return conn
     except Exception as e:
         logger.error(f"❌ Database connection failed: {e}")
@@ -106,7 +123,7 @@ def get_referral_by_phone(phone):
         return None
     
     try:
-        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with conn.cursor(row_factory=dict_row) as cur:
             # Clean phone number (remove spaces, dashes, etc.)
             clean_phone = phone.replace(' ', '').replace('-', '').replace('(', '').replace(')', '').replace('.', '')
             cur.execute(
@@ -127,7 +144,7 @@ def get_referral_by_ticket_id(ticket_id):
         return None
     
     try:
-        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with conn.cursor(row_factory=dict_row) as cur:
             cur.execute("SELECT * FROM referrals WHERE zoho_ticket_id = %s", (str(ticket_id),))
             return cur.fetchone()
     except Exception as e:
@@ -146,7 +163,7 @@ def get_referral_by_phone_no_ticket(phone):
         return None
     
     try:
-        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with conn.cursor(row_factory=dict_row) as cur:
             # Clean phone number for comparison
             clean_phone = phone.replace(' ', '').replace('-', '').replace('(', '').replace(')', '').replace('.', '')
             cur.execute(
@@ -195,7 +212,7 @@ def get_referrer_details(referrer_id):
         return None
     
     try:
-        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+        with conn.cursor(row_factory=dict_row) as cur:
             cur.execute("SELECT * FROM referrers WHERE id = %s", (referrer_id,))
             return cur.fetchone()
     except Exception as e:

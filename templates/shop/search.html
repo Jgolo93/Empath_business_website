@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}{% if query %}"{{ query }}" search results{% else %}Search{% endif %} | Shop | Empath Technology Solutions{% endblock %}
+{% block meta_robots %}noindex, follow{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
+{% block content %}
+<div class="shop-wrap">
+    <div class="shop-breadcrumb"><a href="{{ url_for('main.home') }}">Home</a> / <a href="{{ url_for('shop.index') }}">Shop</a> / Search</div>
+    <h1 class="shop-heading">Search the Shop</h1>
+
+    <form class="shop-search-form" method="get" action="{{ url_for('shop.search') }}">
+        <input type="text" name="q" placeholder="Search products..." value="{{ query }}" autofocus>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        {% if results and results.edges %}
+        <p class="shop-subheading" style="margin-top:-16px;">{{ results.edges|length }} result(s) for "{{ query }}"</p>
+        <div class="product-grid">
+            {% for edge in results.edges %}
+                {% set p = edge.node %}
+                <a class="product-card" href="{{ url_for('shop.product', handle=p.handle) }}">
+                    <div class="product-card-image">
+                        {% if p.featuredImage %}
+                        <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
+                        {% endif %}
+                    </div>
+                    <div class="product-card-body">
+                        <div class="product-card-title">{{ p.title }}</div>
+                        <div class="product-card-price">
+                            {{ p.priceRange.minVariantPrice.currencyCode }} {{ '%.2f'|format(p.priceRange.minVariantPrice.amount|float) }}
+                        </div>
+                        {% if not p.availableForSale %}<span class="product-card-badge">Out of stock</span>{% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        {% if results.pageInfo.hasNextPage %}
+        <div class="pagination-row">
+            <a class="cart-checkout-btn" href="{{ url_for('shop.search', q=query, after=results.pageInfo.endCursor) }}">Load more</a>
+        </div>
+        {% endif %}
+        {% else %}
+        <p class="cart-empty">No products found for "{{ query }}".</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

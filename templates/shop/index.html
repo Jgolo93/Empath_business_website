@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block title %}Shop | Empath Technology Solutions{% endblock %}
+{% block meta_description %}Shop computers, components, networking gear and accessories in Cape Town — sourced and supported by the same team that handles your IT.{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
+{% block content %}
+<div class="shop-wrap">
+    <div class="shop-breadcrumb"><a href="{{ url_for('main.home') }}">Home</a> / Shop</div>
+    <h1 class="shop-heading">Shop</h1>
+    <p class="shop-subheading">Computers, components, networking gear and accessories — sourced and supported by the same team that handles your IT.</p>
+
+    <form class="shop-search-form" method="get" action="{{ url_for('shop.search') }}">
+        <input type="text" name="q" placeholder="Search products...">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if collections %}
+    <div class="collection-grid">
+        {% for c in collections %}
+            {% if c.title != 'Home page' %}
+            <a class="collection-tile" href="{{ url_for('shop.collection', collection_handle=c.handle) }}">
+                <h3>{{ c.title }}</h3>
+                {% if c.description %}<p>{{ c.description[:90] }}</p>{% endif %}
+            </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="cart-empty">No collections available right now — check back shortly.</p>
+    {% endif %}
+</div>
+{% endblock %}

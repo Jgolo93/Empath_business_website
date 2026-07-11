@@ -12,17 +12,20 @@
    ============================================================ */
 
 /* ── DESIGN TOKENS ────────────────────────────────────────── */
+/* Aliased to the canonical tokens in style.css :root (loaded first) —
+   short prefixed names kept so every existing var(--ed-*) reference
+   below still resolves without a full rewrite. */
 :root {
-  --ed-bg:        #f8fafc;
-  --ed-surface:   #ffffff;
-  --ed-ink:       #0f172a;
-  --ed-accent:    #f59e0b;   /* amber — primary highlight  */
-  --ed-accent2:   #14b8a6;   /* teal  — secondary highlight */
-  --ed-green:     #059669;   /* success / positive stats   */
-  --ed-warn:      #dc2626;   /* warnings / danger          */
-  --ed-muted:     #475569;
-  --ed-border:    #e2e8f0;
-  --ed-code-bg:   #0f172a;
+  --ed-bg:        var(--bg-secondary);
+  --ed-surface:   var(--bg-primary);
+  --ed-ink:       var(--text-primary);
+  --ed-accent:    var(--accent);     /* amber — primary highlight  */
+  --ed-accent2:   var(--secondary);  /* teal  — secondary highlight */
+  --ed-green:     var(--success);    /* success / positive stats   */
+  --ed-warn:      var(--danger);     /* warnings / danger          */
+  --ed-muted:     var(--text-secondary);
+  --ed-border:    var(--border-color);
+  --ed-code-bg:   var(--text-primary);
 }
 
 /* ── READING PROGRESS ─────────────────────────────────────── */
@@ -236,7 +239,7 @@
   font-family: 'Open Sans', 'Syne', sans-serif;
   font-size: 1.05rem;
   line-height: 1.85;
-  color: #334155;
+  color: var(--primary-light);
 }
 
 .editorial-body p,
@@ -330,7 +333,7 @@
   position: relative;
   padding-left: 22px;
   margin-bottom: 10px;
-  color: #334155;
+  color: var(--primary-light);
 }
 .editorial-body ul li::before,
 .article-body ul li::before {
@@ -446,7 +449,7 @@
   border-radius: 0 8px 8px 0;
   margin: 24px 0;
   font-size: 0.93rem;
-  color: #334155;
+  color: var(--primary-light);
 }
 .callout.warn  { border-left-color: var(--ed-warn); }
 .callout.info  { border-left-color: var(--ed-accent2); }
@@ -523,7 +526,7 @@
   background: var(--ed-accent) !important;
   color: #fff !important;
 }
-.cta-box .btn-primary:hover { background: #d97706 !important; }
+.cta-box .btn-primary:hover { background: var(--accent-dark) !important; }
 
 /* ── CODE BLOCKS (robot-framework) ───────────────────────── */
 pre {

@@ -52,7 +52,7 @@
                     <li>Expert service</li>
                     <li>90-day warranty on labor</li>
                 </ul>
-                <div class="tier-footer"><a href="{{ url_for('create_ticket') }}?subject=Service Inquiry: {{ service.service|urlencode }}" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
+                <div class="tier-footer"><a href="{{ url_for('support.create_ticket') }}?subject=Service Inquiry: {{ service.service|urlencode }}" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
             </div>
             {% endfor %}
         </div>
@@ -71,7 +71,7 @@
                     <li>Expert implementation</li>
                     <li>30-day support</li>
                 </ul>
-                <div class="tier-footer"><a href="{{ url_for('create_ticket') }}?subject=Service Inquiry: {{ service.service|urlencode }}" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
+                <div class="tier-footer"><a href="{{ url_for('support.create_ticket') }}?subject=Service Inquiry: {{ service.service|urlencode }}" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
             </div>
             {% endfor %}
         </div>
@@ -93,7 +93,7 @@
                     <li>Comprehensive support</li>
                     <li>Priority service</li>
                 </ul>
-                <div class="tier-footer"><a href="{{ url_for('create_ticket') }}?subject=Service Inquiry: {{ bundle.name|urlencode }} Bundle" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
+                <div class="tier-footer"><a href="{{ url_for('support.create_ticket') }}?subject=Service Inquiry: {{ bundle.name|urlencode }} Bundle" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
             </div>
             {% endfor %}
         </div>
@@ -111,7 +111,7 @@
                     <li>Contact form</li>
                 </ul>
                 <div class="tier-footer">
-                    <a href="{{ url_for('create_ticket') }}?subject=Service Inquiry: Startup Website" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a>
+                    <a href="{{ url_for('support.create_ticket') }}?subject=Service Inquiry: Startup Website" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a>
                     <div class="requirements">
                         <strong>Requirements:</strong> Must provide valid business registration or proof of operation
                     </div>
@@ -130,7 +130,7 @@
                     <li>Contact form</li>
                     <li>Basic analytics</li>
                 </ul>
-                <div class="tier-footer"><a href="{{ url_for('create_ticket') }}?subject=Service Inquiry: Standard Website" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
+                <div class="tier-footer"><a href="{{ url_for('support.create_ticket') }}?subject=Service Inquiry: Standard Website" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
             </div>
 
             <div class="pricing-tier">
@@ -145,13 +145,13 @@
                     <li>Advanced analytics</li>
                     <li>Ongoing support available</li>
                 </ul>
-                <div class="tier-footer"><a href="{{ url_for('create_ticket') }}?subject=Service Inquiry: Premium Website" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
+                <div class="tier-footer"><a href="{{ url_for('support.create_ticket') }}?subject=Service Inquiry: Premium Website" class="btn-primary tier-button">Let's Talk! <i class="fas fa-arrow-right"></i></a></div>
             </div>
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
             <p>Need a service not listed here? Contact us for a custom quote.</p>
-            <a href="{{ url_for('create_ticket') }}" class="btn-primary" style="margin-top: 20px;">Contact Us</a>
+            <a href="{{ url_for('support.create_ticket') }}" class="btn-primary" style="margin-top: 20px;">Contact Us</a>
         </div>
     </div>
 </section>

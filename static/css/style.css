@@ -21,6 +21,10 @@
   --secondary-light: #2dd4bf;
   --secondary-dark: #0d9488;
   
+  /* Semantic Colors */
+  --success: #059669;
+  --danger: #dc2626;
+
   /* Neutral Colors */
   --text-primary: #0f172a;
   --text-secondary: #475569;
@@ -73,6 +77,23 @@
   --space-16: 4rem;
   --space-20: 5rem;
   --space-24: 6rem;
+
+  /* Decorative Navy (blog hero / newsletter / CTA sections) */
+  --navy-gradient-start: #1e3a5f;
+  --navy-gradient-end: #0f2744;
+  --gradient-navy: linear-gradient(135deg, var(--navy-gradient-start) 0%, var(--navy-gradient-end) 100%);
+
+  /* Aliases — the "editorial theme" layer (static/css/editorial-theme.css,
+     originally an inline <style> block in layout.html) was authored against
+     this shorter naming convention. Defining both here keeps every existing
+     var() reference working from one canonical token source instead of two. */
+  --bg: var(--bg-secondary);
+  --ink: var(--text-primary);
+  --accent2: var(--secondary);
+  --muted: var(--text-secondary);
+  --border: var(--border-color);
+  --surface: var(--bg-primary);
+  --code-bg: var(--text-primary);
 }
 
 /* ========================================
@@ -107,7 +128,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   line-height: 1.3;
   color: var(--text-primary);
@@ -172,7 +193,7 @@ img {
   padding: 14px 32px;
   border-radius: var(--radius);
   border: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
@@ -213,7 +234,7 @@ img {
   padding: 14px 32px;
   border-radius: var(--radius);
   border: 2px solid rgba(255, 255, 255, 0.3);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
@@ -348,7 +369,7 @@ img {
   display: block;
   padding: var(--space-3) var(--space-4);
   color: rgba(255, 255, 255, 0.85);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   border-radius: var(--radius-sm);
@@ -384,7 +405,7 @@ img {
 }
 
 .company-name {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 700;
   color: white;
@@ -561,7 +582,7 @@ img {
 }
 
 .tag-part {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-light);
@@ -570,7 +591,7 @@ img {
 }
 
 .tag-connector {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--accent);
@@ -581,7 +602,7 @@ img {
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 5vw, 3.2rem);
   font-weight: 700;
   margin-bottom: var(--space-4);
@@ -592,7 +613,7 @@ img {
 }
 
 .hero-slogan {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(1rem, 2.5vw, 1.3rem);
   font-weight: 500;
   margin-bottom: var(--space-5);
@@ -697,7 +718,7 @@ img {
 }
 
 .hero-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   margin-bottom: var(--space-4);
@@ -708,7 +729,7 @@ img {
 }
 
 .hero-subtitle {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(1.15rem, 3vw, 1.5rem);
   font-weight: 500;
   margin-bottom: var(--space-5);
@@ -864,7 +885,7 @@ img {
 }
 
 .solution-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: var(--space-4);
@@ -967,7 +988,7 @@ img {
 }
 
 .step-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: var(--space-4);
@@ -1089,7 +1110,7 @@ img {
 }
 
 .testimonial-author {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 1.15rem;
   color: var(--accent-light);
@@ -1230,7 +1251,7 @@ img {
 }
 
 .pricing-tier h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: var(--space-4);
@@ -1238,7 +1259,7 @@ img {
 }
 
 .pricing-tier .price {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent);
@@ -1316,7 +1337,7 @@ img {
 .pricing-table th {
   background: var(--gradient-primary);
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -1356,7 +1377,7 @@ img {
 }
 
 .bundle-name {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.35rem;
   font-weight: 600;
   margin-bottom: var(--space-4);
@@ -1425,7 +1446,7 @@ img {
 .form-group label {
   display: block;
   margin-bottom: var(--space-3);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   color: var(--text-primary);
   font-size: 1rem;
@@ -1463,7 +1484,7 @@ img {
 }
 
 .contact-info h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   margin-bottom: var(--space-6);
   color: var(--text-primary);
   font-size: 1.4rem;
@@ -1599,7 +1620,7 @@ img {
 }
 
 .footer-heading {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
   color: white;
@@ -1709,7 +1730,7 @@ img {
   color: white;
   padding: 14px 28px;
   border-radius: var(--radius);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
   transition: all var(--transition);
   margin-top: var(--space-4);
@@ -1794,7 +1815,7 @@ img {
   color: var(--text-primary);
   margin-bottom: var(--space-5);
   font-size: 1.75rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
 }
 
@@ -1803,7 +1824,7 @@ img {
   color: var(--accent-dark);
   margin: var(--space-6) 0 var(--space-4);
   font-size: 1.35rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 600;
 }
 
@@ -2603,7 +2624,7 @@ a:focus-visible {
 }
 
 .faq-item h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -2724,7 +2745,7 @@ textarea:focus-visible {
 }
 
 .blog-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: var(--space-3);
@@ -2774,7 +2795,7 @@ textarea:focus-visible {
 }
 
 .post-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--text-primary);
@@ -2845,7 +2866,7 @@ textarea:focus-visible {
 }
 
 .post-content h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -2855,7 +2876,7 @@ textarea:focus-visible {
 }
 
 .post-content h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -2920,7 +2941,7 @@ textarea:focus-visible {
 }
 
 .cta-section h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: var(--space-3);
@@ -2972,7 +2993,7 @@ textarea:focus-visible {
 }
 
 .related-post h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   margin-bottom: var(--space-3);
@@ -3072,7 +3093,7 @@ textarea:focus-visible {
 .blog-hero {
   position: relative;
   padding: var(--space-20) 0;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+  background: var(--gradient-navy);
   overflow: hidden;
 }
 
@@ -3121,7 +3142,7 @@ textarea:focus-visible {
 }
 
 .blog-hero h1 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 700;
   color: white;
@@ -3158,7 +3179,7 @@ textarea:focus-visible {
 
 .stat-number {
   display: block;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -3248,7 +3269,7 @@ textarea:focus-visible {
 }
 
 .featured-content h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -3289,7 +3310,7 @@ textarea:focus-visible {
 }
 
 .section-header h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -3368,7 +3389,7 @@ textarea:focus-visible {
 }
 
 .blog-posts-section .card-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
   margin-bottom: var(--space-3);
@@ -3449,7 +3470,7 @@ textarea:focus-visible {
 }
 
 .topic-card h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -3478,7 +3499,7 @@ textarea:focus-visible {
 
 .newsletter-section {
   padding: var(--space-16) 0;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+  background: var(--gradient-navy);
 }
 
 .newsletter-box {
@@ -3488,7 +3509,7 @@ textarea:focus-visible {
 }
 
 .newsletter-content h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -3584,7 +3605,7 @@ textarea:focus-visible {
 .blog-hero-v2 {
   position: relative;
   padding: var(--space-24) 0;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 50%, #1a2f4d 100%);
+  background: linear-gradient(135deg, var(--navy-gradient-start) 0%, var(--navy-gradient-end) 50%, #1a2f4d 100%);
   overflow: hidden;
   min-height: 80vh;
   display: flex;
@@ -3729,7 +3750,7 @@ textarea:focus-visible {
 }
 
 .hero-title-animated {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 800;
   color: white;
@@ -3835,7 +3856,7 @@ textarea:focus-visible {
 
 .stat-number {
   display: block;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: white;
@@ -4140,7 +4161,7 @@ textarea:focus-visible {
 }
 
 .featured-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -4244,7 +4265,7 @@ textarea:focus-visible {
 }
 
 .header-left h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2.25rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -4444,7 +4465,7 @@ textarea:focus-visible {
 }
 
 .card-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: var(--space-3);
@@ -4551,7 +4572,7 @@ textarea:focus-visible {
 }
 
 .no-results h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   color: var(--text-primary);
   margin-bottom: var(--space-2);
@@ -4620,7 +4641,7 @@ textarea:focus-visible {
 }
 
 .topic-card-v2 h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.35rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -4680,7 +4701,7 @@ textarea:focus-visible {
 /* Newsletter Section V2 */
 .newsletter-section-v2 {
   padding: var(--space-20) 0;
-  background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%);
+  background: var(--gradient-navy);
   position: relative;
   overflow: hidden;
 }
@@ -4757,7 +4778,7 @@ textarea:focus-visible {
 }
 
 .newsletter-content-v2 h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2.25rem;
   font-weight: 700;
   margin-bottom: var(--space-4);
@@ -5186,7 +5207,7 @@ textarea:focus-visible {
 }
 
 .article-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 800;
   color: white;
@@ -5385,7 +5406,7 @@ textarea:focus-visible {
 }
 
 .table-of-contents h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -5433,7 +5454,7 @@ textarea:focus-visible {
 
 /* Article Headings */
 .article-body h2 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -5459,7 +5480,7 @@ textarea:focus-visible {
 }
 
 .article-body h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -5548,7 +5569,7 @@ textarea:focus-visible {
 }
 
 .stat-number-large {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 4rem;
   font-weight: 800;
   color: var(--text-primary);
@@ -5633,7 +5654,7 @@ textarea:focus-visible {
   background: var(--gradient-accent);
   color: white;
   border-radius: 50%;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 60px;
@@ -5780,7 +5801,7 @@ textarea:focus-visible {
 }
 
 .author-bio-content h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -5811,14 +5832,14 @@ textarea:focus-visible {
 
 /* Article CTA Box */
 .article-cta-box {
-  background: linear-gradient(135deg, #1e3a5f, #0f2744);
+  background: var(--gradient-navy);
   border-radius: var(--radius-lg);
   padding: var(--space-8);
   color: white;
 }
 
 .cta-content h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
   margin: 0 0 var(--space-3);
@@ -5870,7 +5891,7 @@ textarea:focus-visible {
 }
 
 .sidebar-widget h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -6019,7 +6040,7 @@ textarea:focus-visible {
 }
 
 .related-article-content h3 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 var(--space-2);
@@ -6074,7 +6095,7 @@ textarea:focus-visible {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    background-color: #1e3a5f;
+    background-color: var(--navy-gradient-start);
   }
   
   .article-breadcrumb {
@@ -6274,7 +6295,7 @@ textarea:focus-visible {
 }
 
 .project-stat-value {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: var(--accent);
@@ -6326,14 +6347,14 @@ textarea:focus-visible {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-weight: 700;
   font-size: 1rem;
   flex-shrink: 0;
 }
 
 .component-content h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -6368,7 +6389,7 @@ textarea:focus-visible {
 }
 
 .tech-details h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -6410,7 +6431,7 @@ textarea:focus-visible {
 }
 
 .benefit-card h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -6450,7 +6471,7 @@ textarea:focus-visible {
 }
 
 .pricing-highlight h4 {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Syne', sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -6571,5 +6592,162 @@ main {
     .blog-hero {
         padding-top: calc(58px + 20px);
     }
+}
+
+/* ========================================
+   CAROUSEL — generic scroll-snap component
+   Used by the homepage featured-products row and the shop product gallery.
+   Native overflow-x scrolling handles touch/trackpad; arrows are a JS-wired
+   affordance on top (static/js/carousel.js).
+   ======================================== */
+.carousel-wrap { position: relative; }
+
+.carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track > * { scroll-snap-align: start; flex-shrink: 0; }
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--ink);
+    background: var(--bg-primary);
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 2;
+    transition: background 0.15s, color 0.15s;
+}
+
+.carousel-arrow:hover { background: var(--ink); color: var(--bg-primary); }
+.carousel-arrow.prev { left: -20px; }
+.carousel-arrow.next { right: -20px; }
+
+@media (max-width: 640px) {
+    .carousel-arrow { display: none; }
+}
+
+/* ========================================
+   HOMEPAGE — Shop Hardware showcase
+   ======================================== */
+.home-shop-wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px 20px; }
+
+.home-shop-card {
+    width: 260px;
+}
+
+/* ========================================
+   BRAND MARQUEE — pure-CSS auto-scroll, real brands carried
+   ======================================== */
+.brand-marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 28px 0;
+    margin: 0 0 20px;
+}
+
+.brand-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: brand-scroll 28s linear infinite;
+}
+
+.brand-marquee-item {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    letter-spacing: 0.02em;
+    color: var(--text-light);
+    padding: 0 48px;
+    white-space: nowrap;
+}
+
+@keyframes brand-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brand-marquee-track { animation: none; overflow-x: auto; }
+}
+
+/* ========================================
+   FAQ — native <details>/<summary>, no JS needed
+   ======================================== */
+.faq-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+}
+
+.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--text-primary);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: '+';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 24px 22px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.faq-answer a {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item summary::after { transition: none; }
 }
 

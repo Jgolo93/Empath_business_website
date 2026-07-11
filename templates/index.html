@@ -2,6 +2,10 @@
 
 {% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
+
 {% block content %}
 
 <!-- ── EDITORIAL HERO ── -->
@@ -24,8 +28,8 @@
                 Expert solutions for virus removal, network setup, remote support, and custom website design.
             </p>
             <div class="hero-ctas">
-                <a href="{{ url_for('create_ticket') }}" class="btn-ink">Get IT Support →</a>
-                <a href="{{ url_for('blog') }}" class="btn-outline-ink">Read Our Blog</a>
+                <a href="{{ url_for('support.create_ticket') }}" class="btn-ink">Get IT Support →</a>
+                <a href="{{ url_for('blog.blog') }}" class="btn-outline-ink">Read Our Blog</a>
             </div>
         </div>
         <div class="hero-sidebar">
@@ -79,7 +83,7 @@
                 </div>
             </div>
             <div class="featured-foot">
-                <a href="{{ url_for('create_ticket') }}" class="btn-ink">
+                <a href="{{ url_for('support.create_ticket') }}" class="btn-ink">
                     Get Support →
                 </a>
                 <span class="feat-read-time">⚡ 24/7 Service</span>
@@ -119,7 +123,7 @@
                 </h3>
                 <p>Expert diagnosis and repair for hardware and software issues. Fast turnaround times and transparent pricing.</p>
                 <div class="card-foot">
-                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                    <a href="{{ url_for('support.create_ticket') }}" class="c-read-link">
                         Get Help <span class="c-arrow">→</span>
                     </a>
                     <div class="card-actions-row">
@@ -150,7 +154,7 @@
                 </h3>
                 <p>Complete virus removal and security protection. We clean your system and install preventive measures.</p>
                 <div class="card-foot">
-                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                    <a href="{{ url_for('support.create_ticket') }}" class="c-read-link">
                         Get Protected <span class="c-arrow">→</span>
                     </a>
                     <div class="card-actions-row">
@@ -181,7 +185,7 @@
                 </h3>
                 <p>Custom website development for small businesses. Modern, responsive designs that convert visitors to customers.</p>
                 <div class="card-foot">
-                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                    <a href="{{ url_for('support.create_ticket') }}" class="c-read-link">
                         Get Quote <span class="c-arrow">→</span>
                     </a>
                     <div class="card-actions-row">
@@ -212,7 +216,7 @@
                 </h3>
                 <p>Complete network installation including WiFi setup, security configuration, and network optimization.</p>
                 <div class="card-foot">
-                    <a href="{{ url_for('create_ticket') }}" class="c-read-link">
+                    <a href="{{ url_for('support.create_ticket') }}" class="c-read-link">
                         Get Connected <span class="c-arrow">→</span>
                     </a>
                     <div class="card-actions-row">
@@ -224,6 +228,51 @@
 
     </div>
 </div>
+
+{% if featured_products %}
+<!-- ── NEW ARRIVALS ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">New Arrivals</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="home-shop-wrap">
+    <div class="carousel-wrap" data-carousel>
+        <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous products">‹</button>
+        <div class="carousel-track product-grid" data-carousel-track style="display:flex;">
+            {% for p in featured_products %}
+            <a class="product-card home-shop-card" href="{{ url_for('shop.product', handle=p.handle) }}">
+                <div class="product-card-image">
+                    {% if not p.availableForSale %}<span class="product-card-badge">Out of stock</span>{% endif %}
+                    {% if p.featuredImage %}
+                    <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
+                    {% endif %}
+                </div>
+                <div class="product-card-body">
+                    <div class="product-card-title">{{ p.title }}</div>
+                    <div class="product-card-price">
+                        {{ p.priceRange.minVariantPrice.currencyCode }} {{ '%.2f'|format(p.priceRange.minVariantPrice.amount|float) }}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <button class="carousel-arrow next" data-carousel-next aria-label="Next products">›</button>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+        <a href="{{ url_for('shop.index') }}" class="btn-outline-ink">Browse the Full Shop →</a>
+    </div>
+</div>
+
+<div class="brand-marquee-wrap">
+    <div class="brand-marquee-track">
+        {% for brand in brands_carried + brands_carried %}
+        <span class="brand-marquee-item">{{ brand }}</span>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 
 <!-- ── WHY CHOOSE US ── -->
 <div class="section-rule">
@@ -285,6 +334,95 @@
     </div>
 </div>
 
+<!-- ── FAQ ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Frequently Asked Questions</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="faq-wrap">
+    <details class="faq-item" open>
+        <summary>How much does IT support cost?</summary>
+        <div class="faq-answer">
+            <p>Diagnostics start at R100 (applied toward the repair if you go ahead). On-site support is R150/hour, remote support is R100/hour (1-hour minimum), and after-hours/weekend emergency call-outs are 1.5x standard rates. You'll always know the cost before we start.</p>
+        </div>
+    </details>
+    <details class="faq-item">
+        <summary>Do you offer remote support, or only on-site visits?</summary>
+        <div class="faq-answer">
+            <p>Both. Most software issues, virus removal, and setup work can be handled remotely. Hardware repairs, network installations, and anything requiring physical access are booked as on-site visits in Cape Town and surrounding areas.</p>
+        </div>
+    </details>
+    <details class="faq-item">
+        <summary>Can I buy hardware from your shop and have you set it up?</summary>
+        <div class="faq-answer">
+            <p>Yes — that's the point of having both under one roof. Buy a product from the shop and our technicians can install, configure, and support it, the same as any device you already own.</p>
+        </div>
+    </details>
+    <details class="faq-item">
+        <summary>What's your return policy on shop purchases?</summary>
+        <div class="faq-answer">
+            <p>South African law (the ECT Act) gives you a 7-day cooling-off period on online purchases — the item just needs to be unused and in its original packaging. Faulty or incorrectly supplied items are covered by the Consumer Protection Act's 6-month implied warranty: repair, replacement, or refund, your choice. Full details are in our <a href="{{ url_for('shop.policy', slug='refund') }}">Refund Policy</a>.</p>
+        </div>
+    </details>
+    <details class="faq-item">
+        <summary>How fast can you respond?</summary>
+        <div class="faq-answer">
+            <p>We aim for under an hour on remote/support enquiries, with 24/7 availability. On-site visits are scheduled at the next available slot, faster for emergency call-outs.</p>
+        </div>
+    </details>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does IT support cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diagnostics start at R100 (applied toward the repair if you go ahead). On-site support is R150/hour, remote support is R100/hour (1-hour minimum), and after-hours/weekend emergency call-outs are 1.5x standard rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer remote support, or only on-site visits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both. Most software issues, virus removal, and setup work can be handled remotely. Hardware repairs, network installations, and anything requiring physical access are booked as on-site visits in Cape Town and surrounding areas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I buy hardware from your shop and have you set it up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Buy a product from the shop and our technicians can install, configure, and support it, the same as any device you already own."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's your return policy on shop purchases?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "South African law gives you a 7-day cooling-off period on online purchases if the item is unused and in its original packaging. Faulty or incorrectly supplied items are covered by a 6-month implied warranty under the Consumer Protection Act."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How fast can you respond?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We aim for under an hour on remote/support enquiries, with 24/7 availability. On-site visits are scheduled at the next available slot, faster for emergency call-outs."
+      }
+    }
+  ]
+}
+</script>
+
 <!-- ── CTA SECTION ── -->
 <div class="newsletter-editorial">
     <div class="newsletter-inner">
@@ -293,7 +431,7 @@
             <h2 class="nl-heading">Ready to Solve Your<br/><em>IT Challenges</em></h2>
             <p class="nl-desc">Contact us now for a free consultation. Let's discuss how we can help your business thrive with technology.</p>
             <div class="nl-form">
-                <a href="{{ url_for('create_ticket') }}" class="nl-submit" style="text-decoration: none; display: inline-block; text-align: center;">
+                <a href="{{ url_for('support.create_ticket') }}" class="nl-submit" style="text-decoration: none; display: inline-block; text-align: center;">
                     Get Free Consultation
                 </a>
             </div>
@@ -309,4 +447,5 @@
     </div>
 </div>
 
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
 {% endblock %}
