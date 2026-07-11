@@ -35,4 +35,13 @@ jobs:
           pip install requests psycopg2-binary flask flask-mail
 
       - name: Run referral_sync.py to sync Zoho Desk tickets
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ZOHO_ORG_ID: ${{ secrets.ZOHO_ORG_ID }}
+          ZOHO_CLIENT_ID: ${{ secrets.ZOHO_CLIENT_ID }}
+          ZOHO_CLIENT_SECRET: ${{ secrets.ZOHO_CLIENT_SECRET }}
+          ZOHO_REFRESH_TOKEN: ${{ secrets.ZOHO_REFRESH_TOKEN }}
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_DEFAULT_SENDER: ${{ secrets.MAIL_DEFAULT_SENDER }}
         run: python referral_sync.py

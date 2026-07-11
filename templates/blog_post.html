@@ -18,9 +18,9 @@
 <section class="editorial-hero">
     <div class="container">
         <nav class="article-breadcrumb">
-            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('main.home') }}">Home</a>
             <span class="breadcrumb-separator">/</span>
-            <a href="{{ url_for('blog') }}">Blog</a>
+            <a href="{{ url_for('blog.blog') }}">Blog</a>
             <span class="breadcrumb-separator">/</span>
             <span class="breadcrumb-current">{{ post.category or 'Article' }}</span>
         </nav>
@@ -59,7 +59,7 @@
                     <div class="cta-box" style="margin-top:48px;">
                         <h3>Need Professional IT Help?</h3>
                         <p>Empath Technology Solutions provides affordable IT services, cybersecurity, and web design for small businesses in Cape Town.</p>
-                        <a href="{{ url_for('create_ticket') }}" class="btn-primary">Get Free Consultation →</a>
+                        <a href="{{ url_for('support.create_ticket') }}" class="btn-primary">Get Free Consultation →</a>
                     </div>
                 </div>
             </article>
@@ -79,7 +79,7 @@
             {% for related in related_posts %}
             <article class="related-post">
                 <img src="{{ related.image }}" alt="{{ related.title }}">
-                <h3><a href="{{ url_for('blog_post', slug=related.slug) }}">{{ related.title }}</a></h3>
+                <h3><a href="{{ url_for('blog.blog_post', slug=related.slug) }}">{{ related.title }}</a></h3>
                 <p>{{ related.excerpt }}</p>
             </article>
             {% endfor %}
@@ -103,11 +103,11 @@
   "publisher": {
     "@type": "Organization",
     "name": "Empath Technology Solutions",
-    "url": "{{ url_for('home', _external=True) }}"
+    "url": "{{ url_for('main.home', _external=True) }}"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ url_for('blog_post', slug=post.slug, _external=True) }}"
+    "@id": "{{ url_for('blog.blog_post', slug=post.slug, _external=True) }}"
   }
 }
 </script>

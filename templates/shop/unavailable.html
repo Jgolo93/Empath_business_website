@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block title %}Shop Temporarily Unavailable | Empath Technology Solutions{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
+{% endblock %}
+{% block content %}
+<div class="shop-wrap">
+    <div class="cart-empty">
+        <p>The shop is temporarily unavailable — please try again shortly, or <a href="{{ url_for('support.create_ticket') }}">contact us</a> if this persists.</p>
+    </div>
+</div>
+{% endblock %}

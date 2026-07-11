@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block title %}{{ policy.title }} | Empath Technology Solutions{% endblock %}
+
+{% block content %}
+
+<div class="editorial-masthead">
+    Empath Technology Solutions — Shop
+</div>
+
+<section class="editorial-hero">
+    <div class="container">
+        <nav class="article-breadcrumb">
+            <a href="{{ url_for('main.home') }}">Home</a>
+            <span class="breadcrumb-separator">/</span>
+            <a href="{{ url_for('shop.index') }}">Shop</a>
+            <span class="breadcrumb-separator">/</span>
+            <span class="breadcrumb-current">{{ policy.title }}</span>
+        </nav>
+        <div class="editorial-hero-content">
+            <div class="issue-label">Shop Policy</div>
+            <h1 class="editorial-title">{{ policy.title }}</h1>
+        </div>
+    </div>
+</section>
+
+<div class="article-layout">
+    <div class="container">
+        <div class="article-grid">
+            <article class="article-content-wrapper">
+                <div class="article-body">
+                    {{ policy.body | safe }}
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

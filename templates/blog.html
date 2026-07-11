@@ -978,7 +978,7 @@
           </div>
         </div>
         <div class="featured-foot">
-          <a href="{{ url_for('blog_post', slug='glens-grass-case-study') }}" class="btn-ink">
+          <a href="{{ url_for('blog.blog_post', slug='glens-grass-case-study') }}" class="btn-ink">
             Read Case Study →
           </a>
           <span class="feat-read-time">⏱ 6 min read · <span id="featured-views">—</span> views</span>
@@ -1011,13 +1011,13 @@
             <span class="c-time">5 min</span>
           </div>
           <h3 itemprop="headline">
-            <a href="{{ url_for('blog_post', slug='cybersecurity-tips-small-business') }}">
+            <a href="{{ url_for('blog.blog_post', slug='cybersecurity-tips-small-business') }}">
               5 Essential Cybersecurity Tips for Small Businesses in Cape Town
             </a>
           </h3>
           <p itemprop="description">Protect your small business from cyber threats with these essential cybersecurity measures. Learn how to safeguard your data.</p>
           <div class="card-foot">
-            <a href="{{ url_for('blog_post', slug='cybersecurity-tips-small-business') }}" class="c-read-link">
+            <a href="{{ url_for('blog.blog_post', slug='cybersecurity-tips-small-business') }}" class="c-read-link">
               Read More <span class="c-arrow">→</span>
             </a>
             <div class="card-actions-row">
@@ -1042,13 +1042,13 @@
             <span class="c-time">7 min</span>
           </div>
           <h3 itemprop="headline">
-            <a href="{{ url_for('blog_post', slug='it-solutions-productivity-boost') }}">
+            <a href="{{ url_for('blog.blog_post', slug='it-solutions-productivity-boost') }}">
               How IT Solutions Can Boost Small Business Productivity by 40%
             </a>
           </h3>
           <p itemprop="description">Discover the top IT solutions that can significantly increase your small business productivity and efficiency.</p>
           <div class="card-foot">
-            <a href="{{ url_for('blog_post', slug='it-solutions-productivity-boost') }}" class="c-read-link">
+            <a href="{{ url_for('blog.blog_post', slug='it-solutions-productivity-boost') }}" class="c-read-link">
               Read More <span class="c-arrow">→</span>
             </a>
             <div class="card-actions-row">
@@ -1076,13 +1076,13 @@
             <span class="c-time">15 min</span>
           </div>
           <h3 itemprop="headline">
-            <a href="{{ url_for('blog_post', slug='world-of-testing') }}">
+            <a href="{{ url_for('blog.blog_post', slug='world-of-testing') }}">
               The World of Testing — A Complete Guide
             </a>
           </h3>
           <p itemprop="description">From unit tests to end-to-end automation, from shift-left philosophies to AI-assisted quality assurance — a sweeping look at the testing landscape.</p>
           <div class="card-foot">
-            <a href="{{ url_for('blog_post', slug='world-of-testing') }}" class="c-read-link">
+            <a href="{{ url_for('blog.blog_post', slug='world-of-testing') }}" class="c-read-link">
               Read More <span class="c-arrow">→</span>
             </a>
             <div class="card-actions-row">
@@ -1110,13 +1110,13 @@
             <span class="c-time">10 min</span>
           </div>
           <h3 itemprop="headline">
-            <a href="{{ url_for('blog_post', slug='robot-framework-browser-library') }}">
+            <a href="{{ url_for('blog.blog_post', slug='robot-framework-browser-library') }}">
               Browser Library vs Selenium in Robot Framework
             </a>
           </h3>
           <p itemprop="description">Why the Playwright-powered Browser Library is replacing SeleniumLibrary — and how to migrate your Robot Framework test suites.</p>
           <div class="card-foot">
-            <a href="{{ url_for('blog_post', slug='robot-framework-browser-library') }}" class="c-read-link">
+            <a href="{{ url_for('blog.blog_post', slug='robot-framework-browser-library') }}" class="c-read-link">
               Read More <span class="c-arrow">→</span>
             </a>
             <div class="card-actions-row">
@@ -1229,11 +1229,11 @@
   "@type": "Blog",
   "name": "Empath Technology Solutions Blog",
   "description": "IT insights and technology tips for small businesses in Cape Town",
-  "url": "{{ url_for('blog', _external=True) }}",
+  "url": "{{ url_for('blog.blog', _external=True) }}",
   "publisher": {
     "@type": "Organization",
     "name": "Empath Technology Solutions",
-    "url": "{{ url_for('home', _external=True) }}"
+    "url": "{{ url_for('main.home', _external=True) }}"
   }
 }
 </script>
