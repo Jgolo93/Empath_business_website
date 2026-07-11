@@ -1,9 +1,13 @@
 {% extends "layout.html" %}
 {% block title %}{{ product.title }} | Shop | Empath Technology Solutions{% endblock %}
+{% block meta_description %}{{ (product.description or product.title)[:160] }}{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
 {% endblock %}
 {% block content %}
+{% if product_schema %}
+<script type="application/ld+json">{{ product_schema | tojson }}</script>
+{% endif %}
 <div class="shop-wrap">
     <div class="shop-breadcrumb"><a href="{{ url_for('main.home') }}">Home</a> / <a href="{{ url_for('shop.index') }}">Shop</a> / {{ product.title }}</div>
 

@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}{{ collection.title }} | Shop | Empath Technology Solutions{% endblock %}
+{% block meta_description %}{{ (collection.description or 'Shop ' ~ collection.title ~ ' in Cape Town — sourced and supported by the same team that handles your IT.')[:160] }}{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
 {% endblock %}

@@ -15,18 +15,21 @@
     <title>{% block title %}Empath Technology Solutions{% endblock %}</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Empath Technology Solutions - Affordable IT support and computer repair services in Cape Town. Cheap rates for small business, virus removal, network setup, remote support. Starting from R100. Call 068 307 5553">
+    <meta name="description" content="{% block meta_description %}Empath Technology Solutions - Affordable IT support and computer repair services in Cape Town. Cheap rates for small business, virus removal, network setup, remote support. Starting from R100. Call 068 307 5553{% endblock %}">
     <meta name="keywords" content="IT support Cape Town, cheap computer repair, affordable IT services, small business IT support, virus removal, network setup, computer repair Kuils River, remote IT support, cheap website design, IT solutions Western Cape, budget IT services, professional IT support, data recovery, custom PC builds, IT maintenance">
     <meta name="author" content="Empath Technology Solutions">
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
     <meta name="geo.region" content="ZA-WC">
     <meta name="geo.placename" content="Cape Town">
     <meta name="geo.position" content="-33.9344;18.6844">
     <meta name="ICBM" content="-33.9344, 18.6844">
-    
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.empathtechnologysolutions.com{{ request.path }}">
+
     <!-- Open Graph for Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.empathtechnologysolutions.com">
+    <meta property="og:url" content="https://www.empathtechnologysolutions.com{{ request.path }}">
     <meta property="og:title" content="Empath Technology Solutions - Affordable IT Support Cape Town">
     <meta property="og:description" content="Professional and affordable IT support for small business and individuals. Computer repairs, network setup, virus removal starting at R100.">
     <meta property="og:image" content="https://www.empathtechnologysolutions.com/static/images/logo-blue.png">

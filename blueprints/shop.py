@@ -1,7 +1,7 @@
 import json
 from urllib.parse import urlencode
 
-from flask import Blueprint, abort, current_app, jsonify, render_template, request, session
+from flask import Blueprint, abort, current_app, jsonify, render_template, request, session, url_for
 
 import shopify_client as shopify
 
@@ -102,7 +102,40 @@ def product(handle):
             recommendations = shopify.get_product_recommendations(product_data['id'])
         except shopify.ShopifyError:
             recommendations = []
-    return render_template('shop/product.html', product=product_data, recommendations=recommendations)
+    return render_template(
+        'shop/product.html',
+        product=product_data,
+        recommendations=recommendations,
+        product_schema=_build_product_schema(product_data) if product_data else None,
+    )
+
+
+def _build_product_schema(product_data):
+    """https://schema.org/Product — still a fully live Google rich-result feature
+    (unlike FAQPage), shows price/availability directly in search results."""
+    images = [edge['node']['url'] for edge in product_data['images']['edges']]
+    schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Product',
+        'name': product_data['title'],
+        'description': product_data['description'],
+        'sku': product_data['handle'],
+        'offers': {
+            '@type': 'Offer',
+            'url': url_for('shop.product', handle=product_data['handle'], _external=True),
+            'priceCurrency': product_data['priceRange']['minVariantPrice']['currencyCode'],
+            'price': product_data['priceRange']['minVariantPrice']['amount'],
+            'availability': (
+                'https://schema.org/InStock' if product_data['availableForSale']
+                else 'https://schema.org/OutOfStock'
+            ),
+        },
+    }
+    if images:
+        schema['image'] = images
+    if product_data.get('vendor'):
+        schema['brand'] = {'@type': 'Brand', 'name': product_data['vendor']}
+    return schema
 
 
 @shop_bp.route('/shop/policies/<slug>')

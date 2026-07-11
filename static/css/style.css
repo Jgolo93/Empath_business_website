@@ -6685,3 +6685,69 @@ main {
     .brand-marquee-track { animation: none; overflow-x: auto; }
 }
 
+/* ========================================
+   FAQ — native <details>/<summary>, no JS needed
+   ======================================== */
+.faq-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+}
+
+.faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.02rem;
+    color: var(--text-primary);
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: '+';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding: 0 24px 22px;
+}
+
+.faq-answer p {
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.faq-answer a {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .faq-item summary::after { transition: none; }
+}
+

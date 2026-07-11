@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}{% if query %}"{{ query }}" search results{% else %}Search{% endif %} | Shop | Empath Technology Solutions{% endblock %}
+{% block meta_robots %}noindex, follow{% endblock %}
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
 {% endblock %}

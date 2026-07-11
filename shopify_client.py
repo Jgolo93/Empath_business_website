@@ -194,6 +194,7 @@ query Product($handle: String!) {
         description
         descriptionHtml
         availableForSale
+        vendor
         images(first: 8) { edges { node { url altText } } }
         priceRange {
             minVariantPrice { amount currencyCode }
