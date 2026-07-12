@@ -314,6 +314,8 @@ def webhook_products_update():
         if pending:
             db.session.commit()
 
+    return jsonify({'received': True}), 200
+
 
 def _verify_shopify_webhook():
     # Shopify doesn't give us a signing secret for webhooks created outside a
