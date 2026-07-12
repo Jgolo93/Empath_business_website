@@ -1132,6 +1132,37 @@
         </div>
       </article>
 
+      <!-- CARD: Glen's Grass Case Study -->
+      <article class="article-card" data-category="case-study" itemscope itemtype="https://schema.org/BlogPosting">
+        <div class="card-thumb-area">
+          <img src="{{ url_for('static', filename='images/glens-grass-logo.png') }}" alt="Glen's Grass Case Study" itemprop="image" />
+          <span class="card-cat-strip dark">Case Study</span>
+          <div class="card-read-overlay"><span>Read Article</span></div>
+        </div>
+        <div class="card-content">
+          <div class="card-meta-row">
+            <span class="c-date" itemprop="datePublished">March 30, 2024</span>
+            <span class="c-dot"></span>
+            <span class="c-time">6 min</span>
+          </div>
+          <h3 itemprop="headline">
+            <a href="{{ url_for('blog.blog_post', slug='glens-grass-case-study') }}">
+              R50 and a Weekend: How Empath Built a Full Business Website in 48 Hours
+            </a>
+          </h3>
+          <p itemprop="description">A professional website, custom email, booking system &amp; SMS automation — built in 48 hours for the price of a coffee.</p>
+          <div class="card-foot">
+            <a href="{{ url_for('blog.blog_post', slug='glens-grass-case-study') }}" class="c-read-link">
+              Read More <span class="c-arrow">→</span>
+            </a>
+            <div class="card-actions-row">
+              <button class="c-action like-btn" data-slug="glens-grass-case-study" title="Like">❤ <span class="count">0</span></button>
+              <button class="c-action share-btn" title="Share">↗</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div><!-- /blogGrid -->
 
     <div class="no-results-editorial" id="noResults">
