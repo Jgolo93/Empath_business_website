@@ -490,7 +490,7 @@
             .book-popup-left {
                 padding: 16px;
                 flex-direction: row;
-                justify-content: flex-start;
+                justify-content: center;
                 align-items: center;
                 gap: 14px;
                 min-height: auto;
