@@ -324,8 +324,17 @@
 
     <script>
         // Mobile menu toggle
-        document.querySelector('.mobile-menu-toggle').addEventListener('click', function() {
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', function(e) {
+            e.stopPropagation();
             document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Collapse the mobile menu when clicking/tapping outside of it
+        document.addEventListener('click', function(e) {
+            const navLinks = document.querySelector('.nav-links');
+            if (navLinks.classList.contains('active') && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
         });
 
         // Back to top button functionality

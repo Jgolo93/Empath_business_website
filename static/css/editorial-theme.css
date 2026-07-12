@@ -1263,8 +1263,9 @@ body {
     font-size: 16px;
     padding: 10px 0;
     display: block;
+    text-align: center;
   }
-  
+
   .footer-grid {
     grid-template-columns: 1fr;
     gap: 32px;
