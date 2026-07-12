@@ -172,7 +172,7 @@
       <div class="header">
         <img src="https://empathtechnologysolutions.com/static/images/logo.png" alt="Empath Technology Solutions" class="logo" width="180" onerror="this.style.display='none'">
         <p class="header-title">Empath Technology Solutions</p>
-        <p class="header-sub">Referral Programme</p>
+        <p class="header-sub">{% block header_sub %}Referral Programme{% endblock %}</p>
       </div>
       <div class="body">
         {% block content %}{% endblock %}

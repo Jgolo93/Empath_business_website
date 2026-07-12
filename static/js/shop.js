@@ -108,4 +108,64 @@
                 });
         });
     }
+
+    var notifyForm = document.getElementById('pdpNotifyForm');
+    var notifyBtn = document.getElementById('pdpNotifyBtn');
+    var notifyEmail = document.getElementById('pdpNotifyEmail');
+    var notifyPhone = document.getElementById('pdpNotifyPhone');
+    var notifyStatus = document.getElementById('pdpNotifyStatus');
+
+    if (notifyForm && notifyBtn && notifyEmail && notifyStatus) {
+        notifyBtn.addEventListener('click', function () {
+            var email = notifyEmail.value.trim();
+            var phone = notifyPhone ? notifyPhone.value.trim() : '';
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                notifyStatus.textContent = 'Please enter a valid email address.';
+                notifyStatus.style.color = '#dc2626';
+                return;
+            }
+            if (phone && !/^\+?[0-9]{9,15}$/.test(phone.replace(/[\s()-]/g, ''))) {
+                notifyStatus.textContent = 'Please enter a valid phone number, or leave it blank.';
+                notifyStatus.style.color = '#dc2626';
+                return;
+            }
+
+            notifyBtn.disabled = true;
+            notifyStatus.textContent = 'Saving...';
+            notifyStatus.style.color = '';
+
+            fetch('/api/notify-stock', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: email,
+                    phone: phone,
+                    variant_id: notifyForm.getAttribute('data-variant-id'),
+                    product_handle: notifyForm.getAttribute('data-product-handle'),
+                    product_title: notifyForm.getAttribute('data-product-title')
+                })
+            })
+                .then(function (r) { return r.json(); })
+                .then(function (data) {
+                    notifyBtn.disabled = false;
+                    if (data.success) {
+                        notifyStatus.textContent = phone
+                            ? "You're on the list — we'll email and text you when it's back."
+                            : "You're on the list — we'll email you when it's back.";
+                        notifyStatus.style.color = 'var(--accent2)';
+                        notifyEmail.disabled = true;
+                        if (notifyPhone) notifyPhone.disabled = true;
+                        notifyBtn.disabled = true;
+                    } else {
+                        notifyStatus.textContent = data.error || 'Could not save your details.';
+                        notifyStatus.style.color = '#dc2626';
+                    }
+                })
+                .catch(function () {
+                    notifyBtn.disabled = false;
+                    notifyStatus.textContent = 'Network error — please try again.';
+                    notifyStatus.style.color = '#dc2626';
+                });
+        });
+    }
 })();

@@ -54,16 +54,26 @@
             <input type="hidden" id="pdpVariantSelect" value="{{ product.variants.edges[0].node.id if product.variants.edges else '' }}">
             {% endif %}
 
+            {% if product.availableForSale %}
             <label class="pdp-variant-label" for="pdpQuantity">Quantity</label>
             <input type="number" id="pdpQuantity" class="pdp-variant-select" value="1" min="1" max="{{ product.variants.edges[0].node.quantityAvailable or 99 }}">
 
-            <button class="pdp-add-to-cart" id="pdpAddToCart" {% if not product.availableForSale %}disabled{% endif %}>
-                {% if product.availableForSale %}Add to Cart{% else %}Out of Stock{% endif %}
-            </button>
-            {% if product.availableForSale %}
+            <button class="pdp-add-to-cart" id="pdpAddToCart">Add to Cart</button>
             <button class="pdp-checkout-btn" id="pdpCheckout">Checkout</button>
-            {% endif %}
             <p class="pdp-stock-note" id="pdpAddStatus"></p>
+            {% else %}
+            <button class="pdp-add-to-cart" disabled>Out of Stock</button>
+            <div class="pdp-notify-form" id="pdpNotifyForm"
+                 data-variant-id="{{ product.variants.edges[0].node.id if product.variants.edges else '' }}"
+                 data-product-handle="{{ product.handle }}"
+                 data-product-title="{{ product.title }}">
+                <label class="pdp-variant-label" for="pdpNotifyEmail">Want to know if the stock comes back?</label>
+                <input type="email" id="pdpNotifyEmail" class="pdp-variant-select" placeholder="you@example.com" style="margin-bottom:10px;">
+                <input type="tel" id="pdpNotifyPhone" class="pdp-variant-select" placeholder="Phone (optional, for an SMS too)">
+                <button class="pdp-checkout-btn" id="pdpNotifyBtn" type="button">Notify Me</button>
+                <p class="pdp-stock-note" id="pdpNotifyStatus"></p>
+            </div>
+            {% endif %}
             {% if product.availableForSale and product.variants.edges[0].node.quantityAvailable %}
             <p class="pdp-stock-note">{{ product.variants.edges[0].node.quantityAvailable }} in stock</p>
             {% endif %}

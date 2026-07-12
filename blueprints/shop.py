@@ -1,11 +1,19 @@
 import json
+import os
+import re
 from urllib.parse import urlencode
 
 from flask import Blueprint, abort, current_app, jsonify, render_template, request, session, url_for
 
 import shopify_client as shopify
+from email_utils import send_referral_email
+from extensions import db
+from models import StockNotification
+from sms_utils import clean_phone_number, send_sms
 
 shop_bp = Blueprint('shop', __name__)
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
 
 
 @shop_bp.errorhandler(shopify.ShopifyError)
@@ -226,3 +234,82 @@ def api_cart_clear():
         return jsonify({'success': False, 'error': str(e)}), 502
 
     return jsonify({'success': True, 'totalQuantity': cart_data['totalQuantity']}), 200
+
+
+@shop_bp.route('/api/notify-stock', methods=['POST'])
+def api_notify_stock():
+    data = request.get_json(silent=True) or {}
+    email = (data.get('email') or '').strip()
+    phone = clean_phone_number(data.get('phone'))
+    variant_gid = (data.get('variant_id') or '').strip()
+    product_handle = (data.get('product_handle') or '').strip()
+    product_title = (data.get('product_title') or '').strip()
+
+    if not EMAIL_REGEX.match(email):
+        return jsonify({'success': False, 'error': 'Please enter a valid email address.'}), 400
+    if phone and not re.match(r'^\+?[0-9]{9,15}$', phone):
+        return jsonify({'success': False, 'error': 'Please enter a valid phone number.'}), 400
+    if not variant_gid or not product_handle or not product_title:
+        return jsonify({'success': False, 'error': 'Missing product information.'}), 400
+
+    # Storefront API hands us a GID (gid://shopify/ProductVariant/123) — the
+    # products/update webhook payload that triggers the notification uses the
+    # plain numeric id, so normalize to that now rather than on every webhook delivery.
+    variant_id = variant_gid.rsplit('/', 1)[-1]
+
+    existing = StockNotification.query.filter_by(email=email, variant_id=variant_id).first()
+    if not existing:
+        db.session.add(StockNotification(
+            email=email,
+            phone=phone or None,
+            variant_id=variant_id,
+            product_handle=product_handle,
+            product_title=product_title,
+        ))
+        db.session.commit()
+    elif phone and existing.phone != phone:
+        existing.phone = phone
+        db.session.commit()
+
+    return jsonify({'success': True}), 200
+
+
+@shop_bp.route('/webhooks/products/update', methods=['POST'])
+def webhook_products_update():
+    # Shopify doesn't give us a signing secret for webhooks created outside a
+    # registered app's Admin API credentials, so this checks the shop-domain
+    # header as a basic sanity gate rather than a full HMAC verification.
+    shop_domain = request.headers.get('X-Shopify-Shop-Domain', '')
+    if shop_domain != os.environ.get('SHOPIFY_STORE_DOMAIN', ''):
+        abort(401)
+
+    payload = request.get_json(silent=True) or {}
+    product_title = payload.get('title', '')
+    product_handle = payload.get('handle', '')
+
+    for variant in payload.get('variants', []):
+        variant_id = str(variant.get('id', ''))
+        qty = variant.get('inventory_quantity')
+        if not variant_id or qty is None or qty <= 0:
+            continue
+
+        pending = StockNotification.query.filter_by(variant_id=variant_id, notified_at=None).all()
+        for note in pending:
+            product_url = url_for('shop.product', handle=product_handle, _external=True)
+            send_referral_email(
+                note.email,
+                f"Back in stock: {product_title}",
+                'emails/07_back_in_stock.html',
+                {'product_title': product_title, 'product_url': product_url},
+            )
+            if note.phone:
+                send_sms(
+                    note.phone,
+                    f"Good news! {product_title} is back in stock at Empath Technology Solutions. "
+                    f"Grab it here: {product_url}",
+                )
+            note.notified_at = db.func.now()
+        if pending:
+            db.session.commit()
+
+    return jsonify({'received': True}), 200

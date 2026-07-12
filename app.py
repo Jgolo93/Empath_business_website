@@ -35,6 +35,17 @@ def create_app():
     db.init_app(app)
     mail.init_app(app)
 
+    # No migration framework in this project — tables are declared in models.py and
+    # created here if missing. create_all() only adds missing tables/never touches
+    # existing ones, so this is safe to run on every cold start. Failures are logged
+    # rather than raised so a momentarily-unreachable DB doesn't take down the whole
+    # app (routes that don't touch the DB should keep working either way).
+    with app.app_context():
+        try:
+            db.create_all()
+        except Exception as e:
+            app.logger.error(f"db.create_all() failed at startup: {e}")
+
     from blueprints.main import main_bp
     from blueprints.blog import blog_bp
     from blueprints.support import support_bp

@@ -1,0 +1,13 @@
+{% extends 'emails/base_email.html' %}
+{% block header_sub %}Shop{% endblock %}
+{% block content %}
+<span class="badge green">Back In Stock</span>
+
+<p>Good news — <strong>{{ product_title }}</strong> is back in stock.</p>
+
+<p>You asked us to let you know as soon as it was available again, so here it is. Stock can move quickly, so grab it while it's here.</p>
+
+<p><a href="{{ product_url }}" class="badge orange" style="text-decoration:none; display:inline-block;">View the product →</a></p>
+
+<p>— Empath Technology Solutions</p>
+{% endblock %}

@@ -58,6 +58,7 @@ class StockNotification(db.Model):
     __tablename__ = 'stock_notifications'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), nullable=False, index=True)
+    phone = db.Column(db.String(30), nullable=True)
     # Plain numeric Shopify variant id (not the Storefront API GID) — this is what
     # the products/update webhook payload uses, so storing it this way avoids
     # converting formats on every webhook delivery.
