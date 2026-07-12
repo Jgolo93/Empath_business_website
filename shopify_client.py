@@ -18,6 +18,14 @@ from extensions import require_env
 
 API_VERSION = os.environ.get('SHOPIFY_API_VERSION', '2025-10')
 
+# Curated subset of shop collections to feature in the homepage "Shop by Category"
+# grid and the site footer — the highest-traffic, most broadly appealing categories
+# rather than the full catalog (kept in this display order).
+FEATURED_CATEGORY_HANDLES = [
+    'computers', 'components', 'networking-security', 'storage-drives',
+    'computer-peripherals', 'power-supplies', 'tv-audio', 'appliances',
+]
+
 
 class ShopifyError(Exception):
     pass

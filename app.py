@@ -19,7 +19,6 @@ def create_app():
     app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
         'pool_pre_ping': True,
         'pool_recycle': 300,
-        'connect_args': {'connect_timeout': 10}
     }
 
     # ── Email (Zoho Mail) ────────────────────────────────────────────
@@ -54,6 +53,15 @@ def create_app():
             return {'shop_policies': shopify.get_shop_policies()}
         except (shopify.ShopifyError, RuntimeError):
             return {'shop_policies': []}  # Shop unreachable — footer just omits this column.
+
+    @app.context_processor
+    def inject_footer_categories():
+        try:
+            by_handle = {c['handle']: c for c in shopify.get_collections(first=50)}
+            categories = [by_handle[h] for h in shopify.FEATURED_CATEGORY_HANDLES if h in by_handle]
+            return {'footer_categories': categories}
+        except (shopify.ShopifyError, RuntimeError):
+            return {'footer_categories': []}  # Shop unreachable — footer just omits this column.
 
     @app.context_processor
     def inject_cart_count():

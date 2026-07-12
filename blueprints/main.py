@@ -12,13 +12,6 @@ main_bp = Blueprint('main', __name__)
 
 BRANDS_CARRIED = ['Acer', 'ASRock', 'ASUS', 'Giada', 'MINISFORUM', 'Nplay', 'PCBuilder']
 
-# Curated subset of shop collections to feature on the homepage — the highest-traffic,
-# most broadly appealing categories rather than the full catalog (kept in this display order).
-FEATURED_CATEGORY_HANDLES = [
-    'computers', 'components', 'networking-security', 'storage-drives',
-    'computer-peripherals', 'power-supplies', 'tv-audio', 'appliances',
-]
-
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
 
 
@@ -42,7 +35,7 @@ def home():
 
     try:
         all_collections = {c['handle']: c for c in shopify.get_collections(first=50)}
-        featured_categories = [all_collections[h] for h in FEATURED_CATEGORY_HANDLES if h in all_collections]
+        featured_categories = [all_collections[h] for h in shopify.FEATURED_CATEGORY_HANDLES if h in all_collections]
     except (shopify.ShopifyError, RuntimeError):
         pass
 

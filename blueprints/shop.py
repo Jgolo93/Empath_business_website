@@ -64,7 +64,23 @@ def _build_filter_facets(collection_data, selected_filters, sort_key):
 @shop_bp.route('/shop')
 def index():
     collections = shopify.get_collections()
-    return render_template('shop/index.html', collections=collections)
+
+    by_handle = {c['handle']: c for c in collections}
+    hero_categories = [by_handle[h] for h in shopify.FEATURED_CATEGORY_HANDLES[:5] if h in by_handle]
+
+    featured_products = []
+    try:
+        new_arrivals = shopify.get_collection_products('new-arrivals', first=12, sort_key='BEST_SELLING')
+        featured_products = [edge['node'] for edge in new_arrivals['products']['edges']] if new_arrivals else []
+    except (shopify.ShopifyError, RuntimeError):
+        pass  # New Arrivals carousel just doesn't render — rest of /shop isn't dependent on it.
+
+    return render_template(
+        'shop/index.html',
+        collections=collections,
+        hero_categories=hero_categories,
+        featured_products=featured_products,
+    )
 
 
 @shop_bp.route('/shop/<collection_handle>')
