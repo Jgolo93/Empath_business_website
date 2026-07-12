@@ -284,13 +284,7 @@ def api_notify_stock():
 
 @shop_bp.route('/webhooks/products/update', methods=['POST'])
 def webhook_products_update():
-    # Shopify doesn't give us a signing secret for webhooks created outside a
-    # registered app's Admin API credentials, so this checks the shop-domain
-    # header as a basic sanity gate rather than a full HMAC verification.
-    shop_domain = request.headers.get('X-Shopify-Shop-Domain', '')
-    if shop_domain != os.environ.get('SHOPIFY_STORE_DOMAIN', ''):
-        abort(401)
-
+    _verify_shopify_webhook()
     payload = request.get_json(silent=True) or {}
     product_title = payload.get('title', '')
     product_handle = payload.get('handle', '')
@@ -319,5 +313,74 @@ def webhook_products_update():
             note.notified_at = db.func.now()
         if pending:
             db.session.commit()
+
+
+def _verify_shopify_webhook():
+    # Shopify doesn't give us a signing secret for webhooks created outside a
+    # registered app's Admin API credentials, so this checks the shop-domain
+    # header as a basic sanity gate rather than a full HMAC verification.
+    shop_domain = request.headers.get('X-Shopify-Shop-Domain', '')
+    if shop_domain != os.environ.get('SHOPIFY_STORE_DOMAIN', ''):
+        abort(401)
+
+
+def _order_phone(order):
+    # Order webhook payloads carry the phone in a few possible spots depending
+    # on how the customer checked out — fall back through them in order of
+    # how likely each is to actually be filled in.
+    raw = order.get('phone') or (order.get('customer') or {}).get('phone') \
+        or (order.get('shipping_address') or {}).get('phone') \
+        or (order.get('billing_address') or {}).get('phone')
+    return clean_phone_number(raw) if raw else None
+
+
+@shop_bp.route('/webhooks/orders/create', methods=['POST'])
+def webhook_orders_create():
+    _verify_shopify_webhook()
+    order = request.get_json(silent=True) or {}
+    phone = _order_phone(order)
+    if phone:
+        order_number = order.get('name') or f"#{order.get('order_number', '')}"
+        status_url = order.get('order_status_url', '')
+        send_sms(
+            phone,
+            f"Thanks for your order {order_number} with Empath Technology Solutions! "
+            f"We'll text you when it ships. {status_url}".rstrip(),
+        )
+    return jsonify({'received': True}), 200
+
+
+@shop_bp.route('/webhooks/orders/fulfilled', methods=['POST'])
+def webhook_orders_fulfilled():
+    _verify_shopify_webhook()
+    order = request.get_json(silent=True) or {}
+    phone = _order_phone(order)
+    if phone:
+        order_number = order.get('name') or f"#{order.get('order_number', '')}"
+        tracking_url = ''
+        for fulfillment in order.get('fulfillments') or []:
+            tracking_url = fulfillment.get('tracking_url') or next(iter(fulfillment.get('tracking_urls') or []), '')
+            if tracking_url:
+                break
+        message = f"Your order {order_number} from Empath Technology Solutions has shipped!"
+        if tracking_url:
+            message += f" Track it here: {tracking_url}"
+        send_sms(phone, message)
+    return jsonify({'received': True}), 200
+
+
+@shop_bp.route('/webhooks/orders/cancelled', methods=['POST'])
+def webhook_orders_cancelled():
+    _verify_shopify_webhook()
+    order = request.get_json(silent=True) or {}
+    phone = _order_phone(order)
+    if phone:
+        order_number = order.get('name') or f"#{order.get('order_number', '')}"
+        send_sms(
+            phone,
+            f"Your order {order_number} with Empath Technology Solutions has been cancelled. "
+            f"Contact us if this wasn't expected.",
+        )
+    return jsonify({'received': True}), 200
 
     return jsonify({'received': True}), 200
