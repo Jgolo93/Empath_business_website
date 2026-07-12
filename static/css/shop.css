@@ -488,6 +488,32 @@
   text-align: center;
 }
 
+.pdp-phone-field {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 20px;
+}
+
+.pdp-phone-prefix {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-right: none;
+  background: var(--bg);
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9rem;
+}
+
+.pdp-phone-field input {
+  flex: 1;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--border);
+  font-family: 'Syne', sans-serif;
+}
+
 .pdp-add-to-cart {
   width: 100%;
   background: var(--ink);

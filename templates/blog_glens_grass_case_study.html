@@ -167,14 +167,14 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
     
     // Track blog view
-    fetch('/api/blog/view', {
+    fetch('/api/blog/view/glens-grass-case-study', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_slug: 'glens-grass-case-study' })
+        headers: { 'Content-Type': 'application/json' }
     }).catch(() => {});
-    
+
     // Share functionality
-    document.querySelector('.btn-share-article').addEventListener('click', function() {
+    const shareBtn = document.querySelector('.btn-share-article');
+    if (shareBtn) shareBtn.addEventListener('click', function() {
         if (navigator.share) {
             navigator.share({
                 title: 'R50 and a Weekend: Affordable Website Design for Small Business',
@@ -190,7 +190,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Save article functionality
-    document.querySelector('.btn-save-article').addEventListener('click', function() {
+    const saveBtn = document.querySelector('.btn-save-article');
+    if (saveBtn) saveBtn.addEventListener('click', function() {
         this.textContent = this.textContent === '🔖' ? '📌 Saved!' : '🔖';
     });
 });

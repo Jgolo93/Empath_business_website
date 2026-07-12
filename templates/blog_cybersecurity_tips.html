@@ -159,10 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
 
     // Track blog view
-    fetch('/api/blog/view', {
+    fetch('/api/blog/view/cybersecurity-tips-small-business', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_slug: 'cybersecurity-tips-small-business' })
+        headers: { 'Content-Type': 'application/json' }
     }).catch(() => {});
 
     // Share functionality

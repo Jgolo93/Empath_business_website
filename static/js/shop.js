@@ -115,16 +115,28 @@
     var notifyPhone = document.getElementById('pdpNotifyPhone');
     var notifyStatus = document.getElementById('pdpNotifyStatus');
 
+    // The field only collects the local subscriber number — the "+27" dialing
+    // code shown next to it is fixed in the UI, so make sure what actually
+    // gets sent is a real, complete international number rather than relying
+    // on the customer to type (or remember) a country code themselves.
+    function toInternationalSaNumber(rawLocalInput) {
+        var digits = rawLocalInput.replace(/[^0-9]/g, '');
+        if (!digits) return '';
+        if (digits.charAt(0) === '0') digits = digits.slice(1); // drop the trunk 0 if typed out of habit
+        return '+27' + digits;
+    }
+
     if (notifyForm && notifyBtn && notifyEmail && notifyStatus) {
         notifyBtn.addEventListener('click', function () {
             var email = notifyEmail.value.trim();
-            var phone = notifyPhone ? notifyPhone.value.trim() : '';
+            var phoneRaw = notifyPhone ? notifyPhone.value.trim() : '';
+            var phone = phoneRaw ? toInternationalSaNumber(phoneRaw) : '';
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 notifyStatus.textContent = 'Please enter a valid email address.';
                 notifyStatus.style.color = '#dc2626';
                 return;
             }
-            if (phone && !/^\+?[0-9]{9,15}$/.test(phone.replace(/[\s()-]/g, ''))) {
+            if (phoneRaw && !/^\+?[0-9]{9,15}$/.test(phone)) {
                 notifyStatus.textContent = 'Please enter a valid phone number, or leave it blank.';
                 notifyStatus.style.color = '#dc2626';
                 return;

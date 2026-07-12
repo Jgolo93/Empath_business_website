@@ -159,10 +159,9 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
 
     // Track blog view
-    fetch('/api/blog/view', {
+    fetch('/api/blog/view/it-solutions-productivity-boost', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ post_slug: 'it-solutions-productivity-boost' })
+        headers: { 'Content-Type': 'application/json' }
     }).catch(() => {});
 
     // Share functionality

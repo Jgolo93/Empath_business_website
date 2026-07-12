@@ -83,11 +83,19 @@ def index():
     except (shopify.ShopifyError, RuntimeError):
         pass  # New Arrivals carousel just doesn't render — rest of /shop isn't dependent on it.
 
+    deal_products = []
+    try:
+        deals = shopify.get_collection_products('deals', first=12, sort_key='BEST_SELLING')
+        deal_products = [edge['node'] for edge in deals['products']['edges']] if deals else []
+    except (shopify.ShopifyError, RuntimeError):
+        pass  # Deals carousel just doesn't render — rest of /shop isn't dependent on it.
+
     return render_template(
         'shop/index.html',
         collections=collections,
         hero_categories=hero_categories,
         featured_products=featured_products,
+        deal_products=deal_products,
     )
 
 

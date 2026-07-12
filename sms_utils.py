@@ -33,10 +33,31 @@ def _get_token():
     return _cached_token
 
 
+# South African business — default the dialing code for locally-formatted
+# numbers (e.g. a customer typing "082 123 4567") since SMSPortal requires the
+# full international format (+27821234567) to route the message at all.
+_DEFAULT_DIALING_CODE = '27'
+
+
 def clean_phone_number(phone):
     if not phone:
         return ''
-    return ''.join(ch for ch in phone if ch.isdigit() or ch == '+')
+    digits = ''.join(ch for ch in phone if ch.isdigit() or ch == '+')
+    if not digits:
+        return ''
+
+    if digits.startswith('+'):
+        return digits
+    if digits.startswith('00'):
+        return '+' + digits[2:]
+    if digits.startswith('0'):
+        # Local SA format (0821234567) — drop the trunk 0, prefix +27.
+        return '+' + _DEFAULT_DIALING_CODE + digits[1:]
+    if digits.startswith(_DEFAULT_DIALING_CODE):
+        return '+' + digits
+    # Anything else (already has some other country code but no +, e.g. from
+    # copy-paste) — best effort, just add the +.
+    return '+' + digits
 
 
 def send_sms(phone, message):

@@ -69,7 +69,10 @@
                  data-product-title="{{ product.title }}">
                 <label class="pdp-variant-label" for="pdpNotifyEmail">Want to know if the stock comes back?</label>
                 <input type="email" id="pdpNotifyEmail" class="pdp-variant-select" placeholder="you@example.com" style="margin-bottom:10px;">
-                <input type="tel" id="pdpNotifyPhone" class="pdp-variant-select" placeholder="Phone (optional, for an SMS too)">
+                <div class="pdp-phone-field">
+                    <span class="pdp-phone-prefix">+27</span>
+                    <input type="tel" id="pdpNotifyPhone" placeholder="82 123 4567 (optional, for an SMS too)">
+                </div>
                 <button class="pdp-checkout-btn" id="pdpNotifyBtn" type="button">Notify Me</button>
                 <p class="pdp-stock-note" id="pdpNotifyStatus"></p>
             </div>

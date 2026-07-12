@@ -35,6 +35,8 @@ def create_app():
     db.init_app(app)
     mail.init_app(app)
 
+    import models  # noqa: F401 — registers all tables on db.metadata before create_all() below
+
     # No migration framework in this project — tables are declared in models.py and
     # created here if missing. create_all() only adds missing tables/never touches
     # existing ones, so this is safe to run on every cold start. Failures are logged
