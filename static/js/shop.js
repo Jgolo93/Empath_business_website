@@ -168,4 +168,32 @@
                 });
         });
     }
+
+    // Bfcache gotcha: clicking Add to Cart / Checkout disables the button and
+    // updates the status text right before (for Checkout) navigating away to
+    // Shopify. If the browser restores this exact page from bfcache on a
+    // back-button press instead of reloading it, that disabled/loading state
+    // is exactly what comes back — a permanently stuck, wordless-looking
+    // button. `pageshow` with `event.persisted` fires on a bfcache restore;
+    // put every button/status back to its real, freshly-computed state.
+    window.addEventListener('pageshow', function (event) {
+        if (!event.persisted) return;
+        // addBtn only exists in the DOM at all when the product is available for
+        // sale (see product.html) — the out-of-stock state is a separate, plain
+        // disabled button with no id, so if addBtn is present it should never be
+        // disabled at rest (only transiently while a request is in flight).
+        if (addBtn) {
+            addBtn.disabled = false;
+        }
+        if (checkoutBtn) {
+            checkoutBtn.disabled = false;
+        }
+        if (statusEl) {
+            statusEl.textContent = '';
+            statusEl.style.color = '';
+        }
+        if (notifyBtn && notifyEmail && !notifyEmail.disabled) {
+            notifyBtn.disabled = false;
+        }
+    });
 })();
