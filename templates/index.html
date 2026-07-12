@@ -229,6 +229,40 @@
     </div>
 </div>
 
+{% if featured_categories %}
+<!-- ── SHOP BY CATEGORY ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Our Shop</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="home-shop-wrap">
+    <p class="shop-subheading" style="text-align:center; max-width:640px; margin-left:auto; margin-right:auto;">
+        Alongside IT support, we run a full online store — computers, components, networking gear,
+        storage, and accessories — sourced and backed by the same technicians who handle your repairs.
+        Buy it here and we'll set it up for you.
+    </p>
+    <div class="collection-grid">
+        {% for c in featured_categories %}
+        <a class="collection-tile" href="{{ url_for('shop.collection', collection_handle=c.handle) }}">
+            {% if c.image %}
+            <div class="collection-tile-image">
+                <img src="{{ c.image.url }}" alt="{{ c.image.altText or c.title }}" loading="lazy">
+            </div>
+            {% endif %}
+            <div class="collection-tile-body">
+                <h3>{{ c.title }}</h3>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+        <a href="{{ url_for('shop.index') }}" class="btn-outline-ink">See All Categories →</a>
+    </div>
+</div>
+{% endif %}
+
 {% if featured_products %}
 <!-- ── NEW ARRIVALS ── -->
 <div class="section-rule">
@@ -247,6 +281,11 @@
                     {% if not p.availableForSale %}<span class="product-card-badge">Out of stock</span>{% endif %}
                     {% if p.featuredImage %}
                     <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
+                    {% endif %}
+                    {% if p.availableForSale and p.variants.edges %}
+                    <button class="product-card-quickadd" data-variant-id="{{ p.variants.edges[0].node.id }}" aria-label="Add {{ p.title }} to cart">
+                        <span class="material-icons">add_shopping_cart</span>
+                    </button>
                     {% endif %}
                 </div>
                 <div class="product-card-body">
@@ -372,6 +411,24 @@
             <p>We aim for under an hour on remote/support enquiries, with 24/7 availability. On-site visits are scheduled at the next available slot, faster for emergency call-outs.</p>
         </div>
     </details>
+    <details class="faq-item">
+        <summary>Can you collect my PC for repair and deliver it back when it's done?</summary>
+        <div class="faq-answer">
+            <p>Yes — if dropping it off isn't convenient, we can arrange a courier to fetch your device. Our technicians assess it and send you a quote before any work starts, so there are no surprise invoices. Once you approve, we carry out the repair (including installing any hardware you've bought from us) and courier it back to you. The collection-and-return trip is a flat R250, with labour quoted separately based on the work involved.</p>
+        </div>
+    </details>
+    <details class="faq-item">
+        <summary>I just bought a new PC — can you help me set it up?</summary>
+        <div class="faq-answer">
+            <p>Yes. Once your new computer arrives, we can walk you through setup over a remote session — software installation, updates, transferring your files, configuring accounts — so you're not left figuring it out alone. It's billed at our standard remote support rate (R100/hour, 1-hour minimum), and for anything that needs hands-on access we can also book an on-site visit.</p>
+        </div>
+    </details>
+    <details class="faq-item">
+        <summary>Can you help me put together a custom PC build?</summary>
+        <div class="faq-answer">
+            <p>Yes. Pick the parts you want from our Components category — case, CPU, motherboard, RAM, GPU, storage, PSU, cooling — and once you've got a couple of parts in your cart you can request build & assembly. We check everything's compatible and confirm final pricing before we start (assembly from R400, depending on complexity), then we build, cable-manage, and thoroughly test the system before it ships. Every part carries its official manufacturer warranty.</p>
+        </div>
+    </details>
 </div>
 
 <script type="application/ld+json">
@@ -417,6 +474,30 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "We aim for under an hour on remote/support enquiries, with 24/7 availability. On-site visits are scheduled at the next available slot, faster for emergency call-outs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you collect my PC for repair and deliver it back when it's done?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. We can arrange a courier to fetch your device, assess it and send a quote before any work starts, then repair it (including installing any hardware you've bought from us) and courier it back. The collection-and-return trip is a flat R250, with labour quoted separately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "I just bought a new PC — can you help me set it up?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we offer remote setup support for newly purchased computers — software installation, updates, transferring files, and configuring accounts — billed at our standard remote support rate."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you help me put together a custom PC build?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add your chosen parts to your cart and request build & assembly. We check compatibility, confirm pricing upfront, then build, cable-manage, and test the system before shipping it, backed by official manufacturer warranties."
       }
     }
   ]

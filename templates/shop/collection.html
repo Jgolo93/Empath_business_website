@@ -55,6 +55,11 @@
                             {% if p.featuredImage %}
                             <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
                             {% endif %}
+                            {% if p.availableForSale and p.variants.edges %}
+                            <button class="product-card-quickadd" data-variant-id="{{ p.variants.edges[0].node.id }}" aria-label="Add {{ p.title }} to cart">
+                                <span class="material-icons">add_shopping_cart</span>
+                            </button>
+                            {% endif %}
                         </div>
                         <div class="product-card-body">
                             <div class="product-card-title">{{ p.title }}</div>

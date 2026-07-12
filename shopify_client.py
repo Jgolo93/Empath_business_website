@@ -60,6 +60,9 @@ PRODUCT_CARD_FIELDS = """
         minVariantPrice { amount currencyCode }
         maxVariantPrice { amount currencyCode }
     }
+    variants(first: 1) {
+        edges { node { id availableForSale } }
+    }
 """
 
 _COLLECTIONS_QUERY = f"""
@@ -240,6 +243,15 @@ mutation CartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
 }
 """
 
+_CART_LINES_REMOVE_MUTATION = """
+mutation CartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+    cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+        cart { id checkoutUrl totalQuantity }
+        userErrors { field message }
+    }
+}
+"""
+
 _CART_QUERY = """
 query Cart($id: ID!) {
     cart(id: $id) {
@@ -287,6 +299,14 @@ def add_to_cart(cart_id, variant_id, quantity=1):
     result = data['cartLinesAdd']
     if result['userErrors']:
         raise ShopifyError(f"cartLinesAdd errors: {result['userErrors']}")
+    return result['cart']
+
+
+def remove_from_cart(cart_id, line_ids):
+    data = _run(_CART_LINES_REMOVE_MUTATION, {'cartId': cart_id, 'lineIds': line_ids})
+    result = data['cartLinesRemove']
+    if result['userErrors']:
+        raise ShopifyError(f"cartLinesRemove errors: {result['userErrors']}")
     return result['cart']
 
 

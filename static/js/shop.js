@@ -23,6 +23,7 @@
     var variantSelect = document.getElementById('pdpVariantSelect');
     var priceEl = document.getElementById('pdpPrice');
     var addBtn = document.getElementById('pdpAddToCart');
+    var checkoutBtn = document.getElementById('pdpCheckout');
     var statusEl = document.getElementById('pdpAddStatus');
     var quantityInput = document.getElementById('pdpQuantity');
 
@@ -37,26 +38,39 @@
         });
     }
 
+    function addToCart() {
+        var variantId = variantSelect ? variantSelect.value : null;
+        if (!variantId) return Promise.reject(new Error('No variant selected'));
+        var quantity = quantityInput ? Math.max(1, parseInt(quantityInput.value, 10) || 1) : 1;
+
+        return fetch('/api/cart/add', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ variant_id: variantId, quantity: quantity })
+        }).then(function (r) { return r.json(); });
+    }
+
+    function updateCartBadge(totalQuantity) {
+        var cartFloat = document.getElementById('cartFloat');
+        var cartFloatBadge = document.getElementById('cartFloatBadge');
+        if (cartFloat && cartFloatBadge) {
+            cartFloatBadge.textContent = totalQuantity;
+            cartFloat.style.display = totalQuantity > 0 ? 'flex' : 'none';
+        }
+    }
+
     if (addBtn) {
         addBtn.addEventListener('click', function () {
-            var variantId = variantSelect ? variantSelect.value : null;
-            if (!variantId) return;
-            var quantity = quantityInput ? Math.max(1, parseInt(quantityInput.value, 10) || 1) : 1;
-
             addBtn.disabled = true;
             statusEl.textContent = 'Adding...';
 
-            fetch('/api/cart/add', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ variant_id: variantId, quantity: quantity })
-            })
-                .then(function (r) { return r.json(); })
+            addToCart()
                 .then(function (data) {
                     addBtn.disabled = false;
                     if (data.success) {
                         statusEl.textContent = 'Added to cart (' + data.totalQuantity + ' item(s) total).';
                         statusEl.style.color = 'var(--accent2)';
+                        updateCartBadge(data.totalQuantity);
                     } else {
                         statusEl.textContent = data.error || 'Could not add to cart.';
                         statusEl.style.color = '#dc2626';
@@ -64,6 +78,31 @@
                 })
                 .catch(function () {
                     addBtn.disabled = false;
+                    statusEl.textContent = 'Network error — please try again.';
+                    statusEl.style.color = '#dc2626';
+                });
+        });
+    }
+
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function () {
+            checkoutBtn.disabled = true;
+            statusEl.textContent = 'Preparing checkout...';
+            statusEl.style.color = '';
+
+            addToCart()
+                .then(function (data) {
+                    if (data.success && data.checkoutUrl) {
+                        updateCartBadge(data.totalQuantity);
+                        window.location.href = data.checkoutUrl;
+                    } else {
+                        checkoutBtn.disabled = false;
+                        statusEl.textContent = data.error || 'Could not start checkout.';
+                        statusEl.style.color = '#dc2626';
+                    }
+                })
+                .catch(function () {
+                    checkoutBtn.disabled = false;
                     statusEl.textContent = 'Network error — please try again.';
                     statusEl.style.color = '#dc2626';
                 });

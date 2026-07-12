@@ -1,7 +1,7 @@
 import os
 
 from dotenv import load_dotenv
-from flask import Flask
+from flask import Flask, session
 
 import shopify_client as shopify
 from extensions import db, mail, normalize_db_url, require_env
@@ -54,6 +54,17 @@ def create_app():
             return {'shop_policies': shopify.get_shop_policies()}
         except (shopify.ShopifyError, RuntimeError):
             return {'shop_policies': []}  # Shop unreachable — footer just omits this column.
+
+    @app.context_processor
+    def inject_cart_count():
+        cart_id = session.get('shopify_cart_id')
+        if not cart_id:
+            return {'cart_count': 0}
+        try:
+            cart_data = shopify.get_cart(cart_id)
+            return {'cart_count': cart_data['totalQuantity'] if cart_data else 0}
+        except (shopify.ShopifyError, RuntimeError):
+            return {'cart_count': 0}  # Shop unreachable — floating cart badge just omits the count.
 
     return app
 

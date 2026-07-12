@@ -114,7 +114,7 @@ body {
 
 .footer-heading {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
@@ -135,7 +135,7 @@ body {
   color: rgba(248,250,252,0.8);
   text-decoration: none;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: color 0.2s ease;
@@ -168,7 +168,7 @@ body {
   padding: 10px 15px;
   border-radius: 4px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -184,7 +184,7 @@ body {
   padding: 10px 20px;
   border-radius: 4px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
@@ -203,7 +203,7 @@ body {
   border-radius: 4px;
   text-decoration: none;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   display: inline-block;
@@ -222,7 +222,7 @@ body {
   border-top: 1px solid rgba(248,250,252,0.2);
   text-align: center;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(248,250,252,0.5);
@@ -257,24 +257,32 @@ body {
   transform: translateY(-2px);
 }
 
-/* ── FLOATING WHATSAPP BUTTON ── */
+/* ── FLOATING WHATSAPP BUTTON (same circle treatment as .cart-float) ── */
 .whatsapp-float {
   position: fixed;
   bottom: 40px;
   left: 40px;
-  display: flex;
-  z-index: 999;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
-  transition: transform 0.15s;
-}
-
-.whatsapp-float img {
   width: 56px;
   height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 50%;
+  z-index: 999;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  transition: transform 0.15s, color 0.15s;
+}
+
+.whatsapp-float svg {
+  width: 26px;
+  height: 26px;
 }
 
 .whatsapp-float:hover {
   transform: translateY(-2px) scale(1.05);
+  color: var(--accent);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -285,11 +293,69 @@ body {
   .whatsapp-float {
     bottom: 20px;
     left: 20px;
-  }
-  .whatsapp-float img {
     width: 46px;
     height: 46px;
   }
+  .whatsapp-float svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ── FLOATING CART BUTTON (sits directly above the WhatsApp button) ── */
+.cart-float {
+  position: fixed;
+  bottom: 112px;
+  left: 40px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 50%;
+  z-index: 999;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  transition: transform 0.15s, color 0.15s;
+  text-decoration: none;
+}
+
+.cart-float .material-icons { font-size: 26px; }
+
+.cart-float:hover { transform: translateY(-2px) scale(1.05); color: var(--accent); }
+
+.cart-float-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 10px;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-float { transition: none; }
+}
+
+@media (max-width: 768px) {
+  .cart-float {
+    bottom: 78px;
+    left: 20px;
+    width: 46px;
+    height: 46px;
+  }
+  .cart-float .material-icons { font-size: 22px; }
 }
 
 /* ── FLASH MESSAGES ── */
@@ -302,7 +368,7 @@ body {
   padding: 16px 24px;
   border-radius: 4px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   z-index: 1001;
@@ -332,7 +398,7 @@ body {
   text-align: center;
   padding: 11px 40px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   display: flex;
@@ -358,7 +424,7 @@ body {
 
 .hero-kicker {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
@@ -432,7 +498,7 @@ body {
 
 .hero-stat .lbl {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--muted);
@@ -453,7 +519,7 @@ body {
   background: var(--ink);
   color: var(--bg);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 11px 22px;
@@ -471,7 +537,7 @@ body {
   background: transparent;
   color: var(--ink);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 11px 22px;
@@ -495,7 +561,7 @@ body {
 .section-rule-line { flex: 1; height: 1px; background: var(--border); }
 .section-rule-text {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted);
@@ -555,7 +621,7 @@ body {
 
 .featured-thumb-sub {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(248,250,252,0.5);
@@ -580,7 +646,7 @@ body {
   background: var(--accent);
   color: var(--bg);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   padding: 5px 14px;
@@ -607,7 +673,7 @@ body {
   background: var(--ink);
   color: var(--bg);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 3px 10px;
@@ -615,7 +681,7 @@ body {
 
 .feat-date {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -647,7 +713,7 @@ body {
 
 .editorial-tag {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 3px 10px;
@@ -665,7 +731,7 @@ body {
 
 .feat-read-time {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -739,7 +805,7 @@ body {
 
 .card-thumb-graphic .gsub {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(248,250,252,0.5);
@@ -764,7 +830,7 @@ body {
   background: var(--accent);
   color: var(--bg);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   padding: 3px 10px;
@@ -790,7 +856,7 @@ body {
 
 .card-read-overlay span {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--bg);
@@ -814,7 +880,7 @@ body {
 
 .c-date, .c-time {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -858,7 +924,7 @@ body {
 
 .c-read-link {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
@@ -889,7 +955,7 @@ body {
   align-items: center;
   gap: 3px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   color: var(--muted);
   transition: color 0.15s;
 }
@@ -947,7 +1013,7 @@ body {
 
 .topic-count {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -957,7 +1023,7 @@ body {
 
 .topic-explore {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink);
@@ -986,7 +1052,7 @@ body {
 
 .nl-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--accent);
@@ -1041,7 +1107,7 @@ body {
   border: none;
   padding: 12px 22px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
@@ -1059,7 +1125,7 @@ body {
 
 .nl-badge {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(248,250,252,0.5);
@@ -1148,7 +1214,7 @@ body {
   .newsletter-inner { grid-template-columns: 1fr; gap: 32px; }
   .nl-visual { display: none; }
   .topics-grid { grid-template-columns: 1fr 1fr; }
-  .editorial-masthead { flex-wrap: wrap; gap: 8px; font-size: 9px; padding: 11px 20px; }
+  .editorial-masthead { flex-wrap: wrap; gap: 8px; font-size: 10px; padding: 11px 20px; }
   /* Sticky header on mobile */
   .site-header {
     position: fixed;
@@ -1177,24 +1243,24 @@ body {
     right: 0;
     background: var(--ink);
     flex-direction: column;
-    padding: 30px 20px;
-    gap: 20px;
+    padding: 12px 20px;
+    gap: 4px;
     z-index: 9999;
     overflow-y: auto;
     max-height: calc(100vh - 70px);
   }
-  
+
   .nav-links.active {
     display: flex;
   }
-  
+
   .mobile-menu-toggle {
     display: block;
   }
-  
+
   .nav-links a {
-    font-size: 18px;
-    padding: 15px 0;
+    font-size: 16px;
+    padding: 10px 0;
     display: block;
   }
   

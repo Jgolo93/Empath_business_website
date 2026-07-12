@@ -13,7 +13,7 @@
 
     <div class="pdp-layout">
         <div class="pdp-gallery">
-            <div class="carousel-wrap" data-carousel>
+            <div class="carousel-wrap" data-carousel {% if product.images.edges|length > 1 %}data-carousel-autoplay="3500"{% endif %}>
                 {% if product.images.edges|length > 1 %}
                 <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous image">‹</button>
                 {% endif %}
@@ -32,9 +32,6 @@
                 <img src="{{ img.node.url }}" alt="{{ img.node.altText or product.title }}" onclick="this.closest('.pdp-gallery').querySelectorAll('.pdp-gallery-slide')[{{ loop.index0 }}].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'})">
                 {% endfor %}
             </div>
-            {% endif %}
-            {% if product.descriptionHtml %}
-            <div class="pdp-description">{{ product.descriptionHtml | safe }}</div>
             {% endif %}
         </div>
 
@@ -63,6 +60,9 @@
             <button class="pdp-add-to-cart" id="pdpAddToCart" {% if not product.availableForSale %}disabled{% endif %}>
                 {% if product.availableForSale %}Add to Cart{% else %}Out of Stock{% endif %}
             </button>
+            {% if product.availableForSale %}
+            <button class="pdp-checkout-btn" id="pdpCheckout">Checkout</button>
+            {% endif %}
             <p class="pdp-stock-note" id="pdpAddStatus"></p>
             {% if product.availableForSale and product.variants.edges[0].node.quantityAvailable %}
             <p class="pdp-stock-note">{{ product.variants.edges[0].node.quantityAvailable }} in stock</p>
@@ -83,6 +83,10 @@
                 </div>
             </div>
         </div>
+
+        {% if product.descriptionHtml %}
+        <div class="pdp-description">{{ product.descriptionHtml | safe }}</div>
+        {% endif %}
     </div>
 
     {% if recommendations %}
@@ -94,6 +98,11 @@
                 <div class="product-card-image">
                     {% if p.featuredImage %}
                     <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
+                    {% endif %}
+                    {% if p.availableForSale and p.variants.edges %}
+                    <button class="product-card-quickadd" data-variant-id="{{ p.variants.edges[0].node.id }}" aria-label="Add {{ p.title }} to cart">
+                        <span class="material-icons">add_shopping_cart</span>
+                    </button>
                     {% endif %}
                 </div>
                 <div class="product-card-body">

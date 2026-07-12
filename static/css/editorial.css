@@ -75,8 +75,8 @@
   gap: 8px;
   margin-bottom: 28px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   flex-wrap: wrap;
   color: var(--ed-muted);

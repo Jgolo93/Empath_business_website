@@ -10,8 +10,8 @@
 
 .shop-breadcrumb {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
   margin-bottom: 24px;
@@ -46,16 +46,33 @@
 .collection-tile {
   display: block;
   border: 2px solid var(--ink);
-  padding: 28px 24px;
   text-decoration: none;
   background: var(--surface);
   transition: transform 0.15s, box-shadow 0.15s;
+  overflow: hidden;
 }
 
 .collection-tile:hover {
   transform: translateY(-3px);
   box-shadow: 6px 6px 0 var(--ink);
 }
+
+.collection-tile-image {
+  aspect-ratio: 4 / 3;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.collection-tile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+
+.collection-tile:hover .collection-tile-image img { transform: scale(1.05); }
+
+.collection-tile-body { padding: 20px 24px 24px; }
 
 .collection-tile h3 {
   font-family: 'Playfair Display', serif;
@@ -94,7 +111,7 @@
   padding: 0 18px;
   cursor: pointer;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -117,7 +134,7 @@
 .filter-clear {
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
@@ -135,7 +152,7 @@
 
 .filter-group h4 {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
@@ -162,7 +179,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 10px;
+  font-size: 11px;
   flex-shrink: 0;
 }
 
@@ -187,7 +204,7 @@
 
 .sort-select {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 8px 12px;
@@ -237,6 +254,42 @@
 .product-card.is-out-of-stock .product-card-title,
 .product-card.is-out-of-stock .product-card-price { color: var(--muted); }
 
+/* ── Quick add-to-cart (same dark-circle language as the floating cart/WhatsApp buttons) ── */
+.product-card-quickadd {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
+  transition: transform 0.15s, color 0.15s;
+}
+
+.product-card-quickadd .material-icons { font-size: 18px; }
+
+.product-card-quickadd:hover { transform: scale(1.08); color: var(--accent); }
+.product-card-quickadd:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.product-card-quickadd.is-added { color: var(--accent2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .product-card-quickadd { transition: none; }
+}
+
+@media (max-width: 768px) {
+  .product-card-quickadd { width: 34px; height: 34px; }
+  .product-card-quickadd .material-icons { font-size: 16px; }
+}
+
 .product-card-body {
   padding: 16px;
   flex: 1;
@@ -267,7 +320,7 @@
   z-index: 1;
   display: inline-block;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 4px 8px;
@@ -340,7 +393,7 @@
 
 .pdp-variant-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -356,6 +409,10 @@
   margin-bottom: 20px;
 }
 
+#pdpQuantity {
+  text-align: center;
+}
+
 .pdp-add-to-cart {
   width: 100%;
   background: var(--ink);
@@ -363,7 +420,7 @@
   border: 2px solid var(--ink);
   padding: 14px 24px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
@@ -372,6 +429,24 @@
 
 .pdp-add-to-cart:hover { background: var(--accent); border-color: var(--accent); }
 .pdp-add-to-cart:disabled { background: var(--border); border-color: var(--border); cursor: not-allowed; color: var(--muted); }
+
+.pdp-checkout-btn {
+  width: 100%;
+  background: none;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 14px 24px;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.pdp-checkout-btn:hover { background: var(--ink); color: var(--bg); }
+.pdp-checkout-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .pdp-stock-note { font-size: 0.8rem; color: var(--muted); margin-top: 12px; }
 
@@ -412,7 +487,7 @@
 .pdp-description p:has(> strong:only-child),
 .pdp-description p:has(> b:only-child) {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
+  font-size: 11.5px;
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -473,7 +548,7 @@
 /* ── Cart page ── */
 .cart-line {
   display: grid;
-  grid-template-columns: 80px 1fr auto auto;
+  grid-template-columns: 80px 1fr auto auto auto;
   gap: 16px;
   align-items: center;
   padding: 16px 0;
@@ -481,6 +556,25 @@
 }
 
 .cart-line img { width: 80px; height: 80px; object-fit: contain; background: var(--bg); }
+
+.cart-line-remove {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.cart-line-remove .material-icons { font-size: 18px; }
+
+.cart-line-remove:hover { color: var(--danger); border-color: var(--danger); }
+.cart-line-remove:disabled { opacity: 0.5; cursor: not-allowed; }
 
 .cart-summary {
   margin-top: 32px;
@@ -497,19 +591,156 @@
   padding: 14px 28px;
   text-decoration: none;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .cart-checkout-btn:hover { background: var(--accent); }
 
+.cart-clear-btn {
+  margin-top: 16px;
+  background: none;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  padding: 10px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.cart-clear-btn:hover { color: var(--danger); border-color: var(--danger); }
+.cart-clear-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 .cart-empty { text-align: center; padding: 80px 20px; color: var(--muted); }
 
+/* ── Confirm modal (e.g. Clear Cart) ──
+   Mirrors the site's existing lead-magnet popup language (surface card, 2px ink
+   border, hard offset shadow, slide-in) so it reads as part of the same design
+   system rather than a generic browser confirm(). */
+.confirm-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.confirm-modal.active { display: flex; }
+
+.confirm-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.confirm-modal-content {
+  position: relative;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  box-shadow: 10px 10px 0 var(--ink);
+  max-width: 400px;
+  width: 100%;
+  padding: 40px 32px 32px;
+  text-align: center;
+  animation: confirmModalSlideIn 0.3s ease;
+}
+
+@keyframes confirmModalSlideIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confirm-modal-content { animation: none; }
+}
+
+.confirm-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  padding: 4px;
+  transition: color 0.15s;
+}
+
+.confirm-modal-close:hover { color: var(--ink); }
+
+.confirm-modal-icon {
+  font-size: 40px;
+  color: var(--danger);
+  margin-bottom: 16px;
+}
+
+.confirm-modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+
+.confirm-modal-message {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+.confirm-modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.confirm-modal-actions .btn-outline-ink { flex: 1; justify-content: center; }
+
+.confirm-modal-danger-btn {
+  flex: 1;
+  background: var(--danger);
+  color: var(--bg);
+  border: 2px solid var(--danger);
+  padding: 12px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.confirm-modal-danger-btn:hover { opacity: 0.85; }
+.confirm-modal-danger-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
 @media (max-width: 768px) {
-  .pdp-layout { grid-template-columns: 1fr; }
-  .pdp-buybox { position: static; }
-  .shop-wrap { padding: 24px 20px 60px; }
+  .cart-line { grid-template-columns: 56px 1fr auto; grid-template-areas: "img info remove" "img qty price"; row-gap: 6px; }
+  .cart-line img { grid-area: img; width: 56px; height: 56px; }
+  .cart-line > div:nth-of-type(1) { grid-area: info; }
+  .cart-line > div:nth-of-type(2) { grid-area: qty; }
+  .cart-line .product-card-price { grid-area: price; }
+  .cart-line-remove { grid-area: remove; justify-self: end; }
+}
+
+@media (max-width: 768px) {
+  .pdp-layout { grid-template-columns: 1fr; gap: 32px; }
+  .pdp-buybox { position: static; padding: 24px; }
+  .pdp-title { font-size: 1.5rem; }
+  .shop-wrap { padding: 40px 20px 60px; }
   .shop-layout { grid-template-columns: 1fr; }
   .filter-sidebar { position: static; }
+
+  /* Description reads better narrower and tighter on mobile — it now sits
+     below the buybox (see product.html), so it needs its own top margin
+     rather than inheriting spacing meant for the old in-gallery position. */
+  .pdp-description { margin-top: 8px; max-width: 100%; }
+  .pdp-description li.spec-row-item { flex-direction: column; gap: 4px; }
+  .pdp-description li.spec-row-item .spec-k { flex: none; }
 }

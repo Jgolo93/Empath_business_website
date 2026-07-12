@@ -172,3 +172,41 @@ def api_cart_add():
         return jsonify({'success': False, 'error': str(e)}), 502
 
     return jsonify({'success': True, 'totalQuantity': cart_data['totalQuantity'], 'checkoutUrl': cart_data['checkoutUrl']}), 200
+
+
+@shop_bp.route('/api/cart/remove', methods=['POST'])
+def api_cart_remove():
+    data = request.get_json(silent=True) or {}
+    line_id = data.get('line_id')
+    if not line_id:
+        return jsonify({'success': False, 'error': 'line_id is required'}), 400
+
+    cart_id = session.get('shopify_cart_id')
+    if not cart_id:
+        return jsonify({'success': False, 'error': 'No cart in session'}), 400
+
+    try:
+        cart_data = shopify.remove_from_cart(cart_id, [line_id])
+    except (shopify.ShopifyError, RuntimeError) as e:
+        return jsonify({'success': False, 'error': str(e)}), 502
+
+    return jsonify({'success': True, 'totalQuantity': cart_data['totalQuantity']}), 200
+
+
+@shop_bp.route('/api/cart/clear', methods=['POST'])
+def api_cart_clear():
+    cart_id = session.get('shopify_cart_id')
+    if not cart_id:
+        return jsonify({'success': True, 'totalQuantity': 0}), 200
+
+    cart_data = shopify.get_cart(cart_id)
+    line_ids = [edge['node']['id'] for edge in cart_data['lines']['edges']] if cart_data else []
+    if not line_ids:
+        return jsonify({'success': True, 'totalQuantity': 0}), 200
+
+    try:
+        cart_data = shopify.remove_from_cart(cart_id, line_ids)
+    except (shopify.ShopifyError, RuntimeError) as e:
+        return jsonify({'success': False, 'error': str(e)}), 502
+
+    return jsonify({'success': True, 'totalQuantity': cart_data['totalQuantity']}), 200

@@ -20,8 +20,15 @@
         {% for c in collections %}
             {% if c.title != 'Home page' %}
             <a class="collection-tile" href="{{ url_for('shop.collection', collection_handle=c.handle) }}">
-                <h3>{{ c.title }}</h3>
-                {% if c.description %}<p>{{ c.description[:90] }}</p>{% endif %}
+                {% if c.image %}
+                <div class="collection-tile-image">
+                    <img src="{{ c.image.url }}" alt="{{ c.image.altText or c.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                <div class="collection-tile-body">
+                    <h3>{{ c.title }}</h3>
+                    {% if c.description %}<p>{{ c.description[:90] }}</p>{% endif %}
+                </div>
             </a>
             {% endif %}
         {% endfor %}
