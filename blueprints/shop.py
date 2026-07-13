@@ -69,6 +69,13 @@ def _build_filter_facets(collection_data, selected_filters, sort_key):
     return facets
 
 
+@shop_bp.route('/shop/google655a786a3aeedf80.html')
+def google_site_verification():
+    # Google Search Console / Merchant Center HTML-file verification — the
+    # required content is always just "google-site-verification: <filename>".
+    return 'google-site-verification: google655a786a3aeedf80.html', 200, {'Content-Type': 'text/html'}
+
+
 @shop_bp.route('/shop')
 def index():
     collections = shopify.get_collections()
