@@ -2,10 +2,6 @@
 
 {% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
 
-{% block extra_css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/shop.css') }}">
-{% endblock %}
-
 {% block content %}
 
 <!-- ── EDITORIAL HERO ── -->
@@ -229,8 +225,8 @@
     </div>
 </div>
 
-{% if featured_categories %}
-<!-- ── SHOP BY CATEGORY ── -->
+{% set shop_url = 'https://shop.empathtechnologysolutions.com' %}
+<!-- ── SHOP CTA ── -->
 <div class="section-rule">
     <span class="section-rule-line"></span>
     <span class="section-rule-text">Our Shop</span>
@@ -243,75 +239,10 @@
         storage, and accessories — sourced and backed by the same technicians who handle your repairs.
         Buy it here and we'll set it up for you.
     </p>
-    <div class="collection-grid">
-        {% for c in featured_categories %}
-        <a class="collection-tile" href="{{ url_for('shop.collection', collection_handle=c.handle) }}">
-            {% if c.image %}
-            <div class="collection-tile-image">
-                <img src="{{ c.image.url }}" alt="{{ c.image.altText or c.title }}" loading="lazy">
-            </div>
-            {% endif %}
-            <div class="collection-tile-body">
-                <h3>{{ c.title }}</h3>
-            </div>
-        </a>
-        {% endfor %}
-    </div>
-    <div style="text-align:center; margin-top:32px;">
-        <a href="{{ url_for('shop.index') }}" class="btn-outline-ink">See All Categories →</a>
+    <div style="text-align:center; margin-top:16px;">
+        <a href="{{ shop_url }}" class="btn-ink" target="_blank" rel="noopener">Visit Our Shop →</a>
     </div>
 </div>
-{% endif %}
-
-{% if featured_products %}
-<!-- ── NEW ARRIVALS ── -->
-<div class="section-rule">
-    <span class="section-rule-line"></span>
-    <span class="section-rule-text">New Arrivals</span>
-    <span class="section-rule-line"></span>
-</div>
-
-<div class="home-shop-wrap">
-    <div class="carousel-wrap" data-carousel>
-        <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous products">‹</button>
-        <div class="carousel-track product-grid" data-carousel-track style="display:flex;">
-            {% for p in featured_products %}
-            <a class="product-card home-shop-card" href="{{ url_for('shop.product', handle=p.handle) }}">
-                <div class="product-card-image">
-                    {% if not p.availableForSale %}<span class="product-card-badge">Out of stock</span>{% endif %}
-                    {% if p.featuredImage %}
-                    <img src="{{ p.featuredImage.url }}" alt="{{ p.featuredImage.altText or p.title }}" loading="lazy">
-                    {% endif %}
-                    {% if p.availableForSale and p.variants.edges %}
-                    <button class="product-card-quickadd" data-variant-id="{{ p.variants.edges[0].node.id }}" aria-label="Add {{ p.title }} to cart">
-                        <span class="material-icons">add_shopping_cart</span>
-                    </button>
-                    {% endif %}
-                </div>
-                <div class="product-card-body">
-                    <div class="product-card-title">{{ p.title }}</div>
-                    <div class="product-card-price">
-                        {{ p.priceRange.minVariantPrice.currencyCode }} {{ '%.2f'|format(p.priceRange.minVariantPrice.amount|float) }}
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-        <button class="carousel-arrow next" data-carousel-next aria-label="Next products">›</button>
-    </div>
-    <div style="text-align:center; margin-top:32px;">
-        <a href="{{ url_for('shop.index') }}" class="btn-outline-ink">Browse the Full Shop →</a>
-    </div>
-</div>
-
-<div class="brand-marquee-wrap">
-    <div class="brand-marquee-track">
-        {% for brand in brands_carried + brands_carried %}
-        <span class="brand-marquee-item">{{ brand }}</span>
-        {% endfor %}
-    </div>
-</div>
-{% endif %}
 
 <!-- ── WHY CHOOSE US ── -->
 <div class="section-rule">
@@ -402,7 +333,7 @@
     <details class="faq-item">
         <summary>What's your return policy on shop purchases?</summary>
         <div class="faq-answer">
-            <p>South African law (the ECT Act) gives you a 7-day cooling-off period on online purchases — the item just needs to be unused and in its original packaging. Faulty or incorrectly supplied items are covered by the Consumer Protection Act's 6-month implied warranty: repair, replacement, or refund, your choice. Full details are in our <a href="{{ url_for('shop.policy', slug='refund') }}">Refund Policy</a>.</p>
+            <p>South African law (the ECT Act) gives you a 7-day cooling-off period on online purchases — the item just needs to be unused and in its original packaging. Faulty or incorrectly supplied items are covered by the Consumer Protection Act's 6-month implied warranty: repair, replacement, or refund, your choice. Full details are in our <a href="{{ shop_url }}/policies/refund-policy" target="_blank" rel="noopener">Refund Policy</a>.</p>
         </div>
     </details>
     <details class="faq-item">
@@ -426,7 +357,7 @@
     <details class="faq-item">
         <summary>Can you help me put together a custom PC build?</summary>
         <div class="faq-answer">
-            <p>Yes. Pick the parts you want from our Components category — case, CPU, motherboard, RAM, GPU, storage, PSU, cooling — and once you've got a couple of parts in your cart you can request build & assembly. We check everything's compatible and confirm final pricing before we start (assembly from R400, depending on complexity), then we build, cable-manage, and thoroughly test the system before it ships. Every part carries its official manufacturer warranty.</p>
+            <p>Yes. Pick the parts you want from our <a href="{{ shop_url }}" target="_blank" rel="noopener">shop's</a> Components category — case, CPU, motherboard, RAM, GPU, storage, PSU, cooling — then contact us to request build & assembly. We check everything's compatible and confirm final pricing before we start (assembly from R400, depending on complexity), then we build, cable-manage, and thoroughly test the system before it ships. Every part carries its official manufacturer warranty.</p>
         </div>
     </details>
 </div>

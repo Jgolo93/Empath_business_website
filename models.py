@@ -54,25 +54,6 @@ class PageView(db.Model):
     referrer = db.Column(db.String(500), nullable=True)
 
 
-class StockNotification(db.Model):
-    __tablename__ = 'stock_notifications'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), nullable=False, index=True)
-    phone = db.Column(db.String(30), nullable=True)
-    # Plain numeric Shopify variant id (not the Storefront API GID) — this is what
-    # the products/update webhook payload uses, so storing it this way avoids
-    # converting formats on every webhook delivery.
-    variant_id = db.Column(db.String(40), nullable=False, index=True)
-    product_handle = db.Column(db.String(200), nullable=False)
-    product_title = db.Column(db.String(300), nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.now())
-    notified_at = db.Column(db.DateTime, nullable=True)
-
-    __table_args__ = (
-        db.UniqueConstraint('email', 'variant_id', name='unique_notify_email_variant'),
-    )
-
-
 class Lead(db.Model):
     __tablename__ = 'leads'
     id = db.Column(db.Integer, primary_key=True)

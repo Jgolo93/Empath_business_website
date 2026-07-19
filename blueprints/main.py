@@ -4,13 +4,10 @@ import time
 
 from flask import Blueprint, jsonify, redirect, render_template, request, send_from_directory, url_for
 
-import shopify_client as shopify
 from extensions import db
 from models import Lead, Subscriber
 
 main_bp = Blueprint('main', __name__)
-
-BRANDS_CARRIED = ['Acer', 'ASRock', 'ASUS', 'Giada', 'MINISFORUM', 'Nplay', 'PCBuilder']
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
 
@@ -25,27 +22,7 @@ def home():
         {'title': 'Tech Consultation', 'content': 'Not sure what device or software to choose? Let our experts guide you.', 'icon': 'psychology'},
         {'title': 'Remote Assistance', 'content': 'Get help without leaving your home or office. Quick, efficient support.', 'icon': 'computer'}
     ]
-    featured_products = []
-    featured_categories = []
-    try:
-        collection = shopify.get_collection_products('new-arrivals', first=8, sort_key='BEST_SELLING')
-        featured_products = [edge['node'] for edge in collection['products']['edges']] if collection else []
-    except (shopify.ShopifyError, RuntimeError):
-        pass  # Shop section just doesn't render — rest of the homepage isn't Shopify-dependent.
-
-    try:
-        all_collections = {c['handle']: c for c in shopify.get_collections(first=50)}
-        featured_categories = [all_collections[h] for h in shopify.FEATURED_CATEGORY_HANDLES if h in all_collections]
-    except (shopify.ShopifyError, RuntimeError):
-        pass
-
-    return render_template(
-        'index.html',
-        marketing_cards=marketing_cards,
-        featured_products=featured_products,
-        featured_categories=featured_categories,
-        brands_carried=BRANDS_CARRIED,
-    )
+    return render_template('index.html', marketing_cards=marketing_cards)
 
 
 @main_bp.route('/pricing')
