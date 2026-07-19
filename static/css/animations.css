@@ -1,0 +1,284 @@
+/* ── SITE-WIDE MOTION LAYER ──────────────────────────────────────────
+   Adds scroll reveals + micro-interactions on top of the existing
+   editorial theme. No color, spacing, or typography tokens are
+   redefined here — motion only. Everything respects
+   prefers-reduced-motion. Paired with static/js/animations.js, which
+   applies the .reveal / .is-scrolled / counter classes at runtime. */
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Stagger children of a revealed group (cards, topic cells, faq items) */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-stagger.is-visible > * { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+  .reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+  .reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+  .reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
+  .reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+  .reveal-stagger.is-visible > *:nth-child(n+7) { transition-delay: 420ms; }
+
+  /* ── STICKY HEADER, SHARPENS ON SCROLL ── */
+  .site-header {
+    transition: box-shadow 0.35s ease;
+  }
+  .site-header.is-scrolled {
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.45);
+  }
+  .site-header.is-scrolled .header-content {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .header-content { transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+
+  /* ── BUTTONS: confident lift + press, letter-spacing "breathe" ── */
+  .btn-ink, .btn-outline-ink {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                letter-spacing 0.3s ease,
+                background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ink:hover, .btn-outline-ink:hover {
+    transform: translateY(-3px);
+    letter-spacing: 0.2em;
+  }
+  .btn-ink:active, .btn-outline-ink:active {
+    transform: translateY(-1px) scale(0.97);
+  }
+
+  /* ── FEATURED / HERO CARD: paper-lift, offset shadow grows ── */
+  .featured-editorial {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .featured-editorial:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0 var(--ink);
+  }
+
+  /* ── ARTICLE / TOPIC GRID CELLS: contained polish (no translate —
+     these share borders edge-to-edge in a zero-gap grid, so lifting the
+     whole cell would overlap neighbors; animate the inner content instead) ── */
+  .article-card { transition: background 0.25s ease; }
+  .card-thumb-graphic {
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .article-card:hover .card-thumb-graphic {
+    transform: scale(1.06);
+  }
+  .card-read-overlay {
+    transition: opacity 0.35s ease;
+  }
+
+  .topic-cell { transition: background 0.25s ease; }
+  .topic-icon {
+    display: inline-block;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .topic-cell:hover .topic-icon {
+    transform: scale(1.25) rotate(-6deg);
+  }
+
+  /* ── ANIMATED STAT COUNTERS: prevent digit-width jitter while counting ── */
+  .hero-stat .num { font-variant-numeric: tabular-nums; }
+
+  /* ── SECTION RULE: the horizontal divider "draws in" ── */
+  .section-rule-line {
+    transform: scaleX(0);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .section-rule-line:first-child { transform-origin: right; }
+  .section-rule-line:last-child { transform-origin: left; }
+  .section-rule.is-visible .section-rule-line { transform: scaleX(1); }
+
+  /* ── FLOATING ACTION BUTTONS: entrance + a slow attention pulse ── */
+  .whatsapp-float, .back-to-top {
+    animation: float-btn-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .whatsapp-float {
+    animation: float-btn-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+               whatsapp-pulse 3.2s ease-in-out 1.2s infinite;
+  }
+  @keyframes float-btn-in {
+    from { opacity: 0; transform: scale(0.5) translateY(12px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes whatsapp-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.35); }
+    50%      { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+  }
+
+  /* ── MOBILE NAV: slide + fade instead of an instant display swap ── */
+  @media (max-width: 768px) {
+    .nav-links {
+      display: flex !important;
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      padding-top: 0;
+      padding-bottom: 0;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.25s ease,
+                  padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0s linear 0.4s;
+    }
+    .nav-links.active {
+      max-height: calc(100vh - 70px);
+      opacity: 1;
+      visibility: visible;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.3s ease 0.05s,
+                  padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0s linear 0s;
+    }
+  }
+}
+
+/* ── STATEMENT TICKER ──────────────────────────────────────────────
+   Bold scrolling banner, mono/uppercase to match the site's label
+   voice. Reuses the same infinite-marquee technique already proven
+   by .brand-marquee-track in style.css (duplicate the content once,
+   animate to -50%). */
+.stat-ticker-wrap {
+  overflow: hidden;
+  background: var(--ink);
+  border-top: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding: 14px 0;
+}
+.stat-ticker-track {
+  display: flex;
+  width: max-content;
+}
+.stat-ticker-group {
+  display: flex;
+  align-items: center;
+}
+.stat-ticker-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bg);
+  padding: 0 20px;
+  white-space: nowrap;
+}
+.stat-ticker-star {
+  color: var(--accent);
+  font-size: 10px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stat-ticker-track {
+    animation: brand-scroll 22s linear infinite;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .stat-ticker-track { overflow-x: auto; }
+}
+
+/* ── PULL QUOTE ── */
+.pull-quote-wrap {
+  max-width: 780px;
+  margin: 64px auto;
+  padding: 0 40px;
+  text-align: center;
+  position: relative;
+}
+.pull-quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.35;
+  margin-bottom: -24px;
+}
+.pull-quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.pull-quote-text em {
+  color: var(--accent);
+}
+.pull-quote-attribution {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .pull-quote-mark { font-size: 4rem; }
+  .pull-quote-break { display: none; }
+}
+
+/* ── CURSOR-SPOTLIGHT HOVER ── */
+/* A soft light that tracks the cursor across a card — set via JS
+   (--spot-x/--spot-y custom properties on mousemove). Kept subtle and
+   amber-tinted so it reads as a lighting detail, not a soft-shadow
+   SaaS gradient that would clash with the hard-edge look. */
+@media (prefers-reduced-motion: no-preference) {
+  .spotlight-card {
+    position: relative;
+    isolation: isolate;
+  }
+  .spotlight-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0;
+    background: radial-gradient(
+      280px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+      rgba(245, 158, 11, 0.15),
+      transparent 70%
+    );
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .spotlight-card:hover::after {
+    opacity: 1;
+  }
+  .spotlight-card > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* Reduced motion: skip straight to the end state, no animation at all */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .whatsapp-float, .back-to-top {
+    animation: none !important;
+  }
+}

@@ -1,6 +1,8 @@
 {% extends 'layout.html' %}
 
-{% block title %}Empath Technology Solutions - Professional IT Services and Web Design{% endblock %}
+{% block title %}IT Support & Web Design for Small Businesses in Cape Town{% endblock %}
+
+{% block meta_description %}IT support & web design for small businesses in Cape Town, plus computer repairs in Kuils River. Affordable rates, virus removal, network setup — starting from R100.{% endblock %}
 
 {% block content %}
 
@@ -14,14 +16,15 @@
 </div>
 
 <div class="blog-hero-editorial">
-    <div class="hero-kicker">Professional IT Services · Issue 2025</div>
-    <h1>Empath Technology <br/><em>Solutions</em></h1>
+    <div class="hero-kicker">Empath Technology Solutions · Issue 2025</div>
+    <h1>IT Support & Web Design <br/>for <em>Small Businesses</em> in Cape Town</h1>
 
     <div class="hero-body-row">
         <div>
             <p class="hero-lead">
-                Affordable IT support, computer repair, and web development services for small businesses in Cape Town. 
-                Expert solutions for virus removal, network setup, remote support, and custom website design.
+                Affordable IT support, computer repair, and web development services for small businesses in Cape Town,
+                including computer repairs in Kuils River. Expert solutions for virus removal, network setup, remote
+                support, and custom website design.
             </p>
             <div class="hero-ctas">
                 <a href="{{ url_for('support.create_ticket') }}" class="btn-ink">Get IT Support →</a>
@@ -45,6 +48,38 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- ── STATEMENT TICKER ── -->
+<div class="stat-ticker-wrap">
+    <div class="stat-ticker-track">
+        {% for i in range(2) %}
+        <div class="stat-ticker-group">
+            <span class="stat-ticker-item">24/7 Support</span>
+            <span class="stat-ticker-star">✦</span>
+            <span class="stat-ticker-item">Affordable Rates</span>
+            <span class="stat-ticker-star">✦</span>
+            <span class="stat-ticker-item">Cape Town Based</span>
+            <span class="stat-ticker-star">✦</span>
+            <span class="stat-ticker-item">Kuils River</span>
+            <span class="stat-ticker-star">✦</span>
+            <span class="stat-ticker-item">500+ Clients</span>
+            <span class="stat-ticker-star">✦</span>
+            <span class="stat-ticker-item">Same-Day Response</span>
+            <span class="stat-ticker-star">✦</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- ── PULL QUOTE ── -->
+<div class="pull-quote-wrap">
+    <div class="pull-quote-mark">"</div>
+    <p class="pull-quote-text">
+        Every small business deserves <em>enterprise-grade</em> IT support<br class="pull-quote-break">
+        — without the enterprise price tag.
+    </p>
+    <p class="pull-quote-attribution">— Jason Goliath, Founder</p>
 </div>
 
 <!-- ── SERVICES SECTION ── -->
@@ -288,7 +323,7 @@
         <div class="topic-cell">
             <span class="topic-icon">📍</span>
             <h3>Local Service</h3>
-            <p>Proudly serving Cape Town and surrounding areas with on-site support and remote assistance.</p>
+            <p>Proudly serving Cape Town and Kuils River, with on-site computer repairs and remote assistance across the surrounding areas.</p>
             <div class="topic-foot">
                 <span class="topic-count">Cape Town Based</span>
             </div>

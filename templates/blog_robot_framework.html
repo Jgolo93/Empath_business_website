@@ -5,6 +5,10 @@
 {% block meta_description %}Why Robot Framework's Browser Library is replacing SeleniumLibrary for test automation, and how to make the switch in your test suites.{% endblock %}
 
 {% block content %}
+<!-- Reading Progress Bar -->
+<div class="reading-progress-container">
+    <div class="reading-progress-bar" id="readingProgress"></div>
+</div>
 <!-- Article Header -->
 <div class="editorial-masthead">
     Empath Technology Solutions Blog
@@ -385,9 +389,23 @@
     </div>
 </div>
 
-<!-- Track Blog View -->
 <script>
+// Reading Progress Bar
 document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = document.getElementById('readingProgress');
+
+    function updateProgress() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight - windowHeight;
+        const scrolled = window.scrollY;
+        const progress = (scrolled / documentHeight) * 100;
+        progressBar.style.width = progress + '%';
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    updateProgress();
+
+    // Track blog view
     fetch('/api/blog/view/robot-framework-browser-library', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }

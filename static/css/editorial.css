@@ -496,6 +496,17 @@
   position: relative;
   overflow: hidden;
 }
+/* Breaks the CTA out of the narrow ~720px reading column so it reads as a
+   promotional banner rather than being boxed in at body-text width — only
+   past the point where the article has a share-sidebar to spare room from. */
+@media (min-width: 900px) {
+  .cta-box {
+    margin-left: -48px;
+    margin-right: -48px;
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
 .cta-box::before {
   content: '';
   position: absolute;

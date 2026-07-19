@@ -97,7 +97,13 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1.5fr;
+  /* 5 columns: About, Quick Links, Shop, Legal, Connect With Us —
+     matches the actual number of .footer-col blocks layout.html
+     renders. (Was 6 tracks before the "Shop Policies" column was
+     removed; left stale it starved the last real column — the one
+     holding the social icons — of the width it needs to stay in a
+     single row.) */
+  grid-template-columns: 2fr 1fr 1fr 1fr 1.8fr;
   gap: 40px;
 }
 
@@ -147,19 +153,31 @@ body {
 
 .social-icons {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  flex-wrap: nowrap;
+  gap: 10px;
   margin-bottom: 24px;
 }
 
 .social-icons a {
+  /* Overrides the old glassy 48x48 button styling from style.css (this file
+     loads after it) — a compact mono-editorial icon link instead, and small
+     enough that all 6 icons fit in one row within the footer column. */
+  width: 32px !important;
+  height: 32px !important;
+  background: rgba(248,250,252,0.08) !important;
+  border: 1px solid rgba(248,250,252,0.15) !important;
+  border-radius: 0 !important;
   color: var(--bg) !important;
-  font-size: 18px;
-  transition: color 0.2s ease;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .social-icons a:hover {
-  color: var(--accent) !important;
+  color: var(--ink) !important;
+  background: var(--accent) !important;
+  border-color: var(--accent) !important;
+  transform: translateY(-2px);
 }
 
 .footer-subscribe-form input {
@@ -1375,4 +1393,54 @@ body {
         width: 95vw !important;
         padding: 10px !important;
     }
+}
+
+/* ── DESKTOP BLEED ──────────────────────────────────────────────────
+   On normal desktop/laptop widths the site keeps its existing
+   1040/1200px reading-width containers untouched. On genuinely wide
+   monitors, those same fixed pixel widths leave large empty margins
+   on either side, so this scales the containers up in two steps
+   instead — never below 1600px, so nothing here touches tablet,
+   mobile, or the common 1280–1440px laptop range. */
+@media (min-width: 1600px) {
+  .header-content,
+  .footer-grid,
+  .footer-bottom-bar {
+    max-width: 1440px;
+  }
+  .blog-hero-editorial,
+  .section-rule,
+  .featured-wrap,
+  .articles-wrap,
+  .topics-wrap,
+  .newsletter-inner,
+  .article-layout {
+    max-width: 1320px;
+  }
+  /* Blog post pages (all 5 static posts) use this container, separate
+     from .article-layout above — same 960px-base pattern, scaled the
+     same way. */
+  .editorial-layout .container {
+    max-width: 1200px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .header-content,
+  .footer-grid,
+  .footer-bottom-bar {
+    max-width: 1600px;
+  }
+  .blog-hero-editorial,
+  .section-rule,
+  .featured-wrap,
+  .articles-wrap,
+  .topics-wrap,
+  .newsletter-inner,
+  .article-layout {
+    max-width: 1480px;
+  }
+  .editorial-layout .container {
+    max-width: 1360px;
+  }
 }
