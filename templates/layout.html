@@ -31,14 +31,14 @@
     <!-- Open Graph for Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.empathtechnologysolutions.com{{ request.path }}">
-    <meta property="og:title" content="Empath Technology Solutions - Affordable IT Support Cape Town">
-    <meta property="og:description" content="Professional and affordable IT support for small business and individuals. Computer repairs, network setup, virus removal starting at R100.">
-    <meta property="og:image" content="https://www.empathtechnologysolutions.com/static/images/logo-blue.png">
-    
+    <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ self.meta_description() }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}https://www.empathtechnologysolutions.com/static/images/logo-blue.png{% endblock %}">
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Empath Technology Solutions - Affordable IT Support">
-    <meta name="twitter:description" content="Cheap IT support for small business in Cape Town. Computer repairs, network setup, virus removal.">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ self.title() }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ self.meta_description() }}{% endblock %}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo-blue.png') }}">
@@ -156,11 +156,12 @@
         })(window, document, "clarity", "script", "whnqgr7t9b");
     </script>
     
-    <!-- Zoho Campaigns Scripts -->
-    <script type="text/javascript" src="https://zgnp-zngp.maillist-manage.com/js/jquery-1.11.0.min.js"></script>
-    <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/jquery-migrate-1.2.1.min.js'></script>
-    <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/jquery-ui-1.10.4.custom.min.js'></script>
-    <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/optin_min.js'></script>
+    <!-- Zoho Campaigns Scripts (deferred — not needed to render the page, and multiple
+         deferred scripts still execute in this document order before DOMContentLoaded) -->
+    <script type="text/javascript" src="https://zgnp-zngp.maillist-manage.com/js/jquery-1.11.0.min.js" defer></script>
+    <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/jquery-migrate-1.2.1.min.js' defer></script>
+    <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/jquery-ui-1.10.4.custom.min.js' defer></script>
+    <script type='text/javascript' src='https://zgnp-zngp.maillist-manage.com/js/optin_min.js' defer></script>
     
     <!-- Zoho Popup Responsive Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/widgets.css') }}">
