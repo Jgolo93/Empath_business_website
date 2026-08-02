@@ -766,7 +766,11 @@ body {
 
 .articles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* Fixed 2 columns rather than auto-fill: there are 4 service cards, and
+     auto-fill(minmax(300px,1fr)) landed on 3 columns at this container
+     width, leaving the 4th card alone on its own lopsided row. 2 columns
+     divides evenly into the actual card count. */
+  grid-template-columns: repeat(2, 1fr);
   gap: 0;
   border: 2px solid var(--ink);
 }
@@ -782,7 +786,7 @@ body {
 }
 
 .article-card:hover { background: var(--surface); }
-.article-card:nth-child(3n) { border-right: none; }
+.article-card:nth-child(2n) { border-right: none; }
 
 .card-thumb-area {
   height: 190px;
@@ -991,7 +995,11 @@ body {
 
 .topics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  /* Fixed 3 columns rather than auto-fill: there are 6 topic cells, and
+     auto-fill(minmax(180px,1fr)) landed on 4 columns at this container
+     width, leaving the last 2 cells alone on a lopsided final row. 3
+     columns divides evenly into the actual cell count (2 full rows). */
+  grid-template-columns: repeat(3, 1fr);
   border: 1px solid var(--ink);
   overflow: hidden;
 }
@@ -1005,7 +1013,15 @@ body {
 }
 
 .topic-cell:hover { background: var(--surface); }
-.topic-cell:last-child { border-right: none; }
+.topic-cell:nth-child(3n) { border-right: none; }
+
+/* .topics-grid's default 3-column layout only divides evenly into 6 items
+   (the homepage's "Why Choose Empath"). The About page's "My Approach" has
+   4 cells, so it needs its own 2-column variant instead — otherwise it hits
+   the exact same lopsided-last-row bug this file already fixed once. */
+.topics-grid--4 { grid-template-columns: repeat(2, 1fr); }
+.topics-grid--4 .topic-cell { border-right: 1px solid var(--border); }
+.topics-grid--4 .topic-cell:nth-child(2n) { border-right: none; }
 
 .topic-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
 
@@ -1443,4 +1459,264 @@ body {
   .editorial-layout .container {
     max-width: 1360px;
   }
+}
+
+/* ── EXPLORE CAROUSEL (homepage) ──────────────────────────────────────
+   Built on the existing generic .carousel-wrap/.carousel-track system
+   (static/js/carousel.js, base rules in style.css) rather than a new
+   component — same scroll-snap + arrow-nav behavior already used
+   elsewhere on the site. */
+.cta-carousel-wrap {
+  max-width: 1040px;
+  margin: 0 auto 64px;
+  padding: 0 40px;
+}
+@media (min-width: 1600px) { .cta-carousel-wrap { max-width: 1320px; } }
+@media (min-width: 1920px) { .cta-carousel-wrap { max-width: 1480px; } }
+
+.cta-slide {
+  width: min(340px, 80vw);
+  border: 2px solid var(--ink);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cta-slide:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+.cta-slide--accent  { background: var(--accent);  color: #fff; }
+.cta-slide--accent2 { background: var(--accent2); color: #fff; }
+.cta-slide--ink     { background: var(--ink);     color: var(--bg); }
+
+.cta-slide-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.cta-slide h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1.15;
+  margin: 0;
+  color: inherit;
+}
+.cta-slide p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  opacity: 0.9;
+  flex: 1;
+  margin: 0;
+  color: inherit;
+}
+.cta-slide-btn {
+  align-self: flex-start;
+  margin-top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.cta-slide--accent .cta-slide-btn:hover,
+.cta-slide--accent2 .cta-slide-btn:hover { background: #fff; color: var(--ink); }
+.cta-slide--ink .cta-slide-btn:hover { background: var(--bg); color: var(--ink); }
+
+/* ── FEATURED CASE STUDY (homepage) ── */
+.case-study-spotlight {
+  max-width: 1040px;
+  margin: 0 auto 64px;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 0;
+  border: 2px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+@media (min-width: 1600px) { .case-study-spotlight { max-width: 1320px; } }
+@media (min-width: 1920px) { .case-study-spotlight { max-width: 1480px; } }
+
+.case-study-spotlight-text {
+  padding: 40px;
+  border-right: 2px solid var(--ink);
+}
+.case-study-spotlight-text .cta-slide-label { color: var(--accent); }
+.case-study-spotlight-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  margin: 12px 0 16px;
+  color: var(--ink);
+}
+.case-study-spotlight-text h2 em { font-style: italic; color: var(--accent); }
+.case-study-spotlight-text p {
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+.case-study-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding: 40px;
+  background: var(--surface);
+}
+.case-study-stat { display: flex; flex-direction: column; }
+.case-study-stat .num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--ink);
+}
+.case-study-stat .lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+@media (max-width: 768px) {
+  .case-study-spotlight { grid-template-columns: 1fr; padding: 0 24px; }
+  .case-study-spotlight-text { border-right: none; border-bottom: 2px solid var(--ink); padding: 32px 24px; }
+  .case-study-stats { flex-direction: row; flex-wrap: wrap; padding: 28px 24px; }
+}
+
+/* ── LATEST FROM THE BLOG (homepage) ── */
+.blog-preview-wrap {
+  max-width: 1040px;
+  margin: 0 auto 64px;
+  padding: 0 40px;
+}
+@media (min-width: 1600px) { .blog-preview-wrap { max-width: 1320px; } }
+@media (min-width: 1920px) { .blog-preview-wrap { max-width: 1480px; } }
+
+.blog-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 2px solid var(--ink);
+}
+.blog-preview-card {
+  padding: 28px 24px;
+  border-right: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 0.2s ease;
+}
+.blog-preview-card:last-child { border-right: none; }
+.blog-preview-card:hover { background: var(--surface); }
+.blog-preview-card .cta-slide-label { color: var(--accent); }
+.blog-preview-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: 0;
+}
+.blog-preview-card p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--muted);
+  flex: 1;
+  margin: 0;
+}
+.blog-preview-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .blog-preview-wrap { padding: 0 24px; }
+  .blog-preview-grid { grid-template-columns: 1fr; }
+  .blog-preview-card { border-right: none; border-bottom: 1px solid var(--border); }
+  .blog-preview-card:last-child { border-bottom: none; }
+}
+
+/* ── CLIENT REVIEWS (homepage) — real reviews/feedback, verbatim, carousel ── */
+.reviews-wrap {
+  max-width: 1040px;
+  margin: 0 auto 64px;
+  padding: 0 40px;
+}
+@media (min-width: 1600px) { .reviews-wrap { max-width: 1320px; } }
+@media (min-width: 1920px) { .reviews-wrap { max-width: 1480px; } }
+
+.reviews-track { gap: 24px; }
+.review-card {
+  /* Narrower than the first draft (was 420px/85vw): at 420px wide, only a
+     ~70px sliver of the next card peeked past the visible edge, and the
+     carousel-arrow's solid background sat directly on top of that sliver,
+     covering its stars/text. 360px/78vw leaves a clear, uncovered peek on
+     both desktop and mobile. */
+  width: min(360px, 78vw);
+  border: 2px solid var(--ink);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.review-stars {
+  color: var(--accent);
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+.review-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+  flex: 1;
+  margin: 0;
+}
+.review-author {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.review-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.review-source {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .reviews-wrap { padding: 0 24px; }
 }

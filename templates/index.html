@@ -72,6 +72,52 @@
     </div>
 </div>
 
+<!-- ── EXPLORE CAROUSEL (sits directly under the hero) ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Explore</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="cta-carousel-wrap cta-carousel-wrap--hero">
+    <div class="carousel-wrap" data-carousel data-carousel-autoplay="5500">
+        <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous">‹</button>
+        <div class="carousel-track" data-carousel-track>
+            <div class="cta-slide cta-slide--accent">
+                <span class="cta-slide-label">IT Support</span>
+                <h3>Get Expert<br>IT Support</h3>
+                <p>Fast, affordable computer repair, virus removal, and remote support for Cape Town small businesses.</p>
+                <a href="{{ url_for('support.create_ticket') }}" class="cta-slide-btn">Get Support →</a>
+            </div>
+            <div class="cta-slide cta-slide--accent2">
+                <span class="cta-slide-label">Shop</span>
+                <h3>Browse Computers<br>&amp; Components</h3>
+                <p>Computers, networking gear, storage, and accessories — backed by the same technicians who handle your repairs.</p>
+                <a href="https://shop.empathtechnologysolutions.com" class="cta-slide-btn" target="_blank" rel="noopener">Visit Shop →</a>
+            </div>
+            <div class="cta-slide cta-slide--ink">
+                <span class="cta-slide-label">Blog</span>
+                <h3>Tips &amp; Guides for<br>Small Business</h3>
+                <p>Practical cybersecurity, productivity, and web development advice from our team.</p>
+                <a href="{{ url_for('blog.blog') }}" class="cta-slide-btn">Read the Blog →</a>
+            </div>
+            <div class="cta-slide cta-slide--accent">
+                <span class="cta-slide-label">Referrals</span>
+                <h3>Earn Rewards for<br>Every Referral</h3>
+                <p>Know someone who needs IT support? Share your code and get rewarded when they sign up.</p>
+                <a href="{{ url_for('referrals.referrer_signup_page') }}" class="cta-slide-btn">Join the Programme →</a>
+            </div>
+            <div class="cta-slide cta-slide--accent2">
+                <span class="cta-slide-label">Process</span>
+                <h3>See How It<br>Works</h3>
+                <p>From submitting a ticket to getting your tech problem solved — simple, transparent, stress-free.</p>
+                <a href="{{ url_for('main.how_it_works') }}" class="cta-slide-btn">See the Process →</a>
+            </div>
+        </div>
+        <button class="carousel-arrow next" data-carousel-next aria-label="Next">›</button>
+    </div>
+</div>
+
 <!-- ── PULL QUOTE ── -->
 <div class="pull-quote-wrap">
     <div class="pull-quote-mark">"</div>
@@ -260,6 +306,15 @@
     </div>
 </div>
 
+<!-- ── BRANDS WE SUPPORT ── -->
+<div class="brand-marquee-wrap">
+    <div class="brand-marquee-track">
+        {% for brand in ['Acer', 'ASRock', 'ASUS', 'Giada', 'MINISFORUM', 'Nplay', 'PCBuilder'] * 2 %}
+        <span class="brand-marquee-item">{{ brand }}</span>
+        {% endfor %}
+    </div>
+</div>
+
 {% set shop_url = 'https://shop.empathtechnologysolutions.com' %}
 <!-- ── SHOP CTA ── -->
 <div class="section-rule">
@@ -336,6 +391,109 @@
                 <span class="topic-count">500+ Happy Clients</span>
             </div>
         </div>
+    </div>
+</div>
+
+<!-- ── CLIENT REVIEWS ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Client Reviews</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="reviews-wrap">
+    <div class="carousel-wrap" data-carousel data-carousel-autoplay="6000">
+        <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous">‹</button>
+        <div class="carousel-track reviews-track" data-carousel-track>
+            <div class="review-card">
+                <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <p class="review-quote">"Jason services is excellent, fast and efficient nice using his services will definitely doing business with him again"</p>
+                <div class="review-author">
+                    <span class="review-name">Angie Jonas</span>
+                    <span class="review-source">Google Review</span>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <p class="review-quote">"Absolutely brilliant service and support. Everything was up and working before the deadline. Amazing Company to work with ! Thank you!"</p>
+                <div class="review-author">
+                    <span class="review-name">Belinda Brass</span>
+                    <span class="review-source">Google Review</span>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
+                <p class="review-quote">"Awesome attentive professional service, always willing to give the client what requested and open for future service."</p>
+                <div class="review-author">
+                    <span class="review-name">Donovan, SEAFAM Primary Animal Health Care</span>
+                    <span class="review-source">Client Feedback</span>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-arrow next" data-carousel-next aria-label="Next">›</button>
+    </div>
+</div>
+
+<!-- ── FEATURED CASE STUDY ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Case Study</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="case-study-spotlight">
+    <div class="case-study-spotlight-text">
+        <span class="cta-slide-label">Web Development · Glen's Grass</span>
+        <h2>R50 and a Weekend:<br><em>Real Results</em> for a Real Business</h2>
+        <p>We built Glen's Grass a complete small-business website — custom email, booking system, and SMS automation — in 48 hours. Here's what happened in the first month after launch.</p>
+        <a href="{{ url_for('blog.glens_grass_case_study') }}" class="btn-ink">Read the Full Case Study →</a>
+    </div>
+    <div class="case-study-stats">
+        <div class="case-study-stat">
+            <span class="num">25+</span>
+            <span class="lbl">Quote Requests</span>
+        </div>
+        <div class="case-study-stat">
+            <span class="num">15</span>
+            <span class="lbl">New Customers</span>
+        </div>
+        <div class="case-study-stat">
+            <span class="num">40%</span>
+            <span class="lbl">Revenue Increase</span>
+        </div>
+    </div>
+</div>
+
+<!-- ── LATEST FROM THE BLOG ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Latest From The Blog</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="blog-preview-wrap">
+    <div class="blog-preview-grid">
+        <a href="{{ url_for('blog.cybersecurity_tips') }}" class="blog-preview-card">
+            <span class="cta-slide-label">IT Security</span>
+            <h3>5 Essential Cybersecurity Tips for Small Businesses</h3>
+            <p>Essential cybersecurity measures every small business should implement to protect data, customers, and reputation.</p>
+            <span class="blog-preview-link">Read More →</span>
+        </a>
+        <a href="{{ url_for('blog.productivity_boost') }}" class="blog-preview-card">
+            <span class="cta-slide-label">IT Solutions</span>
+            <h3>How IT Solutions Can Boost Small Business Productivity by 40%</h3>
+            <p>The IT solutions that can significantly increase your small business productivity and efficiency.</p>
+            <span class="blog-preview-link">Read More →</span>
+        </a>
+        <a href="{{ url_for('blog.world_of_testing') }}" class="blog-preview-card">
+            <span class="cta-slide-label">Testing & QA</span>
+            <h3>The World of Testing</h3>
+            <p>A sweeping look at software testing — from unit tests to end-to-end automation and AI-assisted quality assurance.</p>
+            <span class="blog-preview-link">Read More →</span>
+        </a>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+        <a href="{{ url_for('blog.blog') }}" class="btn-outline-ink">Browse All Articles →</a>
     </div>
 </div>
 
