@@ -58,10 +58,22 @@
 
 <div class="featured-wrap">
     <div class="featured-editorial">
-        <div class="featured-thumb" style="background: var(--accent);">
-            <div class="featured-thumb-graphic">
-                <div class="big-text">IT<br/><em>Journey</em></div>
-                <div class="featured-thumb-sub">Since High School</div>
+        <div class="featured-thumb">
+            <div class="carousel-wrap photo-carousel" data-carousel data-carousel-autoplay="4500">
+                <div class="carousel-track" data-carousel-track>
+                    <div><img src="{{ url_for('static', filename='images/jason-goliath.jpg') }}" alt="Jason Goliath, Founder &amp; Director of Empath Technology Solutions"></div>
+                    <div><img src="{{ url_for('static', filename='images/jason-goliath-guitar.jpg') }}" alt="Jason Goliath playing guitar"></div>
+                </div>
+                <button class="carousel-arrow prev" data-carousel-prev aria-label="Previous photo">‹</button>
+                <button class="carousel-arrow next" data-carousel-next aria-label="Next photo">›</button>
+            </div>
+            <div style="position:absolute; bottom:0; left:0; right:0; z-index:2; background:rgba(15,23,42,0.78); color:#f8fafc; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;">
+                <span>Jason Goliath — Founder &amp; Director</span>
+                <span class="social-icons" style="margin-bottom:0;">
+                    <a href="https://www.linkedin.com/in/jason-goliath-66533b172" target="_blank" rel="noopener noreferrer" aria-label="Jason's LinkedIn profile"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/Jgolo93" target="_blank" rel="noopener noreferrer" aria-label="Jason's GitHub profile"><i class="fab fa-github"></i></a>
+                    <a href="https://www.goliathjason.co.za/" target="_blank" rel="noopener noreferrer" aria-label="Jason's personal portfolio site"><i class="fas fa-globe"></i></a>
+                </span>
             </div>
         </div>
         <div class="featured-body">
@@ -72,13 +84,18 @@
                 </div>
                 <h2>From Curiosity to Career</h2>
                 <p>My passion for IT started in high school, where I followed my older brother around as he worked on computers—back when 486 and Pentium 1 processors were cutting-edge. Watching him troubleshoot, build systems, and breathe life into machines sparked something in me.</p>
-                
-                <p>I started learning by doing—repairing computers, setting up internet for my local church, and supporting friends and family with their tech needs. This early hands-on experience laid the foundation for my career.</p>
+
+                <p>That spark became my first job: an IT technician repairing hardware, reinstalling operating systems, and handling on-site callouts. It was hands-on, practical work—but it was a chance software testing role a few years later that changed the direction of my career and sparked a curiosity for programming I couldn't shake.</p>
+
+                <p>Over the next several years, I built a career as a Test Analyst—testing payment and gift card systems for a major retail group, running integration testing on enterprise data platforms, and eventually earning a permanent role at an automation-focused tech company, where I still work today. Every project taught me the same lesson from a different angle: real quality isn't found by accident. It's tested for, deliberately, every time.</p>
+
+                <p>The whole time, I was teaching myself to code on the side—nights and weekends spent learning Python, Flask, and web development, just to see if I could build the things I was testing. Eventually I could, and Empath Technology Solutions was the result: a business built on a QA engineer's instinct for what breaks, paired with a self-taught developer's drive to fix it—for the small businesses and individuals who need dependable tech support without an enterprise budget.</p>
                 
                 <div class="featured-tags">
-                    <span class="editorial-tag">#SelfTaught</span>
-                    <span class="editorial-tag">#HandsOn</span>
-                    <span class="editorial-tag">#EarlyStart</span>
+                    <span class="editorial-tag">#SelfTaughtDev</span>
+                    <span class="editorial-tag">#QAEngineer</span>
+                    <span class="editorial-tag">#TestAnalyst</span>
+                    <span class="editorial-tag">#ITSupportTechnician</span>
                 </div>
             </div>
         </div>
@@ -89,7 +106,7 @@
 <div class="articles-wrap">
     <div class="article-content-wrapper" style="max-width: 100%; text-align: center; padding: 48px;">
         <div class="article-body">
-            <h2 style="text-align: center; border: none; margin-bottom: 32px;">Professional Certification</h2>
+            <h2 style="display: block; text-align: center; border: none; margin-bottom: 32px;">Professional Certification</h2>
             <p style="text-align: center; font-size: 1.1rem; margin-bottom: 32px;">
                 I earned my <strong style="color: var(--accent);">CompTIA A+ certification</strong> through <strong style="color: var(--accent2);">Boston City Campus</strong>, 
                 and have since built a career that spans <strong style="color: var(--accent);">desktop support, server maintenance, software testing</strong>, 
@@ -229,6 +246,125 @@
     </div>
 </div>
 
+<!-- ── TECH STACK SECTION ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Tech Stack</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="featured-tags" style="justify-content: center; gap: 10px; padding: 0 40px 40px; margin-bottom: 0;">
+        <span class="editorial-tag">Python</span>
+        <span class="editorial-tag">Flask</span>
+        <span class="editorial-tag">FastAPI</span>
+        <span class="editorial-tag">Java</span>
+        <span class="editorial-tag">SQL</span>
+        <span class="editorial-tag">Bootstrap</span>
+        <span class="editorial-tag">HTML &amp; CSS</span>
+        <span class="editorial-tag">JavaScript</span>
+        <span class="editorial-tag">Selenium</span>
+        <span class="editorial-tag">Robot Framework</span>
+        <span class="editorial-tag">GitHub Actions</span>
+        <span class="editorial-tag">Windows Server</span>
+        <span class="editorial-tag">Network Setup &amp; DNS</span>
+        <span class="editorial-tag">Zoho Suite</span>
+    </div>
+</div>
+
+<!-- ── SKILL PROFICIENCY SECTION ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">Skill Proficiency</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="skillbar-list">
+        <div class="skillbar-item">
+            <div class="skillbar-head">
+                <span class="skillbar-label">Software Testing &amp; QA Engineering</span>
+                <span class="skillbar-pct">100%</span>
+            </div>
+            <div class="skillbar-track"><div class="skillbar-fill" data-pct="100" style="width: 100%;"></div></div>
+        </div>
+        <div class="skillbar-item">
+            <div class="skillbar-head">
+                <span class="skillbar-label">Robot Framework &amp; Python Automation</span>
+                <span class="skillbar-pct">100%</span>
+            </div>
+            <div class="skillbar-track"><div class="skillbar-fill" data-pct="100" style="width: 100%;"></div></div>
+        </div>
+        <div class="skillbar-item">
+            <div class="skillbar-head">
+                <span class="skillbar-label">IT Support</span>
+                <span class="skillbar-pct">90%</span>
+            </div>
+            <div class="skillbar-track"><div class="skillbar-fill" data-pct="90" style="width: 90%;"></div></div>
+        </div>
+        <div class="skillbar-item">
+            <div class="skillbar-head">
+                <span class="skillbar-label">Web Development</span>
+                <span class="skillbar-pct">60%</span>
+            </div>
+            <div class="skillbar-track"><div class="skillbar-fill" data-pct="60" style="width: 60%;"></div></div>
+        </div>
+        <div class="skillbar-item">
+            <div class="skillbar-head">
+                <span class="skillbar-label">Front-End Development</span>
+                <span class="skillbar-pct">60%</span>
+            </div>
+            <div class="skillbar-track"><div class="skillbar-fill" data-pct="60" style="width: 60%;"></div></div>
+        </div>
+        <div class="skillbar-item">
+            <div class="skillbar-head">
+                <span class="skillbar-label">Backend Development</span>
+                <span class="skillbar-pct">50%</span>
+            </div>
+            <div class="skillbar-track"><div class="skillbar-fill" data-pct="50" style="width: 50%;"></div></div>
+        </div>
+    </div>
+</div>
+
+<!-- ── TESTIMONIALS SECTION ── -->
+<div class="section-rule">
+    <span class="section-rule-line"></span>
+    <span class="section-rule-text">What Colleagues Say</span>
+    <span class="section-rule-line"></span>
+</div>
+
+<div class="featured-wrap">
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <p class="review-quote">"Jason is a great colleague, polite, kind and enthusiastic. What I value most about him, though, is his eagerness to learn new things and grow. Looking forward to working together for a long time to come."</p>
+            <div class="review-author">
+                <span class="review-name">Bas Dijkstra</span>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <p class="review-quote">"I had the pleasure of working with Jason when he came in as a junior, I was impressed how technical he was and hit the ground running as he came in. Jason has experience using multiple testing tools and techniques, and he is not afraid to try out different things to get the job done. He is a highly focused person as well as analytical and can add to any team he is a part of."</p>
+            <div class="review-author">
+                <span class="review-name">Zolani Ratya</span>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <p class="review-quote">"I had the pleasure of working with Jason at Shoprite. He was always eager to learn and a great team player. He is a good listener and always willing to assist. He will be an asset to any organisation that wishes to employ him."</p>
+            <div class="review-author">
+                <span class="review-name">Rushda Sissing</span>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <p class="review-quote">"Jason is an excellent QA. I worked alongside him on a demanding transformation project, his calm demeanour and ability to pick up complex problems quickly made him a key team player. I can wholeheartedly recommend him."</p>
+            <div class="review-author">
+                <span class="review-name">Mark Harrison</span>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center; margin-top:32px;">
+        <a href="https://www.linkedin.com/in/jason-goliath-66533b172" target="_blank" rel="noopener noreferrer" class="btn-outline-ink">View My LinkedIn Profile →</a>
+    </div>
+</div>
+
 <!-- ── PHILOSOPHY SECTION ── -->
 <div class="section-rule">
     <span class="section-rule-line"></span>
@@ -284,5 +420,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ url_for('static', filename='js/carousel.js') }}"></script>
 
 {% endblock %}

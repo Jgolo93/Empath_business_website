@@ -86,6 +86,24 @@
         statObserver.observe(el);
     });
 
+    // ── Animated skill bars: fill from 0 to their data-pct on scroll into view ──
+    var skillBars = document.querySelectorAll('.skillbar-fill');
+    skillBars.forEach(function (el) { el.style.width = '0%'; });
+
+    var skillbarObserver = new IntersectionObserver(function (entries, obs) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                var el = entry.target;
+                el.style.width = (el.getAttribute('data-pct') || 0) + '%';
+                obs.unobserve(el);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    skillBars.forEach(function (el) {
+        skillbarObserver.observe(el);
+    });
+
     // ── Cursor-spotlight hover on cards ──
     // Tracks pointer position within each card and exposes it as CSS custom
     // properties; animations.css turns that into a soft radial highlight.
